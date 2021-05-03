@@ -8,6 +8,8 @@ public class HolidayMakerApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(HolidayMakerApplication.class, args);
+
+		System.out.println("Started!");
 	}
 
 }

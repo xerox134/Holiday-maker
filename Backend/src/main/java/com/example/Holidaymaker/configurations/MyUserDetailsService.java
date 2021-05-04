@@ -22,8 +22,8 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @PostConstruct
     private void createDefaultUsers(){
-        if (userRepo.findByEmail("Lasse74") == null) {
-            registerUser(new User("Lasse74", "abc123"));
+        if (userRepo.findByEmail("abc") == null) {
+            registerUser(new User("abc", "abc123"));
         }
     }
 

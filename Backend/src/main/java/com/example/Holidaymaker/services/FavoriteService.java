@@ -22,6 +22,20 @@ public class FavoriteService {
         return null;
     }
 
+    public void deleteById(long id) { favoriteRepo.deleteById(id); }
 
 
+
+   public List<Favorite> getAll() {
+        return favoriteRepo.findAll();
+    }
+
+
+    public List<Favorite> findById(long user) {
+       if(favoriteRepo.findByUser( user) != null){
+            List<Favorite> favoriteList = favoriteRepo.findByUser(user);
+            return favoriteList;
+        }
+        return null;
+    }
 }

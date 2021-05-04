@@ -14,9 +14,9 @@ public class Favorite {
 
     public Favorite() {    }
 
-    public Favorite(long id, long user_id, long hotel) {
+    public Favorite(long id, long user, long hotel) {
         this.id = id;
-        this.user = user_id;
+        this.user = user;
         this.hotel = hotel;
     }
 
@@ -28,12 +28,12 @@ public class Favorite {
         this.id = id;
     }
 
-    public long getUser_id() {
+    public long getUser() {
         return user;
     }
 
-    public void setUser_id(long user_id) {
-        this.user = user_id;
+    public void setUser(long user) {
+        this.user = user;
     }
 
     public long getHotel() {

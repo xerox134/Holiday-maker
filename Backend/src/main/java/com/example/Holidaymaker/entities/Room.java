@@ -14,7 +14,7 @@ public class Room {
     private long beds;
     private long price;
     @Embedded
-    private Name name;
+    private HotelId hotelId;
 
     public Room() {
     }
@@ -27,13 +27,13 @@ public class Room {
         this.price = price;
     }
 
-    public Room(long id, long hotel, long room_nr, long beds, long price, Name name) {
+    public Room(long id, long hotel, long room_nr, long beds, long price, HotelId hotelId) {
         this.id = id;
         this.hotel = hotel;
         this.room_nr = room_nr;
         this.beds = beds;
         this.price = price;
-        this.name = name;
+        this.hotelId = hotelId;
     }
 
     public long getId() {
@@ -76,35 +76,39 @@ public class Room {
         this.price = price;
     }
 
-    public Name getName() {
-        return name;
+    public HotelId getHotelId() {
+        return hotelId;
     }
 
-    public void setName(Name name) {
-        this.name = name;
+    public void setHotelId(HotelId hotelId) {
+        this.hotelId = hotelId;
     }
 }
 
 @Embeddable
-class Name{
-    @Column(name = "name", table = "hotels")
-    String name;
+class HotelId{
+    @Column(name = "id", table = "hotels")
+    String hotelId;
 
-    public Name() {
+    public HotelId() {
+    }
+
+    public HotelId(String hotelId) {
+        this.hotelId = hotelId;
     }
 
     public String getName() {
-        return name;
+        return hotelId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String hotelId) {
+        this.hotelId = hotelId;
     }
 
     @Override
     public String toString() {
-        return "Name{" +
-                "name='" + name + '\'' +
+        return "HotelId{" +
+                "hotelId='" + hotelId + '\'' +
                 '}';
     }
 }

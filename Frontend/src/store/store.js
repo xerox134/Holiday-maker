@@ -4,13 +4,20 @@ import axios from 'axios';
 export default createStore({
     name:'store',
   state: {
+    favorites: [],
+    addedFavorites:[]
       hotels:[],
   },
+  
   mutations: {
     addHotels(state, payload) {
         state.hotels = payload;
       },
+    setFavorites(state,payload){
+      state.favorites = payload;
+    }
   },
+  
   actions: {
     async fetchHotels(){
         await axios.get("http://localhost:3000/rest/hotels")
@@ -19,7 +26,23 @@ export default createStore({
           console.log(response.data)
         })
       },
+    async fetchAllFavorites(){
+      await axios.get("http://localhost:3000/rest/favorites/1")
+      .then(response => {
+      this.commit("setFavorites", response.data)
+      console.log(response.data)
+    })
   },
+  },
+
+  getters:{
+    getAllFavorites(state){
+      return state.favorites
+    }
+
+  },
+
+
   modules: {
   }
 })

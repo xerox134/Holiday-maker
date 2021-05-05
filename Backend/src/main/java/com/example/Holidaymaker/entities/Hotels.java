@@ -15,6 +15,7 @@ public class Hotels {
     private String description;
     private boolean wifi;
     private boolean pool;
+    private boolean bar;
     private boolean entertainment;
     private boolean childrens_club;
     private boolean restaurant;
@@ -24,7 +25,9 @@ public class Hotels {
     public Hotels() {
     }
 
-    public Hotels(long id, String name, String country, String city, String address, String description, boolean wifi, boolean pool, boolean entertainment, boolean childrens_club, boolean restaurant, int distance_to_beach, int distance_to_center) {
+    public Hotels(long id, String name, String country, String city, String address,
+                  String description, boolean wifi, boolean pool, boolean bar, boolean entertainment,
+                  boolean childrens_club, boolean restaurant, int distance_to_beach, int distance_to_center) {
         this.id = id;
         this.name = name;
         this.country = country;
@@ -33,6 +36,7 @@ public class Hotels {
         this.description = description;
         this.wifi = wifi;
         this.pool = pool;
+        this.bar = bar;
         this.entertainment = entertainment;
         this.childrens_club = childrens_club;
         this.restaurant = restaurant;
@@ -104,6 +108,14 @@ public class Hotels {
         this.pool = pool;
     }
 
+    public boolean isBar() {
+        return bar;
+    }
+
+    public void setBar(boolean bar) {
+        this.bar = bar;
+    }
+
     public boolean isEntertainment() {
         return entertainment;
     }
@@ -155,6 +167,7 @@ public class Hotels {
                 ", description='" + description + '\'' +
                 ", wifi=" + wifi +
                 ", pool=" + pool +
+                ", bar=" + bar +
                 ", entertainment=" + entertainment +
                 ", childrens_club=" + childrens_club +
                 ", restaurant=" + restaurant +

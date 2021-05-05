@@ -5,7 +5,7 @@ export default createStore({
     name:'store',
   state: {
     favorites: [],
-    addedFavorites:[]
+    addedFavorites:[],
       hotels:[],
   },
   
@@ -38,7 +38,10 @@ export default createStore({
   getters:{
     getAllFavorites(state){
       return state.favorites
-    }
+    },
+    getAllHotels(state){
+      return state.hotels
+    },
 
   },
 

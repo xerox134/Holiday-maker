@@ -2,10 +2,19 @@
   <div id="card" >
     
     <div class="Hotel-card" v-if="type == 'hotel'">
-        <span class="name">{{ card.name }}</span><br>
-        <span id="city">{{ card.city }}</span><br><br>
+        <span class="name"> Namn: {{ card.name }}</span><br>
+        <span id="country">Land: {{ card.country }}</span><br>
+        <span id="city">Stad: {{ card.city }}</span><br>
+        <span id="address">Adress: {{ card.address }}</span><br>
+        <span id="pool">Finns pool: {{ card.pool }}</span><br>
+        <span id="entertainment">Finns Underhållning: {{ card.entertainment }}</span><br>
+        <span id="childrens_club">{{ card.childrens_club }}</span><br>
+        <span id="resturant">{{ card.restaurant }}</span><br><br>
+        <span id="distance_to_beach">{{ card.distance_to_beach }}</span><br><br>
+        <span id="distance_to_center">{{ card.distance_to_center }}</span><br><br>
+
       </div>
-      
+
      
     <div class="Favorite-card" v-if="type == 'favorite'">
       <span class="id">{{ card.id }}</span>  |

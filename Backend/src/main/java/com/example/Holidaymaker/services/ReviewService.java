@@ -9,6 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReviewService {
@@ -17,7 +18,7 @@ public class ReviewService {
     private ReviewRepo reviewRepo;
 
     public List<Review> getReviewsByHotelId(long hotelId) {
-        return null;
+        return reviewRepo.getWithHotelId(hotelId);
     }
 
     public Review addReview(Review review) {

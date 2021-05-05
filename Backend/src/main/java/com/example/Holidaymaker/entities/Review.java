@@ -8,17 +8,13 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private long userId;
-    private long hotelId;
     private int rating;
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
     public Review() {
@@ -33,13 +29,13 @@ public class Review {
         this.hotel = hotel;
     }
 
-    public Review(long id, long userId, long hotelId, int rating, String description) {
+    /*public Review(long id, long userId, long hotelId, int rating, String description) {
         this.id = id;
         this.userId = userId;
         this.hotelId = hotelId;
         this.rating = rating;
         this.description = description;
-    }
+    }*/
 
     public long getId() {
         return id;

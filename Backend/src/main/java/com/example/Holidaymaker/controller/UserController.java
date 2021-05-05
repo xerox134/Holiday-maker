@@ -30,4 +30,24 @@ public class UserController {
     public User whoAmI() {
         return userService.whoAmI();
     }
+
+    @GetMapping("/rest/users")
+    public List<User> getAllUsers() {
+        return userService.getAll();
+    }
+
+    @GetMapping("/rest/users/{id}")
+    public User getUserById(@PathVariable long id) {
+        return userService.getById(id);
+    }
+
+    @DeleteMapping("/rest/users/{id}")
+    public void deleteUser(@PathVariable long id) {
+        userService.deleteUser(id);
+    }
+
+    @PutMapping("/rest/users/{id}")
+    public User updateUser(@PathVariable long id, @RequestBody User user) {
+        return userService.updateById(id, user);
+    }
 }

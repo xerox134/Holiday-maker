@@ -7,6 +7,7 @@ export default createStore({
     favorites: [],
     addedFavorites:[],
       hotels:[],
+      loggedInUser: null
   },
   
   mutations: {
@@ -16,6 +17,9 @@ export default createStore({
     setFavorites(state,payload){
       state.favorites = payload;
     }
+      setLoggedInUser (state, user) {
+        state.loggedInUser = user
+      }
   },
   
   actions: {
@@ -26,6 +30,15 @@ export default createStore({
           console.log(response.data)
         })
       },
+      async fetchUser(){
+        await axios.get("http://localhost:3000/auth/whoami/")
+        .then(response => {
+          this.commit("setUser", response.data)
+          if(response != null)
+            console.log(response.data)
+        })
+      },
+      
     async fetchAllFavorites(){
       await axios.get("http://localhost:3000/rest/favorites/1")
       .then(response => {
@@ -33,19 +46,6 @@ export default createStore({
       console.log(response.data)
     })
   },
-  },
-
-  getters:{
-    getAllFavorites(state){
-      return state.favorites
-    },
-    getAllHotels(state){
-      return state.hotels
-    },
-
-  },
-
-
   modules: {
   }
 })

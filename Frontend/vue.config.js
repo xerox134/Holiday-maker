@@ -22,13 +22,20 @@ module.exports = {
             '/login': {
                 target: 'http://localhost:8080',
                 ws: true,
-                changeOrigin: true
+                changeOrigin: true,
+                secure: false
             },
             '/logout': {
                 target: 'http://localhost:8080',
                 ws: true,
                 changeOrigin: true
             },
+            '/auth/register': {
+                target: 'http://localhost:8080',
+                ws: true,
+                changeOrigin: true,
+                secure: false
+            }
         },       
     }
 }

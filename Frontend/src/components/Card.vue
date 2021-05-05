@@ -1,10 +1,12 @@
 <template>
   <div id="card" >
+    
     <div class="Hotel-card" v-if="type == 'hotel'">
         <span class="name">{{ card.name }}</span><br>
         <span id="city">{{ card.city }}</span><br><br>
       </div>
-      </div>
+      
+     
     <div class="Favorite-card" v-if="type == 'favorite'">
       <span class="id">{{ card.id }}</span>  |
       <span id="user">{{card.user}}</span><br><br>
@@ -12,6 +14,8 @@
 
       <button @click="deleteFavorite(card.id), refreshStuff()">Ta bort ✖
       </button>   </div>
+
+       </div>
 
 </template>
 <script>

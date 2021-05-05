@@ -1,12 +1,15 @@
 package com.example.Holidaymaker.entities;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="hotels")
-public class Hotels {
+public class Hotel {
     @Id// Primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY) //autoincrement
+    @Column(name = "id")
     private long id;
     private String name;
     private String country;
@@ -14,15 +17,15 @@ public class Hotels {
     private String address;
     private boolean pool;
     private boolean entertainment;
-    private boolean childrens_club;
+    private boolean childrensClub;
     private boolean restaurant;
     private int distance_to_beach;
     private int distance_to_center;
 
-    public Hotels() {
+    public Hotel() {
     }
 
-    public Hotels(long id, String name, String country, String city, String address, boolean pool, boolean entertainment, boolean childrens_club, boolean restaurant, int distance_to_beach, int distance_to_center) {
+    public Hotel(long id, String name, String country, String city, String address, boolean pool, boolean entertainment, boolean childrensClub, boolean restaurant, int distance_to_beach, int distance_to_center) {
         this.id = id;
         this.name = name;
         this.country = country;
@@ -30,7 +33,7 @@ public class Hotels {
         this.address = address;
         this.pool = pool;
         this.entertainment = entertainment;
-        this.childrens_club = childrens_club;
+        this.childrensClub = childrensClub;
         this.restaurant = restaurant;
         this.distance_to_beach = distance_to_beach;
         this.distance_to_center = distance_to_center;
@@ -92,12 +95,12 @@ public class Hotels {
         this.entertainment = entertainment;
     }
 
-    public boolean isChildrens_club() {
-        return childrens_club;
+    public boolean isChildrensClub() {
+        return childrensClub;
     }
 
-    public void setChildrens_club(boolean childrens_club) {
-        this.childrens_club = childrens_club;
+    public void setChildrensClub(boolean childrensClub) {
+        this.childrensClub = childrensClub;
     }
 
     public boolean isRestaurant() {
@@ -134,7 +137,7 @@ public class Hotels {
                 ", address='" + address + '\'' +
                 ", pool=" + pool +
                 ", entertainment=" + entertainment +
-                ", childrens_club=" + childrens_club +
+                ", childrens_club=" + childrensClub +
                 ", restaurant=" + restaurant +
                 ", distance_to_beach=" + distance_to_beach +
                 ", distance_to_center=" + distance_to_center +

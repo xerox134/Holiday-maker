@@ -68,8 +68,6 @@ public class Review {
     public String toString() {
         return "Review{" +
                 "id=" + id +
-                ", userId=" + userId +
-                ", hotelId=" + hotelId +
                 ", rating=" + rating +
                 ", description='" + description + '\'' +
                 '}';

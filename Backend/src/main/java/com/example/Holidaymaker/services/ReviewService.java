@@ -16,19 +16,16 @@ public class ReviewService {
     @Autowired
     private ReviewRepo reviewRepo;
 
-    @Autowired
-    private UserRepo userRepo;
-
     public List<Review> getReviewsByHotelId(long hotelId) {
         return null;
     }
 
     public Review addReview(Review review) {
-        try {
-            return reviewRepo.save(review);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+            try {
+                return reviewRepo.save(review);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         return null;
     }
 }

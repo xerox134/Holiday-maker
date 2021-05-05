@@ -22,6 +22,9 @@ public class Hotel {
     private int distance_to_beach;
     private int distance_to_center;
 
+    @OneToMany(mappedBy = "hotel")
+    private List<Review> reviews;
+
     public Hotel() {
     }
 
@@ -125,6 +128,14 @@ public class Hotel {
 
     public void setDistance_to_center(int distance_to_center) {
         this.distance_to_center = distance_to_center;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 
     @Override

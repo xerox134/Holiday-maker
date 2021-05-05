@@ -13,7 +13,24 @@ public class Review {
     private int rating;
     private String description;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "hotel_id")
+    private Hotel hotel;
+
     public Review() {
+    }
+
+
+    public Review(long id, int rating, String description, User user, Hotel hotel) {
+        this.id = id;
+        this.rating = rating;
+        this.description = description;
+        this.user = user;
+        this.hotel = hotel;
     }
 
     public Review(long id, long userId, long hotelId, int rating, String description) {
@@ -32,7 +49,7 @@ public class Review {
         this.id = id;
     }
 
-    public long getUserId() {
+    /*public long getUserId() {
         return userId;
     }
 
@@ -40,13 +57,13 @@ public class Review {
         this.userId = userId;
     }
 
-    public long getHotel() {
+    public long getHotelId() {
         return hotelId;
     }
 
-    public void setHotel(long hotelId) {
+    public void setHotelId(long hotelId) {
         this.hotelId = hotelId;
-    }
+    }*/
 
     public int getRating() {
         return rating;
@@ -64,14 +81,30 @@ public class Review {
         this.description = description;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Hotel getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
+    }
+
     @Override
     public String toString() {
         return "Review{" +
                 "id=" + id +
-                ", userId=" + userId +
-                ", hotelId=" + hotelId +
                 ", rating=" + rating +
                 ", description='" + description + '\'' +
+                ", user=" + user +
+                ", hotel=" + hotel +
                 '}';
     }
 }

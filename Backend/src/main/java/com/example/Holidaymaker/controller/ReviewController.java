@@ -9,7 +9,6 @@ import java.util.List;
 
 @RestController
 public class ReviewController {
-
     @Autowired
     private ReviewService reviewService;
 
@@ -21,6 +20,17 @@ public class ReviewController {
     @PostMapping("/rest/reviews")
     public Review addReview(@RequestBody Review review) {
         return reviewService.addReview(review);
+        // EXEMPEL PÅ JSON-POST
+    /*  {
+        "rating": 5,
+        "description": "Helt ok",
+        "user": {
+            "id": "2"
+        },
+        "hotel": {
+            "id": 5
+        }
+    }*/
     }
 
 }

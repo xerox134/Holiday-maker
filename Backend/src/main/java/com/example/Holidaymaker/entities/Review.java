@@ -1,7 +1,5 @@
 package com.example.Holidaymaker.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 
 @Entity
@@ -30,14 +28,6 @@ public class Review {
         this.user = user;
         this.hotel = hotel;
     }
-
-    /*public Review(long id, long userId, long hotelId, int rating, String description) {
-        this.id = id;
-        this.userId = userId;
-        this.hotelId = hotelId;
-        this.rating = rating;
-        this.description = description;
-    }*/
 
     public long getId() {
         return id;

@@ -16,7 +16,7 @@ export default createStore({
       },
     setFavorites(state,payload){
       state.favorites = payload;
-    }
+    },
       setLoggedInUser (state, user) {
         state.loggedInUser = user
       }
@@ -46,6 +46,7 @@ export default createStore({
       console.log(response.data)
     })
   },
+},
   modules: {
   }
 })

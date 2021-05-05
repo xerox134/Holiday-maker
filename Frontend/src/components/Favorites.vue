@@ -5,8 +5,8 @@
 <div id="favoriteList">
  <ol style="list-style-type:none;">
 <li v-for="(Favorite, index) in getAllFavorites" :key="index"> 
- {{ Favorite.id }} --      {{ Favorite.user }}      
- 
+        <Card :card="Favorite"  :type="'favorite'"/>
+
          </li>
     </ol>
    </div>
@@ -15,10 +15,11 @@
 
 
 <script>
+import Card from "./Card"
 export default {
     name: "Favorites",
 components: {
-        
+        Card
     },
     
 

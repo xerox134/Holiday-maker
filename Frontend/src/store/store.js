@@ -5,8 +5,8 @@ export default createStore({
     name:'store',
   state: {
     favorites: [],
-    addedFavorites:[]
-      hotels:[],
+    addedFavorites:[],
+      hotels:[]
   },
   
   mutations: {

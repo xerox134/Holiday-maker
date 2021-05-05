@@ -1,6 +1,6 @@
 package com.example.Holidaymaker.controller;
 
-import com.example.Holidaymaker.entities.Hotels;
+import com.example.Holidaymaker.entities.Hotel;
 import com.example.Holidaymaker.services.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +14,7 @@ public class HotelController {
     private HotelService hotelService;
 
     @GetMapping("/rest/hotels")
-    public List<Hotels> getAllHotels(){
+    public List<Hotel> getAllHotels(){
         return hotelService.getAll();
 
     }

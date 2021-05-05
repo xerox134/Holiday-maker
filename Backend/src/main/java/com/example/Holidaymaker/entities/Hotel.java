@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="hotels")
-public class Hotels {
+public class Hotel {
     @Id// Primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY) //autoincrement
     private long id;
@@ -22,12 +22,12 @@ public class Hotels {
     private int distance_to_beach;
     private int distance_to_center;
 
-    public Hotels() {
+    public Hotel() {
     }
 
-    public Hotels(long id, String name, String country, String city, String address,
-                  String description, boolean wifi, boolean pool, boolean bar, boolean entertainment,
-                  boolean childrens_club, boolean restaurant, int distance_to_beach, int distance_to_center) {
+    public Hotel(long id, String name, String country, String city, String address,
+                 String description, boolean wifi, boolean pool, boolean bar, boolean entertainment,
+                 boolean childrens_club, boolean restaurant, int distance_to_beach, int distance_to_center) {
         this.id = id;
         this.name = name;
         this.country = country;

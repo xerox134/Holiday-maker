@@ -1,5 +1,7 @@
 package com.example.Holidaymaker.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
@@ -130,6 +132,7 @@ public class Hotel {
         this.distance_to_center = distance_to_center;
     }
 
+    @JsonIgnore
     public List<Review> getReviews() {
         return reviews;
     }

@@ -55,6 +55,7 @@ public class User {
         this.password = password;
     }
 
+    @JsonIgnore
     public List<Review> getReviews() {
         return reviews;
     }

@@ -9,7 +9,5 @@ import java.util.List;
 
 @Repository
 public interface ReviewRepo extends JpaRepository<Review, Long> {
-
-    @Query(value = "SELECT * FROM reviews WHERE cape_color LIKE %?1% ORDER BY name ASC", nativeQuery = true)
-    List<Review> getWithHotelId(long hotelId);
+    List<Review> findByHotelId(long hotelId);
 }

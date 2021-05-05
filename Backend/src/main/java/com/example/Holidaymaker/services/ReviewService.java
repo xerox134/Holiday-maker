@@ -18,7 +18,7 @@ public class ReviewService {
     private ReviewRepo reviewRepo;
 
     public List<Review> getReviewsByHotelId(long hotelId) {
-        return reviewRepo.getWithHotelId(hotelId);
+        return reviewRepo.findByHotelId(hotelId);
     }
 
     public Review addReview(Review review) {

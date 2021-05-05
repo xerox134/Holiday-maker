@@ -40,11 +40,11 @@ public class Review {
         this.userId = userId;
     }
 
-    public long getHotelId() {
+    public long getHotel() {
         return hotelId;
     }
 
-    public void setHotelId(long hotelId) {
+    public void setHotel(long hotelId) {
         this.hotelId = hotelId;
     }
 
@@ -68,6 +68,8 @@ public class Review {
     public String toString() {
         return "Review{" +
                 "id=" + id +
+                ", userId=" + userId +
+                ", hotelId=" + hotelId +
                 ", rating=" + rating +
                 ", description='" + description + '\'' +
                 '}';

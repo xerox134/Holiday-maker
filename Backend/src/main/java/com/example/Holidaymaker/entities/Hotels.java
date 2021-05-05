@@ -12,6 +12,8 @@ public class Hotels {
     private String country;
     private String city;
     private String address;
+    private String description;
+    private boolean wifi;
     private boolean pool;
     private boolean entertainment;
     private boolean childrens_club;
@@ -22,12 +24,14 @@ public class Hotels {
     public Hotels() {
     }
 
-    public Hotels(long id, String name, String country, String city, String address, boolean pool, boolean entertainment, boolean childrens_club, boolean restaurant, int distance_to_beach, int distance_to_center) {
+    public Hotels(long id, String name, String country, String city, String address, String description, boolean wifi, boolean pool, boolean entertainment, boolean childrens_club, boolean restaurant, int distance_to_beach, int distance_to_center) {
         this.id = id;
         this.name = name;
         this.country = country;
         this.city = city;
         this.address = address;
+        this.description = description;
+        this.wifi = wifi;
         this.pool = pool;
         this.entertainment = entertainment;
         this.childrens_club = childrens_club;
@@ -72,8 +76,24 @@ public class Hotels {
         return address;
     }
 
-    public void setAddress(String adress) {
-        this.address = adress;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public boolean isWifi() {
+        return wifi;
+    }
+
+    public void setWifi(boolean wifi) {
+        this.wifi = wifi;
     }
 
     public boolean isPool() {
@@ -126,12 +146,14 @@ public class Hotels {
 
     @Override
     public String toString() {
-        return "\nhotels{" +
+        return "Hotels{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", country='" + country + '\'' +
                 ", city='" + city + '\'' +
                 ", address='" + address + '\'' +
+                ", description='" + description + '\'' +
+                ", wifi=" + wifi +
                 ", pool=" + pool +
                 ", entertainment=" + entertainment +
                 ", childrens_club=" + childrens_club +

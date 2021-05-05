@@ -6,12 +6,14 @@
         <span id="country">Land: {{ card.country }}</span><br>
         <span id="city">Stad: {{ card.city }}</span><br>
         <span id="address">Adress: {{ card.address }}</span><br>
+        <span id="description">Info: {{ card.description }}</span><br>
+        <span id="wifi">Finns Wifi: {{ card.wifi }}</span><br>
         <span id="pool">Finns pool: {{ card.pool }}</span><br>
         <span id="entertainment">Finns Underhållning: {{ card.entertainment }}</span><br>
-        <span id="childrens_club">{{ card.childrens_club }}</span><br>
-        <span id="resturant">{{ card.restaurant }}</span><br><br>
-        <span id="distance_to_beach">{{ card.distance_to_beach }}</span><br><br>
-        <span id="distance_to_center">{{ card.distance_to_center }}</span><br><br>
+        <span id="childrens_club">Finns Barn klubb: {{ card.childrens_club }}</span><br>
+        <span id="resturant">Finns restaurang: {{ card.restaurant }}</span><br>
+        <span id="distance_to_beach">Distans till närmaste strand: {{ card.distance_to_beach }} km</span><br>
+        <span id="distance_to_center">Distans till centrum: {{ card.distance_to_center }} km</span><br><br>
 
       </div>
 

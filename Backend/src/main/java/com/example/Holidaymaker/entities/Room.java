@@ -4,14 +4,17 @@ import javax.persistence.*;
 
 @Entity // this is an entity class
 @Table(name="rooms") // the table name is rooms
+@SecondaryTable(name = "hotels") // access to hotels table for extraction of hotel name
 public class Room {
     @Id // the primary key is the long under this annotation
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // activates autoincrement
     private long id; // this is the primary key
     private long hotel;
     private long room_nr;
     private long beds;
     private long price;
+    @Embedded
+    private Name name;
 
     public Room() {
     }
@@ -22,6 +25,15 @@ public class Room {
         this.room_nr = room_nr;
         this.beds = beds;
         this.price = price;
+    }
+
+    public Room(long id, long hotel, long room_nr, long beds, long price, Name name) {
+        this.id = id;
+        this.hotel = hotel;
+        this.room_nr = room_nr;
+        this.beds = beds;
+        this.price = price;
+        this.name = name;
     }
 
     public long getId() {
@@ -64,14 +76,35 @@ public class Room {
         this.price = price;
     }
 
+    public Name getName() {
+        return name;
+    }
+
+    public void setName(Name name) {
+        this.name = name;
+    }
+}
+
+@Embeddable
+class Name{
+    @Column(name = "name", table = "hotels")
+    String name;
+
+    public Name() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
-        return "Room{" +
-                "id=" + id +
-                ", hotel=" + hotel +
-                ", room_nr=" + room_nr +
-                ", beds=" + beds +
-                ", price=" + price +
+        return "Name{" +
+                "name='" + name + '\'' +
                 '}';
     }
 }

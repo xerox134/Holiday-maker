@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -13,6 +14,9 @@ public class User {
     private long id;
     private String email;
     private String password;
+
+    @OneToMany(mappedBy = "user")
+    private List<Review> reviews;
 
     public User() {}
 
@@ -49,6 +53,15 @@ public class User {
     @JsonProperty
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @JsonIgnore
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 
     @Override

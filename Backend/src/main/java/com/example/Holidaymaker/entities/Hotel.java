@@ -1,12 +1,18 @@
 package com.example.Holidaymaker.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.List;
+import javax.persistence.*;
+
 
 @Entity
 @Table(name="hotels")
 public class Hotel {
     @Id// Primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY) //autoincrement
+    @Column(name = "id")
     private long id;
     private String name;
     private String country;
@@ -21,6 +27,9 @@ public class Hotel {
     private boolean restaurant;
     private int distance_to_beach;
     private int distance_to_center;
+
+    @OneToMany(mappedBy = "hotel")
+    private List<Review> reviews;
 
     public Hotel() {
     }
@@ -154,6 +163,15 @@ public class Hotel {
 
     public void setDistance_to_center(int distance_to_center) {
         this.distance_to_center = distance_to_center;
+    }
+
+    @JsonIgnore
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 
     @Override

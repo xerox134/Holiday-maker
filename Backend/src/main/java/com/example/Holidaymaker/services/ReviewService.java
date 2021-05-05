@@ -9,6 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReviewService {
@@ -16,19 +17,16 @@ public class ReviewService {
     @Autowired
     private ReviewRepo reviewRepo;
 
-    @Autowired
-    private UserRepo userRepo;
-
     public List<Review> getReviewsByHotelId(long hotelId) {
-        return null;
+        return reviewRepo.findByHotelId(hotelId);
     }
 
     public Review addReview(Review review) {
-        try {
-            return reviewRepo.save(review);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+            try {
+                return reviewRepo.save(review);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         return null;
     }
 }

@@ -19,9 +19,13 @@
 
      
     <div class="Favorite-card" v-if="type == 'favorite'">
-      <span class="id">{{ card.user }}</span>  |
-      <span id="user">{{card.hotel}}</span><br><br>
-      <span id="Hotelname">{{card.Hotelname}}</span><br><br>
+      <span class="id">UserId: {{ card.userid }}</span>  <br><br>
+      <span id="user">Name: {{card.hotelname}}</span><br><br>
+      <span id="Hotelcity">City: {{card.hotelcity}}</span><br><br>
+      <span id="Hotelcountry">Country: {{card.hotelcountry}}</span><br><br>
+      <span id="Hoteldescription">Description: {{card.description}}</span><br><br>
+
+
 
       <button @click="deleteFavorite(card.id), refreshStuff()">Ta bort ✖
       </button>   </div>
@@ -54,16 +58,22 @@ async deleteFavorite(id) {
 
   },
 
-   async favoriteItem(hotelid ) {
+   async favoriteItem(name, city, country, description) {
 let credentials = {
-        user: 1,
-        hotel: hotelid
+        userid: 5,
+        hotelid: this.$store.state.hotels.id,
+        hotelname : name,
+        hotelcountry: country,
+        hotelcity: city,
+        description: description
       } 
       let response = await fetch ('/rest/favorites/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(credentials)
+      
       })
+      console.log(credentials)
       if(response.url.includes('error')){
         console.log('Something went wrong. Try again')
       } else {

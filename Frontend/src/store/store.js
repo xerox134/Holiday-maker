@@ -6,11 +6,15 @@ export default createStore({
   state: {
     favorites: [],
     addedFavorites:[],
-      hotels:[],
-      loggedInUser: null
+    hotels:[],
+    loggedInUser: null,
+    LoggedInUserId:0
   },
   
   mutations: {
+    setLoggedInUserId(state, user) {
+      state.loggedInUserId = user
+    },
     addHotels(state, payload) {
         state.hotels = payload;
       },
@@ -40,7 +44,7 @@ export default createStore({
       },
       
     async fetchAllFavorites(){
-      await axios.get("http://localhost:3000/rest/favorites/1")
+      await axios.get("http://localhost:3000/rest/favorites/5")
       .then(response => {
       this.commit("setFavorites", response.data)
       console.log(response.data)
@@ -49,6 +53,9 @@ export default createStore({
 },
 
 getters:{
+  getLoginUserId(state){
+    return state.loggedInUserId
+  },
   getAllFavorites(state){
     return state.favorites
   },

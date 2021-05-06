@@ -61,7 +61,9 @@ methods: {
             mode: 'no-cors',
             body: credentials
         })
-        setTimeout(() => location.reload(), 1)
+              console.log(response)
+
+      //  setTimeout(() => location.reload(), 1)
 
     },
     async register () {

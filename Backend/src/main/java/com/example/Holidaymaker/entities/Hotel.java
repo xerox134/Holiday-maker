@@ -1,34 +1,50 @@
 package com.example.Holidaymaker.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.List;
+
 
 @Entity
 @Table(name="hotels")
-public class Hotels {
+public class Hotel {
     @Id// Primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY) //autoincrement
+    @Column(name = "id")
     private long id;
     private String name;
     private String country;
     private String city;
     private String address;
+    private String description;
+    private boolean wifi;
     private boolean pool;
+    private boolean bar;
     private boolean entertainment;
     private boolean childrens_club;
     private boolean restaurant;
     private int distance_to_beach;
     private int distance_to_center;
 
-    public Hotels() {
+    @OneToMany(mappedBy = "hotel")
+    private List<Review> reviews;
+
+    public Hotel() {
     }
 
-    public Hotels(long id, String name, String country, String city, String address, boolean pool, boolean entertainment, boolean childrens_club, boolean restaurant, int distance_to_beach, int distance_to_center) {
+    public Hotel(long id, String name, String country, String city, String address,
+                 String description, boolean wifi, boolean pool, boolean bar, boolean entertainment,
+                 boolean childrens_club, boolean restaurant, int distance_to_beach, int distance_to_center) {
         this.id = id;
         this.name = name;
         this.country = country;
         this.city = city;
         this.address = address;
+        this.description = description;
+        this.wifi = wifi;
         this.pool = pool;
+        this.bar = bar;
         this.entertainment = entertainment;
         this.childrens_club = childrens_club;
         this.restaurant = restaurant;
@@ -72,8 +88,24 @@ public class Hotels {
         return address;
     }
 
-    public void setAddress(String adress) {
-        this.address = adress;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public boolean isWifi() {
+        return wifi;
+    }
+
+    public void setWifi(boolean wifi) {
+        this.wifi = wifi;
     }
 
     public boolean isPool() {
@@ -82,6 +114,14 @@ public class Hotels {
 
     public void setPool(boolean pool) {
         this.pool = pool;
+    }
+
+    public boolean isBar() {
+        return bar;
+    }
+
+    public void setBar(boolean bar) {
+        this.bar = bar;
     }
 
     public boolean isEntertainment() {
@@ -124,15 +164,27 @@ public class Hotels {
         this.distance_to_center = distance_to_center;
     }
 
+    @JsonIgnore
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
     @Override
     public String toString() {
-        return "\nhotels{" +
+        return "Hotels{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", country='" + country + '\'' +
                 ", city='" + city + '\'' +
                 ", address='" + address + '\'' +
+                ", description='" + description + '\'' +
+                ", wifi=" + wifi +
                 ", pool=" + pool +
+                ", bar=" + bar +
                 ", entertainment=" + entertainment +
                 ", childrens_club=" + childrens_club +
                 ", restaurant=" + restaurant +

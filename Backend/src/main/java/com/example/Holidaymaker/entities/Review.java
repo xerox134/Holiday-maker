@@ -8,20 +8,25 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private long userId;
-    private long hotelId;
     private int rating;
     private String description;
+
+    @ManyToOne
+    private User user;
+
+    @ManyToOne
+    private Hotel hotel;
 
     public Review() {
     }
 
-    public Review(long id, long userId, long hotelId, int rating, String description) {
+
+    public Review(long id, int rating, String description, User user, Hotel hotel) {
         this.id = id;
-        this.userId = userId;
-        this.hotelId = hotelId;
         this.rating = rating;
         this.description = description;
+        this.user = user;
+        this.hotel = hotel;
     }
 
     public long getId() {
@@ -30,22 +35,6 @@ public class Review {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
-    public long getHotelId() {
-        return hotelId;
-    }
-
-    public void setHotelId(long hotelId) {
-        this.hotelId = hotelId;
     }
 
     public int getRating() {
@@ -64,14 +53,30 @@ public class Review {
         this.description = description;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Hotel getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
+    }
+
     @Override
     public String toString() {
         return "Review{" +
                 "id=" + id +
-                ", userId=" + userId +
-                ", hotelId=" + hotelId +
                 ", rating=" + rating +
                 ", description='" + description + '\'' +
+                ", user=" + user +
+                ", hotel=" + hotel +
                 '}';
     }
 }

@@ -7,7 +7,8 @@ export default createStore({
     favorites: [],
     addedFavorites:[],
       hotels:[],
-      loggedInUser: null
+      loggedInUser: null,
+      
   },
   
   mutations: {

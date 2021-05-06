@@ -8,12 +8,16 @@
         <span id="address">Adress: {{ card.address }}</span><br><br>
         <span id="description">Info: {{ card.description }}</span><br><br>
         <span id="wifi">Finns Wifi: {{ card.wifi }}</span><br><br>
-        <span id="pool">Finns pool: {{ card.pool }}</span><br><br>
+        <span id="pool">Finns Pool: {{ card.pool }}</span><br><br>
         <span id="entertainment">Finns Underhållning: {{ card.entertainment }}</span><br><br>
         <span id="childrens_club">Finns Barn klubb: {{ card.childrens_club }}</span><br><br>
-        <span id="resturant">Finns restaurang: {{ card.restaurant }}</span><br><br>
+        <span id="resturant">Finns Restaurang: {{ card.restaurant }}</span><br><br>
+        <span id="bar">Finns Bar: {{ card.bar }}</span><br><br>
         <span id="distance_to_beach">Distans till närmaste strand: {{ card.distance_to_beach }} km</span><br><br>
         <span id="distance_to_center">Distans till centrum: {{ card.distance_to_center }} km</span><br><br><br>
+        <img v-bind:src=card.img alt="" /><br><br><br>
+        <p>FRÅN 500kr/natt</p><br><br>
+        
         <button @click.stop="favoriteItem(card.id, card.title, type)">Favoritmarkera ❤</button>
       </div>
 
@@ -51,6 +55,11 @@ async deleteFavorite(id) {
       } else {
         console.log ('DELETED')
       }
+
+  },
+
+  async getImage(){
+    
 
   },
 

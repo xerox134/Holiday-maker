@@ -9,23 +9,21 @@ public class Favorite {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private long userid;
-    private long hotelid;
-    private String Hotelname;
-    private String Description;
-    private String Hotelcountry;
-    private String Hotelcity;
 
-    public Favorite() { }
+    @ManyToOne
+    private User user;
 
-    public Favorite(long id, long userid, long hotelid, String hotelname, String description, String hotelcountry, String hotelcity) {
+    @ManyToOne
+    private Hotel hotel;
+
+
+    public Favorite() {
+    }
+
+    public Favorite(long id, User user, Hotel hotel) {
         this.id = id;
-        this.userid = userid;
-        this.hotelid = hotelid;
-        Hotelname = hotelname;
-        Description = description;
-        Hotelcountry = hotelcountry;
-        Hotelcity = hotelcity;
+        this.user = user;
+        this.hotel = hotel;
     }
 
     public long getId() {
@@ -36,64 +34,28 @@ public class Favorite {
         this.id = id;
     }
 
-    public long getUserid() {
-        return userid;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserid(long userid) {
-        this.userid = userid;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public long getHotelid() {
-        return hotelid;
+    public Hotel getHotel() {
+        return hotel;
     }
 
-    public void setHotelid(long hotelid) {
-        this.hotelid = hotelid;
-    }
-
-    public String getHotelname() {
-        return Hotelname;
-    }
-
-    public void setHotelname(String hotelname) {
-        Hotelname = hotelname;
-    }
-
-    public String getDescription() {
-        return Description;
-    }
-
-    public void setDescription(String description) {
-        Description = description;
-    }
-
-    public String getHotelcountry() {
-        return Hotelcountry;
-    }
-
-    public void setHotelcountry(String hotelcountry) {
-        Hotelcountry = hotelcountry;
-    }
-
-    public String getHotelcity() {
-        return Hotelcity;
-    }
-
-    public void setHotelcity(String hotelcity) {
-        Hotelcity = hotelcity;
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
     }
 
     @Override
     public String toString() {
         return "Favorite{" +
                 "id=" + id +
-                ", userid=" + userid +
-                ", hotelid=" + hotelid +
-                ", Hotelname='" + Hotelname + '\'' +
-                ", Description='" + Description + '\'' +
-                ", Hotelcountry='" + Hotelcountry + '\'' +
-                ", Hotelcity='" + Hotelcity + '\'' +
+                ", user=" + user +
+                ", hotel=" + hotel +
                 '}';
     }
 }

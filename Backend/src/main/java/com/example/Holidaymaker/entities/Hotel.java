@@ -30,6 +30,9 @@ public class Hotel {
     @OneToMany(mappedBy = "hotel")
     private List<Review> reviews;
 
+    @OneToMany(mappedBy = "hotel")
+    private List<Favorite> favorites;
+
     public Hotel() {
     }
 
@@ -162,6 +165,14 @@ public class Hotel {
 
     public void setDistance_to_center(int distance_to_center) {
         this.distance_to_center = distance_to_center;
+    }
+
+    public List<Favorite> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(List<Favorite> favorites) {
+        this.favorites = favorites;
     }
 
     @JsonIgnore

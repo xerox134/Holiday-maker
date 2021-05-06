@@ -2,18 +2,18 @@
   <div id="card" >
     
     <div class="Hotel-card" v-if="type == 'hotel'">
-        <span class="name"> Namn: {{ card.name }}</span><br>
-        <span id="country">Land: {{ card.country }}</span><br>
-        <span id="city">Stad: {{ card.city }}</span><br>
-        <span id="address">Adress: {{ card.address }}</span><br>
-        <span id="description">Info: {{ card.description }}</span><br>
-        <span id="wifi">Finns Wifi: {{ card.wifi }}</span><br>
-        <span id="pool">Finns pool: {{ card.pool }}</span><br>
-        <span id="entertainment">Finns Underhållning: {{ card.entertainment }}</span><br>
-        <span id="childrens_club">Finns Barn klubb: {{ card.childrens_club }}</span><br>
-        <span id="resturant">Finns restaurang: {{ card.restaurant }}</span><br>
-        <span id="distance_to_beach">Distans till närmaste strand: {{ card.distance_to_beach }} km</span><br>
-        <span id="distance_to_center">Distans till centrum: {{ card.distance_to_center }} km</span><br><br>
+        <span class="name"> Namn: {{ card.name }}</span><br><br>
+        <span id="country">Land: {{ card.country }}</span><br><br>
+        <span id="city">Stad: {{ card.city }}</span><br><br>
+        <span id="address">Adress: {{ card.address }}</span><br><br>
+        <span id="description">Info: {{ card.description }}</span><br><br>
+        <span id="wifi">Finns Wifi: {{ card.wifi }}</span><br><br>
+        <span id="pool">Finns pool: {{ card.pool }}</span><br><br>
+        <span id="entertainment">Finns Underhållning: {{ card.entertainment }}</span><br><br>
+        <span id="childrens_club">Finns Barn klubb: {{ card.childrens_club }}</span><br><br>
+        <span id="resturant">Finns restaurang: {{ card.restaurant }}</span><br><br>
+        <span id="distance_to_beach">Distans till närmaste strand: {{ card.distance_to_beach }} km</span><br><br>
+        <span id="distance_to_center">Distans till centrum: {{ card.distance_to_center }} km</span><br><br><br>
         <button @click.stop="favoriteItem(card.id, card.title, type)">Favoritmarkera ❤</button>
       </div>
 
@@ -81,18 +81,19 @@ let credentials = {
 
 <style scoped>
   #card{
-    color: rgba(255, 250, 235, .7);
+    color: rgba(19, 13, 9, 0.911);
     display: flex;
     list-style-type: none;
-    background-color: rgba(60, 55, 65, .3);
+    background-color: rgba(16, 16, 17, 0.534);
     margin: 0 auto;
     padding: 2vh;
     margin-bottom: 18px;
     box-shadow: 4px 4px 2px rgba(0, 0, 0, .3), inset 2px 2px 2px rgba(240, 200, 255, .1);
     min-height: 4vh;
-    max-width: 100%;
+    max-width: 50%;
     justify-content: center;
     align-self: center;
+    text-align: left;
   }
 
   #card:hover{

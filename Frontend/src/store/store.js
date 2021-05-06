@@ -47,6 +47,18 @@ export default createStore({
     })
   },
 },
+
+getters:{
+  getAllFavorites(state){
+    return state.favorites
+  },
+  
+  getAllHotels(state){
+    return state.hotels
+  }
+
+},
+
   modules: {
   }
 })

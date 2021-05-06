@@ -24,4 +24,8 @@ public class ReviewService {
             }
         return null;
     }
+
+    public List<Review> getAllReviews() {
+        return reviewRepo.findAll(); //Inbyggd metod
+    }
 }

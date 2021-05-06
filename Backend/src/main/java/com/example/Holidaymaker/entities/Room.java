@@ -15,7 +15,7 @@ public class Room {
     private long price;
     private long booked;
     @Embedded
-    private HotelId hotelId;
+    private HotelName hotelName; // assign embedded class
 
     public Room() {
     }
@@ -29,14 +29,14 @@ public class Room {
         this.booked = booked;
     }
 
-    public Room(long id, long hotel, long room_nr, long beds, long price, long booked, HotelId hotelId) {
+    public Room(long id, long hotel, long room_nr, long beds, long price, long booked, HotelName hotelName) {
         this.id = id;
         this.hotel = hotel;
         this.room_nr = room_nr;
         this.beds = beds;
         this.price = price;
         this.booked = booked;
-        this.hotelId = hotelId;
+        this.hotelName = hotelName;
     }
 
     public long getId() {
@@ -87,39 +87,33 @@ public class Room {
         this.booked = booked;
     }
 
-    public HotelId getHotelId() {
-        return hotelId;
+    public HotelName getHotelName() {
+        return hotelName;
     }
 
-    public void setHotelId(HotelId hotelId) {
-        this.hotelId = hotelId;
+    public void setHotelName(HotelName hotelName) {
+        this.hotelName = hotelName;
     }
 }
 
 @Embeddable
-class HotelId{
-    @Column(insertable = false, updatable = false, name = "id", table = "hotels")
-    String hotelId;
+class HotelName{ // embedded class with hotel name from table hotels
+    @Column(insertable = false, updatable = false, name = "name", table = "hotels")
+    String hotelName;
 
-    public HotelId() {
+    public String getHotelName() {
+        return hotelName;
     }
 
-    public HotelId(String hotelId) {
-        this.hotelId = hotelId;
-    }
-
-    public String getName() {
-        return hotelId;
-    }
-
-    public void setName(String hotelId) {
-        this.hotelId = hotelId;
+    public void setHotelName(String hotelName) {
+        this.hotelName = hotelName;
     }
 
     @Override
     public String toString() {
-        return "HotelId{" +
-                "hotelId='" + hotelId + '\'' +
+        return "HotelName{" +
+                "hotelName='" + hotelName + '\'' +
                 '}';
     }
+
 }

@@ -14,6 +14,7 @@ public class RoomService {
     private RoomRepo roomRepo;
 
     public List<Room> getAll(){
+        System.out.println("getAll from service ran");
         return roomRepo.findAll(); //Select * From Room
 
     }
@@ -22,6 +23,7 @@ public class RoomService {
         if(roomRepo.getRooms(hotel) != null){
             List<Room> roomList = roomRepo.getRooms(hotel);
             return roomList;
+
         }
         return null;
     }

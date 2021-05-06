@@ -13,26 +13,29 @@ public class Room {
     private long room_nr;
     private long beds;
     private long price;
+    private long booked;
     @Embedded
     private HotelId hotelId;
 
     public Room() {
     }
 
-    public Room(long id, long hotel, long room_nr, long beds, long price) {
+    public Room(long id, long hotel, long room_nr, long beds, long price, long booked) {
         this.id = id;
         this.hotel = hotel;
         this.room_nr = room_nr;
         this.beds = beds;
         this.price = price;
+        this.booked = booked;
     }
 
-    public Room(long id, long hotel, long room_nr, long beds, long price, HotelId hotelId) {
+    public Room(long id, long hotel, long room_nr, long beds, long price, long booked, HotelId hotelId) {
         this.id = id;
         this.hotel = hotel;
         this.room_nr = room_nr;
         this.beds = beds;
         this.price = price;
+        this.booked = booked;
         this.hotelId = hotelId;
     }
 
@@ -76,6 +79,14 @@ public class Room {
         this.price = price;
     }
 
+    public long getBooked() {
+        return booked;
+    }
+
+    public void setBooked(long booked) {
+        this.booked = booked;
+    }
+
     public HotelId getHotelId() {
         return hotelId;
     }
@@ -87,7 +98,7 @@ public class Room {
 
 @Embeddable
 class HotelId{
-    @Column(name = "id", table = "hotels")
+    @Column(insertable = false, updatable = false, name = "id", table = "hotels")
     String hotelId;
 
     public HotelId() {

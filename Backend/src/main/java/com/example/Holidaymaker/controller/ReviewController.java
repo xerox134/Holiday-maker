@@ -17,6 +17,11 @@ public class ReviewController {
         return reviewService.getAllReviews();
     }
 
+    @GetMapping("/rest/reviews/{id}")
+    public Review getReviewById(@PathVariable long id) {
+        return reviewService.getById(id);
+    }
+
     @GetMapping("/rest/reviews/user/{userId}")
     public List<Review> getReviewsByUserId(@PathVariable long userId) {
         return reviewService.getReviewsByUserId(userId);
@@ -41,6 +46,11 @@ public class ReviewController {
             "id": 5
         }
     }*/
+    }
+
+    @DeleteMapping("/rest/reviews/{id}")
+    public void deleteReview(@PathVariable long id) {
+        reviewService.deleteReview(id);
     }
 
 }

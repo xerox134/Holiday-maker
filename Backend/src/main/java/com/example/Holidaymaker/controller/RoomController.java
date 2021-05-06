@@ -1,5 +1,6 @@
 package com.example.Holidaymaker.controller;
 
+import com.example.Holidaymaker.entities.Hotel;
 import com.example.Holidaymaker.entities.Room;
 import com.example.Holidaymaker.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +20,12 @@ public class RoomController {
         return roomService.getAll();
     }
 
-        @GetMapping("/room/{hotel}")
-    public List<Room> getByHotelId(@PathVariable long hotel){
-        return roomService.getRooms(hotel);
+
+
+
+    @GetMapping("/room/{hotelId}")
+    public List<Room> getRoomsByHotelId(@PathVariable long hotelId){
+        return roomService.findRoomsByHotelId(hotelId);
     }
-
-
-
 
 }

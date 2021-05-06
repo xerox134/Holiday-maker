@@ -1,42 +1,32 @@
 package com.example.Holidaymaker.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity // this is an entity class
 @Table(name="rooms") // the table name is rooms
-@SecondaryTable(name = "hotels") // access to hotels table for extraction of hotel name
 public class Room {
     @Id // the primary key is the long under this annotation
     @GeneratedValue(strategy = GenerationType.IDENTITY) // activates autoincrement
     private long id; // this is the primary key
-    private long hotel;
     private long room_nr;
     private long beds;
     private long price;
-    private long booked;
-    @Embedded
-    private HotelName hotelName; // assign embedded class
+    private boolean booked;
+
+    @ManyToOne
+    private Hotel hotel;
 
     public Room() {
     }
 
-    public Room(long id, long hotel, long room_nr, long beds, long price, long booked) {
+    public Room(long id, long room_nr, long beds, long price, boolean booked, Hotel hotel) {
         this.id = id;
-        this.hotel = hotel;
         this.room_nr = room_nr;
         this.beds = beds;
         this.price = price;
         this.booked = booked;
-    }
-
-    public Room(long id, long hotel, long room_nr, long beds, long price, long booked, HotelName hotelName) {
-        this.id = id;
         this.hotel = hotel;
-        this.room_nr = room_nr;
-        this.beds = beds;
-        this.price = price;
-        this.booked = booked;
-        this.hotelName = hotelName;
     }
 
     public long getId() {
@@ -45,14 +35,6 @@ public class Room {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public long getHotel() {
-        return hotel;
-    }
-
-    public void setHotel(long hotel) {
-        this.hotel = hotel;
     }
 
     public long getRoom_nr() {
@@ -79,41 +61,31 @@ public class Room {
         this.price = price;
     }
 
-    public long getBooked() {
+    public boolean isBooked() {
         return booked;
     }
 
-    public void setBooked(long booked) {
+    public void setBooked(boolean booked) {
         this.booked = booked;
     }
 
-    public HotelName getHotelName() {
-        return hotelName;
+    public Hotel getHotel() {
+        return hotel;
     }
 
-    public void setHotelName(HotelName hotelName) {
-        this.hotelName = hotelName;
-    }
-}
-
-@Embeddable
-class HotelName{ // embedded class with hotel name from table hotels
-    @Column(insertable = false, updatable = false, name = "name", table = "hotels")
-    String hotelName;
-
-    public String getHotelName() {
-        return hotelName;
-    }
-
-    public void setHotelName(String hotelName) {
-        this.hotelName = hotelName;
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
     }
 
     @Override
     public String toString() {
-        return "HotelName{" +
-                "hotelName='" + hotelName + '\'' +
+        return "Room{" +
+                "id=" + id +
+                ", room_nr=" + room_nr +
+                ", beds=" + beds +
+                ", price=" + price +
+                ", booked=" + booked +
+                ", hotel=" + hotel +
                 '}';
     }
-
 }

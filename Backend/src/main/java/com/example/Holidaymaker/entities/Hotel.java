@@ -28,13 +28,20 @@ public class Hotel {
     private int distance_to_center;
     private String img;
 
+
     @OneToMany(mappedBy = "hotel")
     private List<Review> reviews;
+    @OneToMany(mappedBy = "hotel")
+    private List<Room> rooms;
+
 
     public Hotel() {
     }
 
-    public Hotel(long id, String name, String country, String city, String address, String description, boolean wifi, boolean pool, boolean bar, boolean entertainment, boolean childrens_club, boolean restaurant, int distance_to_beach, int distance_to_center, String img, List<Review> reviews) {
+    public Hotel(long id, String name, String country, String city, String address, String description,
+                 boolean wifi, boolean pool, boolean bar, boolean entertainment, boolean childrens_club,
+                 boolean restaurant, int distance_to_beach, int distance_to_center, String img
+                 ) {
         this.id = id;
         this.name = name;
         this.country = country;
@@ -50,7 +57,6 @@ public class Hotel {
         this.distance_to_beach = distance_to_beach;
         this.distance_to_center = distance_to_center;
         this.img = img;
-        this.reviews = reviews;
     }
 
     public long getId() {
@@ -173,12 +179,21 @@ public class Hotel {
         this.img = img;
     }
 
+    @JsonIgnore
     public List<Review> getReviews() {
         return reviews;
     }
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
+    }
+    @JsonIgnore
+    public List<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
     }
 
     @Override

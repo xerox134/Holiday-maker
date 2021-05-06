@@ -1,7 +1,16 @@
 <template>
+
   <div id="card" >
+
+
+      <div class="Room-card" v-if="type == 'room'">
+           <span class="name"> Namn: {{ card.beds }}</span><br><br>
+        <span id="country">Land: {{ card.price }}</span><br><br>
+        <span id="city">Stad: {{ card.booked }}</span><br><br>
+
+      </div>
     
-    <div class="Hotel-card" v-if="type == 'hotel'">
+    <div class="Hotel-card" v-if="type == 'hotel'" @click="toRooms(card.id)">
         <span class="name"> Namn: {{ card.name }}</span><br><br>
         <span id="country">Land: {{ card.country }}</span><br><br>
         <span id="city">Stad: {{ card.city }}</span><br><br>
@@ -38,6 +47,22 @@ export default {
 props: ["card", "type"],
 
 methods:{
+
+   async toRooms(id){
+
+
+        this.$store.state.hotelId = id
+
+        console.log(this.$store.state.hotelId)
+        console.log("We clicked")
+        this.$router.push({
+             name: 'hotel'
+        })
+
+        
+          
+
+    },
 refreshStuff(){
     this.$store.dispatch("fetchAllFavorites")
 },
@@ -58,10 +83,7 @@ async deleteFavorite(id) {
 
   },
 
-  async getImage(){
-    
-
-  },
+ 
 
    async favoriteItem(hotelid ) {
 let credentials = {

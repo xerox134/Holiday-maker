@@ -1,6 +1,5 @@
 package com.example.Holidaymaker.controller;
 
-import com.example.Holidaymaker.entities.Hotels;
 import com.example.Holidaymaker.entities.Room;
 import com.example.Holidaymaker.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,5 @@
 package com.example.Holidaymaker.services;
 
-import com.example.Holidaymaker.entities.Hotels;
 import com.example.Holidaymaker.entities.Room;
 import com.example.Holidaymaker.repositories.RoomRepo;
 import org.springframework.beans.factory.annotation.Autowired;

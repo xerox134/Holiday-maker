@@ -19,7 +19,7 @@ public class RoomController {
         return roomService.getAll();
     }
 
-    @GetMapping("/room/{hotel}")
+        @GetMapping("/room/{hotel}")
     public List<Room> getByHotelId(@PathVariable long hotel){
         return roomService.getRooms(hotel);
     }

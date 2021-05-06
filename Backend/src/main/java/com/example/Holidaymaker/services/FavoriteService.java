@@ -31,8 +31,8 @@ public class FavoriteService {
     }
 
 
-    public List<Favorite> findById(long userId) {
-       return favoriteRepo.findByUserId(userId);
+    public List<Favorite> getFavoriteByUserId(long userId) {
+       return favoriteRepo.findFavoriteByUserId(userId);
 
     }
 }

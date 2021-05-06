@@ -18,8 +18,9 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Review> reviews;
+
     @OneToMany(mappedBy = "user")
-    private List<Favorite> favorite;
+    private List<Favorite> favorites;
 
 
     public User() {}
@@ -49,13 +50,12 @@ public class User {
         this.email = email;
     }
 
-    public List<Favorite> getFavorite() { return favorite;
+    @JsonIgnore
+    public List<Favorite> getFavorite() { return favorites;
     }
 
-
-
     public void setFavorite(List<Favorite> favorite) {
-        this.favorite = favorite;
+        this.favorites = favorite;
     }
 
     @JsonIgnore

@@ -21,12 +21,12 @@ private FavoriteService favoriteService;
     public void deleteById(@PathVariable long id) {
         favoriteService.deleteById(id);}
 
-    @GetMapping("/favorit")
+    @GetMapping("/favorites")
     public List<Favorite> getAll(){
         return favoriteService.getAll(); }
 
-    @GetMapping("/favorites/{id}")
-     public List<Favorite> getFavoriteByUser(@PathVariable long userId) {
-return favoriteService.findById(userId);
+    @GetMapping("/favorites/user/{userId}")
+     public List<Favorite> getFavoriteByUserId(@PathVariable long userId) {
+        return favoriteService.getFavoriteByUserId(userId);
     }
 }

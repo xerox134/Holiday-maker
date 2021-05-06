@@ -167,6 +167,7 @@ public class Hotel {
         this.distance_to_center = distance_to_center;
     }
 
+    @JsonIgnore
     public List<Favorite> getFavorites() {
         return favorites;
     }

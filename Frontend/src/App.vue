@@ -2,7 +2,7 @@
   <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
-    <router-link to="/favorites">Favorites</router-link>
+    <router-link to="/favorites">Favorites</router-link> |
     <router-link to="/login">Login</router-link>
     <h1 id="title">Holidaymaker</h1>
   </div>
@@ -16,6 +16,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background: linear-gradient(rgba(0, 0, 255, 0.473),orange);
 }
 
 #nav {

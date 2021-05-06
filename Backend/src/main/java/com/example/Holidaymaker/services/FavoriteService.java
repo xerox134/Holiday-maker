@@ -31,11 +31,8 @@ public class FavoriteService {
     }
 
 
-    public List<Favorite> findById(long user) {
-       if(favoriteRepo.findByUser( user) != null){
-            List<Favorite> favoriteList = favoriteRepo.findByUser(user);
-            return favoriteList;
-        }
-        return null;
+    public List<Favorite> findById(long userId) {
+       return favoriteRepo.findByUserId(userId);
+
     }
 }

@@ -26,7 +26,7 @@ private FavoriteService favoriteService;
         return favoriteService.getAll(); }
 
     @GetMapping("/favorites/{id}")
-     public List<Favorite> getFavoriteByUser(@PathVariable long id) {
-return favoriteService.findById(id);
+     public List<Favorite> getFavoriteByUser(@PathVariable long userId) {
+return favoriteService.findById(userId);
     }
 }

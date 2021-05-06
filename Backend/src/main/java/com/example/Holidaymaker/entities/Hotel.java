@@ -26,16 +26,22 @@ public class Hotel {
     private boolean restaurant;
     private int distance_to_beach;
     private int distance_to_center;
+    private String img;
+
 
     @OneToMany(mappedBy = "hotel")
     private List<Review> reviews;
+    @OneToMany(mappedBy = "hotel")
+    private List<Room> rooms;
+
 
     public Hotel() {
     }
 
-    public Hotel(long id, String name, String country, String city, String address,
-                 String description, boolean wifi, boolean pool, boolean bar, boolean entertainment,
-                 boolean childrens_club, boolean restaurant, int distance_to_beach, int distance_to_center) {
+    public Hotel(long id, String name, String country, String city, String address, String description,
+                 boolean wifi, boolean pool, boolean bar, boolean entertainment, boolean childrens_club,
+                 boolean restaurant, int distance_to_beach, int distance_to_center, String img
+                 ) {
         this.id = id;
         this.name = name;
         this.country = country;
@@ -50,6 +56,7 @@ public class Hotel {
         this.restaurant = restaurant;
         this.distance_to_beach = distance_to_beach;
         this.distance_to_center = distance_to_center;
+        this.img = img;
     }
 
     public long getId() {
@@ -164,6 +171,14 @@ public class Hotel {
         this.distance_to_center = distance_to_center;
     }
 
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
     @JsonIgnore
     public List<Review> getReviews() {
         return reviews;
@@ -172,10 +187,18 @@ public class Hotel {
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
     }
+    @JsonIgnore
+    public List<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
+    }
 
     @Override
     public String toString() {
-        return "Hotels{" +
+        return "Hotel{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", country='" + country + '\'' +
@@ -190,6 +213,8 @@ public class Hotel {
                 ", restaurant=" + restaurant +
                 ", distance_to_beach=" + distance_to_beach +
                 ", distance_to_center=" + distance_to_center +
+                ", img='" + img + '\'' +
+                ", reviews=" + reviews +
                 '}';
     }
 }

@@ -9,12 +9,18 @@ public class Favorite {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private long user;
-    private long hotel;
 
-    public Favorite() {    }
+    @ManyToOne
+    private User user;
 
-    public Favorite(long id, long user, long hotel) {
+    @ManyToOne
+    private Hotel hotel;
+
+
+    public Favorite() {
+    }
+
+    public Favorite(long id, User user, Hotel hotel) {
         this.id = id;
         this.user = user;
         this.hotel = hotel;
@@ -28,19 +34,19 @@ public class Favorite {
         this.id = id;
     }
 
-    public long getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(long user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
-    public long getHotel() {
+    public Hotel getHotel() {
         return hotel;
     }
 
-    public void setHotel(long hotel) {
+    public void setHotel(Hotel hotel) {
         this.hotel = hotel;
     }
 
@@ -53,3 +59,4 @@ public class Favorite {
                 '}';
     }
 }
+

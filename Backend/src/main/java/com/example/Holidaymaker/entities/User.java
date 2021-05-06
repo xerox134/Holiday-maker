@@ -1,5 +1,6 @@
 package com.example.Holidaymaker.entities;
 
+import com.example.Holidaymaker.repositories.FavoriteRepo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -17,6 +18,9 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Review> reviews;
+    @OneToMany(mappedBy = "user")
+    private List<Favorite> favorite;
+
 
     public User() {}
 
@@ -45,6 +49,15 @@ public class User {
         this.email = email;
     }
 
+    public List<Favorite> getFavorite() { return favorite;
+    }
+
+
+
+    public void setFavorite(List<Favorite> favorite) {
+        this.favorite = favorite;
+    }
+
     @JsonIgnore
     public String getPassword() {
         return password;
@@ -63,6 +76,9 @@ public class User {
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
     }
+
+
+
 
     @Override
     public String toString() {

@@ -62,6 +62,9 @@ methods: {
             body: credentials
         })
         setTimeout(() => location.reload(), 1)
+        
+
+      //  setTimeout(() => location.reload(), 1)
 
     },
     async register () {

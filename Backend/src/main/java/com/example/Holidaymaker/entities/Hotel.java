@@ -31,6 +31,7 @@ public class Hotel {
     @OneToMany(mappedBy = "hotel")
     private List<Review> reviews;
 
+
     public Hotel() {
     }
 

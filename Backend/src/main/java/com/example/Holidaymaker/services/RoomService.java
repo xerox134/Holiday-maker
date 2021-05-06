@@ -18,6 +18,11 @@ public class RoomService {
 
     }
 
+
+
+
+
+    /*
     public List<Room> getRooms (long hotel){
         if(roomRepo.getRooms(hotel) != null){
             List<Room> roomList = roomRepo.getRooms(hotel);
@@ -26,6 +31,8 @@ public class RoomService {
         }
         return null;
     }
+
+     */
 
 
 

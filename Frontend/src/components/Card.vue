@@ -4,9 +4,11 @@
 
 
       <div class="Room-card" v-if="type == 'room'">
-           <span class="name"> Namn: {{ card.beds }}</span><br><br>
-        <span id="country">Land: {{ card.price }}</span><br><br>
-        <span id="city">Stad: {{ card.booked }}</span><br><br>
+
+          <span class="name"> Rum Nummer: {{ card.room_nr }}</span><br><br>
+           <span class="name"> Sängar: {{ card.beds }}</span><br><br>
+        <span id="country">Pris: {{ card.price }}</span><br><br>
+        <span id="city">Bokad: {{ card.booked }}</span><br><br>
 
       </div>
     

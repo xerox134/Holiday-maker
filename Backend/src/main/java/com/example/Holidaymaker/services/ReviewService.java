@@ -12,6 +12,14 @@ public class ReviewService {
     @Autowired
     private ReviewRepo reviewRepo;
 
+    public List<Review> getAllReviews() {
+        return reviewRepo.findAll(); //Inbyggd metod
+    }
+
+    public List<Review> getReviewsByUserId(long userId) {
+        return reviewRepo.findByUserId(userId);
+    }
+
     public List<Review> getReviewsByHotelId(long hotelId) {
         return reviewRepo.findByHotelId(hotelId);
     }

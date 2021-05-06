@@ -1,6 +1,7 @@
 package com.example.Holidaymaker.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity // this is an entity class
 @Table(name="rooms") // the table name is rooms
@@ -8,25 +9,25 @@ public class Room {
     @Id // the primary key is the long under this annotation
     @GeneratedValue(strategy = GenerationType.IDENTITY) // activates autoincrement
     private long id; // this is the primary key
-    private long hotel;
     private long room_nr;
     private long beds;
     private long price;
     private boolean booked;
 
+    @ManyToOne
+    private Hotel hotel;
 
     public Room() {
     }
 
-    public Room(long id, long hotel, long room_nr, long beds, long price, boolean booked) {
+    public Room(long id, long room_nr, long beds, long price, boolean booked, Hotel hotel) {
         this.id = id;
-        this.hotel = hotel;
         this.room_nr = room_nr;
         this.beds = beds;
         this.price = price;
         this.booked = booked;
+        this.hotel = hotel;
     }
-
 
     public long getId() {
         return id;
@@ -34,14 +35,6 @@ public class Room {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public long getHotel() {
-        return hotel;
-    }
-
-    public void setHotel(long hotel) {
-        this.hotel = hotel;
     }
 
     public long getRoom_nr() {
@@ -76,5 +69,23 @@ public class Room {
         this.booked = booked;
     }
 
+    public Hotel getHotel() {
+        return hotel;
+    }
 
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
+    }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "id=" + id +
+                ", room_nr=" + room_nr +
+                ", beds=" + beds +
+                ", price=" + price +
+                ", booked=" + booked +
+                ", hotel=" + hotel +
+                '}';
+    }
 }

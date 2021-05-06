@@ -21,6 +21,6 @@ public class HotelService {
 
 
     public List<Hotel> getHotelsById(long hotelId) {
-        return hotelRepo.findByHotelId(hotelId);
+        return hotelRepo.findById(hotelId);
     }
 }

@@ -18,6 +18,10 @@ public class RoomService {
 
     }
 
+    public List<Room> findRoomsByHotelId(long hotelId) {
+        return roomRepo.findByHotelId(hotelId);
+    }
+
 
 
 

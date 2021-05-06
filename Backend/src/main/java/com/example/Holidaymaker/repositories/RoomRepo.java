@@ -9,10 +9,11 @@ import java.util.List;
 
 @Repository
 public interface RoomRepo extends JpaRepository<Room, Long> {
+    List<Room> findByHotelId(long hotelId);
 
 
 
-    /*
+    /*  big RIP
         @Query(
             value = "SELECT rooms.id, rooms.hotel, hotels.id, hotels.name, rooms.room_nr, rooms.beds, rooms.price, rooms.booked " +
             "FROM rooms " +

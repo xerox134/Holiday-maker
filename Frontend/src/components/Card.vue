@@ -29,14 +29,17 @@
         <img v-bind:src=card.img alt="" /><br><br><br>
         <p>FRÅN 500kr/natt</p><br><br>
         
-        <button @click.stop="favoriteItem(card.id, card.title, type)">Favoritmarkera ❤</button>
+        <button @click.stop="favoriteItem(card.id, card.name, card.country, card.city, card.description)">Favoritmarkera ❤</button>
       </div>
 
      
     <div class="Favorite-card" v-if="type == 'favorite'">
-      <span class="id">{{ card.user }}</span>  |
-      <span id="user">{{card.hotel}}</span><br><br>
-      <span id="Hotelname">{{card.Hotelname}}</span><br><br>
+      <span id="user">Name: {{card.hotelname}}</span><br><br>
+      <span id="Hotelcity">City: {{card.hotelcity}}</span><br><br>
+      <span id="Hotelcountry">Country: {{card.hotelcountry}}</span><br><br>
+      <span id="Hoteldescription">Description: {{card.description}}</span><br><br>
+
+
 
       <button @click="deleteFavorite(card.id), refreshStuff()">Ta bort ✖
       </button>   </div>
@@ -70,7 +73,7 @@ refreshStuff(){
 },
 async deleteFavorite(id) {
       let credentials = {
-        favoriteID: id
+        hotelid: id
       } 
       let response = await fetch ('/rest/favorites/'+ id, {
         method: 'DELETE',
@@ -85,18 +88,22 @@ async deleteFavorite(id) {
 
   },
 
- 
-
-   async favoriteItem(hotelid ) {
+   async favoriteItem(id, name, city, country, description) {
 let credentials = {
-        user: 1,
-        hotel: hotelid
+        userid: 5, //this.$store.state.LoggedinUserId,
+        hotelid: id,
+        hotelname : name,
+        hotelcountry: country,
+        hotelcity: city,
+        description: description
       } 
       let response = await fetch ('/rest/favorites/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(credentials)
+      
       })
+      console.log(credentials)
       if(response.url.includes('error')){
         console.log('Something went wrong. Try again')
       } else {

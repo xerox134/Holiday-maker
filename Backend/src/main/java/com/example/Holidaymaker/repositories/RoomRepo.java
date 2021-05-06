@@ -10,8 +10,6 @@ import java.util.List;
 @Repository
 public interface RoomRepo extends JpaRepository<Room, Long> {
 
-    List<Room> getRoomsByHotelId(Long hotel);
-
     @Query(
             value = "SELECT rooms.id, rooms.hotel, hotels.id, rooms.room_nr, rooms.beds, rooms.price, rooms.booked " +
             "FROM rooms " +

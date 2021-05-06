@@ -27,10 +27,10 @@ public class Hotel {
     private int distance_to_beach;
     private int distance_to_center;
 
-    @OneToMany(mappedBy = "hotel")
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
-    @OneToMany(mappedBy = "hotel")
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
     private List<Favorite> favorites;
 
     public Hotel() {

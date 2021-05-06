@@ -16,10 +16,10 @@ public class User {
     private String email;
     private String password;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL) // cascade gör så att om jag tar bort en användare så försvinner också den användarens recensioner
     private List<Review> reviews;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Favorite> favorites;
 
 

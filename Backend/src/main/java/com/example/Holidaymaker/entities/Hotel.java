@@ -173,6 +173,7 @@ public class Hotel {
         this.img = img;
     }
 
+    @JsonIgnore
     public List<Review> getReviews() {
         return reviews;
     }

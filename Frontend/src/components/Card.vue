@@ -14,12 +14,11 @@
         <span id="resturant">Finns restaurang: {{ card.restaurant }}</span><br>
         <span id="distance_to_beach">Distans till närmaste strand: {{ card.distance_to_beach }} km</span><br>
         <span id="distance_to_center">Distans till centrum: {{ card.distance_to_center }} km</span><br><br>
-        <button @click.stop="favoriteItem(card.id, card.title, type)">Favoritmarkera ❤</button>
+        <button @click.stop="favoriteItem(card.id, card.name, card.country, card.city, card.description)">Favoritmarkera ❤</button>
       </div>
 
      
     <div class="Favorite-card" v-if="type == 'favorite'">
-      <span class="id">UserId: {{ card.userid }}</span>  <br><br>
       <span id="user">Name: {{card.hotelname}}</span><br><br>
       <span id="Hotelcity">City: {{card.hotelcity}}</span><br><br>
       <span id="Hotelcountry">Country: {{card.hotelcountry}}</span><br><br>
@@ -43,7 +42,7 @@ refreshStuff(){
 },
 async deleteFavorite(id) {
       let credentials = {
-        favoriteID: id
+        hotelid: id
       } 
       let response = await fetch ('/rest/favorites/'+ id, {
         method: 'DELETE',
@@ -58,10 +57,10 @@ async deleteFavorite(id) {
 
   },
 
-   async favoriteItem(name, city, country, description) {
+   async favoriteItem(id, name, city, country, description) {
 let credentials = {
-        userid: 5,
-        hotelid: this.$store.state.hotels.id,
+        userid: 5, //this.$store.state.LoggedinUserId,
+        hotelid: id,
         hotelname : name,
         hotelcountry: country,
         hotelcity: city,

@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/rest/**").permitAll()
                 .and()
                 .formLogin()
-               // .loginPage("/login") // our custom login page
+                .loginPage("/login") // our custom login page
         ;
     }
 
@@ -37,4 +37,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .userDetailsService(myUserDetailsService)
                 .passwordEncoder(myUserDetailsService.getEncoder());
     }
+   /* @Bean("authenticationManager")
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }*/
+
 }

@@ -7,6 +7,7 @@ import com.example.Holidaymaker.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -37,6 +38,9 @@ public class UserController {
     public User getUserById(@PathVariable long id) {
         return userService.getById(id);
     }
+
+  /*  @PostMapping("/login")
+    public User login(@RequestBody User user, HttpServletRequest req) { return userService.login(user, req); }*/
 
     @DeleteMapping("/rest/users/{id}")
     public void deleteUser(@PathVariable long id) {

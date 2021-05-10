@@ -44,7 +44,7 @@ methods: {
     },
 
     async login () {
-        const credentials = 'email=' + 
+        const credentials = 'username=' + 
         encodeURIComponent(this.email) +
         '&password=' + 
         encodeURIComponent(this.password)
@@ -59,7 +59,7 @@ methods: {
         })
         console.log(credentials)
       
-          setTimeout(() => location.reload(), 3000)
+          setTimeout(() => location.reload(), 500)
 
       //  setTimeout(() => location.reload(), 1)
 

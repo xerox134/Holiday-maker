@@ -1,7 +1,10 @@
 <template>
 
-<div id="bar">
+<div id="topBar">
+
+    
   <div id="nav">
+ 
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
     <router-link to="/favorites">Favorites</router-link> 
@@ -13,10 +16,32 @@
 
 </div>
 
+<div id="test">
+ <img id="icon" v-bind:src=image alt="" />
+
 
   <h1 id="title">Holidaymaker</h1>
+
+  </div>
   <router-view/>
 </template>
+
+
+
+<script>
+import image from "./img/holyday.png"
+
+export default {
+    data: function () {
+        return {
+            image: image
+        }
+    }
+}
+</script>
+
+
+
 
 <style>
 
@@ -47,6 +72,13 @@ body, html {
   background:rgb(38, 39, 63)
 }
 
+#test{
+  display: flex;
+  padding: 20px;
+  align-content: center;
+  justify-content: center;
+  
+}
 #nav {
   padding: 15px;
   text-align: left;
@@ -54,13 +86,22 @@ body, html {
 #login {
   padding: 15px;
   text-align: right;
-}#bar {
+}#topBar {
  display: flex;
  justify-content: space-between;
  background: rgba(0, 0, 0, 0.253);
  
+ 
+}
+#icon{
+  width: 7%;
+
 }
 
+#title{
+    padding: 4vh 2vw;
+    margin-right: 6%;
+}
 #nav a {
   font-weight: bold;
   color: #a4aab1;

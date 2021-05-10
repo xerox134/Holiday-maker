@@ -160,6 +160,14 @@ let credentials = {
     text-shadow: 3px 2px 2px rgba(0, 0, 0, .5);
   }
 
+.name{
+  justify-content: center;
+  text-align: center;
+  margin-left: 35%;
+ 
+
+
+}
 
 
   .Favorite-card:hover > #airtime{

@@ -31,12 +31,8 @@ public class ReviewService {
     public Review addReview(Review review) {
         User loggedUser = userService.whoAmI();
         if (loggedUser != null) {
-            System.out.println(loggedUser);
-            try {
-                return reviewRepo.save(review);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
+            review.setUser(loggedUser);
+            return reviewRepo.save(review);
     }
         return null;
     }

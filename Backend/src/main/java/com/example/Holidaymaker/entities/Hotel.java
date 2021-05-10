@@ -30,6 +30,7 @@ public class Hotel {
 
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
     private List<Review> reviews;
+
     @OneToMany(mappedBy = "hotel")
     private List<Room> rooms;
 
@@ -175,6 +176,7 @@ public class Hotel {
 
     public String getImg() {
         return img;
+    }
     @JsonIgnore
     public List<Favorite> getFavorites() {
         return favorites;

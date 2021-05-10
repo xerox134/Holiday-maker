@@ -14,6 +14,8 @@ public class ReviewService {
     @Autowired
     private ReviewRepo reviewRepo;
 
+    private UserService userService;
+
     public List<Review> getAllReviews() {
         return reviewRepo.findAll(); //Inbyggd metod
     }
@@ -27,6 +29,7 @@ public class ReviewService {
     }
 
     public Review addReview(Review review) {
+        User loggedUser = userService.whoAmI();
             try {
                 return reviewRepo.save(review);
             } catch (Exception ex) {

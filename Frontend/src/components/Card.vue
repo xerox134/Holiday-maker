@@ -5,20 +5,19 @@
 
       <div class="Room-card" v-if="type == 'room'">
 
-          <span class="name"> Rum Nummer: {{ card.room_nr }}</span><br><br>
-           <span class="name"> Sängar: {{ card.beds }}</span><br><br>
-        <span id="country">Pris: {{ card.price }}</span><br><br>
-        <span id="city">Bokad: {{ card.booked }}</span><br><br>
+          <span id="room_nr"> Rum Nummer: {{ card.room_nr }}</span><br><br>
+           <span id="beds"> Sängar: {{ card.beds }}</span><br><br>
+        <span id="price">Pris: {{ card.price }}</span><br><br>
+        <span id="booked">Bokad: {{ card.booked }}</span><br><br>
 
       </div>
     
     <div class="Hotel-card" v-if="type == 'hotel'" @click="toRooms(card.id)">
-
-
         <span class="name"> {{ card.name }}</span><br><br>
 <div id="ett">
-<div id="fyra">
 
+
+<div id="fyra">
         <img v-bind:src=card.img alt="" /><br><br><br>
         <p>FRÅN 500kr/natt</p><br><br>
 </div>

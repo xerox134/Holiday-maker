@@ -13,7 +13,7 @@
       </div>
     
     <div class="Hotel-card" v-if="type == 'hotel'" @click="toRooms(card.id)">
-        <span class="name"> Namn: {{ card.name }}</span><br><br>
+        <span class="name"> Hotel: {{ card.name }}</span><br><br>
         <span id="country">Land: {{ card.country }}</span><br><br>
         <span id="city">Stad: {{ card.city }}</span><br><br>
         <span id="address">Adress: {{ card.address }}</span><br><br>

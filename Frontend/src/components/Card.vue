@@ -13,11 +13,24 @@
       </div>
     
     <div class="Hotel-card" v-if="type == 'hotel'" @click="toRooms(card.id)">
-        <span class="name"> Hotel: {{ card.name }}</span><br><br>
+
+
+        <span class="name"> {{ card.name }}</span><br><br>
+<div id="ett">
+<div id="fyra">
+
+        <img v-bind:src=card.img alt="" /><br><br><br>
+        <p>FRÅN 500kr/natt</p><br><br>
+</div>
+  <div id="två">
         <span id="country">Land: {{ card.country }}</span><br><br>
         <span id="city">Stad: {{ card.city }}</span><br><br>
         <span id="address">Adress: {{ card.address }}</span><br><br>
         <span id="description">Info: {{ card.description }}</span><br><br>
+
+</div>
+
+<div id="tre">
         <span id="wifi">Finns Wifi: {{ card.wifi }}</span><br><br>
         <span id="pool">Finns Pool: {{ card.pool }}</span><br><br>
         <span id="entertainment">Finns Underhållning: {{ card.entertainment }}</span><br><br>
@@ -26,8 +39,10 @@
         <span id="bar">Finns Bar: {{ card.bar }}</span><br><br>
         <span id="distance_to_beach">Distans till närmaste strand: {{ card.distance_to_beach }} km</span><br><br>
         <span id="distance_to_center">Distans till centrum: {{ card.distance_to_center }} km</span><br><br><br>
-        <img v-bind:src=card.img alt="" /><br><br><br>
-        <p>FRÅN 500kr/natt</p><br><br>
+</div>
+
+
+        </div>
         
         <button @click.stop="favoriteItem(card.id, card.name, card.country, card.city, card.description)">Favoritmarkera ❤</button>
       </div>
@@ -120,6 +135,14 @@ let credentials = {
 
 
 <style scoped>
+
+#ett{
+  display: flex;
+}
+#fyra{
+  padding: 2vh 2vw;
+  }
+
   #card{
     color: rgba(19, 13, 9, 0.911);
     display: flex;
@@ -163,7 +186,7 @@ let credentials = {
 .name{
   justify-content: center;
   text-align: center;
-  margin-left: 35%;
+  margin-left: 40%;
  
 
 

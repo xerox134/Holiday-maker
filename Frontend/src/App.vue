@@ -1,5 +1,6 @@
 <template>
 
+   
 <div id="topBar">
 
     
@@ -18,10 +19,7 @@
 
 <div id="test">
  <img id="icon" v-bind:src=image alt="" />
-
-
   <h1 id="title">Holidaymaker</h1>
-
   </div>
   <router-view/>
 </template>
@@ -29,7 +27,7 @@
 
 
 <script>
-import image from "./img/holyday.png"
+import image from "./img/holiday.png"
 
 export default {
     data: function () {

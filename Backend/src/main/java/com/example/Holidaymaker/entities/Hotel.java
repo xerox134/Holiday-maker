@@ -28,11 +28,13 @@ public class Hotel {
     private int distance_to_center;
     private String img;
 
-
-    @OneToMany(mappedBy = "hotel")
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
     private List<Review> reviews;
     @OneToMany(mappedBy = "hotel")
     private List<Room> rooms;
+
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
+    private List<Favorite> favorites;
 
 
     public Hotel() {
@@ -173,6 +175,9 @@ public class Hotel {
 
     public String getImg() {
         return img;
+    @JsonIgnore
+    public List<Favorite> getFavorites() {
+        return favorites;
     }
 
     public void setImg(String img) {

@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     
-    <h1>Welcome to the Homepage</h1>
+    <h1>Hotels</h1>
 
     <div id="Hotels"><Hotels/></div>
 
@@ -22,3 +22,8 @@ export default {
   }
 }
 </script>
+
+<style>
+
+
+</style>

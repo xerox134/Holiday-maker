@@ -99,7 +99,7 @@ async deleteFavorite(id) {
 
   },
 
-   async favoriteItem(id) {
+   async favoriteItem(id) { // id = card.id alltså hotelid
      
 let credentials = {
        

@@ -8,7 +8,10 @@
  
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
-    <router-link to="/favorites">Favorites</router-link> 
+    <router-link to="/favorites">Favorites</router-link> |
+    <router-link to="/login" v-if="!isLoggedIn">Login</router-link>
+    <router-link to="/" @click="logout" v-else>Log out (logged in as {{ loggedInUser.email }})</router-link>
+    <h1 id="title">Holidaymaker</h1>
   </div>
 
 <div id="login">
@@ -24,23 +27,38 @@
   <router-view/>
 </template>
 
-
-
 <script>
-import image from "./img/holiday.png"
-
 export default {
     data: function () {
-        return {
+    return {
+      isUserLoggedIn: false
             image: image
         }
     }
+    },
+  async mounted () {
+    let user = await fetch ('/auth/whoami')
+    try {
+      user = await user.json()
+      this.$store.commit('setLoggedInUser', user)
+      this.$store.commit('setLoggedInUserId', this.$store.state.loggedInUser.id)
+      console.log(user);
+    } catch {
+      console.log('Not logged in')
+    }
+  },
+
+  computed:{
+    loggedInUser() {
+      return this.$store.state.loggedInUser
+    },
+    isLoggedIn() {
+      return this.loggedInUser != null
+    }
+  },
+  
 }
 </script>
-
-
-
-
 <style>
 
 * {

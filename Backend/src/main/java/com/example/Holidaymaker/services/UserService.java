@@ -5,13 +5,20 @@ import com.example.Holidaymaker.entities.User;
 import com.example.Holidaymaker.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
+
+import static org.springframework.security.web.context.HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY;
 
 
 @Service
@@ -21,6 +28,9 @@ public class UserService {
 
     @Autowired
     private MyUserDetailsService detailsService;
+
+   // @Resource(name = "authenticationManager")
+   // private AuthenticationManager authManager;
 
     // bean from your SecurityConfig
 
@@ -45,7 +55,7 @@ public class UserService {
 
     public User updateById(long id, User user) {
         User userFromDB = getById(id);
-        if(userFromDB!=null){
+        if (userFromDB != null) {
             user.setId(id);
             user.setPassword(userFromDB.getPassword());
             return userRepo.save(user);
@@ -58,11 +68,34 @@ public class UserService {
         // getAuthentication() returns the current logged in user
         // getName() returns the logged in username (email in this case)
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if(authentication != null) {
+        if (authentication != null) {
             String email = authentication.getName();
             return userRepo.findByEmail(email);
         }
 
         return null;
     }
+
+   /* public User findCurrentUser() {
+        // the login session is stored between page reloads,
+        // and we can access the current authenticated user with this
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return userRepo.findByEmail(username);
+    }
+
+    public User login(User user, HttpServletRequest req) {
+        try {
+            UsernamePasswordAuthenticationToken authReq
+                    = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
+            Authentication auth = authManager.authenticate(authReq);
+            SecurityContext sc = SecurityContextHolder.getContext();
+            sc.setAuthentication(auth);
+            HttpSession session = req.getSession(true);
+            session.setAttribute(SPRING_SECURITY_CONTEXT_KEY, sc);
+        } catch (BadCredentialsException err) {
+            throw new BadCredentialsException("Bad Credentials");
+        }
+
+        return findCurrentUser();
+    }*/
 }

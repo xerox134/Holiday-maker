@@ -23,9 +23,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/rest/reviews").authenticated()
-                .antMatchers(HttpMethod.GET, "/", "/rest/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/", "/rest/**").authenticated()
                 .antMatchers("/auth/**").permitAll()
-                .antMatchers("/rest/**").permitAll()
+                .antMatchers("/rest/**").authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login") // our custom login page

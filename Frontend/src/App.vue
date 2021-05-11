@@ -9,13 +9,13 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
     <router-link to="/favorites">Favorites</router-link> |
-    <router-link to="/login" v-if="!isLoggedIn">Login</router-link>
-    <router-link to="/" @click="logout" v-else>Log out (logged in as {{ loggedInUser.email }})</router-link>
+   
     <h1 id="title">Holidaymaker</h1>
   </div>
 
 <div id="login">
-  <router-link to="/login" id="login">Login</router-link>
+  <router-link to="/login" v-if="!isLoggedIn">Login</router-link>
+    <router-link to="/" @click="logout" v-else>Log out (logged in as {{ loggedInUser.email }})</router-link>
 </div>
 
 </div>
@@ -28,14 +28,16 @@
 </template>
 
 <script>
+import image from "./img/holiday.png"
 export default {
     data: function () {
     return {
-      isUserLoggedIn: false
+      isUserLoggedIn: false,
             image: image
         }
-    }
+    
     },
+
   async mounted () {
     let user = await fetch ('/auth/whoami')
     try {

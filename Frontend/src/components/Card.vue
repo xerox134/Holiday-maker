@@ -103,10 +103,12 @@ async deleteFavorite(id) {
   },
 
    async favoriteItem(id) {
-let credentials = {
-        userid: 6, //this.$store.state.LoggedinUserId,
-        hotelid: id
-      } 
+let credentials = [
+
+        {userid: 6},     //this.$store.state.LoggedinUserId, 
+        { hotelid: id} 
+
+        ]
       let response = await fetch ('/rest/favorites/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},

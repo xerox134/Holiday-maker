@@ -14,6 +14,7 @@ public class ReviewService {
     @Autowired
     private ReviewRepo reviewRepo;
 
+    @Autowired
     private UserService userService;
 
     public List<Review> getAllReviews() {

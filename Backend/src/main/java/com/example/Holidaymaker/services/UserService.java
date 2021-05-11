@@ -67,13 +67,8 @@ public class UserService {
         // SecurityContextHolder.getContext() taps into the current session
         // getAuthentication() returns the current logged in user
         // getName() returns the logged in username (email in this case)
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null) {
-            String email = authentication.getName();
-            return userRepo.findByEmail(email);
-        }
-
-        return null;
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        return userRepo.findByEmail(email);
     }
 
    /* public User findCurrentUser() {

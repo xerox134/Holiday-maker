@@ -13,6 +13,23 @@
 <script>
 
 export default {
+    data () {
+    return {
+      isUserLoggedIn: false
+    }
+    },
+    methods: {
+     logout () {
+      // tell backend to forget us
+      console.log('logout work')
+      fetch('/logout', { mode: 'no-cors' })
+
+      // remove logged in user from store
+      this.$store.commit('setLoggedInUser', null)
+
+      alert('You signed out')
+     }
+    },
   async mounted () {
     let user = await fetch ('/auth/whoami')
     try {
@@ -24,6 +41,7 @@ export default {
       console.log('Not logged in')
     }
   },
+
   computed:{
     loggedInUser() {
       return this.$store.state.loggedInUser

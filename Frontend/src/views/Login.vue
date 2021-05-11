@@ -38,9 +38,12 @@ mounted (){
 },
 methods: {
     logout () {
-        console.log('logout work')
-        fetch ('/logout', {mode: 'no-cors'})
-        location.reload()
+      // tell backend to forget us
+      console.log('logout work')
+      fetch('/logout', { mode: 'no-cors' })
+
+      // remove logged in user from store
+      this.$store.commit('setLoggedInUser', null)
     },
 
     async login () {
@@ -81,7 +84,6 @@ methods: {
             alert ('Användare registrerad')
         }
 
-        this.$router.push('/')
     }
 }
 }

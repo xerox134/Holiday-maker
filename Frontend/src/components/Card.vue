@@ -52,9 +52,6 @@
       <span id="Hotelcity">City: {{card.hotel.city}}</span><br><br>
       <span id="Hotelcountry">Country: {{card.hotel.country}}</span><br><br>
       <span id="Hoteldescription">Description: {{card.hotel.description}}</span><br><br>
-
-
-
       <button @click="deleteFavorite(card.id), refreshStuff()">Ta bort ✖
       </button>   </div>
 
@@ -103,16 +100,23 @@ async deleteFavorite(id) {
   },
 
    async favoriteItem(id) {
+     
 let credentials = {
-        userid: 6, //this.$store.state.LoggedinUserId,
-        hotelid: id
-      } 
+  
+       user: {id: this.$store.state.LoggedInUserId},     //this.$store.state.LoggedinUserId, 
+       hotel: { id: id} 
+        
+   }
       let response = await fetch ('/rest/favorites/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(credentials)
       
       })
+
+
+
+
       console.log(credentials)
       if(response.url.includes('error')){
         console.log('Something went wrong. Try again')

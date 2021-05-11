@@ -78,7 +78,7 @@ export default createStore({
         })
       },
     async fetchAllFavorites(){
-      await axios.get("http://localhost:3000/rest/favorites/5")
+      await axios.get("http://localhost:3000/rest/favorites/user/6")
       .then(response => {
       this.commit("setFavorites", response.data)
       console.log(response.data)

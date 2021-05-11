@@ -102,8 +102,7 @@ async deleteFavorite(id) {
    async favoriteItem(id) {
      
 let credentials = {
-  
-       user: {id: this.$store.state.LoggedInUserId},     //this.$store.state.LoggedinUserId, 
+       
        hotel: { id: id} 
         
    }

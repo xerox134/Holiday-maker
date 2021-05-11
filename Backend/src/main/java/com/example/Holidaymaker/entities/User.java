@@ -50,7 +50,7 @@ public class User {
         this.email = email;
     }
 
-    @JsonIgnore
+    @JsonIgnore // prevent loop
     public List<Favorite> getFavorite() { return favorites;
     }
 
@@ -58,7 +58,7 @@ public class User {
         this.favorites = favorite;
     }
 
-    @JsonIgnore
+    @JsonIgnore // dont show password on frontend
     public String getPassword() {
         return password;
     }
@@ -68,7 +68,7 @@ public class User {
         this.password = password;
     }
 
-    @JsonIgnore
+    @JsonIgnore // prevent loop
     public List<Review> getReviews() {
         return reviews;
     }

@@ -5,19 +5,31 @@
 
       <div class="Room-card" v-if="type == 'room'">
 
-          <span class="name"> Rum Nummer: {{ card.room_nr }}</span><br><br>
-           <span class="name"> Sängar: {{ card.beds }}</span><br><br>
-        <span id="country">Pris: {{ card.price }}</span><br><br>
-        <span id="city">Bokad: {{ card.booked }}</span><br><br>
+          <span id="room_nr"> Rum Nummer: {{ card.room_nr }}</span><br><br>
+           <span id="beds"> Sängar: {{ card.beds }}</span><br><br>
+        <span id="price">Pris: {{ card.price }}</span><br><br>
+        <span id="booked">Bokad: {{ card.booked }}</span><br><br>
 
       </div>
     
     <div class="Hotel-card" v-if="type == 'hotel'" @click="toRooms(card.id)">
-        <span class="name"> Namn: {{ card.name }}</span><br><br>
+        <span class="name"> {{ card.name }}</span><br><br>
+<div id="ett">
+
+
+<div id="fyra">
+        <img v-bind:src=card.img alt="" /><br><br><br>
+        <p>FRÅN 500kr/natt</p><br><br>
+</div>
+  <div id="två">
         <span id="country">Land: {{ card.country }}</span><br><br>
         <span id="city">Stad: {{ card.city }}</span><br><br>
         <span id="address">Adress: {{ card.address }}</span><br><br>
         <span id="description">Info: {{ card.description }}</span><br><br>
+
+</div>
+
+<div id="tre">
         <span id="wifi">Finns Wifi: {{ card.wifi }}</span><br><br>
         <span id="pool">Finns Pool: {{ card.pool }}</span><br><br>
         <span id="entertainment">Finns Underhållning: {{ card.entertainment }}</span><br><br>
@@ -26,21 +38,20 @@
         <span id="bar">Finns Bar: {{ card.bar }}</span><br><br>
         <span id="distance_to_beach">Distans till närmaste strand: {{ card.distance_to_beach }} km</span><br><br>
         <span id="distance_to_center">Distans till centrum: {{ card.distance_to_center }} km</span><br><br><br>
-        <img v-bind:src=card.img alt="" /><br><br><br>
-        <p>FRÅN 500kr/natt</p><br><br>
+</div>
+
+
+        </div>
         
         <button @click.stop="favoriteItem(card.id, card.name, card.country, card.city, card.description)">Favoritmarkera ❤</button>
       </div>
 
      
     <div class="Favorite-card" v-if="type == 'favorite'">
-      <span id="user">Name: {{card.hotelname}}</span><br><br>
-      <span id="Hotelcity">City: {{card.hotelcity}}</span><br><br>
-      <span id="Hotelcountry">Country: {{card.hotelcountry}}</span><br><br>
-      <span id="Hoteldescription">Description: {{card.description}}</span><br><br>
-
-
-
+      <span id="user">Name: {{card.hotel.name}}</span><br><br>
+      <span id="Hotelcity">City: {{card.hotel.city}}</span><br><br>
+      <span id="Hotelcountry">Country: {{card.hotel.country}}</span><br><br>
+      <span id="Hoteldescription">Description: {{card.hotel.description}}</span><br><br>
       <button @click="deleteFavorite(card.id), refreshStuff()">Ta bort ✖
       </button>   </div>
 
@@ -88,21 +99,23 @@ async deleteFavorite(id) {
 
   },
 
-   async favoriteItem(id, name, city, country, description) {
+   async favoriteItem(id) { // id = card.id alltså hotelid
+     
 let credentials = {
-        userid: 5, //this.$store.state.LoggedinUserId,
-        hotelid: id,
-        hotelname : name,
-        hotelcountry: country,
-        hotelcity: city,
-        description: description
-      } 
+       
+       hotel: { id: id} 
+        
+   }
       let response = await fetch ('/rest/favorites/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(credentials)
       
       })
+
+
+
+
       console.log(credentials)
       if(response.url.includes('error')){
         console.log('Something went wrong. Try again')
@@ -120,6 +133,14 @@ let credentials = {
 
 
 <style scoped>
+
+#ett{
+  display: flex;
+}
+#fyra{
+  padding: 2vh 2vw;
+  }
+
   #card{
     color: rgba(19, 13, 9, 0.911);
     display: flex;
@@ -160,6 +181,14 @@ let credentials = {
     text-shadow: 3px 2px 2px rgba(0, 0, 0, .5);
   }
 
+.name{
+  justify-content: center;
+  text-align: center;
+  margin-left: 40%;
+ 
+
+
+}
 
 
   .Favorite-card:hover > #airtime{

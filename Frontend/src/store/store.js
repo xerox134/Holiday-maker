@@ -8,22 +8,32 @@ export default createStore({
     addedFavorites:[],
       hotels:[],
       loggedInUser: null,
+      loggedInUserId: 0,
+      allUsers: [],
+      isLoggedIn: "Login",
       rooms:[],
       hotelId: null
       
   },
   
   mutations: {
-    setLoggedInUserId(state, user) {
-      state.loggedInUserId = user
-    },
+
     addHotels(state, payload) {
         state.hotels = payload;
       },
     setFavorites(state,payload){
       state.favorites = payload;
-    },
+      },
       setLoggedInUser (state, user) {
+        state.loggedInUser = user
+      },
+      setAllUsers(state, payload) {
+        state.allUsers = payload
+      },
+      setLoggedInUserId(state, user) {
+        state.loggedInUserId = user
+      },
+      setUser(state, user) {
         state.loggedInUser = user
       }, 
       setRoomsByHotelId (state, payload) {
@@ -32,8 +42,7 @@ export default createStore({
 
       setHotelId (state,payload){
         state.hotelId =payload
-      }
-
+      },
 
   },
   
@@ -60,9 +69,16 @@ export default createStore({
             console.log(response.data)
         })
       },
-      
+      async fetchAllUsers(){
+        await axios.get("http://localhost:3000/rest/users")
+        .then(response => {
+          this.commit("setAllUsers", response.data)
+          if(response != null)
+            console.log(response.data)
+        })
+      },
     async fetchAllFavorites(){
-      await axios.get("http://localhost:3000/rest/favorites/5")
+      await axios.get("http://localhost:3000/rest/favorites/user/"+ this.state.loggedInUserId)
       .then(response => {
       this.commit("setFavorites", response.data)
       console.log(response.data)
@@ -74,6 +90,12 @@ getters:{
   getLoginUserId(state){
     return state.loggedInUserId
   },
+  getCurrentUser(state) {
+    return state.loggedInUser
+  },
+  getAllUsers(state) {
+    return state.allUsers
+  },
   getAllFavorites(state){
     return state.favorites
   },
@@ -84,7 +106,11 @@ getters:{
 
   getRoomByHotelId(state){
     return state.rooms
-  }
+  },
+  getLoginStatus(state) {
+    console.log(state.isLoggedIn)
+    return state.isLoggedIn
+  },
 
 },
 

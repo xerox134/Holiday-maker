@@ -20,6 +20,9 @@ public class Review {
     public Review() {
     }
 
+    public Review(User user) {
+        this.user = user;
+    }
 
     public Review(long id, int rating, String description, User user, Hotel hotel) {
         this.id = id;

@@ -1,5 +1,5 @@
 <template>
-  <h3>WELOCME TO OUR FACKING ROOMS</h3>
+  <h3>Available rooms</h3>
  <div id="Hotels"><Room/></div>
 
 </template>

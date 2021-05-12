@@ -16,10 +16,11 @@ public class User {
     private String email;
     private String password;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL) // cascade gör så att om jag tar bort en användare så försvinner också den användarens recensioner
     private List<Review> reviews;
-    @OneToMany(mappedBy = "user")
-    private List<Favorite> favorite;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Favorite> favorites;
 
 
     public User() {}
@@ -49,16 +50,15 @@ public class User {
         this.email = email;
     }
 
-    public List<Favorite> getFavorite() { return favorite;
+    @JsonIgnore // prevent loop
+    public List<Favorite> getFavorite() { return favorites;
     }
-
-
 
     public void setFavorite(List<Favorite> favorite) {
-        this.favorite = favorite;
+        this.favorites = favorite;
     }
 
-    @JsonIgnore
+    @JsonIgnore // dont show password on frontend
     public String getPassword() {
         return password;
     }
@@ -68,7 +68,7 @@ public class User {
         this.password = password;
     }
 
-    @JsonIgnore
+    @JsonIgnore // prevent loop
     public List<Review> getReviews() {
         return reviews;
     }

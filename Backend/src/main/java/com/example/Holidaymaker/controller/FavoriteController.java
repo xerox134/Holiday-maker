@@ -1,6 +1,7 @@
 package com.example.Holidaymaker.controller;
 
 import com.example.Holidaymaker.entities.Favorite;
+import com.example.Holidaymaker.entities.User;
 import com.example.Holidaymaker.services.FavoriteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,12 +22,17 @@ private FavoriteService favoriteService;
     public void deleteById(@PathVariable long id) {
         favoriteService.deleteById(id);}
 
-    @GetMapping("/favorit")
+    @GetMapping("/favorites")
     public List<Favorite> getAll(){
         return favoriteService.getAll(); }
 
     @GetMapping("/favorites/{id}")
-     public List<Favorite> getFavoriteByUser(@PathVariable long userId) {
-return favoriteService.findById(userId);
+    public Favorite getFavoriteById(@PathVariable long id) {
+        return favoriteService.getById(id);
+    }
+
+    @GetMapping("/favorites/user/{userId}")
+     public List<Favorite> getFavoriteByUserId(@PathVariable long userId) {
+        return favoriteService.getFavoriteByUserId(userId);
     }
 }

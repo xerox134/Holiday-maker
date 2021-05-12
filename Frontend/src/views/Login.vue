@@ -9,9 +9,8 @@
     </div>
 
     <div class="container">
-      <label for="email"><b>Username</b></label>
-      <input v-model="email" type="text" placeholder="Enter Email" name="email" required>
-
+      <label for="ename"><b>Username</b></label>
+      <input v-model="email" type="text" placeholder="Enter Email" name="ename" required>
       <label for="psw"><b>Password</b></label>
       <input v-model="password" type="password" placeholder="Enter Password" name="psw" required>
       <button type="submit">Login</button>
@@ -25,12 +24,9 @@
 </template>
 
 
-
-
-
-
 <script>
 export default {
+  name: "Login",
 data (){
     return{
         email: '',
@@ -42,27 +38,31 @@ mounted (){
 },
 methods: {
     logout () {
-        console.log('logout work')
-        fetch ('/logout', {mode: 'no-cors'})
-        location.reload()
+      // tell backend to forget us
+      console.log('logout work')
+      fetch('/logout', { mode: 'no-cors' })
+
+      // remove logged in user from store
+      this.$store.commit('setLoggedInUser', null)
     },
 
     async login () {
-        const credentials = 'email=' +
+        const credentials = 'username=' + 
         encodeURIComponent(this.email) +
-        '&password=' +
+        '&password=' + 
         encodeURIComponent(this.password)
         
-        let response = await fetch ('/login', {
-            method: 'POST',
+        let response = await fetch ("/login", {
+            method: "POST",
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
+                "Content-Type": "application/x-www-form-urlencoded"
             },
             mode: 'no-cors',
             body: credentials
         })
-        setTimeout(() => location.reload(), 1)
-        
+        console.log(credentials)
+      
+          setTimeout(() => location.reload(), 500)
 
       //  setTimeout(() => location.reload(), 1)
 
@@ -84,7 +84,6 @@ methods: {
             alert ('Användare registrerad')
         }
 
-        this.$router.push('/')
     }
 }
 }

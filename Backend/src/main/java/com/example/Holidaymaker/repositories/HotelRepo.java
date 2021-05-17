@@ -12,7 +12,7 @@ import java.util.List;
 public interface HotelRepo extends JpaRepository<Hotel, Long> {
 
     List<Hotel> findById(long hotelId);
-
     List<Hotel> findByCountry(String countryname);
     List<Hotel> findByCity(String cityname);
+    List<Hotel> findByPoolTrue();
 }

@@ -30,4 +30,8 @@ return hotelList;
         }
         return null;
     }
+
+    public List<Hotel> getHotelsByPool() {
+        return hotelRepo.findByPoolTrue();
+    }
 }

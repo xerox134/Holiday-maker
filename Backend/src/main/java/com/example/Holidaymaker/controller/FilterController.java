@@ -15,17 +15,21 @@ import java.util.List;
 @RequestMapping("/rest")
 public class FilterController {
     @Autowired
-    private FilterService FilterService;
+    private FilterService filterService;
 
-@GetMapping("hotels/filter/country/{countryname}")
-public List<Hotel> getBycountryname(@PathVariable String countryname){
-    return FilterService.getByCountryName(countryname);
-}
+    @GetMapping("hotels/filter/country/{countryname}")
+    public List<Hotel> getByCountryName(@PathVariable String countryname) {
+    return filterService.getByCountryName(countryname);
+    }
 
-@GetMapping("hotels/filter/city/{cityname}")
-    public List<Hotel> getBycityname(@PathVariable String cityname) {return FilterService.getByCityName(cityname);}
+    @GetMapping("hotels/filter/city/{cityname}")
+    public List<Hotel> getByCityName(@PathVariable String cityname) {
+        return filterService.getByCityName(cityname);}
 
-//@GetMapping("hotels/filter/hotel/{hotelname}")
+    @GetMapping("hotels/filter/pool")
+        public List<Hotel> getByPool() {
+        return filterService.getHotelsByPool();
+    }
 
 
 }

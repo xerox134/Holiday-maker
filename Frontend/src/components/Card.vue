@@ -55,6 +55,22 @@
       <button @click="deleteFavorite(card.id), refreshStuff()">Ta bort ✖
       </button>   </div>
 
+
+     <div class ="Filter-card" v-if="type == 'filter'">
+       <div class= "flex-container">
+
+        <button id= "filter">Pool</button> 
+        <button id= "filter">Restaurang</button> <br> 
+        <button id= "filter">Childrens Club</button>
+        <button id= "filter">Wifi</button><br>
+        <button id= "filter">Entertainment</button>
+        <button id= "filter">Bar</button> <br><br>
+        <button id= "filter">Hämta hoteller</button>
+        </div>
+
+       </div>
+
+
        </div>
 
 </template>
@@ -134,6 +150,12 @@ let credentials = {
 
 <style scoped>
 
+
+
+
+
+
+
 #ett{
   display: flex;
 }
@@ -151,7 +173,7 @@ let credentials = {
     margin-bottom: 18px;
     box-shadow: 4px 4px 2px rgba(0, 0, 0, .3), inset 2px 2px 2px rgba(240, 200, 255, .1);
     min-height: 4vh;
-    max-width: 50%;
+    max-width: 60%;
     justify-content: center;
     align-self: center;
     text-align: left;
@@ -207,14 +229,17 @@ let credentials = {
     box-shadow: 2px 2px 1px rgba(0, 0, 0, .2), inset 2px 2px 2px rgba(255, 255, 255, .05);
     margin: 3px;
     margin-left: 1vw;
-    width: 46.5vw;
+    width: 100%;
     height: min(5vh, 25vw);
     text-shadow: -1px -1px 2px rgba(0, 0, 0, .3), 1px 1px 2px rgba(126, 126, 126, .5);
   }
 
   button:hover{
+    
     background-color: rgba(80, 75, 85, .8);
   }
+
+  
   
   button:active{
     color: rgba(230, 230, 255, .8);

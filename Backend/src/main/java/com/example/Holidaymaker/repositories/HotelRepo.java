@@ -15,4 +15,6 @@ public interface HotelRepo extends JpaRepository<Hotel, Long> {
     List<Hotel> findByCountry(String countryname);
     List<Hotel> findByCity(String cityname);
     List<Hotel> findByPoolTrue();
+
+    List<Hotel> findByWifiTrue();
 }

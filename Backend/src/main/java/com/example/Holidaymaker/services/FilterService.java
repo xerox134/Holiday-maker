@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.Holidaymaker.repositories.HotelRepo;
 
+import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -34,4 +35,11 @@ return hotelList;
     public List<Hotel> getHotelsByPool() {
         return hotelRepo.findByPoolTrue();
     }
+
+    public List<Hotel> getHotelsByWifi() { return hotelRepo.findByWifiTrue(); }
+
+    public List<Hotel> getfilteredHotels(){
+
+    }
+
 }

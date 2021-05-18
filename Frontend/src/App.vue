@@ -10,7 +10,7 @@
     <router-link to="/about">About</router-link> |
     <router-link to="/favorites">Favorites</router-link> 
    
-   
+   >
   </div>
   
 
@@ -46,6 +46,7 @@ export default {
    
 
     methods: {
+
      logout () {
       // tell backend to forget us
       console.log('logout work')

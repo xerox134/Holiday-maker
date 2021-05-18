@@ -27,6 +27,7 @@ public class HotelController {
         return hotelService.getHotelsById(hotelId);
     }
 
+
     @GetMapping("/hotel/search/{phrase}")
         public List<Hotel> getHotelBySearch(@PathVariable String phrase){
             return hotelService.getByHotelName(phrase);

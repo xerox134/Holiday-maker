@@ -36,6 +36,10 @@ public class HotelService {
                System.out.println(hot);
                System.out.println("Country");
                returningHotels.add(hot);
+           } else if (hot.getCity().toLowerCase().contains(phrase.toLowerCase())){
+               System.out.println(hot);
+               System.out.println("City");
+               returningHotels.add(hot);
            }
        }
 

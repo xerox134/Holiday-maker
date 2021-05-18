@@ -14,11 +14,16 @@ export default createStore({
       rooms:[],
       hotelId: null,
       HotelSearchPhrase: '',
-      searchedHotels:[]
+      searchedHotels:[],
+      toggleList: true
       
   },
   
   mutations: {
+
+    setToggleList(state,payload){
+      state.toggleList = payload
+    },
 
     addHotels(state, payload) {
         state.hotels = payload;
@@ -134,6 +139,9 @@ getters:{
   getLoginStatus(state) {
     console.log(state.isLoggedIn)
     return state.isLoggedIn
+  },
+  getToggleList(state){
+    return state.toggleList
   },
 
 },

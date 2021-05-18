@@ -2,7 +2,7 @@
   <div >
 
 
-    <ol id="HotelList">
+    <ol id="HotelList" v-show="toggleList">
             <li v-for="(hotel, index) in getAllHotels"  :key="index" >   <!--false=boolean till episodeToggle-->
                          <Card :card="hotel"  :type="'hotel'"/>  
             </li>
@@ -37,6 +37,9 @@ components: {
            
             return this.$store.getters.getAllHotels
         },
+        toggleList(){
+            return this.$store.getters.getToggleList
+        }
         
     },
 

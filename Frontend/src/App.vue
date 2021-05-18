@@ -20,19 +20,20 @@
 </div>
 
 </div>
-<div id="SearchBar"><SearchBar/></div>
+
 
 
 <div id="test">
  <img id="icon" v-bind:src=image alt="" />
   <h1 id="title">Holidaymaker</h1>
   </div>
+ 
   <router-view/>
 </template>
 
 <script>
 import image from "./img/holiday.png"
-import SearchBar from "./components/SearchBar"
+
 export default {
     data: function () {
     return {
@@ -42,9 +43,7 @@ export default {
     
     },
 
-    components:{
-      SearchBar,
-    },
+   
 
     methods: {
      logout () {

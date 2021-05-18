@@ -108,6 +108,9 @@ export default createStore({
 },
 
 getters:{
+  getSearchedHotels(state){
+    return state.searchedHotels
+  },
   getLoginUserId(state){
     return state.loggedInUserId
   },

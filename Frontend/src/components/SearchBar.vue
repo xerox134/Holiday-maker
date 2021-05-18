@@ -1,19 +1,7 @@
 <template>
  
- <form action="rest/hotel/search/">
-<div id="SearchContainer">
-
-   <div class="container">
-   
-      <input v-model="search_phrase" type="text" placeholder="Search hotels..." name="ename" required>
-   
-      <button type="submit">Search</button>
-     
-      </div>
-
-
-</div>
-</form>
+  <input type="text" placeholder="Sök..." v-model="searchPhrase" id="searchBar">
+    <button @click="searchForHotel(searchPhrase)">Sök</button>
 
 
 </template>
@@ -22,27 +10,19 @@
 export default {
   name:"SearchBar",
 
- data (){
 
-  
-    return{
-      
-        search_phrase: '',
-     
-      
-       
-    }
-
-},
 
   methods: {
-     check () {
-      // tell backend to forget us
-      console.log(this.search_phrase)
-      
+  searchForHotel(phrase){
+           
+                this.$store.commit('setHotelSearchPhrase',phrase);
+                this.$store.dispatch("fetchHotelBySearchPhrase")
 
-}
+                console.log("fdfdfdfdfdf")
+           
   }
+}
+
 }
 </script>
 

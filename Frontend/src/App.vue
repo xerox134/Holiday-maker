@@ -12,6 +12,7 @@
    
    
   </div>
+  
 
 <div id="login">
   <router-link to="/login" v-if="!isLoggedIn">Login</router-link>
@@ -19,6 +20,8 @@
 </div>
 
 </div>
+<div id="SearchBar"><SearchBar/></div>
+
 
 <div id="test">
  <img id="icon" v-bind:src=image alt="" />
@@ -29,6 +32,7 @@
 
 <script>
 import image from "./img/holiday.png"
+import SearchBar from "./components/SearchBar"
 export default {
     data: function () {
     return {
@@ -36,6 +40,10 @@ export default {
             image: image
         }
     
+    },
+
+    components:{
+      SearchBar,
     },
 
     methods: {
@@ -105,7 +113,9 @@ body, html {
   
   background:rgb(38, 39, 63)
 }
-
+#SearchBar{
+  padding: 2vh 2vw;
+}
 #test{
   display: flex;
   padding: 20px;

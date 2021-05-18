@@ -12,7 +12,9 @@ export default createStore({
       allUsers: [],
       isLoggedIn: "Login",
       rooms:[],
-      hotelId: null
+      hotelId: null,
+      HotelSearchPhrase: '',
+      searchedHotels:[]
       
   },
   
@@ -43,6 +45,14 @@ export default createStore({
       setHotelId (state,payload){
         state.hotelId =payload
       },
+
+      setHotelSearchPhrase(state, payload) {
+        state.HotelSearchPhrase = payload;
+      },
+
+      sethotelsBySearch(state,payload){
+        state.searchedHotels=payload;
+      }
 
   },
   
@@ -83,7 +93,18 @@ export default createStore({
       this.commit("setFavorites", response.data)
       console.log(response.data)
     })
+  }, 
+  
+  async fetchHotelBySearchPhrase(){
+      await axios.get("http://localhost:3000/rest/hotel/search/"+ this.state.HotelSearchPhrase)
+      .then(response => {
+      this.commit("sethotelsBySearch", response.data)
+      console.log(response.data)
+    })
   },
+
+
+
 },
 
 getters:{

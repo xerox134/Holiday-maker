@@ -30,14 +30,33 @@ public class FilterController {
         public List<Hotel> getByPool() {
         return filterService.getHotelsByPool();
     }
+
+    @GetMapping("hotels/filter/entertainment")
+    public List<Hotel> getByEntertainment() {
+        return filterService.getHotelsByEntertainment();
+    }
+
+    @GetMapping("hotels/filter/restaurant")
+    public List<Hotel> getByRestaurant() {
+        return filterService.getHotelsByRestaurant();
+    }
+
     @GetMapping("hotels/filter/wifi")
     public List<Hotel> getByWifi() {
         return filterService.getHotelsByWifi();
     }
 
-    @GetMapping("hotels/filteredhotels")
+    @GetMapping("hotels/filter/bar")
+    public List<Hotel> getByBar() {
+        return filterService.getHotelsByBar();
+    }
+
+    @GetMapping("hotels/filter/filteredhotels")
     public List<Hotel> getFilteredHotels(){
-        return filterService.filteredHotels(); }
+        return filterService.getFilteredHotels();
+    }
+
+
 
 
 }

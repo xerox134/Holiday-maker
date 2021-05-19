@@ -22,7 +22,7 @@ public class Hotel {
     private boolean pool;
     private boolean bar;
     private boolean entertainment;
-    private boolean childrens_club;
+    private boolean childrensclub;
     private boolean restaurant;
     private int distance_to_beach;
     private int distance_to_center;
@@ -42,7 +42,7 @@ public class Hotel {
     }
 
     public Hotel(long id, String name, String country, String city, String address, String description,
-                 boolean wifi, boolean pool, boolean bar, boolean entertainment, boolean childrens_club,
+                 boolean wifi, boolean pool, boolean bar, boolean entertainment, boolean childrensclub,
                  boolean restaurant, int distance_to_beach, int distance_to_center, String img
                  ) {
         this.id = id;
@@ -55,7 +55,7 @@ public class Hotel {
         this.pool = pool;
         this.bar = bar;
         this.entertainment = entertainment;
-        this.childrens_club = childrens_club;
+        this.childrensclub = childrensclub;
         this.restaurant = restaurant;
         this.distance_to_beach = distance_to_beach;
         this.distance_to_center = distance_to_center;
@@ -142,12 +142,12 @@ public class Hotel {
         this.entertainment = entertainment;
     }
 
-    public boolean isChildrens_club() {
-        return childrens_club;
+    public boolean isChildrensclub() {
+        return childrensclub;
     }
 
-    public void setChildrens_club(boolean childrens_club) {
-        this.childrens_club = childrens_club;
+    public void setChildrensclub(boolean childrensclub) {
+        this.childrensclub = childrensclub;
     }
 
     public boolean isRestaurant() {
@@ -216,7 +216,7 @@ public class Hotel {
                 ", pool=" + pool +
                 ", bar=" + bar +
                 ", entertainment=" + entertainment +
-                ", childrens_club=" + childrens_club +
+                ", childrensclub=" + childrensclub +
                 ", restaurant=" + restaurant +
                 ", distance_to_beach=" + distance_to_beach +
                 ", distance_to_center=" + distance_to_center +

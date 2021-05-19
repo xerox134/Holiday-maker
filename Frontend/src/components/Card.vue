@@ -76,29 +76,29 @@
 </template>
 <script>
 export default {
-props: ["card", "type"],
+  props: ["card", "type"],
 
-methods:{
-
-   async toRooms(id){
-
-
-        this.$store.state.hotelId = id
-
-        console.log(this.$store.state.hotelId)
-        console.log("We clicked")
-        this.$router.push({
-             name: 'hotel'
-        })
-
-        
-          
-
+  methods:{
+    
+    async filterHotels(){
+      
     },
-refreshStuff(){
-    this.$store.dispatch("fetchAllFavorites")
-},
-async deleteFavorite(id) {
+
+    async toRooms(id){
+      this.$store.state.hotelId = id
+
+      console.log(this.$store.state.hotelId)
+      console.log("We clicked")
+      this.$router.push({
+            name: 'hotel'
+      })
+    },
+
+    refreshStuff(){
+        this.$store.dispatch("fetchAllFavorites")
+    },
+
+    async deleteFavorite(id) {
       let credentials = {
         hotelid: id
       } 
@@ -113,15 +113,14 @@ async deleteFavorite(id) {
         console.log ('DELETED')
       }
 
-  },
+    },
 
-   async favoriteItem(id) { // id = card.id alltså hotelid
-     
-let credentials = {
-       
-       hotel: { id: id} 
-        
-   }
+    async favoriteItem(id) { // id = card.id alltså hotelid
+      
+      let credentials = {
+        hotel: { id: id} 
+      }
+
       let response = await fetch ('/rest/favorites/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
@@ -129,31 +128,19 @@ let credentials = {
       
       })
 
-
-
-
       console.log(credentials)
       if(response.url.includes('error')){
         console.log('Something went wrong. Try again')
       } else {
         console.log ('Saved as favorite')
       }
-
-
-
-
-}
-}
+    }
+  }
 }
 </script>
 
 
 <style scoped>
-
-
-
-
-
 
 
 #ett{

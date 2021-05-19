@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.Holidaymaker.repositories.HotelRepo;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -12,6 +13,13 @@ import java.util.List;
 public class FilterService {
     @Autowired
     private HotelRepo hotelRepo;
+    private List poolList = new ArrayList();
+    private List entertainmentList = new ArrayList();
+    private List restaurantList = new ArrayList();
+    private List wifiList = new ArrayList();
+    private List barList = new ArrayList();
+    private List filteredHotels= new ArrayList();
+
 
 
 
@@ -20,26 +28,55 @@ public class FilterService {
           List<Hotel> hotelList= hotelRepo.findByCountry(countryname);
         return hotelList;
       }
-   return null;
+        return null;
        }
 
 
     public List<Hotel> getByCityName(String cityname) {
         if(hotelRepo.findByCity(cityname) !=null){
             List<Hotel> hotelList= hotelRepo.findByCity(cityname);
-return hotelList;
+            return hotelList;
         }
         return null;
     }
 
     public List<Hotel> getHotelsByPool() {
-        return hotelRepo.findByPoolTrue();
+        poolList = hotelRepo.findByPoolTrue();
+        return poolList;
     }
 
-    public List<Hotel> getHotelsByWifi() { return hotelRepo.findByWifiTrue(); }
-
-    public List<Hotel> getfilteredHotels(){
-
+    public List<Hotel> getHotelsByEntertainment() {
+        entertainmentList = hotelRepo.findByEntertainmentTrue();
+        return entertainmentList;
     }
+    public List<Hotel> getHotelsByRestaurant() {
+        restaurantList = hotelRepo.findByRestaurantTrue();
+        return restaurantList;
+    }
+
+    public List<Hotel> getHotelsByWifi() {
+        wifiList = hotelRepo.findByWifiTrue();
+        return wifiList;
+    }
+
+    public List<Hotel> getHotelsByBar() {
+        barList = hotelRepo.findByBarTrue();
+        return barList;
+    }
+
+
+
+
+
+    public List<Hotel> getFilteredHotels() {
+        for (Object x : poolList){
+            if (x.contains())
+        }
+
+        return null;
+    }
+
+
+
 
 }

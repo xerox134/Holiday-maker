@@ -17,8 +17,7 @@ export default {
 </script>
 
 
-<style scoped>
-.favs{
+<style scoped>.favs{
   
 }
 #Favorites {

@@ -15,11 +15,11 @@ export default createStore({
     rooms:[],
     filteredHotels: [],
     hotelId: null,
-    pool: null,
-    entertainment: null,
-    restaurant: null,
-    wifi: null,
-    bar: null
+    poolFilter: false,
+    entertainmentFilter: false,
+    restaurantFilter: false,
+    wifiFilter: false,
+    barFilter: false
       
   },
   
@@ -48,6 +48,21 @@ export default createStore({
     setHotelId (state,payload){
       state.hotelId =payload
     },
+    setPoolFilter (state, payload){
+      state.poolFilter = payload
+    },
+    setEntertainmentFilter(state, payload){
+      state.entertainmentFilter = payload
+    },
+    setRestaurantFilter (state, payload){
+      state.restaurantFilter = payload
+    },
+    setWifiFilter (state, payload){
+      state.wifiFilter = payload
+    },
+    setBarFilter (state, payload){
+      state.barFilter = payload
+    }
 
   },
   

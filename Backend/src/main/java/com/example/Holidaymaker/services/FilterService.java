@@ -67,16 +67,66 @@ public class FilterService {
 
 
 
+/*
 
     public List<Hotel> getFilteredHotels() {
-        for (Object x : poolList){
-            if (x.contains())
-        }
+        List<Hotel> p = poolList;
+        List<Hotel> w = wifiList;
 
-        return null;
+        List<Hotel> f = filteredHotels;
+
+        poolList.retainAll(wifiList);
+
+
+
+
+        return poolList;
     }
 
+        System.out.println(poolList);
+        System.out.println(wifiList);
+
+        for (Hotel h1 : p){
+            for (Hotel h2 : w){
+                if (h1.getName().toLowerCase().contains(h2.getName().toLowerCase())){
+                    f.add(h2);
+                    System.out.println(f);
+                    System.out.println(h2 + "Inside loop");
+                }
+
+            }
+            return f;
 
 
+        }
+        System.out.println(filteredHotels + "Outside loop");
+        return filteredHotels;
+
+    public List<Hotel> getByHotelName(String phrase){
+       List <Hotel> AllHotels;
+       List <Hotel> returningHotels = new ArrayList<>();
+       AllHotels=hotelRepo.findAll();
+
+       for (Hotel hot: AllHotels){
+           if (hot.getName().toLowerCase().contains(phrase.toLowerCase())){
+               System.out.println(hot);
+               System.out.println("Hotel");
+               returningHotels.add(hot);
+
+           } else if (hot.getCountry().toLowerCase().contains(phrase.toLowerCase())){
+               System.out.println(hot);
+               System.out.println("Country");
+               returningHotels.add(hot);
+           } else if (hot.getCity().toLowerCase().contains(phrase.toLowerCase())){
+               System.out.println(hot);
+               System.out.println("City");
+               returningHotels.add(hot);
+           }
+       }
+
+       return returningHotels;
+
+    }
+     */
 
 }

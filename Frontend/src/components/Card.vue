@@ -59,7 +59,7 @@
      <div class ="Filter-card" v-if="type == 'filter'">
        <div class= "flex-container">
 
-        <button id= "filter">Pool</button> 
+        <button id= "filter" @click="poolToggle()">Pool</button> 
         <button id= "filter">Restaurang</button> <br> 
         <button id= "filter">Childrens Club</button>
         <button id= "filter">Wifi</button><br>
@@ -79,6 +79,16 @@ export default {
   props: ["card", "type"],
 
   methods:{
+
+    async poolToggle(){
+      if (this.$store.state.poolFilter == true) {
+        this.$store.commit('setPoolFilter', false)
+        console.log("Pool set to false")
+      } else {
+        this.$store.commit('setPoolFilter', true)
+        console.log("Pool set to true")
+      }
+    },
     
     async filterHotels(){
       

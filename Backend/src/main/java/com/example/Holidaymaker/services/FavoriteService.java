@@ -33,11 +33,9 @@ public class FavoriteService {
     public void deleteById(long id) { favoriteRepo.deleteById(id); }
 
 
-
-   public List<Favorite> getAll() {
+    public List<Favorite> getAll() {
         return favoriteRepo.findAll();
     }
-
 
     public List<Favorite> getFavoriteByUserId(long userId) {
        return favoriteRepo.findFavoriteByUserId(userId);

@@ -22,6 +22,9 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Favorite> favorites;
 
+    @OneToMany(mappedBy = "user")
+    private List<Booking> bookings;
+
 
     public User() {}
 

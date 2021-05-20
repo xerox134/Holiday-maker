@@ -29,9 +29,17 @@ public class HotelService {
        for (Hotel hot: AllHotels){
            if (hot.getName().toLowerCase().contains(phrase.toLowerCase())){
                System.out.println(hot);
-               System.out.println("here");
+               System.out.println("Hotel");
                returningHotels.add(hot);
 
+           } else if (hot.getCountry().toLowerCase().contains(phrase.toLowerCase())){
+               System.out.println(hot);
+               System.out.println("Country");
+               returningHotels.add(hot);
+           } else if (hot.getCity().toLowerCase().contains(phrase.toLowerCase())){
+               System.out.println(hot);
+               System.out.println("City");
+               returningHotels.add(hot);
            }
        }
 

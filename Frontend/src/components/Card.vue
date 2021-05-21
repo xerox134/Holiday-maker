@@ -2,49 +2,43 @@
 
   <div id="card" >
 
-
-      <div class="Room-card" v-if="type == 'room'">
-
-          <span id="room_nr"> Rum Nummer: {{ card.room_nr }}</span><br><br>
-           <span id="beds"> Sängar: {{ card.beds }}</span><br><br>
-        <span id="price">Pris: {{ card.price }}</span><br><br>
-        <span id="booked">Bokad: {{ card.booked }}</span><br><br>
-
-      </div>
+    <div class="Room-card" v-if="type == 'room'">
+      <span id="room_nr"> Rum Nummer: {{ card.room_nr }}</span><br><br>
+      <span id="beds"> Sängar: {{ card.beds }}</span><br><br>
+      <span id="price">Pris: {{ card.price }}</span><br><br>
+      <span id="booked">Bokad: {{ card.booked }}</span><br><br>
+    </div>
     
     <div class="Hotel-card" v-if="type == 'hotel'" @click="toRooms(card.id)">
-        <span class="name"> {{ card.name }}</span><br><br>
-<div id="ett">
+      <span class="name"> {{ card.name }}</span><br><br>
+      <div id="ett">
 
-
-<div id="fyra">
-        <img v-bind:src=card.img alt="" /><br><br><br>
-        <p>FRÅN 500kr/natt</p><br><br>
-</div>
-  <div id="två">
-        <span id="country">Land: {{ card.country }}</span><br><br>
-        <span id="city">Stad: {{ card.city }}</span><br><br>
-        <span id="address">Adress: {{ card.address }}</span><br><br>
-        <span id="description">Info: {{ card.description }}</span><br><br>
-
-</div>
-
-<div id="tre">
-        <span id="wifi">Finns Wifi: {{ card.wifi }}</span><br><br>
-        <span id="pool">Finns Pool: {{ card.pool }}</span><br><br>
-        <span id="entertainment">Finns Underhållning: {{ card.entertainment }}</span><br><br>
-        <span id="childrens_club">Finns Barn klubb: {{ card.childrens_club }}</span><br><br>
-        <span id="resturant">Finns Restaurang: {{ card.restaurant }}</span><br><br>
-        <span id="bar">Finns Bar: {{ card.bar }}</span><br><br>
-        <span id="distance_to_beach">Distans till närmaste strand: {{ card.distance_to_beach }} km</span><br><br>
-        <span id="distance_to_center">Distans till centrum: {{ card.distance_to_center }} km</span><br><br><br>
-</div>
-
-
+        <div id="fyra">
+          <img v-bind:src=card.img alt="" /><br><br><br>
+          <p>FRÅN 500kr/natt</p><br><br>
         </div>
-        
+
+        <div id="två">
+          <span id="country">Land: {{ card.country }}</span><br><br>
+          <span id="city">Stad: {{ card.city }}</span><br><br>
+          <span id="address">Adress: {{ card.address }}</span><br><br>
+          <span id="description">Info: {{ card.description }}</span><br><br>
+        </div>
+
+        <div id="tre">
+          <span id="wifi">Finns Wifi: {{ card.wifi }}</span><br><br>
+          <span id="pool">Finns Pool: {{ card.pool }}</span><br><br>
+          <span id="entertainment">Finns Underhållning: {{ card.entertainment }}</span><br><br>
+          <span id="childrens_club">Finns Barn klubb: {{ card.childrens_club }}</span><br><br>
+          <span id="resturant">Finns Restaurang: {{ card.restaurant }}</span><br><br>
+          <span id="bar">Finns Bar: {{ card.bar }}</span><br><br>
+          <span id="distance_to_beach">Distans till närmaste strand: {{ card.distance_to_beach }} km</span><br><br>
+          <span id="distance_to_center">Distans till centrum: {{ card.distance_to_center }} km</span><br><br><br>
+        </div>
+
+      </div>   
         <button @click.stop="favoriteItem(card.id, card.name, card.country, card.city, card.description)">Favoritmarkera ❤</button>
-      </div>
+    </div>
 
      
     <div class="Favorite-card" v-if="type == 'favorite'">
@@ -52,27 +46,24 @@
       <span id="Hotelcity">City: {{card.hotel.city}}</span><br><br>
       <span id="Hotelcountry">Country: {{card.hotel.country}}</span><br><br>
       <span id="Hoteldescription">Description: {{card.hotel.description}}</span><br><br>
-      <button @click="deleteFavorite(card.id), refreshStuff()">Ta bort ✖
-      </button>   </div>
+      <button @click="deleteFavorite(card.id), refreshStuff()">Ta bort ✖ </button>   
+    </div>
 
 
-     <div class ="Filter-card" v-if="type == 'filter'">
-       <div class= "flex-container">
+    <div class ="Filter-card" v-if="type == 'filter'">
+      <div class= "flex-container">
 
-        <button id= "filter" @click="poolToggle()">Pool</button> 
-        <button id= "filter">Restaurang</button> <br> 
-        <button id= "filter">Childrens Club</button>
-        <button id= "filter">Wifi</button><br>
-        <button id= "filter">Entertainment</button>
-        <button id= "filter">Bar</button> <br><br>
-        <button id= "filter">Hämta hoteller</button>
-        </div>
+      <button id= "filter" @click="poolToggle()">Pool</button> 
+      <button id= "filter">Restaurang</button> <br> 
+      <button id= "filter">Childrens Club</button>
+      <button id= "filter">Wifi</button><br>
+      <button id= "filter">Entertainment</button>
+      <button id= "filter">Bar</button> <br><br>
+      <button id= "filter">Hämta hoteller</button>
+      </div>
 
-       </div>
-
-
-       </div>
-
+    </div>
+  </div>
 </template>
 <script>
 export default {

@@ -22,7 +22,7 @@ public class FilterService {
 
 
 
-
+/*
     public List<Hotel> getByCountryName(String countryname) {
       if(hotelRepo.findByCountry(countryname) !=null){
           List<Hotel> hotelList= hotelRepo.findByCountry(countryname);
@@ -67,7 +67,7 @@ public class FilterService {
 
 
 
-/*
+
 
     public List<Hotel> getFilteredHotels() {
         List<Hotel> p = poolList;

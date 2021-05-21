@@ -21,25 +21,6 @@ public class FilterService {
     private List filteredHotels= new ArrayList();
 
 
-
-/*
-    public List<Hotel> getByCountryName(String countryname) {
-      if(hotelRepo.findByCountry(countryname) !=null){
-          List<Hotel> hotelList= hotelRepo.findByCountry(countryname);
-        return hotelList;
-      }
-        return null;
-       }
-
-
-    public List<Hotel> getByCityName(String cityname) {
-        if(hotelRepo.findByCity(cityname) !=null){
-            List<Hotel> hotelList= hotelRepo.findByCity(cityname);
-            return hotelList;
-        }
-        return null;
-    }
-
     public List<Hotel> getHotelsByPool() {
         poolList = hotelRepo.findByPoolTrue();
         return poolList;
@@ -67,7 +48,7 @@ public class FilterService {
 
 
 
-
+/*
 
     public List<Hotel> getFilteredHotels() {
         List<Hotel> p = poolList;
@@ -126,6 +107,23 @@ public class FilterService {
 
        return returningHotels;
 
+    }
+
+    public List<Hotel> getByCountryName(String countryname) {
+      if(hotelRepo.findByCountry(countryname) !=null){
+          List<Hotel> hotelList= hotelRepo.findByCountry(countryname);
+        return hotelList;
+      }
+        return null;
+       }
+
+
+    public List<Hotel> getByCityName(String cityname) {
+        if(hotelRepo.findByCity(cityname) !=null){
+            List<Hotel> hotelList= hotelRepo.findByCity(cityname);
+            return hotelList;
+        }
+        return null;
     }
      */
 

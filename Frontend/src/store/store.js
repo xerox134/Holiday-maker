@@ -18,7 +18,11 @@ export default createStore({
     searchedHotels:[],
     toggleList: true,
     filteredHotels: [],
-      
+    hotelsWithPool:[],
+    hotelsWithEntertainment:[],
+    hotelsWithRestaurant:[],
+    hotelsWithWifi:[],
+    hotelsWithBar:[]
   },
   
   mutations: {
@@ -47,18 +51,6 @@ export default createStore({
     setRoomsByHotelId (state, payload) {
       state.rooms = payload
     },
-    setPoolFilter (state, payload){
-      state.poolFilter = payload
-    },
-    setEntertainmentFilter(state, payload){
-      state.entertainmentFilter = payload
-    },
-    setRestaurantFilter (state, payload){
-      state.restaurantFilter = payload
-    },
-    setWifiFilter (state, payload){
-      state.wifiFilter = payload
-    },
     setBarFilter (state, payload){
       state.barFilter = payload
     },
@@ -69,8 +61,24 @@ export default createStore({
       state.HotelSearchPhrase = payload;
     },
     sethotelsBySearch(state,payload){
-      state.searchedHotels=payload;
-    }
+      state.searchedHotels = payload;
+    },
+    setFilteredHotels(state, payload){
+      state.filteredHotels = payload
+    },
+    /*
+    setFilteredHotels(state, payload){
+      state.filteredHotels.push(payload)
+    },
+    */
+    setHotelsWithPool(state, payload){
+      state.hotelsWithPool = payload;
+    },
+    setHotelsWithEntertainment(state, payload){
+      state.hotelsWithEntertainment = payload;
+    },
+    
+
 
   },
   
@@ -121,6 +129,42 @@ export default createStore({
     })
   },
 
+  async fetchHotelByPool(){
+    await axios.get("http://localhost:3000/rest/hotels/filter/pool")
+    .then(response => {
+      this.commit("setFilteredHotels", response.data)
+      console.log(response.data)
+    })
+  },
+  async fetchHotelByEntertainment(){
+    await axios.get("http://localhost:3000/rest/hotels/filter/entertainment")
+    .then(response => {
+      this.commit("setFilteredHotels", response.data)
+      console.log(response.data)
+    })
+  },
+  async fetchHotelByRestaurant(){
+    await axios.get("http://localhost:3000/rest/hotels/filter/restaurant")
+    .then(response => {
+      this.commit("setFilteredHotels", response.data)
+      console.log(response.data)
+    })
+  },
+  async fetchHotelByWifi(){
+    await axios.get("http://localhost:3000/rest/hotels/filter/wifi")
+    .then(response => {
+      this.commit("setFilteredHotels", response.data)
+      console.log(response.data)
+    })
+  },
+  async fetchHotelByBar(){
+    await axios.get("http://localhost:3000/rest/hotels/filter/bar")
+    .then(response => {
+      this.commit("setFilteredHotels", response.data)
+      console.log(response.data)
+    })
+  },
+
 
 
 },
@@ -154,6 +198,15 @@ getters:{
   getToggleList(state){
     return state.toggleList
   },
+  getFilteredHotels(state){
+    return state.filteredHotels
+  },
+  getHotelsWithPool(state){
+    return state.hotelsWithPool
+  },
+  getHotelsWithEntertainment(state){
+    return state.hotelsWithEntertainment
+  }
 
 },
 

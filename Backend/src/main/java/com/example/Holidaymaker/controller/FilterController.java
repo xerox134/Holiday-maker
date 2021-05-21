@@ -16,16 +16,6 @@ import java.util.List;
 public class FilterController {
     @Autowired
     private FilterService filterService;
-/*
-    @GetMapping("hotels/filter/country/{countryname}")
-    public List<Hotel> getByCountryName(@PathVariable String countryname) {
-    return filterService.getByCountryName(countryname);
-    }
-
-    @GetMapping("hotels/filter/city/{cityname}")
-    public List<Hotel> getByCityName(@PathVariable String cityname) {
-        return filterService.getByCityName(cityname);}
-
 
     @GetMapping("hotels/filter/pool")
         public List<Hotel> getByPool() {
@@ -52,10 +42,20 @@ public class FilterController {
         return filterService.getHotelsByBar();
     }
 
+/*
     @GetMapping("hotels/filter/filteredhotels")
     public List<Hotel> getFilteredHotels(){
         return filterService.getFilteredHotels();
     }
+
+    @GetMapping("hotels/filter/country/{countryname}")
+    public List<Hotel> getByCountryName(@PathVariable String countryname) {
+    return filterService.getByCountryName(countryname);
+    }
+
+    @GetMapping("hotels/filter/city/{cityname}")
+    public List<Hotel> getByCityName(@PathVariable String cityname) {
+        return filterService.getByCityName(cityname);}
 
 */
 

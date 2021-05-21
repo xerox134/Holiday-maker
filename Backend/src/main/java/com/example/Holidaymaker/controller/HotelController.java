@@ -31,12 +31,8 @@ public class HotelController {
         public List<Hotel> getHotelBySearch(@PathVariable String phrase){
             return hotelService.getByHotelName(phrase);
         }
+
+
+
+
     }
-
-
-
-
-
-
-
-

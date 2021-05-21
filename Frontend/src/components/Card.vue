@@ -2,51 +2,44 @@
 
   <div id="card" >
 
-
-      <div class="Room-card" v-if="type == 'room'">
-
-          <span id="room_nr"> Rum Nummer: {{ card.room_nr }}</span><br><br>
-           <span id="beds"> Sängar: {{ card.beds }}</span><br><br>
-        <span id="price">Pris: {{ card.price }}</span><br><br>
-        <span id="booked">Bokad: {{ card.booked }}</span><br><br>
+    <div class="Room-card" v-if="type == 'room'">
+      <span id="room_nr"> Rum Nummer: {{ card.room_nr }}</span><br><br>
+      <span id="beds"> Sängar: {{ card.beds }}</span><br><br>
+      <span id="price">Pris: {{ card.price }}</span><br><br>
+      <span id="booked">Bokad: {{ card.booked }}</span><br><br>
         <button>Boka</button>
-
-
-      </div>
+    </div>
     
     <div class="Hotel-card" v-if="type == 'hotel'" @click="toRooms(card.id)">
-        <span class="name"> {{ card.name }}</span><br><br>
-<div id="ett">
+      <span class="name"> {{ card.name }}</span><br><br>
+      <div id="ett">
 
-
-<div id="fyra">
-        <img v-bind:src=card.img alt="" /><br><br><br>
-        <p>FRÅN 500kr/natt</p><br><br>
-</div>
-  <div id="två">
-        <span id="country">Land: {{ card.country }}</span><br><br>
-        <span id="city">Stad: {{ card.city }}</span><br><br>
-        <span id="address">Adress: {{ card.address }}</span><br><br>
-        <span id="description">Info: {{ card.description }}</span><br><br>
-
-</div>
-
-<div id="tre">
-        <span id="wifi">Finns Wifi: {{ card.wifi }}</span><br><br>
-        <span id="pool">Finns Pool: {{ card.pool }}</span><br><br>
-        <span id="entertainment">Finns Underhållning: {{ card.entertainment }}</span><br><br>
-        <span id="childrens_club">Finns Barn klubb: {{ card.childrens_club }}</span><br><br>
-        <span id="resturant">Finns Restaurang: {{ card.restaurant }}</span><br><br>
-        <span id="bar">Finns Bar: {{ card.bar }}</span><br><br>
-        <span id="distance_to_beach">Distans till närmaste strand: {{ card.distance_to_beach }} km</span><br><br>
-        <span id="distance_to_center">Distans till centrum: {{ card.distance_to_center }} km</span><br><br><br>
-</div>
-
-
+        <div id="fyra">
+          <img v-bind:src=card.img alt="" /><br><br><br>
+          <p>FRÅN 500kr/natt</p><br><br>
         </div>
-        
+
+        <div id="två">
+          <span id="country">Land: {{ card.country }}</span><br><br>
+          <span id="city">Stad: {{ card.city }}</span><br><br>
+          <span id="address">Adress: {{ card.address }}</span><br><br>
+          <span id="description">Info: {{ card.description }}</span><br><br>
+        </div>
+
+        <div id="tre">
+          <span id="wifi">Finns Wifi: {{ card.wifi }}</span><br><br>
+          <span id="pool">Finns Pool: {{ card.pool }}</span><br><br>
+          <span id="entertainment">Finns Underhållning: {{ card.entertainment }}</span><br><br>
+          <span id="childrens_club">Finns Barn klubb: {{ card.childrens_club }}</span><br><br>
+          <span id="resturant">Finns Restaurang: {{ card.restaurant }}</span><br><br>
+          <span id="bar">Finns Bar: {{ card.bar }}</span><br><br>
+          <span id="distance_to_beach">Distans till närmaste strand: {{ card.distance_to_beach }} km</span><br><br>
+          <span id="distance_to_center">Distans till centrum: {{ card.distance_to_center }} km</span><br><br><br>
+        </div>
+
+      </div>   
         <button @click.stop="favoriteItem(card.id, card.name, card.country, card.city, card.description)">Favoritmarkera ❤</button>
-      </div>
+    </div>
 
      
     <div class="Favorite-card" v-if="type == 'favorite'">
@@ -54,47 +47,65 @@
       <span id="Hotelcity">City: {{card.hotel.city}}</span><br><br>
       <span id="Hotelcountry">Country: {{card.hotel.country}}</span><br><br>
       <span id="Hoteldescription">Description: {{card.hotel.description}}</span><br><br>
-      <button @click="deleteFavorite(card.id), refreshStuff()">Ta bort ✖
-      </button>   </div>
+      <button @click="deleteFavorite(card.id), refreshStuff()">Ta bort ✖ </button>   
+    </div>
 
-       </div>
+
+    <div class ="Filter-card" v-if="type == 'filter'">
+      <div class= "flex-container">
+      <button id= "filter" @click="poolToggle()">Pool</button> 
+      <button id= "filter">Restaurang</button> <br> 
+      <button id= "filter">Childrens Club</button>
+      <button id= "filter">Wifi</button><br>
+      <button id= "filter">Entertainment</button>
+      <button id= "filter">Bar</button> <br><br>
+      <button id= "filter">Hämta hoteller</button>
+      </div>
+    </div>
 
        <div class="Room-card" v-if="type == 'Bookedroom'">
-
           <span id="room_nr"> Rum Nummer: {{ card.room_nr }}</span><br><br>
            <span id="beds"> Sängar: {{ card.beds }}</span><br><br>
         <span id="price">Pris: {{ card.price }}</span><br><br>
         <span id="booked">Bokad: {{ card.booked }}</span><br><br>
-
-
       </div>
-
+  </div>
 </template>
 <script>
 export default {
-props: ["card", "type"],
+  props: ["card", "type"],
 
-methods:{
+  methods:{
 
-   async toRooms(id){
-
-
-        this.$store.state.hotelId = id
-
-        console.log(this.$store.state.hotelId)
-        console.log("We clicked")
-        this.$router.push({
-             name: 'hotel'
-        })
-
-        
-          
-
+    async poolToggle(){
+      if (this.$store.state.poolFilter == true) {
+        this.$store.commit('setPoolFilter', false)
+        console.log("Pool set to false")
+      } else {
+        this.$store.commit('setPoolFilter', true)
+        console.log("Pool set to true")
+      }
     },
-refreshStuff(){
-    this.$store.dispatch("fetchAllFavorites")
-},
-async deleteFavorite(id) {
+    
+    async filterHotels(){
+      
+    },
+
+    async toRooms(id){
+      this.$store.state.hotelId = id
+
+      console.log(this.$store.state.hotelId)
+      console.log("We clicked")
+      this.$router.push({
+            name: 'hotel'
+      })
+    },
+
+    refreshStuff(){
+        this.$store.dispatch("fetchAllFavorites")
+    },
+
+    async deleteFavorite(id) {
       let credentials = {
         hotelid: id
       } 
@@ -109,15 +120,14 @@ async deleteFavorite(id) {
         console.log ('DELETED')
       }
 
-  },
+    },
 
-   async favoriteItem(id) { // id = card.id alltså hotelid
-     
-let credentials = {
-       
-       hotel: { id: id} 
-        
-   }
+    async favoriteItem(id) { // id = card.id alltså hotelid
+      
+      let credentials = {
+        hotel: { id: id} 
+      }
+
       let response = await fetch ('/rest/favorites/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
@@ -125,26 +135,20 @@ let credentials = {
       
       })
 
-
-
-
       console.log(credentials)
       if(response.url.includes('error')){
         console.log('Something went wrong. Try again')
       } else {
         console.log ('Saved as favorite')
       }
-
-
-
-
-}
-}
+    }
+  }
 }
 </script>
 
 
 <style scoped>
+
 
 #ett{
   display: flex;
@@ -163,7 +167,7 @@ let credentials = {
     margin-bottom: 18px;
     box-shadow: 4px 4px 2px rgba(0, 0, 0, .3), inset 2px 2px 2px rgba(240, 200, 255, .1);
     min-height: 4vh;
-    max-width: 50%;
+    max-width: 60%;
     justify-content: center;
     align-self: center;
     text-align: left;
@@ -219,14 +223,17 @@ let credentials = {
     box-shadow: 2px 2px 1px rgba(0, 0, 0, .2), inset 2px 2px 2px rgba(255, 255, 255, .05);
     margin: 3px;
     margin-left: 1vw;
-    width: 46.5vw;
+    width: 100%;
     height: min(5vh, 25vw);
     text-shadow: -1px -1px 2px rgba(0, 0, 0, .3), 1px 1px 2px rgba(126, 126, 126, .5);
   }
 
   button:hover{
+    
     background-color: rgba(80, 75, 85, .8);
   }
+
+  
   
   button:active{
     color: rgba(230, 230, 255, .8);

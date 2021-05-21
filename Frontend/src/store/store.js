@@ -2,7 +2,8 @@ import { createStore } from 'vuex';
 import axios from 'axios';
 
 export default createStore({
-    name:'store',
+  name:'store',
+  
   state: {
     favorites: [],
     addedFavorites:[],
@@ -16,6 +17,7 @@ export default createStore({
       HotelSearchPhrase: '',
       searchedHotels:[],
       toggleList: true
+    filteredHotels: [],
       
   },
   
@@ -26,26 +28,44 @@ export default createStore({
     },
 
     addHotels(state, payload) {
-        state.hotels = payload;
-      },
+      state.hotels = payload;
+    },
     setFavorites(state,payload){
       state.favorites = payload;
-      },
-      setLoggedInUser (state, user) {
-        state.loggedInUser = user
-      },
-      setAllUsers(state, payload) {
-        state.allUsers = payload
-      },
-      setLoggedInUserId(state, user) {
-        state.loggedInUserId = user
-      },
-      setUser(state, user) {
-        state.loggedInUser = user
-      }, 
-      setRoomsByHotelId (state, payload) {
-        state.rooms = payload
-      },
+    },
+    setLoggedInUser (state, user) {
+      state.loggedInUser = user
+    },
+    setAllUsers(state, payload) {
+      state.allUsers = payload
+    },
+    setLoggedInUserId(state, user) {
+      state.loggedInUserId = user
+    },
+    setUser(state, user) {
+      state.loggedInUser = user
+    }, 
+    setRoomsByHotelId (state, payload) {
+      state.rooms = payload
+    },
+    setHotelId (state,payload){
+      state.hotelId =payload
+    },
+    setPoolFilter (state, payload){
+      state.poolFilter = payload
+    },
+    setEntertainmentFilter(state, payload){
+      state.entertainmentFilter = payload
+    },
+    setRestaurantFilter (state, payload){
+      state.restaurantFilter = payload
+    },
+    setWifiFilter (state, payload){
+      state.wifiFilter = payload
+    },
+    setBarFilter (state, payload){
+      state.barFilter = payload
+    }
 
       setHotelId (state,payload){
         state.hotelId =payload
@@ -63,35 +83,35 @@ export default createStore({
   
   actions: {
     async fetchHotels(){
-        await axios.get("http://localhost:3000/rest/hotels")
-        .then(response => {
-          this.commit("addHotels", response.data)
-          console.log(response.data)
-        })
-      },
-      async fetchRoomsById(){
-        await axios.get("http://localhost:3000/rest/room/" + this.state.hotelId)
-        .then(response => {
-          this.commit("setRoomsByHotelId", response.data)
-          console.log(response.data)
-        })
-      },
-      async fetchUser(){
-        await axios.get("http://localhost:3000/auth/whoami/")
-        .then(response => {
-          this.commit("setUser", response.data)
-          if(response != null)
-            console.log(response.data)
-        })
-      },
-      async fetchAllUsers(){
-        await axios.get("http://localhost:3000/rest/users")
-        .then(response => {
-          this.commit("setAllUsers", response.data)
-          if(response != null)
-            console.log(response.data)
-        })
-      },
+      await axios.get("http://localhost:3000/rest/hotels")
+      .then(response => {
+        this.commit("addHotels", response.data)
+        console.log(response.data)
+      })
+    },
+    async fetchRoomsById(){
+      await axios.get("http://localhost:3000/rest/room/" + this.state.hotelId)
+      .then(response => {
+        this.commit("setRoomsByHotelId", response.data)
+        console.log(response.data)
+      })
+    },
+    async fetchUser(){
+      await axios.get("http://localhost:3000/auth/whoami/")
+      .then(response => {
+        this.commit("setUser", response.data)
+        if(response != null)
+        console.log(response.data)
+      })
+    },
+    async fetchAllUsers(){
+      await axios.get("http://localhost:3000/rest/users")
+      .then(response => {
+        this.commit("setAllUsers", response.data)
+        if(response != null)
+        console.log(response.data)
+      })
+    },
     async fetchAllFavorites(){
       await axios.get("http://localhost:3000/rest/favorites/user/"+ this.state.loggedInUserId)
       .then(response => {
@@ -128,11 +148,9 @@ getters:{
   getAllFavorites(state){
     return state.favorites
   },
-  
   getAllHotels(state){
     return state.hotels
   },
-
   getRoomByHotelId(state){
     return state.rooms
   },
@@ -148,4 +166,5 @@ getters:{
 
   modules: {
   }
+
 })

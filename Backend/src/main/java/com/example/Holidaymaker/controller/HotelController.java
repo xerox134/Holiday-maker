@@ -18,10 +18,9 @@ public class HotelController {
     private HotelService hotelService;
 
     @GetMapping("/hotels")
-    public List<Hotel> getAllHotels(){
-        return hotelService.getAll();
+    public List<Hotel> getAllHotels(){ return hotelService.getAll(); }
 
-    }
+
     @GetMapping("/hotel/{hotelId}")
     public List<Hotel> getHotelsById(@PathVariable long hotelId){
         return hotelService.getHotelsById(hotelId);

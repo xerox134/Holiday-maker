@@ -28,7 +28,7 @@ public class Hotel {
     private int distance_to_center;
     private String img;
 
-    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Review> reviews;
 
     @OneToMany(mappedBy = "hotel")

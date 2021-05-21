@@ -3,6 +3,7 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Hotel from '../views/Hotel.vue'
 import Bookings from '../views/Bookings.vue'
+import Shoppingcart from '../views/Shoppingcart.vue'
 
 const routes = [
   {
@@ -29,6 +30,11 @@ const routes = [
     path: '/bookings',
     name: 'Bookings',
     component: Bookings
+  },
+  {
+    path: '/shoppingcart',
+    name: 'Shoppingcart',
+    component: Shoppingcart
   },
   {
     path: '/hotel',

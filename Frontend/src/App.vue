@@ -9,7 +9,8 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
     <router-link to="/favorites">Favorites</router-link> |
-    <router-link to="/bookings">Bookings</router-link> 
+    <router-link to="/bookings">Bookings</router-link> |
+    <router-link to="/shoppingcart">Shoppingcart</router-link> 
    
    
   </div>

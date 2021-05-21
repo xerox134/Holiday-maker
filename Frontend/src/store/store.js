@@ -7,16 +7,16 @@ export default createStore({
   state: {
     favorites: [],
     addedFavorites:[],
-      hotels:[],
-      loggedInUser: null,
-      loggedInUserId: 0,
-      allUsers: [],
-      isLoggedIn: "Login",
-      rooms:[],
-      hotelId: null,
-      HotelSearchPhrase: '',
-      searchedHotels:[],
-      toggleList: true
+    hotels:[],
+    loggedInUser: null,
+    loggedInUserId: 0,
+    allUsers: [],
+    isLoggedIn: "Login",
+    rooms:[],
+    hotelId: null,
+    HotelSearchPhrase: '',
+    searchedHotels:[],
+    toggleList: true,
     filteredHotels: [],
       
   },
@@ -26,7 +26,6 @@ export default createStore({
     setToggleList(state,payload){
       state.toggleList = payload
     },
-
     addHotels(state, payload) {
       state.hotels = payload;
     },
@@ -48,9 +47,6 @@ export default createStore({
     setRoomsByHotelId (state, payload) {
       state.rooms = payload
     },
-    setHotelId (state,payload){
-      state.hotelId =payload
-    },
     setPoolFilter (state, payload){
       state.poolFilter = payload
     },
@@ -65,19 +61,16 @@ export default createStore({
     },
     setBarFilter (state, payload){
       state.barFilter = payload
+    },
+    setHotelId (state,payload){
+      state.hotelId =payload
+    },
+    setHotelSearchPhrase(state, payload) {
+      state.HotelSearchPhrase = payload;
+    },
+    sethotelsBySearch(state,payload){
+      state.searchedHotels=payload;
     }
-
-      setHotelId (state,payload){
-        state.hotelId =payload
-      },
-
-      setHotelSearchPhrase(state, payload) {
-        state.HotelSearchPhrase = payload;
-      },
-
-      sethotelsBySearch(state,payload){
-        state.searchedHotels=payload;
-      }
 
   },
   

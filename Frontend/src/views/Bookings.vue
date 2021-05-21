@@ -1,26 +1,23 @@
 <template>
-  <div class="favorites">
-    <h1>All Favorites</h1>
-        <div id="Favorites"><Favorites/></div>
+  <div class= "Bookings">
+      <h1>Bookings view</h1>
+              <div id="Bookings"><Bookings/></div>
 
   </div>
 </template>
 
 <script>
-import Favorites from "../components/Favorites.vue"
+import Bookings from "../components/Bookings.vue"
 export default {
-  name: "favorites",
+  name: "bookings",
   components: {
-    Favorites
+    Bookings
   },
 }
 </script>
 
-
-<style scoped>.favs{
-  
-}
-#Favorites {
+<style scoped>
+#Bookings {
   background-color: rgba(60, 55, 65, .3);
   color: blanchedalmond;
   width: 100%;

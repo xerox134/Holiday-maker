@@ -9,6 +9,8 @@
            <span id="beds"> Sängar: {{ card.beds }}</span><br><br>
         <span id="price">Pris: {{ card.price }}</span><br><br>
         <span id="booked">Bokad: {{ card.booked }}</span><br><br>
+        <button>Boka</button>
+
 
       </div>
     
@@ -56,6 +58,16 @@
       </button>   </div>
 
        </div>
+
+       <div class="Room-card" v-if="type == 'Bookedroom'">
+
+          <span id="room_nr"> Rum Nummer: {{ card.room_nr }}</span><br><br>
+           <span id="beds"> Sängar: {{ card.beds }}</span><br><br>
+        <span id="price">Pris: {{ card.price }}</span><br><br>
+        <span id="booked">Bokad: {{ card.booked }}</span><br><br>
+
+
+      </div>
 
 </template>
 <script>

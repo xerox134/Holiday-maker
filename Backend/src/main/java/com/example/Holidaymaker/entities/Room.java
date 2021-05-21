@@ -17,6 +17,9 @@ public class Room {
     @ManyToOne
     private Hotel hotel;
 
+    @OneToMany (mappedBy = "room")
+    private List<Booking> bookings;
+
     public Room() {
     }
 

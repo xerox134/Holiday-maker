@@ -37,6 +37,9 @@ public class Hotel {
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
     private List<Favorite> favorites;
 
+    @OneToMany(mappedBy = "hotel")
+    private List<Booking> bookings;
+
 
     public Hotel() {
     }

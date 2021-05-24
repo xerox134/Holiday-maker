@@ -20,21 +20,27 @@
         </div>
 
         <div id="två">
-          <span id="country">Land: {{ card.country }}</span><br><br>
-          <span id="city">Stad: {{ card.city }}</span><br><br>
+          <span id="country">Land: {{ card.country }}</span><br>
+          <span id="city">Stad: {{ card.city }}</span><br>
           <span id="address">Adress: {{ card.address }}</span><br><br>
-          <span id="description">Info: {{ card.description }}</span><br><br>
+          <span id="description">Info: {{ card.description }}</span><br>
         </div>
 
         <div id="tre">
-          <span id="wifi">Finns Wifi: {{ card.wifi }}</span><br><br>
-          <span id="pool">Finns Pool: {{ card.pool }}</span><br><br>
-          <span id="entertainment">Finns Underhållning: {{ card.entertainment }}</span><br><br>
-          <span id="childrens_club">Finns Barn klubb: {{ card.childrens_club }}</span><br><br>
-          <span id="resturant">Finns Restaurang: {{ card.restaurant }}</span><br><br>
-          <span id="bar">Finns Bar: {{ card.bar }}</span><br><br>
-          <span id="distance_to_beach">Distans till närmaste strand: {{ card.distance_to_beach }} km</span><br><br>
-          <span id="distance_to_center">Distans till centrum: {{ card.distance_to_center }} km</span><br><br><br>
+          <span class="test" id="wifi" v-if="card.wifi">Wifi ✔</span>
+          <span class="test" id="wifi" v-else>Wifi ✖</span><br>
+          <span class="test" id="pool" v-if="card.pool">Pool ✔</span>
+          <span class="test" id="pool" v-else>Pool ✖</span><br>
+          <span class="test" id="entertainment" v-if="card.entertainment">Underhållning ✔</span>
+          <span class="test" id="entertainment" v-else>Underhållning ✖</span><br>
+          <span class="test" id="childrens_club" v-if="card.childrens_club">Barnklubb ✔</span>
+          <span class="test" id="childrens_club" v-else>Barnklubb ✖</span><br>
+          <span class="test" id="resturant" v-if="card.restaurant">Restaurang ✔</span>
+          <span class="test" id="resturant" v-else>Restaurang ✖</span><br>
+          <span class="test" id="bar" v-if="card.bar">Bar ✔</span>
+          <span class="test" id="bar" v-else>Bar ✖</span><br>
+          <span class="test" id="distance_to_beach" >{{ card.distance_to_beach }} km till strand</span><br>
+          <span class="test" id="distance_to_center">{{ card.distance_to_center }} km till centrum</span><br>
         </div>
 
       </div>   
@@ -153,6 +159,17 @@ export default {
   padding: 2vh 2vw;
   }
 
+#tre{
+  max-width: 40%;
+  min-width: 30%;
+  max-height: 5%;
+  padding: 1vh;
+  text-align: right;
+}
+
+#Hotel-card{
+    min-width: 100px;
+  }
   #card{
     color: rgba(19, 13, 9, 0.911);
     display: flex;
@@ -163,22 +180,26 @@ export default {
     margin-bottom: 18px;
     box-shadow: 4px 4px 2px rgba(0, 0, 0, .3), inset 2px 2px 2px rgba(240, 200, 255, .1);
     min-height: 4vh;
-    max-width: 60%;
+    max-width: 70%;
     justify-content: center;
     align-self: center;
     text-align: left;
   }
 
+  
+
   #card:hover{
     color: rgba(255, 250, 235, .9);
     background-color: rgba(60, 55, 65, .7);
     box-shadow: 4px 4px 4px rgba(0, 0, 0, .3), inset 3px 3px 4px rgba(240, 200, 255, .15);
+    
   }
 
   #card:active{
     color: rgba(230, 230, 255, .6);
     background-color: rgba(0, 0, 0, .1);
     box-shadow: inset -3px -3px 4px rgba(240, 200, 255, .1), inset 3px 3px 2px rgba(0, 0, 0, .2);
+    
   }
 
   .Favorite-card > .title{
@@ -197,6 +218,7 @@ export default {
   justify-content: center;
   text-align: center;
   margin-left: 40%;
+  
  
 
 

@@ -54,4 +54,22 @@ computed: {
 
 <style>
 
+#searchBar{
+  top: -2vh;
+    left: 1px;
+    border: none;
+    outline: none;
+    background-color: rgba(80, 75, 85, .3);
+    color: rgba(230, 230, 255, .6);
+    box-shadow: 2px 2px 1px rgba(0, 0, 0, .2), inset 2px 2px 2px rgba(255, 255, 255, .05);
+    margin: 3px;
+    margin-left: 1vw;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: min(5vh, 25vw);
+    text-shadow: -1px -1px 2px rgba(0, 0, 0, .3), 1px 1px 2px rgba(126, 126, 126, .5);
+}
+
 </style>

@@ -10,10 +10,14 @@
     <button @click="toggleRestaurant(true)">Restaurang</button><br>
     <button @click="toggleWifi(true)">Wifi</button><br>
     <button @click="toggleBar(true)">Bar</button><br>
-    <button @click="toggleReview()">stars high-low</button><br>
-    <button @click="toggleReview2()">stars low-high</button><br>
-    <button @click="togglePrice()">Price high-low</button><br>
-    <button @click="togglePrice2()">Price low-high</button><br>
+    <span class="trying" >Stars <p @click="toggleReview()">⬆</p> <p @click="toggleReview2()">⬇</p> </span><br>
+    <span class="trying" >Price <p @click="togglePrice()">⬆</p> <p @click="togglePrice2()">⬇</p> </span><br>
+    <span class="trying" >Beach <p @click="toggleBeach()">⬆</p> <p @click="toggleBeach2()">⬇</p> </span><br>
+    <span class="trying" >Centrum <p @click="toggleCentrum()">⬆</p> <p @click="toggleCentrum2()">⬇</p> </span><br>
+  
+    
+   
+    
     
 
   </div>
@@ -31,6 +35,15 @@ export default {
   },
 
   methods:{
+    toggleBeach(){
+      return this.$store.state.hotels.sort((b,a)=>a.distance_to_beach - b.distance_to_beach);
+    }, toggleBeach2(){
+      return this.$store.state.hotels.sort((a,b)=>a.distance_to_beach - b.distance_to_beach);
+    }, toggleCentrum(){
+      return this.$store.state.hotels.sort((b,a)=>a.distance_to_center - b.distance_to_center);
+    }, toggleCentrum2(){
+      return this.$store.state.hotels.sort((a,b)=>a.distance_to_center - b.distance_to_center);
+    }, 
 
  togglePrice(){
       return this.$store.state.hotels.sort((b,a)=>a.cheapest_price - b.cheapest_price);
@@ -134,6 +147,37 @@ export default {
 </script>
 
 <style scoped>
+.trying{
+display: flex;  
+
+  background-color: rgba(80, 75, 85, .3);
+  color: rgba(230, 230, 255, .6);
+  box-shadow: 2px 2px 1px rgba(0, 0, 0, .2), inset 2px 2px 2px rgba(255, 255, 255, .05);
+border-radius: 7px;
+margin: 3px;
+    margin-left: 1vw;
+     width: 100%;
+    height: min(5vh, 25vw);
+    text-shadow: -1px -1px 2px rgba(0, 0, 0, .3), 1px 1px 2px rgba(126, 126, 126, .5);
+    justify-content: center;
+}
+p{
+  margin-left: 15px;
+  background-color: rgb(17, 3, 3);
+  color: rgb(255, 255, 255);
+  padding-left:3px ;
+  padding-right:3px;
+  border-radius: 10px;
+  cursor: pointer;
+  max-height: 90%;
+  margin-top: 2px;
+  padding-top:2px;
+			
+
+ 
+  }
+
+
 
 button{
   text-align: center;

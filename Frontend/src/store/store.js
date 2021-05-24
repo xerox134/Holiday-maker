@@ -18,12 +18,6 @@ export default createStore({
     HotelSearchPhrase: '',
     searchedHotels:[],
     toggleList: true,
-    filteredHotels: [],
-    hotelsWithPool:[],
-    hotelsWithEntertainment:[],
-    hotelsWithRestaurant:[],
-    hotelsWithWifi:[],
-    hotelsWithBar:[],
     totalPrice: 0,
     bedPrice: 100,
     allInclusivePrice: 200

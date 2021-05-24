@@ -165,11 +165,14 @@ export default {
   max-height: 5%;
   padding: 1vh;
   text-align: right;
+  
+
 }
 
 
 #Hotel-card{
     min-width: 100px;
+    
   }
   
   #card{
@@ -181,7 +184,7 @@ export default {
     
     padding: 2vh;
     margin-bottom: 18px;
-    margin-left: 18px;
+    margin-left: 30px;
     box-shadow: 4px 4px 2px rgba(0, 0, 0, .3), inset 2px 2px 2px rgba(240, 200, 255, .1);
     min-height: 4vh;
     max-width: 95%;

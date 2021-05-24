@@ -27,43 +27,79 @@ export default {
   },
 
   methods:{
-    togglePool(includesPool) {
-      console.log("Pool is " + includesPool)
+    togglePool(PoolisTrue) {
+      console.log("Pool is " + PoolisTrue)
       // metoden filtrerar hotels-arrayen. Den plockar ut alla hotell som inte har pool
       this.$store.state.hotels = this.$store.state.hotels.filter(hotel => {
-      return hotel.pool == includesPool
+      return hotel.pool == PoolisTrue
+      });
+
+    
+      this.$store.state.searchedHotels=this.$store.state.searchedHotels.filter(hotel =>{
+        return hotel.pool == PoolisTrue
       })
+
+      //Hotel = vilket hotell som helst. Returnera alla hotel som är hotel.pool = true
+
     },
+
+
+   
     toggleEntertainment(includesEntertainment) {
       console.log("Entertainment is " + includesEntertainment)
       this.$store.state.hotels = this.$store.state.hotels.filter(hotel => {
         return hotel.entertainment == includesEntertainment   
+      });
+
+       this.$store.state.searchedHotels=this.$store.state.searchedHotels.filter(hotel =>{
+        return hotel.entertainment == includesEntertainment
       })
     },
+
+
     toggleChildrensClub(includesChildrensClub) {
       console.log("Childrens Club is " + includesChildrensClub)
       this.$store.state.hotels = this.$store.state.hotels.filter(hotel => {
         return hotel.childrens_club == includesChildrensClub
+      });
+       this.$store.state.searchedHotels=this.$store.state.searchedHotels.filter(hotel =>{
+        return hotel.childrens_club == includesChildrensClub
       })
     },
+
+
     toggleRestaurant(includesRestaurant) {
       console.log("Restaurant is " + includesRestaurant)
       this.$store.state.hotels = this.$store.state.hotels.filter(hotel => {
         return hotel.restaurant == includesRestaurant
+      });
+       this.$store.state.searchedHotels=this.$store.state.searchedHotels.filter(hotel =>{
+        return hotel.restaurant == includesRestaurant
       })
     },
+
+
     toggleWifi(includesWifi) {
       console.log("Wifi is " + includesWifi)
       this.$store.state.hotels = this.$store.state.hotels.filter(hotel => {
         return hotel.wifi == includesWifi
+      });
+       this.$store.state.searchedHotels=this.$store.state.searchedHotels.filter(hotel =>{
+        return hotel.wifi == includesWifi
       })
     },
+
+
     toggleBar(includesBar) {
       console.log("Bar is " + includesBar)
       this.$store.state.hotels = this.$store.state.hotels.filter(hotel => {
         return hotel.bar == includesBar
+      });
+       this.$store.state.searchedHotels=this.$store.state.searchedHotels.filter(hotel =>{
+        return hotel.bar == includesBar
       })
     },
+
     clear() {
       console.log("Filters cleared")
         return this.$store.dispatch("fetchHotels")

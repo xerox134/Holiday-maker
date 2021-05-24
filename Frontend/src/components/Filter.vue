@@ -1,15 +1,15 @@
 <template>
-  <div>
+  <div id="filterKnappar">
     
     <h1>Filter</h1>
     
-    <button @click="togglePool(true)">Pool</button>
-    <button @click="toggleEntertainment(true)">Entertainment</button>
-    <button @click="toggleChildrensClub(true)">Childrens Club</button>
-    <button @click="toggleRestaurant(true)">Restaurant</button>
-    <button @click="toggleWifi(true)">Wifi</button>
-    <button @click="toggleBar(true)">Bar</button>
-    <button @click="clear()">Clear filters</button>
+    <button @click="togglePool(true)">Pool</button><br>
+    <button @click="toggleEntertainment(true)">Underhållning</button><br>
+    <button @click="toggleChildrensClub(true)">Barnklubb</button><br>
+    <button @click="toggleRestaurant(true)">Restaurang</button><br>
+    <button @click="toggleWifi(true)">Wifi</button><br>
+    <button @click="toggleBar(true)">Bar</button><br>
+    <button @click="clear()">Rensa filter</button><br>
 
   </div>
 </template>
@@ -72,3 +72,12 @@ export default {
 
 }
 </script>
+
+<style scoped>
+
+button{
+  text-align: center;
+  width: 100%;
+}
+
+</style>>

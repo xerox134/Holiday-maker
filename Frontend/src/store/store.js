@@ -22,7 +22,8 @@ export default createStore({
     hotelsWithEntertainment:[],
     hotelsWithRestaurant:[],
     hotelsWithWifi:[],
-    hotelsWithBar:[]
+    hotelsWithBar:[],
+    poolFilter: []
   },
   
   mutations: {
@@ -77,7 +78,9 @@ export default createStore({
     setHotelsWithEntertainment(state, payload){
       state.hotelsWithEntertainment = payload;
     },
-    
+    setPoolFilter(state, payload) {
+      state.poolFilter = payload
+    }
 
 
   },

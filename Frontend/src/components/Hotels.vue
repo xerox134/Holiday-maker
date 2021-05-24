@@ -7,10 +7,10 @@
                          <Card :card="hotel"  :type="'hotel'"/>  
             </li>
         </ol>
- 
 
-
- 
+    <div>
+            <button @click="togglePool(true)">Pool</button>
+    </div>
 
 
 
@@ -39,7 +39,7 @@ components: {
         },
         toggleList(){
             return this.$store.getters.getToggleList
-        }
+        },
         
     },
 
@@ -48,6 +48,15 @@ components: {
     mounted(){
         this.$store.dispatch("fetchHotels")
     },
+
+    methods: {
+        togglePool(includes) {
+            console.log(includes)
+            this.$store.state.hotels = this.$store.state.hotels.filter(hotel => {
+            return hotel.pool == includes
+         })
+        }
+    }
 
 
     

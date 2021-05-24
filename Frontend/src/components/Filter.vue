@@ -2,14 +2,13 @@
   <div>
     
     <h1>Filter</h1>
-
-    <button id="filter" @click="searchForPool(), test()">Pool</button> <br>
-    <button id= "filter" @click="searchForRestaurant()">Restaurang</button> <br>
-    <button id= "filter">Childrens Club meh!!!</button> <br>
-    <button id= "filter" @click="searchForWifi()">Wifi</button><br>
-    <button id= "filter" @click="searchForEntertainment()">Entertainment</button> <br>
-    <button id= "filter" @click="searchForBar()">Bar</button> <br>
     
+    <button @click="togglePool(true)">Pool</button>
+    <button @click="toggleEntertainment(true)">Entertainment</button>
+    <button @click="toggleChildrensClub(true)">Childrens Club</button>
+    <button @click="toggleRestaurant(true)">Restaurant</button>
+    <button @click="toggleWifi(true)">Wifi</button>
+    <button @click="toggleBar(true)">Bar</button>
 
     <ol id="FilteredHotelList">
       <li v-for="(hotel, index) in getFilteredHotels"  :key="index">
@@ -39,7 +38,7 @@ export default {
     },
     getHotelsWithEntertainment(){
       return this.$store.getters.getHotelsWithEntertainment
-    }
+    },
   },
 
   methods:{
@@ -69,8 +68,42 @@ export default {
       let list1 = this.$store.getHotelsWithPool
       console.log(list1)
       
-    }
-
+    },
+          async togglePool(includesPool) {
+            console.log(includesPool)
+            this.$store.state.hotels = this.$store.state.hotels.filter(hotel => {
+            return hotel.pool == includesPool
+            
+         })
+        },
+          async toggleEntertainment(includesEntertainment) {
+            console.log(includesEntertainment)
+            this.$store.state.hotels = this.$store.state.hotels.filter(hotel => {
+            return hotel.entertainment == includesEntertainment
+            
+         })
+        },
+        async toggleChildrensClub(includesChildrensClub) {
+          this.$store.state.hotels = this.$store.state.hotels.filter(hotel => {
+            return hotel.childrens_club == includesChildrensClub
+          })
+        },
+        async toggleRestaurant(includesRestaurant) {
+          this.$store.state.hotels = this.$store.state.hotels.filter(hotel => {
+            return hotel.restaurant == includesRestaurant
+          })
+        },
+        async toggleWifi(includesWifi) {
+          this.$store.state.hotels = this.$store.state.hotels.filter(hotel => {
+            return hotel.wifi == includesWifi
+          })
+        },
+        async toggleBar(includesBar) {
+          this.$store.state.hotels = this.$store.state.hotels.filter(hotel => {
+            return hotel.bar == includesBar
+          })
+        }
+        
   }
 
 }

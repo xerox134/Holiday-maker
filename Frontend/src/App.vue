@@ -1,33 +1,27 @@
 <template>
    
-<div id="topBar">
+  <div id="topBar">
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/favorites">Favorites</router-link> |
+      <router-link to="/bookings">Bookings</router-link> 
+    </div>
+      
 
-    
-  <div id="nav">
- 
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/favorites">Favorites</router-link> |
-    <router-link to="/bookings">Bookings</router-link> 
-   
-   
+    <div id="login">
+      <router-link to="/login" v-if="!isLoggedIn">Login</router-link>
+      <router-link to="/" @click="logout" v-else>Log out (logged in as {{ loggedInUser.email }})</router-link>
+    </div>
+
+  </div>
+
+
+
+  <div id="test">
+    <img id="icon" v-bind:src=image alt="" />
+    <h1 id="title">Holidaymaker</h1>
   </div>
   
-
-<div id="login">
-  <router-link to="/login" v-if="!isLoggedIn">Login</router-link>
-    <router-link to="/" @click="logout" v-else>Log out (logged in as {{ loggedInUser.email }})</router-link>
-</div>
-
-</div>
-
-
-
-<div id="test">
- <img id="icon" v-bind:src=image alt="" />
-  <h1 id="title">Holidaymaker</h1>
-  </div>
- 
   <router-view/>
 </template>
 
@@ -93,13 +87,20 @@ export default {
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
     color: #cbd5df;
+    text-decoration: none;
+    
   }
-  
+
   ol li{
   list-style-type: none;
 }
 
+img{
+  border-radius: 7px;
+}
+
   button{
+    border-radius: 7px;
     top: -2vh;
     left: 1px;
     border: none;
@@ -158,6 +159,7 @@ export default {
   }
 
   #nav {
+
     padding: 15px;
     text-align: left;
   }

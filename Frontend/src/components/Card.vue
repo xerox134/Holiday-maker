@@ -3,11 +3,15 @@
   <div id="card" >
 
     <div class="Room-card" v-if="type == 'room'">
-      <span id="room_nr"> Rum Nummer: {{ card.room_nr }}</span><br><br>
-      <span id="beds"> Sängar: {{ card.beds }}</span><br><br>
-      <span id="price">Pris: {{ card.price }}</span><br><br>
-      <span id="booked">Bokad: {{ card.booked }}</span><br><br>
+      <span id="booked" v-if="!card.booked"> 
+        <span id="room_nr"> Rum Nummer: {{ card.room_nr }}</span><br><br>
+        <span id="beds"> Sängar: {{ card.beds }}</span><br><br>
+        <span id="price">Pris: {{ card.price }}</span><br><br>
         <button>Boka</button>
+      </span>
+      
+      
+        
     </div>
     
     <div class="Hotel-card" v-if="type == 'hotel'" @click="toRooms(card.id)">
@@ -27,20 +31,20 @@
         </div>
 
         <div id="tre">
-          <span class="test" id="wifi" v-if="card.wifi">Wifi ✔</span>
-          <span class="test" id="wifi" v-else>Wifi ✖</span><br>
-          <span class="test" id="pool" v-if="card.pool">Pool ✔</span>
-          <span class="test" id="pool" v-else>Pool ✖</span><br>
-          <span class="test" id="entertainment" v-if="card.entertainment">Underhållning ✔</span>
-          <span class="test" id="entertainment" v-else>Underhållning ✖</span><br>
-          <span class="test" id="childrens_club" v-if="card.childrens_club">Barnklubb ✔</span>
-          <span class="test" id="childrens_club" v-else>Barnklubb ✖</span><br>
-          <span class="test" id="resturant" v-if="card.restaurant">Restaurang ✔</span>
-          <span class="test" id="resturant" v-else>Restaurang ✖</span><br>
-          <span class="test" id="bar" v-if="card.bar">Bar ✔</span>
-          <span class="test" id="bar" v-else>Bar ✖</span><br>
-          <span class="test" id="distance_to_beach" >{{ card.distance_to_beach }} km till strand</span><br>
-          <span class="test" id="distance_to_center">{{ card.distance_to_center }} km till centrum</span><br>
+          <span id="wifi" v-if="card.wifi">Wifi ✔</span>
+          <span id="wifi" v-else>Wifi ✖</span><br>
+          <span id="pool" v-if="card.pool">Pool ✔</span>
+          <span id="pool" v-else>Pool ✖</span><br>
+          <span id="entertainment" v-if="card.entertainment">Underhållning ✔</span>
+          <span id="entertainment" v-else>Underhållning ✖</span><br>
+          <span id="childrens_club" v-if="card.childrens_club">Barnklubb ✔</span>
+          <span id="childrens_club" v-else>Barnklubb ✖</span><br>
+          <span id="resturant" v-if="card.restaurant">Restaurang ✔</span>
+          <span id="resturant" v-else>Restaurang ✖</span><br>
+          <span id="bar" v-if="card.bar">Bar ✔</span>
+          <span id="bar" v-else>Bar ✖</span><br>
+          <span id="distance_to_beach" >{{ card.distance_to_beach }} km till strand</span><br>
+          <span id="distance_to_center">{{ card.distance_to_center }} km till centrum</span><br>
         </div>
 
       </div>   
@@ -56,25 +60,6 @@
       <button @click="deleteFavorite(card.id), refreshStuff()">Ta bort ✖ </button>   
     </div>
 
-
-    <div class ="Filter-card" v-if="type == 'filter'">
-      <div class= "flex-container">
-      <button id= "filter" @click="poolToggle()">Pool</button> 
-      <button id= "filter">Restaurang</button> <br> 
-      <button id= "filter">Childrens Club</button>
-      <button id= "filter">Wifi</button><br>
-      <button id= "filter">Entertainment</button>
-      <button id= "filter">Bar</button> <br><br>
-      <button id= "filter">Hämta hoteller</button>
-      </div>
-    </div>
-
-    <div class="Room-card" v-if="type == 'Bookedroom'">
-      <span id="room_nr"> Rum Nummer: {{ card.room_nr }}</span><br><br>
-      <span id="beds"> Sängar: {{ card.beds }}</span><br><br>
-      <span id="price">Pris: {{ card.price }}</span><br><br>
-      <span id="booked">Bokad: {{ card.booked }}</span><br><br>
-    </div>
   </div>
 </template>
 <script>
@@ -82,16 +67,6 @@ export default {
   props: ["card", "type"],
 
   methods:{
-
-    async poolToggle(){
-      if (this.$store.state.poolFilter == true) {
-        this.$store.commit('setPoolFilter', false)
-        console.log("Pool set to false")
-      } else {
-        this.$store.commit('setPoolFilter', true)
-        console.log("Pool set to true")
-      }
-    },
 
     async toRooms(id){
       this.$store.state.hotelId = id
@@ -156,7 +131,8 @@ export default {
   display: flex;
 }
 #fyra{
-  padding: 2vh 2vw;
+  padding: 0vh 2vw;
+  
   }
 
 #tre{
@@ -170,17 +146,20 @@ export default {
 #Hotel-card{
     min-width: 100px;
   }
+  
   #card{
+    border-radius: 7px;
     color: rgba(19, 13, 9, 0.911);
     display: flex;
     list-style-type: none;
     background-color: rgba(16, 16, 17, 0.534);
-    margin: 0 auto;
+    
     padding: 2vh;
     margin-bottom: 18px;
+    margin-left: 18px;
     box-shadow: 4px 4px 2px rgba(0, 0, 0, .3), inset 2px 2px 2px rgba(240, 200, 255, .1);
     min-height: 4vh;
-    max-width: 70%;
+    max-width: 95%;
     justify-content: center;
     align-self: center;
     text-align: left;
@@ -230,6 +209,7 @@ export default {
   }
 
   button{
+    border-radius: 7px;
     display: block;
     position: relative;
     top: -2vh;

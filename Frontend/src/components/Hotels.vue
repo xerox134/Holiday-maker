@@ -1,20 +1,13 @@
 <template>
-  <div >
+    <div >
 
-
-    <ol id="HotelList" v-show="toggleList">
+        <ol id="HotelList" v-show="toggleList">
             <li v-for="(hotel, index) in getAllHotels"  :key="index" >   <!--false=boolean till episodeToggle-->
-                         <Card :card="hotel"  :type="'hotel'"/>  
+                <Card :card="hotel"  :type="'hotel'"/>  
             </li>
         </ol>
- 
 
-
- 
-
-
-
-  </div>
+    </div>
 </template>
 
 
@@ -23,15 +16,10 @@ import Card from "../components/Card";
 export default {
     name: "Hotels",
 
-   
-
-
 components: {
-    Card,
-        
+    Card, 
     },
     
-
     computed: {
         getAllHotels(){
            
@@ -43,13 +31,18 @@ components: {
         
     },
 
-  
-
     mounted(){
         this.$store.dispatch("fetchHotels")
     },
 
-
-    
 }
 </script>
+
+<style>
+
+#HotelList{
+   
+    left: 0px;
+}
+
+</style>

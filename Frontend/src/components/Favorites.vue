@@ -1,16 +1,15 @@
 <template>
-  <div >
-<h1 >Favoriter</h1>
+    <div >
+    <h1 >Favoriter</h1>
 
-<div id="favoriteList">
- <ol style="list-style-type:none;">
-<li v-for="(Favorite, index) in getAllFavorites" :key="index"> 
-        <Card :card="Favorite"  :type="'favorite'"/>
-
-         </li>
-    </ol>
-   </div>
-  </div>
+        <div id="favoriteList">
+            <ol style="list-style-type:none;">
+                <li v-for="(Favorite, index) in getAllFavorites" :key="index"> 
+                    <Card :card="Favorite"  :type="'favorite'"/>
+                </li>
+            </ol>
+        </div>
+    </div>
 </template>
 
 
@@ -22,13 +21,10 @@ components: {
         Card
     },
     
-
     computed: {
         getAllFavorites(){
-           
             return this.$store.getters.getAllFavorites
         },
-        
     },
 
     methods:{},
@@ -37,7 +33,5 @@ components: {
         this.$store.dispatch("fetchAllFavorites")
     },
 
-
-    
 }
 </script>

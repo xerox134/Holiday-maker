@@ -7,7 +7,7 @@
       <span id="beds"> Sängar: {{ card.beds }}</span><br><br>
       <span id="price">Pris: {{ card.price }}</span><br><br>
       <span id="booked">Bokad: {{ card.booked }}</span><br><br>
-        <button>Boka</button>
+      <button @click.stop="bookItem(card.id, card.name, card.country, card.city, card.description)">Boka</button>
     </div>
     
     <div class="Hotel-card" v-if="type == 'hotel'" @click="toRooms(card.id)">
@@ -121,7 +121,7 @@ export default {
       }
 
     },
-    
+
     async deleteFromBooking(id) {
       let credentials = {
         hotelid: id

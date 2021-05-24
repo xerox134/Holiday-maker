@@ -23,7 +23,11 @@ export default createStore({
     hotelsWithEntertainment:[],
     hotelsWithRestaurant:[],
     hotelsWithWifi:[],
-    hotelsWithBar:[]
+    hotelsWithBar:[],
+    totalPrice: 0,
+    bedPrice: 100,
+    allInclusivePrice: 200
+
   },
   
   mutations: {
@@ -81,6 +85,12 @@ export default createStore({
     setHotelsWithEntertainment(state, payload){
       state.hotelsWithEntertainment = payload;
     },
+    addABed(state, payload){
+state.totalPrice += payload;
+    },
+    addAllInclusive(state, payload){
+state.totalPrice += payload;
+    }
     
 
 
@@ -220,8 +230,10 @@ getters:{
   },
   getHotelsWithEntertainment(state){
     return state.hotelsWithEntertainment
+  },
+  totalPrice(state){
+    return state.totalPrice
   }
-
 },
 
   modules: {

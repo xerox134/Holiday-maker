@@ -1,6 +1,11 @@
 <template>
   <div >
 <h1 >Bookings component</h1>
+<p>Total price : {{ updatePrice }}</p>
+<button @click="addABed">extra Bed</button>
+<button @click="addAllInclusive">Include all luxuries?</button>
+
+
 
 <div id="BookingList">
  <ol style="list-style-type:none;">
@@ -17,9 +22,7 @@ import Card from "./Card"
 
 export default {
     name: "Booking",
-components: {
-        Card
-    },
+components: { Card},
     
 
     computed: {
@@ -27,9 +30,20 @@ components: {
            
             return this.$store.getters.getAllBookings
         },
+
+        updatePrice(){
+        return this.$store.getters.totalPrice
+    }
         },
 
-    methods:{},
+    methods:{
+      addABed(){
+    this.$store.commit('addABed', this.$store.state.bedPrice);
+  },
+      addAllInclusive(){
+      this.$store.commit('addAllInclusive', this.$store.state.allInclusivePrice);
+    }
+    },
 
     mounted(){
         this.$store.dispatch("fetchAllBookings")

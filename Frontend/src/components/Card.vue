@@ -31,6 +31,7 @@
         </div>
 
         <div id="tre">
+          <span id="review" v-if="card.review">⭐ {{card.review}}/5</span><br>
           <span id="wifi" v-if="card.wifi">Wifi ✔</span>
           <span id="wifi" v-else>Wifi ✖</span><br>
           <span id="pool" v-if="card.pool">Pool ✔</span>

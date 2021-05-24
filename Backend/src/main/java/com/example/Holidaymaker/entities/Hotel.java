@@ -14,6 +14,7 @@ public class Hotel {
     @Column(name = "id")
     private long id;
     private String name;
+    private int review;
     private String country;
     private String city;
     private String address;
@@ -46,7 +47,7 @@ public class Hotel {
 
     public Hotel(long id, String name, String country, String city, String address, String description,
                  boolean wifi, boolean pool, boolean bar, boolean entertainment, boolean childrens_club,
-                 boolean restaurant, int distance_to_beach, int distance_to_center, String img
+                 boolean restaurant, int distance_to_beach, int distance_to_center, String img, int review
                  ) {
         this.id = id;
         this.name = name;
@@ -63,6 +64,7 @@ public class Hotel {
         this.distance_to_beach = distance_to_beach;
         this.distance_to_center = distance_to_center;
         this.img = img;
+        this.review =review;
     }
 
     public long getId() {
@@ -206,6 +208,14 @@ public class Hotel {
         this.rooms = rooms;
     }
 
+    public int getReview() {
+        return review;
+    }
+
+    public void setReview(int review) {
+        this.review = review;
+    }
+
     @Override
     public String toString() {
         return "Hotel{" +
@@ -224,7 +234,7 @@ public class Hotel {
                 ", distance_to_beach=" + distance_to_beach +
                 ", distance_to_center=" + distance_to_center +
                 ", img='" + img + '\'' +
-                ", reviews=" + reviews +
+                ", review=" + review +
                 '}';
     }
 }

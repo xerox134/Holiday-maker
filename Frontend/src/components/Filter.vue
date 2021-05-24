@@ -10,6 +10,8 @@
     <button @click="toggleRestaurant(true)">Restaurang</button><br>
     <button @click="toggleWifi(true)">Wifi</button><br>
     <button @click="toggleBar(true)">Bar</button><br>
+    <button @click="toggleReview()">stars high-low</button><br>
+    <button @click="toggleReview2()">stars low-high</button><br>
     
 
   </div>
@@ -27,6 +29,17 @@ export default {
   },
 
   methods:{
+
+    toggleReview(){
+      return this.$store.state.hotels.sort((b,a)=>a.review - b.review);
+      
+
+    }, toggleReview2(){
+      return this.$store.state.hotels.sort((a,b)=>a.review - b.review);
+      
+
+    },
+
     togglePool(PoolisTrue) {
       console.log("Pool is " + PoolisTrue)
       // metoden filtrerar hotels-arrayen. Den plockar ut alla hotell som inte har pool

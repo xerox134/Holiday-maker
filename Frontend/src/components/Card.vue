@@ -20,7 +20,8 @@
 
         <div id="fyra">
           <img v-bind:src=card.img alt="" /><br><br><br>
-          <p>FRÅN 500kr/natt</p><br><br>
+          
+          <span id="price" ><p>FRÅN {{card.cheapest_price}}/natt</p><br><br> </span>
         </div>
 
         <div id="två">
@@ -31,7 +32,7 @@
         </div>
 
         <div id="tre">
-          <span id="review" v-if="card.review">⭐ {{card.review}}/5</span><br>
+          <span id="review" >⭐ {{card.review}}/5</span><br>
           <span id="wifi" v-if="card.wifi">Wifi ✔</span>
           <span id="wifi" v-else>Wifi ✖</span><br>
           <span id="pool" v-if="card.pool">Pool ✔</span>

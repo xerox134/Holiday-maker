@@ -12,6 +12,8 @@
     <button @click="toggleBar(true)">Bar</button><br>
     <button @click="toggleReview()">stars high-low</button><br>
     <button @click="toggleReview2()">stars low-high</button><br>
+    <button @click="togglePrice()">Price high-low</button><br>
+    <button @click="togglePrice2()">Price low-high</button><br>
     
 
   </div>
@@ -30,13 +32,21 @@ export default {
 
   methods:{
 
+ togglePrice(){
+      return this.$store.state.hotels.sort((b,a)=>a.cheapest_price - b.cheapest_price);
+    }, 
+
+     togglePrice2(){
+      return this.$store.state.hotels.sort((a,b)=>a.cheapest_price - b.cheapest_price);
+    }, 
+
+
     toggleReview(){
       return this.$store.state.hotels.sort((b,a)=>a.review - b.review);
-      
-
-    }, toggleReview2(){
+    }, 
+    
+    toggleReview2(){
       return this.$store.state.hotels.sort((a,b)=>a.review - b.review);
-      
 
     },
 

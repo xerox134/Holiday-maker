@@ -1,21 +1,13 @@
 <template>
-  <div >
+    <div >
 
-
-
-  
-    <ol id="RoomsList">
+        <ol id="RoomsList">
             <li v-for="(room, index) in getRoomByHotelId"  :key="index" >   <!--false=boolean till episodeToggle-->
-                         <Card :card="room"  :type="'room'"/>  
+                <Card :card="room"  :type="'room'"/>  
             </li>
         </ol>
   
-
- 
-
-
-
-  </div>
+    </div>
 </template>
 
 
@@ -24,37 +16,26 @@ import Card from "../components/Card";
 export default {
     name: "Hotels",
 
-  
-
-
-components: {
-    Card,
-        
+    components: {
+        Card,   
     },
     
-
     computed: {
         getRoomByHotelId(){
-           
             return this.$store.getters.getRoomByHotelId
-        },
-        
+        },  
     },
 
     methods:{
-
         toggle () {
         this.active = !this.active
       }
     },
 
     mounted(){
-
         console.log("we fetching")
         this.$store.dispatch("fetchRoomsById")
     },
-
-
-    
+ 
 }
 </script>

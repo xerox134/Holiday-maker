@@ -1,7 +1,6 @@
 <template>
   <div class="home">
-    
-    <h1>Hotels</h1>
+
  <div id="SearchBar"><SearchBar/></div>
     <div class= "filter-container">
     <div id= "Filter"><Filter/></div>
@@ -32,10 +31,7 @@ export default {
 .filter-container {
   display: flex;
   justify-content: right;
+    
 }
-
-
-
-
 
 </style>

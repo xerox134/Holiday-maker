@@ -3,11 +3,11 @@
     
     <h1>Filter</h1>
 
-    <button id="filter" @click="combineFilters(), searchForPool()">Pool</button> <br>
+    <button id="filter" @click="searchForPool(), test()">Pool</button> <br>
     <button id= "filter" @click="searchForRestaurant()">Restaurang</button> <br>
     <button id= "filter">Childrens Club meh!!!</button> <br>
     <button id= "filter" @click="searchForWifi()">Wifi</button><br>
-    <button id= "filter" @click="combineFilters(),searchForEntertainment()">Entertainment</button> <br>
+    <button id= "filter" @click="searchForEntertainment()">Entertainment</button> <br>
     <button id= "filter" @click="searchForBar()">Bar</button> <br>
     
 
@@ -59,9 +59,16 @@ export default {
       this.$store.dispatch("fetchHotelByBar");
     },
     combineFilters(){
-      Array.prototype.push.apply(this.$store.getFilteredHotels, 
-      this.$store.getHotelsWithPool)
-      console.log(this.$store.getFilteredHotels)
+      let list1 = this.$store.getFilteredHotels
+      let list2 = this.$store.getHotelsWithPool
+      Array.prototype.push.apply(list1, 
+      list2)
+      console.log(list1)
+    },
+    test(){
+      let list1 = this.$store.getHotelsWithPool
+      console.log(list1)
+      
     }
 
   }

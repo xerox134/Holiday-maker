@@ -1,15 +1,13 @@
 <template>
   <div >
-<h1 >Bookings component</h1>
-
-<div id="BookingList">
- <ol style="list-style-type:none;">
-<li v-for="(Bookings, index) in getAllBookings" :key="index"> 
-        <Card :card="Bookings"  :type="'bookings'"/>
-
-         </li>
-    </ol>
-   </div>
+    <h1 >Bookings component</h1>
+    <div id="BookingList">
+      <ol style="list-style-type:none;">
+        <li v-for="(Bookings, index) in getAllBookings" :key="index"> 
+          <Card :card="Bookings"  :type="'bookings'"/>
+        </li>
+      </ol>
+    </div>
   </div>
 </template>
 
@@ -17,20 +15,24 @@
 import Card from "./Card"
 
 export default {
-    name: "Bookings",
-components: {
-        Card
-    },
+  name: "Bookings",
+
+  components: {
+    Card
+  },
     
+  computed: {
 
-    computed: {},
+  },
 
-    methods:{},
+  methods:{
 
-    mounted(){},
+  },
 
-
+  mounted(){
     
+  },
+ 
 }
 </script>
 

@@ -47,7 +47,8 @@ components: { Card},
     },
 
     mounted(){
-        this.$store.dispatch("fetchAllBookings")
+      return this.$store.dispatch("fetchAllBookings")
+        
     },
 
 

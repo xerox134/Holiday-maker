@@ -64,10 +64,17 @@ export default {
   text-shadow: -1px -1px 2px rgba(0, 0, 0, .3), 1px 1px 2px rgba(126, 126, 126, .5);
 }
 
-#searchBar:focus{
+#searchBar:hover{
   color: rgba(255, 250, 235, .9);
   background-color: rgba(80, 75, 85, .8);
   box-shadow: 4px 4px 4px rgba(0, 0, 0, .3), inset 3px 3px 4px rgba(240, 200, 255, .15);
+}
+
+#searchBar:focus{
+  color: rgba(230, 230, 255, .8);
+  border: none;
+  background-color: rgba(80, 75, 85, .1);
+  box-shadow: inset -2px -2px 2px rgba(220, 180, 255, .1), inset 2px 2px 2px rgba(0, 0, 0, .2);
 }
 
 </style>

@@ -27,7 +27,7 @@ components: {
         },
         toggleList(){
             return this.$store.getters.getToggleList
-        }
+        },
         
     },
 

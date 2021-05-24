@@ -39,9 +39,6 @@ public class ReviewController {
     /*  {
         "rating": 5,
         "description": "Helt ok",
-        "user": {
-            "id": "2"
-        },
         "hotel": {
             "id": 5
         }

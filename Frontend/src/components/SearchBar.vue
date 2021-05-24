@@ -1,6 +1,7 @@
 <template>
  
-  <input type="text" placeholder="Sök..." v-model="searchPhrase" id="searchBar">
+  <input v-on:keyup.enter="searchForHotel(searchPhrase)" 
+    type="text" placeholder="Sök..." v-model="searchPhrase" id="searchBar">
   <button @click="searchForHotel(searchPhrase)">Sök</button>
 
   <ol id="HotelList">

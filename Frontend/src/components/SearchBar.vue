@@ -1,7 +1,7 @@
 <template>
  
-  <input v-on:keyup.enter="searchForHotel(searchPhrase)" 
-    type="text" placeholder="Sök..." v-model="searchPhrase" id="searchBar">
+  <input id="searchBar" v-on:keyup.enter="searchForHotel(searchPhrase)" 
+    type="text" placeholder="Sök..." v-model="searchPhrase" >
   <button @click="searchForHotel(searchPhrase)">Sök</button>
 
   <ol id="HotelList">
@@ -45,6 +45,8 @@ export default {
 
 <style>
 
+
+
 #searchBar{
   border-radius: 10px;
   top: -2vh;
@@ -56,6 +58,7 @@ export default {
   box-shadow: 2px 2px 1px rgba(0, 0, 0, .2), inset 2px 2px 2px rgba(255, 255, 255, .05);
   margin: 3px;
   margin-left: 1vw;
+  margin-bottom: 10px;
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 5px;

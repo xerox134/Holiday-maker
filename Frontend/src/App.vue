@@ -162,11 +162,14 @@ img{
 
     padding: 15px;
     text-align: left;
+    
   }
 
   #login {
     padding: 15px;
     text-align: right;
+    font-weight: bold;
+    color: #a4aab1;
   }
 
   #topBar {

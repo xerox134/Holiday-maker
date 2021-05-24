@@ -37,15 +37,24 @@ export default {
   methods:{
     toggleBeach(){
       return this.$store.state.hotels.sort((b,a)=>a.distance_to_beach - b.distance_to_beach);
-    }, toggleBeach2(){
+    },
+     toggleBeach2(){
       return this.$store.state.hotels.sort((a,b)=>a.distance_to_beach - b.distance_to_beach);
-    }, toggleCentrum(){
+    },
+    
+    // toggleSearchedBeach(){
+    //   return this.$store.state.searchedHotels.sort((b,a)=>a.distance_to_beach - b.distance_to_beach);
+    // },  toggleSearchedBeach2(){
+    //   return this.$store.state.searchedHotels.sort((a,b)=>a.distance_to_beach - b.distance_to_beach);
+    // }, 
+    
+    toggleCentrum(){
       return this.$store.state.hotels.sort((b,a)=>a.distance_to_center - b.distance_to_center);
-    }, toggleCentrum2(){
+    }, 
+    toggleCentrum2(){
       return this.$store.state.hotels.sort((a,b)=>a.distance_to_center - b.distance_to_center);
     }, 
-
- togglePrice(){
+    togglePrice(){
       return this.$store.state.hotels.sort((b,a)=>a.cheapest_price - b.cheapest_price);
     }, 
 

@@ -9,6 +9,8 @@
     <button @click="toggleRestaurant(true)">Restaurant</button>
     <button @click="toggleWifi(true)">Wifi</button>
     <button @click="toggleBar(true)">Bar</button>
+    <button @click="clear()">Clear filters</button>
+
 
     <ol id="FilteredHotelList">
       <li v-for="(hotel, index) in getFilteredHotels"  :key="index">
@@ -102,6 +104,9 @@ export default {
           this.$store.state.hotels = this.$store.state.hotels.filter(hotel => {
             return hotel.bar == includesBar
           })
+        },
+        async clear() {
+            return this.$store.dispatch("fetchHotels")
         }
         
   }

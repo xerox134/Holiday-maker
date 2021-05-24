@@ -8,10 +8,6 @@
             </li>
         </ol>
 
-    <div>
-            <button @click="togglePool(true)">Pool</button>
-    </div>
-
 
 
   </div>
@@ -48,15 +44,6 @@ components: {
     mounted(){
         this.$store.dispatch("fetchHotels")
     },
-
-    methods: {
-        togglePool(includes) {
-            console.log(includes)
-            this.$store.state.hotels = this.$store.state.hotels.filter(hotel => {
-            return hotel.pool == includes
-         })
-        }
-    }
 
 
     

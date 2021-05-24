@@ -66,9 +66,11 @@ export default createStore({
     setFilteredHotels(state, payload){
       state.filteredHotels = payload
     },
+    /*
     setFilteredHotels(state, payload){
       state.filteredHotels.push(payload)
     },
+    */
     setHotelsWithPool(state, payload){
       state.hotelsWithPool = payload;
     },

@@ -143,6 +143,7 @@ export default {
   text-align: right;
 }
 
+
 #Hotel-card{
     min-width: 100px;
   }
@@ -195,9 +196,10 @@ export default {
   }
 
 .name{
-  justify-content: center;
-  text-align: center;
-  margin-left: 40%;
+  
+  
+  font-size: 3vh;
+  font-weight: bold;
   
  
 

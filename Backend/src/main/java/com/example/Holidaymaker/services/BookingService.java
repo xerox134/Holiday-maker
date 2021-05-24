@@ -36,4 +36,6 @@ public class BookingService {
         return bookingRepo.findAll();
     }
 
+    public void deleteById(long id) { bookingRepo.deleteById(id); }
 }
+

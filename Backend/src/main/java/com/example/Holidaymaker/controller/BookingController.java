@@ -32,6 +32,9 @@ public class BookingController {
         return bookingService.addBooking(booking);
     }
 
+    @DeleteMapping("/bookings/{id}")
+    public void deleteById(@PathVariable long id) {
+        bookingService.deleteById(id);}
 
 
 }

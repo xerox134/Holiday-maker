@@ -6,6 +6,7 @@ export default createStore({
   
   state: {
     favorites: [],
+    bookings: [],
     addedFavorites:[],
     hotels:[],
     loggedInUser: null,
@@ -35,6 +36,9 @@ export default createStore({
     },
     setFavorites(state,payload){
       state.favorites = payload;
+    },
+    setBookings(state,payload){
+      state.bookings = payload;
     },
     setLoggedInUser (state, user) {
       state.loggedInUser = user
@@ -120,6 +124,13 @@ export default createStore({
       console.log(response.data)
     })
   }, 
+    async fetchAllBookings(){
+     await axios.get("http://localhost:3000/rest/bookings/"+ this.state.loggedInUserId)
+     .then(response => {
+     this.commit("setBookings", response.data)
+     console.log(response.data)
+  })
+},
   
   async fetchHotelBySearchPhrase(){
       await axios.get("http://localhost:3000/rest/hotel/search/"+ this.state.HotelSearchPhrase)
@@ -184,6 +195,9 @@ getters:{
   },
   getAllFavorites(state){
     return state.favorites
+  },
+  getAllBookings(state){
+    return state.bookings
   },
   getAllHotels(state){
     return state.hotels

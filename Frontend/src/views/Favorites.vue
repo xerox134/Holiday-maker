@@ -17,9 +17,7 @@ export default {
 </script>
 
 
-<style scoped>.favs{
-  
-}
+<style scoped>
 #Favorites {
   background-color: rgba(60, 55, 65, .3);
   color: blanchedalmond;

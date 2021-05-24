@@ -4,9 +4,8 @@
 
 <div id="BookingList">
  <ol style="list-style-type:none;">
-<li v-for="(Bookings, index) in getAllBookings" :key="index"> 
-        <Card :card="Bookings"  :type="'bookings'"/>
-
+<li v-for="(Booking, index) in getAllBookings" :key="index"> 
+        <Card :card="Booking"  :type="'booking'"/>
          </li>
     </ol>
    </div>
@@ -17,17 +16,24 @@
 import Card from "./Card"
 
 export default {
-    name: "Bookings",
+    name: "Booking",
 components: {
         Card
     },
     
 
-    computed: {},
+    computed: {
+      getAllBookings(){
+           
+            return this.$store.getters.getAllBookings
+        },
+        },
 
     methods:{},
 
-    mounted(){},
+    mounted(){
+        this.$store.dispatch("fetchAllBookings")
+    },
 
 
     

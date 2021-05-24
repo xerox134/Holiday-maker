@@ -1,13 +1,19 @@
 <template>
   <div >
-    <h1 >Bookings component</h1>
-    <div id="BookingList">
-      <ol style="list-style-type:none;">
-        <li v-for="(Bookings, index) in getAllBookings" :key="index"> 
-          <Card :card="Bookings"  :type="'bookings'"/>
-        </li>
-      </ol>
-    </div>
+<h1 >Bookings component</h1>
+<p>Total price : {{ updatePrice }}</p>
+<button @click="addABed">extra Bed</button>
+<button @click="addAllInclusive">Include all luxuries?</button>
+
+
+
+<div id="BookingList">
+ <ol style="list-style-type:none;">
+<li v-for="(Booking, index) in getAllBookings" :key="index"> 
+        <Card :card="Booking"  :type="'booking'"/>
+         </li>
+    </ol>
+   </div>
   </div>
 </template>
 
@@ -15,21 +21,36 @@
 import Card from "./Card"
 
 export default {
-  name: "Bookings",
-
-  components: {
-    Card
-  },
+    name: "Booking",
+components: { Card},
     
   computed: {
 
+    computed: {
+      getAllBookings(){
+           
+            return this.$store.getters.getAllBookings
+        },
+
+        updatePrice(){
+        return this.$store.getters.totalPrice
+    }
+        },
+
+    methods:{
+      addABed(){
+    this.$store.commit('addABed', this.$store.state.bedPrice);
   },
+      addAllInclusive(){
+      this.$store.commit('addAllInclusive', this.$store.state.allInclusivePrice);
+    }
+    },
 
-  methods:{
+    mounted(){
+        this.$store.dispatch("fetchAllBookings")
+    },
 
-  },
 
-  mounted(){
     
   },
  

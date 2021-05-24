@@ -6,6 +6,7 @@ export default createStore({
   
   state: {
     favorites: [],
+    bookings: [],
     addedFavorites:[],
     hotels:[],
     loggedInUser: null,
@@ -23,7 +24,9 @@ export default createStore({
     hotelsWithRestaurant:[],
     hotelsWithWifi:[],
     hotelsWithBar:[],
-    poolFilter: []
+    totalPrice: 0,
+    bedPrice: 100,
+    allInclusivePrice: 200
   },
   
   mutations: {
@@ -36,6 +39,9 @@ export default createStore({
     },
     setFavorites(state,payload){
       state.favorites = payload;
+    },
+    setBookings(state,payload){
+      state.bookings = payload;
     },
     setLoggedInUser (state, user) {
       state.loggedInUser = user
@@ -78,9 +84,13 @@ export default createStore({
     setHotelsWithEntertainment(state, payload){
       state.hotelsWithEntertainment = payload;
     },
-    setPoolFilter(state, payload) {
-      state.poolFilter = payload
+    addABed(state, payload){
+state.totalPrice += payload;
+    },
+    addAllInclusive(state, payload){
+state.totalPrice += payload;
     }
+    
 
 
   },
@@ -123,6 +133,13 @@ export default createStore({
       console.log(response.data)
     })
   }, 
+    async fetchAllBookings(){
+     await axios.get("http://localhost:3000/rest/bookings/"+ this.state.loggedInUserId)
+     .then(response => {
+     this.commit("setBookings", response.data)
+     console.log(response.data)
+  })
+},
   
   async fetchHotelBySearchPhrase(){
       await axios.get("http://localhost:3000/rest/hotel/search/"+ this.state.HotelSearchPhrase)
@@ -188,6 +205,9 @@ getters:{
   getAllFavorites(state){
     return state.favorites
   },
+  getAllBookings(state){
+    return state.bookings
+  },
   getAllHotels(state){
     return state.hotels
   },
@@ -209,8 +229,10 @@ getters:{
   },
   getHotelsWithEntertainment(state){
     return state.hotelsWithEntertainment
+  },
+  totalPrice(state){
+    return state.totalPrice
   }
-
 },
 
   modules: {

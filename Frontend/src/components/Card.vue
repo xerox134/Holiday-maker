@@ -60,6 +60,13 @@
       <button @click="deleteFavorite(card.id), refreshStuff()">Ta bort ✖ </button>   
     </div>
 
+    <div class="Booking-card" v-if="type == 'booking'">
+      <span id="hotelname">Hotel Name: {{card.hotel.name}}</span><br><br>
+      <span id="room_nr">Room Number: {{card.room.room_nr}}</span><br><br>
+      <span id="beds">Number of beds: {{card.room.beds}}</span><br><br>
+      <span id="Price">Price: {{card.room.price}}</span><br><br>
+      <button @click="deleteFromBooking(card.id), refreshStuff()">Remove from List ✖ </button>   
+    </div>
   </div>
 </template>
 <script>
@@ -87,6 +94,23 @@ export default {
         hotelid: id
       } 
       let response = await fetch ('/rest/favorites/'+ id, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(credentials)
+      })
+      if(response.url.includes('error')){
+        console.log('Something went wrong. Try again')
+      } else {
+        console.log ('DELETED')
+      }
+
+    },
+
+    async deleteFromBooking(id) {
+      let credentials = {
+        hotelid: id
+      } 
+      let response = await fetch ('/rest/bookings/'+ id, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(credentials)
@@ -188,6 +212,11 @@ export default {
     text-shadow: 4px 3px 2px rgba(0, 0, 0, .3);
     
   }
+  .Booking-card > .title{
+    font-weight: bold;
+    font-size: 2.4vh;
+    text-shadow: 4px 3px 2px rgba(0, 0, 0, .3);
+  }
 
   #desc{
     color: rgba(255, 255, 255, .6);
@@ -208,6 +237,9 @@ export default {
 
 
   .Favorite-card:hover > #airtime{
+    color: rgba(255, 255, 255, .6);
+  }
+  .Booking-card:hover > #airtime{
     color: rgba(255, 255, 255, .6);
   }
 

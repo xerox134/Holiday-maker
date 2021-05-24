@@ -40,9 +40,6 @@ components: {
 
 <style>
 
-#HotelList{
-   
-    left: 0px;
-}
+
 
 </style>

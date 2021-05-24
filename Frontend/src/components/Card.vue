@@ -131,7 +131,7 @@ export default {
   display: flex;
 }
 #fyra{
-  padding: 0vh 2vw;
+  padding: 0vh 1vw;
   
   }
 
@@ -185,6 +185,7 @@ export default {
     font-weight: bold;
     font-size: 2.4vh;
     text-shadow: 4px 3px 2px rgba(0, 0, 0, .3);
+    
   }
 
   #desc{

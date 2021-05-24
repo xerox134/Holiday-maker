@@ -21,23 +21,22 @@
 import Card from "./Card"
 
 export default {
-    name: "Booking",
-components: { Card},
+  name: "Booking",
+  components: { Card},
     
+  
+
   computed: {
+  getAllBookings(){
+    return this.$store.getters.getAllBookings
+    },
 
-    computed: {
-      getAllBookings(){
-           
-            return this.$store.getters.getAllBookings
-        },
-
-        updatePrice(){
-        return this.$store.getters.totalPrice
+    updatePrice(){
+    return this.$store.getters.totalPrice
     }
-        },
+  },
 
-    methods:{
+  methods:{
       addABed(){
     this.$store.commit('addABed', this.$store.state.bedPrice);
   },
@@ -53,7 +52,7 @@ components: { Card},
 
 
     
-  },
+  
  
 }
 </script>

@@ -17,10 +17,10 @@
 
 
 
-  <div id="test">
-    <img id="icon" v-bind:src=image alt="" />
-    <h1 id="title">Holidaymaker</h1>
-  </div>
+  <router-link to="/"><div id="test">
+    <img  id="icon" v-bind:src=image alt="" />
+  <h1 id="title">Holidaymaker</h1>
+  </div></router-link> 
   
   <router-view/>
 </template>

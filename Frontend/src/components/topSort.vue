@@ -1,9 +1,10 @@
 <template>
 <div id="sort">
-   <span class="trying" > <p>  Stars</p> <p @click="toggleReview(), toggleSearchedReview()">⬆</p> <p @click="toggleReview2(),toggleSearchedReview2()">⬇</p> </span><br>
-    <span class="trying" ><p>Price</p> <p @click="togglePrice(),toggleSearchedPrice()">⬆</p> <p @click="togglePrice2(),toggleSearchedPrice2()">⬇</p> </span><br>
-    <span class="trying" ><p>Beach </p><p @click="toggleBeach(), toggleSearchedBeach()">⬆</p> <p @click="toggleBeach2(),toggleSearchedBeach2()">⬇</p> </span><br>
-    <span class="trying" ><p>Centrum </p><p @click="toggleCentrum(),toggleSearchedCentrum()">⬆</p> <p @click="toggleCentrum2(),toggleSearchedCentrum2()">⬇</p> </span><br>
+   <span class="trying" > <p>  Stjärnor⭐</p> <p @click="toggleReview(), toggleSearchedReview()">⬆</p> <p @click="toggleReview2(),toggleSearchedReview2()">⬇</p> </span><br>
+    <span class="trying" ><p>Pris 💲</p> <p @click="togglePrice(),toggleSearchedPrice()">⬆</p> <p @click="togglePrice2(),toggleSearchedPrice2()">⬇</p> </span><br>
+    <span class="trying" ><p>Strand 🌅 </p><p @click="toggleBeach(), toggleSearchedBeach()">⬆</p> <p @click="toggleBeach2(),toggleSearchedBeach2()">⬇</p> </span><br>
+    <span class="trying" ><p>Centrum 🌆 </p><p @click="toggleCentrum(),toggleSearchedCentrum()">⬆</p> <p @click="toggleCentrum2(),toggleSearchedCentrum2()">⬇</p> </span><br>
+      <button @click="clear(), clear2()">❌</button><br>
 
     </div>
 </template>

@@ -22,18 +22,18 @@ public class BookingController {
     }
 
 
-    @GetMapping("/bookings/{userId}")
+    @GetMapping("/bookings/user/{userId}")
     public List<Booking> getBookingByUserId(@PathVariable long userId){
         return bookingService.getBookingByUserId(userId);
     }
 
     @PostMapping("/bookings")
-    public Booking book(@RequestBody Booking booking){
+    public Booking addBooking(@RequestBody Booking booking){
         return bookingService.addBooking(booking);
     }
 
     @DeleteMapping("/bookings/{id}")
-    public void deleteById(@PathVariable long id) {
+    public void deleteBookingById(@PathVariable long id) {
         bookingService.deleteById(id);}
 
 

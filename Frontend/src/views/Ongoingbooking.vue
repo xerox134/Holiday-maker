@@ -7,14 +7,17 @@
 <button @click="addAllInclusive">Include all luxuries?</button>
    <p>Extra Bed?</p> <input type="checkbox" checked="checked" @click="addABed">
 
+              <div id="Ongoingbooking"><Ongoingbooking/></div>
 
 <div></div>
 </template>
 
 <script>
+  import Ongoingbooking from "../components/Ongoingbooking.vue"
+ export default {
+  name: "ongoingbooking",
 
-export default {
-  components: { },
+  components: { Ongoingbooking},
   computed: {
       updatePrice(){
     return this.$store.getters.totalPrice

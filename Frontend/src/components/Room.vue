@@ -34,7 +34,7 @@ export default {
 
     mounted(){
         console.log("we fetching")
-        this.$store.dispatch("fetchRoomsById")
+        this.$store.dispatch("fetchRoomsByHotelId")
     },
  
 }

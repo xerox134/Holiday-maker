@@ -15,6 +15,8 @@ export default createStore({
     isLoggedIn: "Login",
     rooms:[],
     hotelId: null,
+    roomId: null,
+    room: [],
     HotelSearchPhrase: '',
     searchedHotels:[],
     toggleList: true,
@@ -52,11 +54,20 @@ export default createStore({
     setRoomsByHotelId (state, payload) {
       state.rooms = payload
     },
+    setRoomsWithRoomId (state, payload) {
+      state.room = payload
+    },
+    setRoomByRoomId (state, payload) {
+      state.room = payload
+    },
     setBarFilter (state, payload){
       state.barFilter = payload
     },
     setHotelId (state,payload){
       state.hotelId =payload
+    },
+    setRoomId (state,payload){
+      state.roomId =payload
     },
     setHotelSearchPhrase(state, payload) {
       state.HotelSearchPhrase = payload;
@@ -97,10 +108,17 @@ state.totalPrice += payload;
         console.log(response.data)
       })
     },
-    async fetchRoomsById(){
+    async fetchRoomsByHotelId(){
       await axios.get("http://localhost:3000/rest/room/" + this.state.hotelId)
       .then(response => {
         this.commit("setRoomsByHotelId", response.data)
+        console.log(response.data)
+      })
+    },
+    async fetchRoomsWithRoomId(){
+      await axios.get("http://localhost:3000/rest/room/roomid/" + 1001)
+      .then(response => {
+        this.commit("setRoomsWithRoomId", response.data)
         console.log(response.data)
       })
     },
@@ -207,6 +225,9 @@ getters:{
   },
   getRoomByHotelId(state){
     return state.rooms
+  },
+  getRoomWithRoomId(state){
+    return state.room
   },
   getLoginStatus(state) {
     console.log(state.isLoggedIn)

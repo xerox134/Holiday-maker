@@ -4,10 +4,11 @@
 
     <div class="Room-card" v-if="type == 'room'">
       <span id="booked" v-if="!card.booked"> 
+        <span id="id"> Rum id: {{ card.id }}</span><br><br>
         <span id="room_nr"> Rum Nummer: {{ card.room_nr }}</span><br><br>
         <span id="beds"> Sängar: {{ card.beds }}</span><br><br>
         <span id="price">Pris: {{ card.price }}</span><br><br>
-        <button >Select</button>
+        <button @click="SendRoomToOngoingbooking(card.id)" >Select</button>
 </span>
       
       
@@ -69,6 +70,11 @@
       <span id="Price">Price: {{card.room.price}}</span><br><br>
       <button @click="deleteFromBooking(card.id), refreshStuff()">Remove from List ✖ </button>   
     </div>
+
+    <div class="Ongoingbooking-card" v-if="type == 'ongoingbooking'">
+      <span id="id">Room id: {{card.room.id}}</span><br><br>
+      
+    </div>
   </div>
 </template>
 <script>
@@ -90,6 +96,13 @@ export default {
     refreshStuff(){
         this.$store.dispatch("fetchAllFavorites")
     },
+
+    SendRoomToOngoingbooking(id){
+     this.$store.state.roomId = id;
+     console.log(this.$store.state.roomId);
+    },
+    },
+    
 
     async deleteFavorite(id) {
       let credentials = {
@@ -146,7 +159,7 @@ export default {
       }
     }
   }
-}
+
 </script>
 
 

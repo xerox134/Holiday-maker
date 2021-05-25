@@ -1,8 +1,9 @@
 <template>
   <h1>OngoingBooking Component</h1>
+ 
   <div id="OngoingbookingList">
  <ol style="list-style-type:none;">
-<li v-for="(Ongoingbooking, index) in getRoomWithRoomId" :key="index"> 
+<li v-for="(Ongoingbooking, index) in getRoomsWithRoomId" :key="index"> 
         <Card :card="Ongoingbooking"  :type="'ongoingbooking'"/>
          </li>
     </ol>
@@ -17,8 +18,8 @@ export default {
   components: { Card},
 
     computed: {
-      getRoomWithRoomId(){
-    return this.$store.getters.getRoomWithRoomId
+      getRoomsWithRoomId(){
+    return this.$store.getters.getRoomsWithRoomId
     },
     },
     methods: {},

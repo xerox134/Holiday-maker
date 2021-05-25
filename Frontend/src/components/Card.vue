@@ -72,7 +72,7 @@
     </div>
 
     <div class="Ongoingbooking-card" v-if="type == 'ongoingbooking'">
-      <span id="id">Room id: {{card.room.id}}</span><br><br>
+      <span>Room id: {{card.id}}</span><br><br>
       
     </div>
   </div>
@@ -100,6 +100,7 @@ export default {
     SendRoomToOngoingbooking(id){
      this.$store.state.roomId = id;
      console.log(this.$store.state.roomId);
+     this.$store.dispatch("fetchRoomsWithRoomId")
     },
     },
     

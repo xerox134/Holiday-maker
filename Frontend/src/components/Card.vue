@@ -9,9 +9,6 @@
         <span id="price">Pris: {{ card.price }}</span><br><br>
         <button>Boka</button>
       </span>
-      
-      
-        
     </div>
     
     <div class="Hotel-card" v-if="type == 'hotel'" @click="toRooms(card.id)">
@@ -85,6 +82,7 @@ export default {
       this.$router.push({
             name: 'hotel'
       })
+      window.scrollTo(0,0)
     },
 
     refreshStuff(){

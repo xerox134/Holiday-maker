@@ -15,6 +15,7 @@ export default createStore({
     isLoggedIn: "Login",
     rooms:[],
     hotelId: null,
+    hotelById:[],
     HotelSearchPhrase: '',
     searchedHotels:[],
     toggleList: true,
@@ -58,6 +59,9 @@ export default createStore({
     setHotelId (state,payload){
       state.hotelId =payload
     },
+    setHotelById (state,payload){
+      state.hotelById =payload
+    },
     setHotelSearchPhrase(state, payload) {
       state.HotelSearchPhrase = payload;
     },
@@ -79,10 +83,10 @@ export default createStore({
       state.hotelsWithEntertainment = payload;
     },
     addABed(state, payload){
-state.totalPrice += payload;
+      state.totalPrice += payload;
     },
     addAllInclusive(state, payload){
-state.totalPrice += payload;
+      state.totalPrice += payload;
     }
     
 
@@ -101,6 +105,13 @@ state.totalPrice += payload;
       await axios.get("http://localhost:3000/rest/room/" + this.state.hotelId)
       .then(response => {
         this.commit("setRoomsByHotelId", response.data)
+        console.log(response.data)
+      })
+    },
+    async fetchHotelById(){
+      await axios.get("http://localhost:3000/rest/hotel/" + this.state.hotelId)
+      .then(response => {
+        this.commit("setHotelById", response.data)
         console.log(response.data)
       })
     },
@@ -208,6 +219,12 @@ getters:{
   getRoomByHotelId(state){
     return state.rooms
   },
+  getHotelId(state){
+    return state.hotelId
+  }, 
+  getHotelById(state){
+    return state.hotelById
+  },  
   getLoginStatus(state) {
     console.log(state.isLoggedIn)
     return state.isLoggedIn

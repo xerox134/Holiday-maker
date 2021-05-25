@@ -4,12 +4,12 @@
     <h1>Filter</h1>
     
     <button @click="clear(), clear2()">Rensa filter</button><br>
-    <button  :class="{'red': isActive1, 'black': !isActive1 }" id="poolBtn" @click="togglePool(true),changeColor()">Pool</button><br>
-    <button  :class="{'red': isActive2, 'black': !isActive2 }" @click="toggleEntertainment(true),changeColor2()">Underhållning</button><br>
-    <button  :class="{'red': isActive3, 'black': !isActive3 }" @click="toggleChildrensClub(true),changeColor3()">Barnklubb</button><br>
-    <button  :class="{'red': isActive4, 'black': !isActive4 }" @click="toggleRestaurant(true),changeColor4()">Restaurang</button><br>
-    <button  :class="{'red': isActive5, 'black': !isActive5 }" @click="toggleWifi(true),changeColor5()">Wifi</button><br>
-    <button  :class="{'red': isActive6, 'black': !isActive6 }" @click="toggleBar(true),changeColor6()">Bar</button><br>
+    <button  :class="{'gray': isActive1, 'black': !isActive1 }" id="poolBtn" @click="togglePool(true),changeColor()">Pool</button><br>
+    <button  :class="{'gray': isActive2, 'black': !isActive2 }" @click="toggleEntertainment(true),changeColor2()">Underhållning</button><br>
+    <button  :class="{'gray': isActive3, 'black': !isActive3 }" @click="toggleChildrensClub(true),changeColor3()">Barnklubb</button><br>
+    <button  :class="{'gray': isActive4, 'black': !isActive4 }" @click="toggleRestaurant(true),changeColor4()">Restaurang</button><br>
+    <button  :class="{'gray': isActive5, 'black': !isActive5 }" @click="toggleWifi(true),changeColor5()">Wifi</button><br>
+    <button  :class="{'gray': isActive6, 'black': !isActive6 }" @click="toggleBar(true),changeColor6()">Bar</button><br>
   
    
   
@@ -152,7 +152,7 @@ export default {
 </script>
 
 <style scoped>
-.red{
+.gray{
   background: rgba(80, 75, 85, .8)
 }
 

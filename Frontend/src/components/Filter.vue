@@ -4,12 +4,12 @@
     <h1>Filter</h1>
     
     <button @click="clear(), clear2()">Rensa filter</button><br>
-    <button @click="togglePool(true)">Pool</button><br>
-    <button @click="toggleEntertainment(true)">Underhållning</button><br>
-    <button @click="toggleChildrensClub(true)">Barnklubb</button><br>
-    <button @click="toggleRestaurant(true)">Restaurang</button><br>
-    <button @click="toggleWifi(true)">Wifi</button><br>
-    <button @click="toggleBar(true)">Bar</button><br>
+    <button  :class="{'red': isActive1, 'black': !isActive1 }" id="poolBtn" @click="togglePool(true),changeColor()">Pool</button><br>
+    <button  :class="{'red': isActive2, 'black': !isActive2 }" @click="toggleEntertainment(true),changeColor2()">Underhållning</button><br>
+    <button  :class="{'red': isActive3, 'black': !isActive3 }" @click="toggleChildrensClub(true),changeColor3()">Barnklubb</button><br>
+    <button  :class="{'red': isActive4, 'black': !isActive4 }" @click="toggleRestaurant(true),changeColor4()">Restaurang</button><br>
+    <button  :class="{'red': isActive5, 'black': !isActive5 }" @click="toggleWifi(true),changeColor5()">Wifi</button><br>
+    <button  :class="{'red': isActive6, 'black': !isActive6 }" @click="toggleBar(true),changeColor6()">Bar</button><br>
   
    
   
@@ -19,15 +19,47 @@
 
 <script>
 export default {
+  data(){
+    return{
+      isActive1: true,
+      isActive2: true,
+      isActive3: true,
+      isActive4: true,
+      isActive5: true,
+      isActive6: true,
+    }
+  },
   name: "Filter",
-
   components: {
   },
 
   computed: {
+    
   },
 
   methods:{
+                changeColor(){
+                    this.isActive1 = !this.isActive1;
+                },
+                changeColor2(){
+                    this.isActive2 = !this.isActive2;
+                },
+                changeColor3(){
+                    this.isActive3 = !this.isActive3;
+                },
+                 changeColor4(){
+                    this.isActive4 = !this.isActive4;
+                },
+                 changeColor5(){
+                    this.isActive5 = !this.isActive5;
+                },
+                 changeColor6(){
+                    this.isActive6 = !this.isActive6;
+                },
+                
+    
+
+    
   
 
     togglePool(PoolisTrue) {
@@ -50,6 +82,7 @@ export default {
    
     toggleEntertainment(includesEntertainment) {
       console.log("Entertainment is " + includesEntertainment)
+      
       this.$store.state.hotels = this.$store.state.hotels.filter(hotel => {
         return hotel.entertainment == includesEntertainment   
       });
@@ -105,6 +138,7 @@ export default {
 
     clear() {
       console.log("Filters cleared")
+        
         return this.$store.dispatch("fetchHotels")
     }  ,
     clear2() {
@@ -118,6 +152,13 @@ export default {
 </script>
 
 <style scoped>
+.red{
+  background: rgba(80, 75, 85, .8)
+}
+
+.black{
+  background: black;
+}
 .trying{
 display: flex;  
 

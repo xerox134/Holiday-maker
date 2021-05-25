@@ -1,5 +1,7 @@
 package com.example.Holidaymaker.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -17,7 +19,7 @@ public class Room {
     @ManyToOne
     private Hotel hotel;
 
-    @OneToMany (mappedBy = "room")
+    @OneToMany (mappedBy = "room", cascade = CascadeType.ALL)
     private List<Booking> bookings;
 
     public Room() {
@@ -78,6 +80,15 @@ public class Room {
 
     public void setHotel(Hotel hotel) {
         this.hotel = hotel;
+    }
+
+    @JsonIgnore
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 
     @Override

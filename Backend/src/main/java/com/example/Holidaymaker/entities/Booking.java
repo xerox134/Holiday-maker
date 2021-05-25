@@ -1,5 +1,8 @@
 package com.example.Holidaymaker.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -9,29 +12,28 @@ public class Booking {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long id;
-    @ManyToOne
-    private Hotel hotel;
-    @ManyToOne
-    private Room room;
-    @ManyToOne
-    private User user;
     private long price;
     private boolean extraBed;
-    private long wholePension;
-    private long halfPension;
-    private long allInclusive;
-    private Date fromDate;
-    private Date toDate;
+    private boolean wholePension;
+    private boolean halfPension;
+    private boolean allInclusive;
+    private long fromDate;
+    private long toDate;
+
+    @ManyToOne
+    private Hotel hotel;
+
+    @ManyToOne
+    private Room room;
+
+    @ManyToOne
+    private User user;
 
     public Booking() {
     }
 
-    public Booking(long id, Hotel hotel, Room room, User user, long price, boolean extraBed,
-                   long wholePension, long halfPension, long allInclusive, Date fromDate, Date toDate) {
+    public Booking(long id, long price, boolean extraBed, boolean wholePension, boolean halfPension, boolean allInclusive, long fromDate, long toDate, Hotel hotel, Room room, User user) {
         this.id = id;
-        this.hotel = hotel;
-        this.room = room;
-        this.user = user;
         this.price = price;
         this.extraBed = extraBed;
         this.wholePension = wholePension;
@@ -39,6 +41,9 @@ public class Booking {
         this.allInclusive = allInclusive;
         this.fromDate = fromDate;
         this.toDate = toDate;
+        this.hotel = hotel;
+        this.room = room;
+        this.user = user;
     }
 
     public long getId() {
@@ -89,43 +94,43 @@ public class Booking {
         this.extraBed = extraBed;
     }
 
-    public long getWholePension() {
+    public boolean isWholePension() {
         return wholePension;
     }
 
-    public void setWholePension(long wholePension) {
+    public void setWholePension(boolean wholePension) {
         this.wholePension = wholePension;
     }
 
-    public long getHalfPension() {
+    public boolean isHalfPension() {
         return halfPension;
     }
 
-    public void setHalfPension(long halfPension) {
+    public void setHalfPension(boolean halfPension) {
         this.halfPension = halfPension;
     }
 
-    public long getAllInclusive() {
+    public boolean isAllInclusive() {
         return allInclusive;
     }
 
-    public void setAllInclusive(long allInclusive) {
+    public void setAllInclusive(boolean allInclusive) {
         this.allInclusive = allInclusive;
     }
 
-    public Date getFromDate() {
+    public long getFromDate() {
         return fromDate;
     }
 
-    public void setFromDate(Date fromDate) {
+    public void setFromDate(long fromDate) {
         this.fromDate = fromDate;
     }
 
-    public Date getToDate() {
+    public long getToDate() {
         return toDate;
     }
 
-    public void setToDate(Date toDate) {
+    public void setToDate(long toDate) {
         this.toDate = toDate;
     }
 
@@ -133,9 +138,6 @@ public class Booking {
     public String toString() {
         return "Booking{" +
                 "id=" + id +
-                ", hotel=" + hotel +
-                ", room=" + room +
-                ", user=" + user +
                 ", price=" + price +
                 ", extraBed=" + extraBed +
                 ", wholePension=" + wholePension +
@@ -143,6 +145,9 @@ public class Booking {
                 ", allInclusive=" + allInclusive +
                 ", fromDate=" + fromDate +
                 ", toDate=" + toDate +
+                ", hotel=" + hotel +
+                ", room=" + room +
+                ", user=" + user +
                 '}';
     }
 }

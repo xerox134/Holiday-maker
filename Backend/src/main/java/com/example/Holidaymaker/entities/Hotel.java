@@ -39,7 +39,7 @@ public class Hotel {
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
     private List<Favorite> favorites;
 
-    @OneToMany(mappedBy = "hotel")
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
     private List<Booking> bookings;
 
 
@@ -184,10 +184,6 @@ public class Hotel {
     public String getImg() {
         return img;
     }
-    @JsonIgnore
-    public List<Favorite> getFavorites() {
-        return favorites;
-    }
 
     public void setImg(String img) {
         this.img = img;
@@ -210,20 +206,22 @@ public class Hotel {
         this.rooms = rooms;
     }
 
-    public int getReview() {
-        return review;
+    @JsonIgnore
+    public List<Favorite> getFavorites() {
+        return favorites;
     }
 
-    public void setReview(int review) {
-        this.review = review;
+    public void setFavorites(List<Favorite> favorites) {
+        this.favorites = favorites;
     }
 
-    public int getCheapest_price() {
-        return cheapest_price;
+    @JsonIgnore
+    public List<Booking> getBookings() {
+        return bookings;
     }
 
-    public void setCheapest_price(int cheapest_price) {
-        this.cheapest_price = cheapest_price;
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 
     @Override

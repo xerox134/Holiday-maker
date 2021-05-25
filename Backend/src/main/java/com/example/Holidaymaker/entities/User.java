@@ -22,7 +22,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Favorite> favorites;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Booking> bookings;
 
 
@@ -53,14 +53,6 @@ public class User {
         this.email = email;
     }
 
-    @JsonIgnore // prevent loop
-    public List<Favorite> getFavorite() { return favorites;
-    }
-
-    public void setFavorite(List<Favorite> favorite) {
-        this.favorites = favorite;
-    }
-
     @JsonIgnore // dont show password on frontend
     public String getPassword() {
         return password;
@@ -80,8 +72,23 @@ public class User {
         this.reviews = reviews;
     }
 
+    @JsonIgnore
+    public List<Favorite> getFavorites() {
+        return favorites;
+    }
 
+    public void setFavorites(List<Favorite> favorites) {
+        this.favorites = favorites;
+    }
 
+    @JsonIgnore
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
+    }
 
     @Override
     public String toString() {

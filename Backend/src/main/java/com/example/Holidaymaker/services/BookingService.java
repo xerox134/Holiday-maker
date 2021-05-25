@@ -22,10 +22,9 @@ public class BookingService {
         return bookingRepo.findBookingByUserId(userId);
     }
 
-
     public Booking addBooking(Booking booking) {
         User loggedUser = userService.whoAmI();
-        if (loggedUser != null){
+        if (loggedUser != null) {
             booking.setUser(loggedUser);
             return bookingRepo.save(booking);
         }
@@ -36,6 +35,8 @@ public class BookingService {
         return bookingRepo.findAll();
     }
 
-    public void deleteById(long id) { bookingRepo.deleteById(id); }
+    public void deleteById(long id) {
+        bookingRepo.deleteById(id);
+    }
 }
 

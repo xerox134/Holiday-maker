@@ -30,6 +30,24 @@ public class BookingController {
     @PostMapping("/bookings")
     public Booking addBooking(@RequestBody Booking booking) {
         return bookingService.addBooking(booking);
+        // EXEMPEL PÅ JSON-POST
+        /*
+        {
+    "hotel": {
+        "id" : 1
+        },
+        "room": {
+            "id" : 1005
+            },
+            "price": 600,
+            "extraBed": true,
+            "wholePension": true,
+            "halfPension": false,
+            "allInclusive": true,
+            "fromDate": 20210816,
+            "toDate" : 20210823
+}
+         */
     }
 
     @DeleteMapping("/bookings/{id}")

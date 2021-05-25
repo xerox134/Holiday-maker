@@ -3,7 +3,7 @@
     
     <h1>Filter</h1>
     
-    <button @click="clear()">Rensa filter</button><br>
+    <button @click="clear(), clear2()">Rensa filter</button><br>
     <button @click="togglePool(true)">Pool</button><br>
     <button @click="toggleEntertainment(true)">Underhållning</button><br>
     <button @click="toggleChildrensClub(true)">Barnklubb</button><br>
@@ -148,6 +148,10 @@ export default {
     clear() {
       console.log("Filters cleared")
         return this.$store.dispatch("fetchHotels")
+    }  ,
+    clear2() {
+      console.log("Filters cleared")
+        return this.$store.dispatch("fetchHotelBySearchPhrase")
     }
         
   }

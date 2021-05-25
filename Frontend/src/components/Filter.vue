@@ -10,10 +10,10 @@
     <button @click="toggleRestaurant(true)">Restaurang</button><br>
     <button @click="toggleWifi(true)">Wifi</button><br>
     <button @click="toggleBar(true)">Bar</button><br>
-    <span class="trying" >Stars <p @click="toggleReview()">⬆</p> <p @click="toggleReview2()">⬇</p> </span><br>
-    <span class="trying" >Price <p @click="togglePrice()">⬆</p> <p @click="togglePrice2()">⬇</p> </span><br>
-    <span class="trying" >Beach <p @click="toggleBeach()">⬆</p> <p @click="toggleBeach2()">⬇</p> </span><br>
-    <span class="trying" >Centrum <p @click="toggleCentrum()">⬆</p> <p @click="toggleCentrum2()">⬇</p> </span><br>
+    <span class="trying" >Stars <p @click="toggleReview(), toggleSearchedReview()">⬆</p> <p @click="toggleReview2(),toggleSearchedReview2()">⬇</p> </span><br>
+    <span class="trying" >Price <p @click="togglePrice(),toggleSearchedPrice()">⬆</p> <p @click="togglePrice2(),toggleSearchedPrice2()">⬇</p> </span><br>
+    <span class="trying" >Beach <p @click="toggleBeach(), toggleSearchedBeach()">⬆</p> <p @click="toggleBeach2(),toggleSearchedBeach2()">⬇</p> </span><br>
+    <span class="trying" >Centrum <p @click="toggleCentrum(),toggleSearchedCentrum()">⬆</p> <p @click="toggleCentrum2(),toggleSearchedCentrum2()">⬇</p> </span><br>
   
     
    
@@ -42,11 +42,11 @@ export default {
       return this.$store.state.hotels.sort((a,b)=>a.distance_to_beach - b.distance_to_beach);
     },
     
-    // toggleSearchedBeach(){
-    //   return this.$store.state.searchedHotels.sort((b,a)=>a.distance_to_beach - b.distance_to_beach);
-    // },  toggleSearchedBeach2(){
-    //   return this.$store.state.searchedHotels.sort((a,b)=>a.distance_to_beach - b.distance_to_beach);
-    // }, 
+    toggleSearchedBeach(){
+      return this.$store.state.searchedHotels.sort((b,a)=>a.distance_to_beach - b.distance_to_beach);
+    },  toggleSearchedBeach2(){
+      return this.$store.state.searchedHotels.sort((a,b)=>a.distance_to_beach - b.distance_to_beach);
+    }, 
     
     toggleCentrum(){
       return this.$store.state.hotels.sort((b,a)=>a.distance_to_center - b.distance_to_center);
@@ -54,12 +54,31 @@ export default {
     toggleCentrum2(){
       return this.$store.state.hotels.sort((a,b)=>a.distance_to_center - b.distance_to_center);
     }, 
+
+    toggleSearchedCentrum(){
+      return this.$store.state.searchedHotels.sort((b,a)=>a.distance_to_center - b.distance_to_center);
+    }, 
+
+    toggleSearchedCentrum2(){
+      return this.$store.state.searchedHotels.sort((a,b)=>a.distance_to_center - b.distance_to_center);
+    }, 
+
+
+
     togglePrice(){
       return this.$store.state.hotels.sort((b,a)=>a.cheapest_price - b.cheapest_price);
     }, 
 
      togglePrice2(){
       return this.$store.state.hotels.sort((a,b)=>a.cheapest_price - b.cheapest_price);
+    }, 
+
+    toggleSearchedPrice(){
+      return this.$store.state.searchedHotels.sort((b,a)=>a.cheapest_price - b.cheapest_price);
+    }, 
+
+     toggleSearchedPrice2(){
+      return this.$store.state.searchedHotels.sort((a,b)=>a.cheapest_price - b.cheapest_price);
     }, 
 
 
@@ -69,6 +88,15 @@ export default {
     
     toggleReview2(){
       return this.$store.state.hotels.sort((a,b)=>a.review - b.review);
+
+    },
+
+     toggleSearchedReview(){
+      return this.$store.state.searchedHotels.sort((b,a)=>a.review - b.review);
+    }, 
+
+     toggleSearchedReview2(){
+      return this.$store.state.searchedHotels.sort((a,b)=>a.review - b.review);
 
     },
 

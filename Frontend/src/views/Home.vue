@@ -1,6 +1,8 @@
 <template>
   <div class="home">
 
+    
+    <div><DatePickzor/></div>
 
     <div class= "filter-container">
       
@@ -16,6 +18,8 @@
 
 import Hotels from "../components/Hotels"
 import Filter from "../components/Filter"
+import DatePickzor from "../components/DatePickzor"
+
 
 export default {
   name: 'Home',
@@ -23,6 +27,8 @@ export default {
     
     Hotels,
     Filter,
+    DatePickzor
+    
   
   }
 }

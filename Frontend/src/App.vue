@@ -84,15 +84,15 @@ export default {
 </script>
 <style>
 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
-    color: #cbd5df;
-    text-decoration: none;
-    
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  color: #cbd5df;
+  text-decoration: none;
+  
+}
 
   ol li{
   list-style-type: none;

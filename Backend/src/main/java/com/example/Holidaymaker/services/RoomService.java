@@ -22,6 +22,10 @@ public class RoomService {
         return roomRepo.findByHotelId(hotelId);
     }
 
+    public List<Room> findRoomsByid(long id) {
+        return roomRepo.findById(id);}
+    }
+
 
 
 
@@ -40,4 +44,3 @@ public class RoomService {
 
 
 
-}

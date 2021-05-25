@@ -3,6 +3,7 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Hotel from '../views/Hotel.vue'
 import Bookings from '../views/Bookings.vue'
+import Ongoingbooking from '../views/Ongoingbooking.vue'
 
 const routes = [
   {
@@ -29,6 +30,12 @@ const routes = [
     path: '/hotel',
     component: Hotel,
     name: 'hotel'
+    
+  },
+  {
+    path: '/ongoingbooking',
+    component: Ongoingbooking,
+    name: 'ongoingbooking'
     
   }
 ]

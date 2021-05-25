@@ -28,4 +28,8 @@ public class RoomController {
         return roomService.findRoomsByHotelId(hotelId);
     }
 
+    @GetMapping("/room/roomid/{id}")
+    public List<Room> getRoomsByid(@PathVariable long id){
+        return roomService.findRoomsByid(id);
+    }
 }

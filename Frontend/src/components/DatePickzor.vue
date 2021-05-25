@@ -1,19 +1,19 @@
 <template>
   
-  <div><Calendar v-model="dateRange"  selectionMode="range"
+  <div><Calendarr v-model="dateRange"  selectionMode="range"
   :showButtonBar="true" dateFormat="dd.mm.yy"/></div>
 
-  <button @click="valueLog()">Log value</button>
+  
 
 </template>
 
 <script>
-import Calendar from 'primevue/calendar';
+import Calendarr from '../components/calendar/Calendarr';
 
 export default {
 
     components: {
-        Calendar
+        Calendarr
     },
 
     data() {

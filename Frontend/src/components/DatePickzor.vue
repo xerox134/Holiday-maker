@@ -3,7 +3,7 @@
   <div><Calendarr v-model="dateRange"  selectionMode="range"
   :showButtonBar="true" dateFormat="dd.mm.yy"/></div>
 
-  
+  <button @click="valueLog()">Log value</button>
 
 </template>
 

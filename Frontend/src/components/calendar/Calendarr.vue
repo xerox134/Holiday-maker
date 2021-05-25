@@ -12,7 +12,7 @@
                                 <div class="p-datepicker-header">
                                     <slot name="header"></slot>
                                     <button class="p-datepicker-prev p-link" v-if="groupIndex === 0" @click="onPrevButtonClick" type="button" @keydown="onContainerButtonKeydown" v-ripple :disabled="$attrs.disabled">
-                                        <span class="p-datepicker-prev-icon pi pi-chevron-left"></span>
+                                        <span class="p-datepicker-prev-icon pi pi-chevron-left"></span>⬅
                                     </button>
                                     <div class="p-datepicker-title">
                                         <span class="p-datepicker-month" v-if="!monthNavigator && (view !== 'month')">{{getMonthName(month.month)}}</span>
@@ -26,7 +26,7 @@
                                     </div>
                                     <button class="p-datepicker-next p-link" v-if="numberOfMonths === 1 ? true : (groupIndex === numberOfMonths - 1)"
                                         @click="onNextButtonClick" type="button" @keydown="onContainerButtonKeydown" v-ripple :disabled="$attrs.disabled">
-                                        <span class="p-datepicker-next-icon pi pi-chevron-right"></span>
+                                        <span class="p-datepicker-next-icon pi pi-chevron-right"></span> ➡
                                     </button>
                                 </div>
                                 <div class="p-datepicker-calendar-container" v-if="view ==='date'">
@@ -2184,6 +2184,12 @@ export default {
 </script>
 
 <style>
+
+span:hover{
+     background-color: rgba(80, 75, 85, .8);
+}span:focus{
+     background-color: rgba(80, 75, 85, .8);
+}
 
 .p-calendar {
     position: relative;

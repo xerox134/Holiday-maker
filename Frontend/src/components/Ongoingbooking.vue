@@ -32,9 +32,6 @@ export default {
     }
     },
     methods: { },
-    mounted(){
-      this.$store.dispatch('fetchTotalPrice')
-    }
 
 }
 </script>

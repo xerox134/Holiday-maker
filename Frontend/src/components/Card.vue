@@ -52,11 +52,12 @@
     </div>
 
      
-    <div class="Favorite-card" v-if="type == 'favorite'">
+    <div class="Favorite-card" v-if="type == 'favorite'" >
       <span id="user">Name: {{card.hotel.name}}</span><br><br>
       <span id="Hotelcity">City: {{card.hotel.city}}</span><br><br>
       <span id="Hotelcountry">Country: {{card.hotel.country}}</span><br><br>
       <span id="Hoteldescription">Description: {{card.hotel.description}}</span><br><br>
+      <button @click="FavoriteToRooms(card.hotel.id)">Book room</button>
       <button @click="deleteFavorite(card.id), refreshStuff()">Ta bort ✖ </button>   
     </div>
 
@@ -71,14 +72,11 @@
     <div class="Ongoingbooking-card" v-if="type == 'ongoingbooking'" >
       <span>Room id: {{card.id}}</span><br><br>
       <span>Room Price: {{card.price}}</span><br><br>
-      <div>
-        <button @click ="addRoomPriceToTotal">Add room to total</button>
       <button @click ="addABed">extra Bed</button>
       <button @click="addAllInclusive">Include all luxuries?</button>
-      </div>
-      
-
     </div>
+
+
   </div>
 </template>
 <script>
@@ -106,6 +104,18 @@ export default {
       })
       window.scrollTo(0,0)
     },
+
+    async FavoriteToRooms(id){
+      this.$store.state.hotelId = id
+
+      console.log(this.$store.state.hotelId)
+      console.log("We clicked")
+      this.$router.push({
+            name: 'hotel'
+      })
+      window.scrollTo(0,0)
+    },
+
 
     refreshStuff(){
         this.$store.dispatch("fetchAllFavorites")

@@ -1,5 +1,6 @@
 <template>
  <div id="SearchBar"><SearchBar/></div>
+ 
     <div >
 
         <ol id="HotelList" v-show="toggleList">

@@ -4,6 +4,8 @@
     type="text" placeholder="Sök..." v-model="searchPhrase" >
   <button @click="searchForHotel(searchPhrase)">Sök</button>
 
+ <div id="topSort"><topSort/></div>
+
   <ol id="HotelList">
     <li v-for="(hotel, index) in getSearchedHotels"  :key="index" >  
       <Card :card="hotel"  :type="'hotel'"/>  
@@ -14,11 +16,14 @@
 
 <script>
 import Card from "../components/Card";
+import topSort from "../components/topSort.vue"
 export default {
+  
   name:"SearchBar",
 
   components: {
-    Card,   
+    Card, 
+    topSort  
   },
 
   computed: {
@@ -79,5 +84,9 @@ export default {
   background-color: rgba(80, 75, 85, .1);
   box-shadow: inset -2px -2px 2px rgba(220, 180, 255, .1), inset 2px 2px 2px rgba(0, 0, 0, .2);
 }
+
+
+
+
 
 </style>

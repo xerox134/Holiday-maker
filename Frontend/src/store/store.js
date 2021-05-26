@@ -16,6 +16,8 @@ export default createStore({
     rooms:[],
     hotelId: null,
     hotelById:[],
+    roomId: null,
+    bookedRoom: [],
     HotelSearchPhrase: '',
     searchedHotels:[],
     toggleList: true,
@@ -53,6 +55,7 @@ export default createStore({
     setRoomsByHotelId (state, payload) {
       state.rooms = payload
     },
+  
     setBarFilter (state, payload){
       state.barFilter = payload
     },
@@ -71,11 +74,9 @@ export default createStore({
     setFilteredHotels(state, payload){
       state.filteredHotels = payload
     },
-    /*
-    setFilteredHotels(state, payload){
-      state.filteredHotels.push(payload)
-    },
-    */
+   setRoomsWithRoomId(state, payload){
+    state.bookedRoom= payload
+   },
     setHotelsWithPool(state, payload){
       state.hotelsWithPool = payload;
     },
@@ -101,7 +102,7 @@ export default createStore({
         console.log(response.data)
       })
     },
-    async fetchRoomsById(){
+    async fetchRoomsByHotelId(){
       await axios.get("http://localhost:3000/rest/room/" + this.state.hotelId)
       .then(response => {
         this.commit("setRoomsByHotelId", response.data)
@@ -112,6 +113,13 @@ export default createStore({
       await axios.get("http://localhost:3000/rest/hotel/" + this.state.hotelId)
       .then(response => {
         this.commit("setHotelById", response.data)
+        console.log(response.data)
+      })
+    },
+    async fetchRoomsWithRoomId(){
+      await axios.get("http://localhost:3000/rest/room/roomid/" + this.state.roomId)
+      .then(response => {
+        this.commit("setRoomsWithRoomId", response.data)
         console.log(response.data)
       })
     },
@@ -218,6 +226,11 @@ getters:{
   },
   getRoomByHotelId(state){
     return state.rooms
+  }, 
+  
+  
+  getRoomsWithRoomId(state){
+    return state.bookedRoom
   },
   getHotelId(state){
     return state.hotelId

@@ -49,7 +49,6 @@ export default {
         this.$store.dispatch("fetchHotelById")
         this.$store.dispatch("fetchRoomsById")
         console.log("hotelId = " + this.$store.getters.getHotelId)
-        
     },
  
 }

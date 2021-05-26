@@ -69,6 +69,22 @@ public class Hotel {
         this.cheapest_price=cheapest_price;
     }
 
+    public int getReview() {
+        return review;
+    }
+
+    public void setReview(int review) {
+        this.review = review;
+    }
+
+    public int getCheapest_price() {
+        return cheapest_price;
+    }
+
+    public void setCheapest_price(int cheapest_price) {
+        this.cheapest_price = cheapest_price;
+    }
+
     public long getId() {
         return id;
     }

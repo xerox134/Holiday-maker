@@ -23,11 +23,17 @@ export default createStore({
     toggleList: true,
     totalPrice: 0,
     bedPrice: 100,
-    allInclusivePrice: 200
+    allInclusivePrice: 200,
+    dateRange: null,
+    fromDate: '',
+    toDate: ''
   },
   
   mutations: {
 
+    setDateRange(state,payload){
+      state.dateRange = payload
+    },
     setToggleList(state,payload){
       state.toggleList = payload
     },
@@ -151,8 +157,8 @@ export default createStore({
      .then(response => {
      this.commit("setBookings", response.data)
      console.log(response.data)
-  })
-},
+    })
+  },
   
   async fetchHotelBySearchPhrase(){
       await axios.get("http://localhost:3000/rest/hotel/search/"+ this.state.HotelSearchPhrase)
@@ -197,7 +203,7 @@ export default createStore({
       console.log(response.data)
     })
   },
-
+  
 
 
 },
@@ -227,8 +233,6 @@ getters:{
   getRoomByHotelId(state){
     return state.rooms
   }, 
-  
-  
   getRoomsWithRoomId(state){
     return state.bookedRoom
   },
@@ -256,6 +260,9 @@ getters:{
   },
   totalPrice(state){
     return state.totalPrice
+  },
+  getDateRange(state){
+    return state.dateRange
   }
 },
 

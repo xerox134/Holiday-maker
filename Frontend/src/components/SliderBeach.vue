@@ -40,14 +40,29 @@ export default {
     };
   },
   methods: {
-    onInput(currentValue) {
+   onInput() {
       // this.currentValue is a string because HTML is weird
       this.$emit('input', parseInt(this.currentValue));
-      this.$store.commit('setDistanceBeach',this.currentValue)
-      console.log(this.$store.state.distanceBeach)
-    }
+      this.$store.commit('setDistanceCenter',this.currentValue)
+      console.log(this.$store.state.distanceCenter)
+      const number = this.currentValue
+      this.toggleBeach(number)
+      this.toggleBeach2(number)
+    },
 
-
+    
+    toggleBeach(distance) {
+      console.log("max distance is " + distance)
+      this.$store.state.hotels = this.$store.state.hotels.filter(hotel => {
+        return hotel.distance_to_beach <= distance
+      });},
+     
+     
+     toggleBeach2(distance) {
+      console.log("max distance is " + distance)
+      this.$store.state.searchedHotels = this.$store.state.searchedHotels.filter(hotel => {
+        return hotel.distance_to_beach <= distance
+      });},
   }
 };
 </script>

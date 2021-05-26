@@ -1,43 +1,47 @@
 <template>
-  
-  <div><Calendarr v-model="dateRange"  selectionMode="range" :showTime="false"
-  :showButtonBar="true" dateFormat="yy.mm.dd"/></div>
+  <div class="Calendar"><Calendar v-model="dateRange"  selectionMode="range" :showTime="false"
+  :showButtonBar="true" dateFormat="dd.mm.yy"/></div>
 
   <button @click="valueLog()">Log value</button>
-  <div>{{dateRange}}</div>
 
 </template>
 
 <script>
-import Calendarr from '../components/calendar/Calendarr';
+import Calendar from 'primevue/calendar'
+
 
 export default {
 
     components: {
-        Calendarr
+        Calendar,
+
     },
 
     data() {
         return {
             dateRange: null,
+
         }
     },
 
     methods:{
         valueLog(){
-            console.log('dateRange OG' + this.dateRange)
-            var fromDate = this.dateRange[0]
-            fromDate = fromDate.toString()
-            
+            var arr = this.dateRange;
+            var myJSON = JSON.stringify(arr);
+            console.log('Stringified!' + myJSON)
+
+            var fromDate = myJSON.slice(2,12);
             console.log('fromDate ' + fromDate)
 
-            this.$store.state.fromDate = this.dateRange[0]
-            this.$store.state.toDate = this.dateRange[1]
-            this.$store.state.dateRange = this.dateRange
+            var toDate = myJSON.slice(29, 39);
+            console.log('toDate ' + toDate)
+
+            this.$store.state.fromDate = fromDate;
+            this.$store.state.toDate = toDate;
+
+            console.log('fromDate Store ' + this.$store.state.fromDate)
+            console.log('toDate Store ' + this.$store.state.toDate)
             
-            console.log(this.$store.state.dateRange);
-            console.log(this.$store.state.fromDate);
-            console.log(this.$store.state.toDate);
         }
     }
 
@@ -45,6 +49,10 @@ export default {
 </script>
 
 <style scoped>
+.Slider{
+    background-color: black;
+}
+
 
 
 

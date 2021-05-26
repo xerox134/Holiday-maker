@@ -24,7 +24,7 @@ export default createStore({
     totalPrice: 0,
     bedPrice: 100,
     allInclusivePrice: 200,
-    dateRange: [],
+    dateRange: null,
     fromDate: '',
     toDate: ''
   },

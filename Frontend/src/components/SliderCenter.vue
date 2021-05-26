@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div> {{currentValue}} km</div>
+    <div> Max: {{currentValue}} km</div>
     <div class="slider-component">
       <div class="slidecontainer">
         <input

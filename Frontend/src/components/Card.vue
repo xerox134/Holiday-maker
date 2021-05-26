@@ -48,7 +48,7 @@
         </div>
 
       </div>   
-        <button @click.stop="favoriteItem(card.id, card.name, card.country, card.city, card.description)">Favoritmarkera ❤</button>
+        <button @click.stop="favoriteItem(card.id)">Favoritmarkera ❤</button>
     </div>
 
      
@@ -100,12 +100,10 @@ export default {
      console.log(this.$store.state.roomId);
      this.$store.dispatch("fetchRoomsWithRoomId")
     },
-    },
     
-
     async deleteFavorite(id) {
       let credentials = {
-        hotelid: id
+        hotelid: id 
       } 
       let response = await fetch ('/rest/favorites/'+ id, {
         method: 'DELETE',
@@ -122,7 +120,7 @@ export default {
 
     async deleteFromBooking(id) {
       let credentials = {
-        hotelid: id
+        hotelid: {id : id}
       } 
       let response = await fetch ('/rest/bookings/'+ id, {
         method: 'DELETE',
@@ -158,6 +156,7 @@ export default {
       }
     }
   }
+}
 
 </script>
 

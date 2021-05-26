@@ -26,10 +26,20 @@ export default createStore({
     allInclusivePrice: 200,
     dateRange: [],
     fromDate: '',
-    toDate: ''
+    toDate: '',
+    distanceCenter:null,
+    distanceBeach:null
   },
   
   mutations: {
+    
+    setDistanceBeach(state,payload){
+      state.distanceBeach=payload
+    },
+    
+    setDistanceCenter(state,payload){
+      state.distanceCenter=payload
+    },
 
     setDateRange(state,payload){
       state.dateRange = payload

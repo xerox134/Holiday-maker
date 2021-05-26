@@ -7,18 +7,27 @@
 
    <span class="trying" > <p>  Stjärnor⭐</p> <p @click="toggleReview(), toggleSearchedReview()">⬆</p> <p @click="toggleReview2(),toggleSearchedReview2()">⬇</p> </span><br>
     <span class="trying" ><p>Pris 💲</p> <p @click="togglePrice(),toggleSearchedPrice()">⬆</p> <p @click="togglePrice2(),toggleSearchedPrice2()">⬇</p> </span><br>
-    <span class="trying" ><p>Strand 🌅 </p><p @click="toggleBeach(), toggleSearchedBeach()">⬆</p> <p @click="toggleBeach2(),toggleSearchedBeach2()">⬇</p> </span><br>
-    <span class="trying" ><p>Centrum 🌆 </p><p @click="toggleCentrum(50),toggleSearchedCentrum()">Max 50 km</p> <p @click="toggleCentrum2(30),toggleSearchedCentrum2()">Max 30 km</p> </span><br>
+    <span class="trying" ><p>Strand 🌅 </p> <SliderBeach/></span>
+    <span class="trying" ><p>Centrum 🌆 </p><SliderCenter/></span>
+    
       <button @click="clear(), clear2()">❌</button><br>
 
     </div>
+
+<!-- <span class="trying" ><p>Strand 🌅 </p><p @click="toggleBeach(), toggleSearchedBeach()">⬆</p> <p @click="toggleBeach2(),toggleSearchedBeach2()">⬇</p> </span><br>
+    <span class="trying" ><p>Centrum 🌆 </p><p @click="toggleCentrum(50),toggleSearchedCentrum()">Max 50 km</p> <p @click="toggleCentrum2(30),toggleSearchedCentrum2()">Max 30 km</p> </span><br> -->
+    
 </template>
 
 <script>
-
+import SliderBeach from "../components/SliderBeach"
+import SliderCenter from "../components/SliderCenter"
 export default {
 
- 
+components:{
+   SliderBeach,
+   SliderCenter
+},
 
 methods:{
 
@@ -124,7 +133,7 @@ methods:{
 }
 </script>
 
-<style>
+<style scoped>
 
 #sort{
     display: flex;

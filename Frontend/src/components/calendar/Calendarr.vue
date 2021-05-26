@@ -2183,7 +2183,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 span:hover{
      background-color: rgba(80, 75, 85, .8);

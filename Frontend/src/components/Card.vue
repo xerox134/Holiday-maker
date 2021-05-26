@@ -89,6 +89,12 @@ export default {
     addRoomPriceToTotal(){
       this.$store.commit('addRoomPriceToTotal' , this.card.price);
     },
+    addABed(){
+      this.$store.commit('addABed',this.$store.state.bedPrice);
+    },
+    addAllInclusive(){
+      this.$store.commit('addAllInclusive', this.$store.state.allInclusivePrice);
+    },
 
     async toRooms(id){
       this.$store.state.hotelId = id
@@ -166,9 +172,7 @@ export default {
       }
     }
   },
-  mounted(){
-    addRoomPriceToTotal();
-  }
+  
 }
 
 </script>

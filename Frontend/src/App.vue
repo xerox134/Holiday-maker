@@ -17,10 +17,10 @@
 
 
 
-  <div id="test">
-    <img id="icon" v-bind:src=image alt="" />
-    <h1 id="title">Holidaymaker</h1>
-  </div>
+  <router-link to="/"><div id="test">
+    <img  id="icon" v-bind:src=image alt="" />
+  <h1 id="title">Holidaymaker</h1>
+  </div></router-link> 
   
   <router-view/>
 </template>
@@ -40,6 +40,9 @@ export default {
    
 
     methods: {
+      scrollToTop(){
+        window.scrollTo(0,0)
+      },
 
      logout () {
       // tell backend to forget us
@@ -81,15 +84,15 @@ export default {
 </script>
 <style>
 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
-    color: #cbd5df;
-    text-decoration: none;
-    
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  color: #cbd5df;
+  text-decoration: none;
+  
+}
 
   ol li{
   list-style-type: none;

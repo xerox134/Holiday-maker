@@ -1,4 +1,5 @@
 <template>
+ <div id="SearchBar"><SearchBar/></div>
     <div >
 
         <ol id="HotelList" v-show="toggleList">
@@ -13,11 +14,13 @@
 
 <script>
 import Card from "../components/Card";
+import SearchBar from "../components/SearchBar"
 export default {
     name: "Hotels",
 
 components: {
     Card, 
+    SearchBar,
     },
     
     computed: {

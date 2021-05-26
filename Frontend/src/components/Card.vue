@@ -9,9 +9,6 @@
         <span id="price">Pris: {{ card.price }}</span><br><br>
         <button>Boka</button>
       </span>
-      
-      
-        
     </div>
     
     <div class="Hotel-card" v-if="type == 'hotel'" @click="toRooms(card.id)">
@@ -20,7 +17,8 @@
 
         <div id="fyra">
           <img v-bind:src=card.img alt="" /><br><br><br>
-          <p>FRÅN 500kr/natt</p><br><br>
+          
+          <span id="price" ><p>FRÅN {{card.cheapest_price}}/natt</p><br><br> </span>
         </div>
 
         <div id="två">
@@ -31,6 +29,7 @@
         </div>
 
         <div id="tre">
+          <span id="review" >⭐ {{card.review}}/5</span><br>
           <span id="wifi" v-if="card.wifi">Wifi ✔</span>
           <span id="wifi" v-else>Wifi ✖</span><br>
           <span id="pool" v-if="card.pool">Pool ✔</span>
@@ -83,6 +82,7 @@ export default {
       this.$router.push({
             name: 'hotel'
       })
+      window.scrollTo(0,0)
     },
 
     refreshStuff(){
@@ -165,11 +165,14 @@ export default {
   max-height: 5%;
   padding: 1vh;
   text-align: right;
+  
+
 }
 
 
 #Hotel-card{
     min-width: 100px;
+    
   }
   
   #card{
@@ -181,7 +184,7 @@ export default {
     
     padding: 2vh;
     margin-bottom: 18px;
-    margin-left: 18px;
+    margin-left: 30px;
     box-shadow: 4px 4px 2px rgba(0, 0, 0, .3), inset 2px 2px 2px rgba(240, 200, 255, .1);
     min-height: 4vh;
     max-width: 95%;

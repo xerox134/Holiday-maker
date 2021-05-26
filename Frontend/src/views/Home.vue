@@ -1,8 +1,11 @@
 <template>
   <div class="home">
 
- <div id="SearchBar"><SearchBar/></div>
+    
+    <div><DatePickzor/></div>
+
     <div class= "filter-container">
+      
     <div id= "Filter"><Filter/></div>
     <div id="Hotels"><Hotels/></div>
 </div>
@@ -12,25 +15,34 @@
 
 <script>
 // @ is an alias to /src
-import SearchBar from "../components/SearchBar"
+
 import Hotels from "../components/Hotels"
 import Filter from "../components/Filter"
+import DatePickzor from "../components/DatePickzor"
+
 
 export default {
   name: 'Home',
   components: {
-    SearchBar,
+    
     Hotels,
     Filter,
+    DatePickzor
+    
   
   }
 }
 </script>
 
 <style>
+
+#Filter{
+  margin-top: 80px;
+}
 .filter-container {
   display: flex;
   justify-content: right;
+  
     
 }
 

@@ -1,13 +1,7 @@
 <template>
 <div class ="Ongoingbooking">  <p>Welcome to ongoing bookings</p>
 </div>
-
-<p>Total price : {{ updatePrice }}</p>
-<button >extra Bed</button>
-<button @click="addAllInclusive">Include all luxuries?</button>
-   <p>Extra Bed?</p> <input type="checkbox" checked="checked" @click="addABed">
-
-              <div id="Ongoingbooking"><Ongoingbooking/></div>
+<div id="Ongoingbooking"><Ongoingbooking/></div>
 
 <div></div>
 </template>
@@ -18,18 +12,8 @@
   name: "ongoingbooking",
 
   components: { Ongoingbooking},
-  computed: {
-      updatePrice(){
-    return this.$store.getters.totalPrice
-    }},
-  methods:{
-      addABed(){
-    this.$store.commit('addABed', this.$store.state.bedPrice);
-  },
-      addAllInclusive(){
-      this.$store.commit('addAllInclusive', this.$store.state.allInclusivePrice);
-    }
-    },
+  computed: {},
+  methods:{},
 }
 </script>
 

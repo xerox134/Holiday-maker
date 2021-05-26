@@ -1,6 +1,12 @@
 <template>
   <h1>OngoingBooking Component</h1>
- 
+ <div>
+
+<p>Total price : {{ updatePrice }} kr</p>
+
+</div>
+
+
   <div id="OngoingbookingList">
  <ol style="list-style-type:none;">
 <li v-for="(Ongoingbooking, index) in getRoomsWithRoomId" :key="index"> 
@@ -21,8 +27,14 @@ export default {
       getRoomsWithRoomId(){
     return this.$store.getters.getRoomsWithRoomId
     },
+      updatePrice(){
+    return this.$store.getters.totalPrice
+    }
     },
-    methods: {},
+    methods: { },
+    mounted(){
+      this.$store.dispatch('fetchTotalPrice')
+    }
 
 }
 </script>

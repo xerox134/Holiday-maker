@@ -68,9 +68,16 @@
       <button @click="deleteFromBooking(card.id), refreshStuff()">Remove from List ✖ </button>   
     </div>
 
-    <div class="Ongoingbooking-card" v-if="type == 'ongoingbooking'">
+    <div class="Ongoingbooking-card" v-if="type == 'ongoingbooking'" >
       <span>Room id: {{card.id}}</span><br><br>
+      <span>Room Price: {{card.price}}</span><br><br>
+      <div>
+        <button @click ="addRoomPriceToTotal">Add room to total</button>
+      <button @click ="addABed">extra Bed</button>
+      <button @click="addAllInclusive">Include all luxuries?</button>
+      </div>
       
+
     </div>
   </div>
 </template>
@@ -79,6 +86,9 @@ export default {
   props: ["card", "type"],
 
   methods:{
+    addRoomPriceToTotal(){
+      this.$store.commit('addRoomPriceToTotal' , this.card.price);
+    },
 
     async toRooms(id){
       this.$store.state.hotelId = id
@@ -155,6 +165,9 @@ export default {
         console.log ('Saved as favorite')
       }
     }
+  },
+  mounted(){
+    addRoomPriceToTotal();
   }
 }
 

@@ -21,7 +21,8 @@ export default createStore({
     HotelSearchPhrase: '',
     searchedHotels:[],
     toggleList: true,
-    totalPrice: 0,
+    totalPrice: 10,
+    roomPrice:0,
     bedPrice: 100,
     allInclusivePrice: 200
   },
@@ -30,6 +31,9 @@ export default createStore({
 
     setToggleList(state,payload){
       state.toggleList = payload
+    },
+    setRoomPrice(state, payload){
+      state.roomPrice = payload;
     },
     addHotels(state, payload) {
       state.hotels = payload;
@@ -88,6 +92,9 @@ export default createStore({
     },
     addAllInclusive(state, payload){
       state.totalPrice += payload;
+    },
+    addRoomPriceToTotal(state, payload){
+      state.totalPrice +=payload;
     }
     
 

@@ -65,6 +65,7 @@ methods:{
    
       clear() {
       console.log("Filters cleared")
+       location.reload()
         return this.$store.dispatch("fetchHotels")
     }  ,
     clear2() {

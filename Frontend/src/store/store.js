@@ -9,6 +9,7 @@ export default createStore({
     bookings: [],
     addedFavorites:[],
     hotels:[],
+    hotels2:[],
     loggedInUser: null,
     loggedInUserId: 0,
     allUsers: [],
@@ -49,6 +50,7 @@ export default createStore({
     },
     addHotels(state, payload) {
       state.hotels = payload;
+      state.hotels2 = payload;
     },
     setFavorites(state,payload){
       state.favorites = payload;
@@ -273,6 +275,10 @@ getters:{
   },
   getDateRange(state){
     return state.dateRange
+  },
+  
+  getBeach(state){
+    return state.distanceBeach
   }
 },
 

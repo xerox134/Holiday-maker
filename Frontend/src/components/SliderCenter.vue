@@ -46,6 +46,7 @@ export default {
       this.$emit('input', parseInt(this.currentValue));
       this.$store.commit('setDistanceCenter',this.currentValue)
       console.log(this.$store.state.distanceCenter)
+      this.$store.state.hotels =this.$store.state.hotels2
       const number = this.currentValue
       this.toggleCentrum(number)
       this.toggleCentrum2(number)

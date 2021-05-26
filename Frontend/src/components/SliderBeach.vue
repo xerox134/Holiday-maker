@@ -41,17 +41,22 @@ export default {
   },
   methods: {
    onInput() {
+     
       // this.currentValue is a string because HTML is weird
       this.$emit('input', parseInt(this.currentValue));
-      this.$store.commit('setDistanceCenter',this.currentValue)
-      console.log(this.$store.state.distanceCenter)
+      this.$store.commit('setDistanceBeach',this.currentValue)
+      console.log(this.$store.state.distance_to_beach)
       const number = this.currentValue
+      this.$store.state.hotels =this.$store.state.hotels2
       this.toggleBeach(number)
       this.toggleBeach2(number)
     },
 
     
     toggleBeach(distance) {
+     
+
+      console.log("sasdasdasad" + this.$store.state.hotels)
       console.log("max distance is " + distance)
       this.$store.state.hotels = this.$store.state.hotels.filter(hotel => {
         return hotel.distance_to_beach <= distance

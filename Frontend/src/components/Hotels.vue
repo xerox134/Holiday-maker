@@ -1,52 +1,49 @@
 <template>
-  <div >
+ <div id="SearchBar"><SearchBar/></div>
+ 
+    <div >
 
-
-    <ol id="HotelList">
+        <ol id="HotelList" v-show="toggleList">
             <li v-for="(hotel, index) in getAllHotels"  :key="index" >   <!--false=boolean till episodeToggle-->
-                         <Card :card="hotel"  :type="'hotel'"/>  
+                <Card :card="hotel"  :type="'hotel'"/>  
             </li>
         </ol>
- 
 
-
- 
-
-
-
-  </div>
+    </div>
 </template>
 
 
 <script>
 import Card from "../components/Card";
+import SearchBar from "../components/SearchBar"
 export default {
     name: "Hotels",
 
-   
-
-
 components: {
-    Card,
-        
+    Card, 
+    SearchBar,
     },
     
-
     computed: {
         getAllHotels(){
            
             return this.$store.getters.getAllHotels
         },
+        toggleList(){
+            return this.$store.getters.getToggleList
+        },
         
     },
-
-  
 
     mounted(){
         this.$store.dispatch("fetchHotels")
     },
 
-
-    
 }
 </script>
+
+<style>
+
+
+
+</style>

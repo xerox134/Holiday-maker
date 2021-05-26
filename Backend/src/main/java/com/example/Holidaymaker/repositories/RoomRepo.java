@@ -11,6 +11,7 @@ import java.util.List;
 public interface RoomRepo extends JpaRepository<Room, Long> {
     List<Room> findByHotelId(long hotelId);
 
+    List<Room> findById(long id);
 
 
     /*  big RIP

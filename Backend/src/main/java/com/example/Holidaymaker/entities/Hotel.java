@@ -14,6 +14,7 @@ public class Hotel {
     @Column(name = "id")
     private long id;
     private String name;
+    private int review;
     private String country;
     private String city;
     private String address;
@@ -27,8 +28,9 @@ public class Hotel {
     private int distance_to_beach;
     private int distance_to_center;
     private String img;
+    private int cheapest_price;
 
-    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Review> reviews;
 
     @OneToMany(mappedBy = "hotel")
@@ -37,13 +39,16 @@ public class Hotel {
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
     private List<Favorite> favorites;
 
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
+    private List<Booking> bookings;
+
 
     public Hotel() {
     }
 
     public Hotel(long id, String name, String country, String city, String address, String description,
                  boolean wifi, boolean pool, boolean bar, boolean entertainment, boolean childrens_club,
-                 boolean restaurant, int distance_to_beach, int distance_to_center, String img
+                 boolean restaurant, int distance_to_beach, int distance_to_center, String img, int review, int cheapest_price
                  ) {
         this.id = id;
         this.name = name;
@@ -60,6 +65,24 @@ public class Hotel {
         this.distance_to_beach = distance_to_beach;
         this.distance_to_center = distance_to_center;
         this.img = img;
+        this.review =review;
+        this.cheapest_price=cheapest_price;
+    }
+
+    public int getReview() {
+        return review;
+    }
+
+    public void setReview(int review) {
+        this.review = review;
+    }
+
+    public int getCheapest_price() {
+        return cheapest_price;
+    }
+
+    public void setCheapest_price(int cheapest_price) {
+        this.cheapest_price = cheapest_price;
     }
 
     public long getId() {
@@ -177,10 +200,6 @@ public class Hotel {
     public String getImg() {
         return img;
     }
-    @JsonIgnore
-    public List<Favorite> getFavorites() {
-        return favorites;
-    }
 
     public void setImg(String img) {
         this.img = img;
@@ -203,6 +222,24 @@ public class Hotel {
         this.rooms = rooms;
     }
 
+    @JsonIgnore
+    public List<Favorite> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(List<Favorite> favorites) {
+        this.favorites = favorites;
+    }
+
+    @JsonIgnore
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
+    }
+
     @Override
     public String toString() {
         return "Hotel{" +
@@ -220,8 +257,9 @@ public class Hotel {
                 ", restaurant=" + restaurant +
                 ", distance_to_beach=" + distance_to_beach +
                 ", distance_to_center=" + distance_to_center +
-                ", img='" + img + '\'' +
-                ", reviews=" + reviews +
+                ", img='" + img +
+                ", review=" + review +
+                ", cheapest_price" + cheapest_price + '\'' +
                 '}';
     }
 }

@@ -6,4 +6,5 @@ import PrimeVue from 'primevue/config';
 import Calendar from 'primevue/calendar'
 import PrimeIcons from 'primevue/api';
 
+
 createApp(App).use(PrimeIcons).use(Calendar).use(PrimeVue).use(store).use(router).mount('#app')

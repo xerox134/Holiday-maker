@@ -1,5 +1,13 @@
 <template>
  
+
+ <div>
+    <Slider v-model="value" :max="10" />
+  </div>
+
+
+  
+
   <input id="searchBar" v-on:keyup.enter="searchForHotel(searchPhrase)" 
     type="text" placeholder="Sök..." v-model="searchPhrase" >
   <button @click="searchForHotel(searchPhrase)">Sök</button>
@@ -15,15 +23,30 @@
 </template>
 
 <script>
+
 import Card from "../components/Card";
 import topSort from "../components/topSort.vue"
+import Slider from '@vueform/slider'
 export default {
   
   name:"SearchBar",
 
+ 
+
+   data() {
+      return {
+        value: 5
+    
+      }
+    },
+
+
+
   components: {
     Card, 
-    topSort  
+    topSort,
+      Slider,
+   
   },
 
   computed: {
@@ -48,7 +71,7 @@ export default {
 }
 </script>
 
-<style>
+<style src="@vueform/slider/themes/default.css">
 
 
 

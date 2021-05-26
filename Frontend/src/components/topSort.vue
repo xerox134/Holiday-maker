@@ -1,5 +1,10 @@
 <template>
 <div id="sort">
+
+
+
+
+
    <span class="trying" > <p>  Stjärnor⭐</p> <p @click="toggleReview(), toggleSearchedReview()">⬆</p> <p @click="toggleReview2(),toggleSearchedReview2()">⬇</p> </span><br>
     <span class="trying" ><p>Pris 💲</p> <p @click="togglePrice(),toggleSearchedPrice()">⬆</p> <p @click="togglePrice2(),toggleSearchedPrice2()">⬇</p> </span><br>
     <span class="trying" ><p>Strand 🌅 </p><p @click="toggleBeach(), toggleSearchedBeach()">⬆</p> <p @click="toggleBeach2(),toggleSearchedBeach2()">⬇</p> </span><br>
@@ -10,9 +15,10 @@
 </template>
 
 <script>
+
 export default {
 
-
+ 
 
 methods:{
 

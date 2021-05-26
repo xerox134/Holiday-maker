@@ -8,7 +8,7 @@
         <span id="room_nr"> Rum Nummer: {{ card.room_nr }}</span><br><br>
         <span id="beds"> Sängar: {{ card.beds }}</span><br><br>
         <span id="price">Pris: {{ card.price }}</span><br><br>
-        <button @click="SendRoomToOngoingbooking(card.id)" >Select</button>
+        <button @click="SendRoomToOngoingbooking(card.id), addRoomPriceToTotal()" >Select</button>
 </span>
     </div>
     

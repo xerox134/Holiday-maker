@@ -21,7 +21,7 @@ export default createStore({
     HotelSearchPhrase: '',
     searchedHotels:[],
     toggleList: true,
-    totalPrice: 10,
+    totalPrice: 0,
     roomPrice:0,
     bedPrice: 100,
     allInclusivePrice: 200

@@ -2,10 +2,10 @@
    
   <div id="topBar">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/favorites">Favorites</router-link> |
-      <router-link to="/bookings">Bookings</router-link> |
-      <router-link to="/ongoingbooking">Ongoingbookings</router-link> 
+      <router-link to="/">Hem</router-link> |
+      <router-link to="/favorites">Favoriter</router-link> |
+      <router-link to="/bookings">Mina bokningar</router-link> |
+      <router-link to="/ongoingbooking">Varukorg</router-link> 
 
     </div>
       

@@ -1,7 +1,6 @@
 <template>
   <div class= "Bookings">
-      <h1>Bookings view</h1>
-              <div id="Bookings"><Bookings/></div>
+    <div id="Bookings"><Bookings/></div>
 
   </div>
 </template>

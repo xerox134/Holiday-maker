@@ -6,6 +6,8 @@
 
  <div id="topSort"><topSort/></div>
 
+ 
+
   <ol id="HotelList">
     <li v-for="(hotel, index) in getSearchedHotels"  :key="index" >  
       <Card :card="hotel"  :type="'hotel'"/>  
@@ -17,13 +19,15 @@
 <script>
 import Card from "../components/Card";
 import topSort from "../components/topSort.vue"
+
 export default {
   
   name:"SearchBar",
 
   components: {
     Card, 
-    topSort  
+    topSort,
+   
   },
 
   computed: {
@@ -48,7 +52,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 
 

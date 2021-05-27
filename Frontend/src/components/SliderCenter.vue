@@ -7,7 +7,7 @@
           ref="input"
           v-model="currentValue"
           type="range"
-          :min="0"
+          :min="2"
           :max="10"
           class="slider"
           @input="onInput"

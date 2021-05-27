@@ -9,6 +9,7 @@ export default createStore({
     bookings: [],
     addedFavorites:[],
     hotels:[],
+    hotels2:[],
     loggedInUser: null,
     loggedInUserId: 0,
     allUsers: [],
@@ -26,10 +27,20 @@ export default createStore({
     allInclusivePrice: 200,
     dateRange: null,
     fromDate: '',
-    toDate: ''
+    toDate: '',
+    distanceCenter:null,
+    distanceBeach:null
   },
   
   mutations: {
+    
+    setDistanceBeach(state,payload){
+      state.distanceBeach=payload
+    },
+    
+    setDistanceCenter(state,payload){
+      state.distanceCenter=payload
+    },
 
     setDateRange(state,payload){
       state.dateRange = payload
@@ -39,6 +50,7 @@ export default createStore({
     },
     addHotels(state, payload) {
       state.hotels = payload;
+      state.hotels2 = payload;
     },
     setFavorites(state,payload){
       state.favorites = payload;
@@ -263,6 +275,10 @@ getters:{
   },
   getDateRange(state){
     return state.dateRange
+  },
+  
+  getBeach(state){
+    return state.distanceBeach
   }
 },
 

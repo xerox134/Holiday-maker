@@ -1,18 +1,31 @@
 <template>
 <div id="sort">
+
+
+
+
+
    <span class="trying" > <p>  Stjärnor⭐</p> <p @click="toggleReview(), toggleSearchedReview()">⬆</p> <p @click="toggleReview2(),toggleSearchedReview2()">⬇</p> </span><br>
     <span class="trying" ><p>Pris 💲</p> <p @click="togglePrice(),toggleSearchedPrice()">⬆</p> <p @click="togglePrice2(),toggleSearchedPrice2()">⬇</p> </span><br>
-    <span class="trying" ><p>Strand 🌅 </p><p @click="toggleBeach(), toggleSearchedBeach()">⬆</p> <p @click="toggleBeach2(),toggleSearchedBeach2()">⬇</p> </span><br>
-    <span class="trying" ><p>Centrum 🌆 </p><p @click="toggleCentrum(50),toggleSearchedCentrum()">Max 50 km</p> <p @click="toggleCentrum2(30),toggleSearchedCentrum2()">Max 30 km</p> </span><br>
+    <span class="trying" ><p>Strand 🌅 </p> <SliderBeach/></span>
+    <span class="trying" ><p>Centrum 🌆 </p><SliderCenter/></span>
+    
       <button @click="clear(), clear2()">❌</button><br>
 
     </div>
+
+
 </template>
 
 <script>
+import SliderBeach from "../components/SliderBeach"
+import SliderCenter from "../components/SliderCenter"
 export default {
 
-
+components:{
+   SliderBeach,
+   SliderCenter
+},
 
 methods:{
 
@@ -34,11 +47,6 @@ methods:{
       return this.$store.state.searchedHotels.sort((a,b)=>a.review - b.review);
     },
 
-
-
-
-
-
        togglePrice(){
       return this.$store.state.hotels.sort((b,a)=>a.cheapest_price - b.cheapest_price);
     }, 
@@ -54,60 +62,10 @@ methods:{
      toggleSearchedPrice2(){
       return this.$store.state.searchedHotels.sort((a,b)=>a.cheapest_price - b.cheapest_price);
     }, 
-
-
-
-
-      toggleBeach(){
-      return this.$store.state.hotels.sort((b,a)=>a.distance_to_beach - b.distance_to_beach);
-    },
-     toggleBeach2(){
-      return this.$store.state.hotels.sort((a,b)=>a.distance_to_beach - b.distance_to_beach);
-    },
-    
-    toggleSearchedBeach(){
-      return this.$store.state.searchedHotels.sort((b,a)=>a.distance_to_beach - b.distance_to_beach);
-    },  toggleSearchedBeach2(){
-      return this.$store.state.searchedHotels.sort((a,b)=>a.distance_to_beach - b.distance_to_beach);
-    }, 
-
-
-
-
-    
-    // toggleCentrum(){
-    //   return this.$store.state.hotels.sort((b,a)=>a.distance_to_center - b.distance_to_center);
-    // }, 
-    // toggleCentrum2(){
-    //   return this.$store.state.hotels.sort((a,b)=>a.distance_to_center - b.distance_to_center);
-    // }, 
-
-    toggleSearchedCentrum(){
-      return this.$store.state.searchedHotels.sort((b,a)=>a.distance_to_center - b.distance_to_center);
-    }, 
-
-    toggleSearchedCentrum2(){
-      return this.$store.state.searchedHotels.sort((a,b)=>a.distance_to_center - b.distance_to_center);
-    }, 
-
-
-
- toggleCentrum(distance) {
-      console.log("max distance is " + distance)
-      this.$store.state.hotels = this.$store.state.hotels.filter(hotel => {
-        return hotel.distance_to_center <= distance
-      });},
-      toggleCentrum2(distance) {
-      console.log("max distance is " + distance)
-      this.$store.state.hotels = this.$store.state.hotels.filter(hotel => {
-        return hotel.distance_to_center <= distance
-      });},
-
- 
-
    
       clear() {
       console.log("Filters cleared")
+       location.reload()
         return this.$store.dispatch("fetchHotels")
     }  ,
     clear2() {
@@ -118,7 +76,7 @@ methods:{
 }
 </script>
 
-<style>
+<style scoped>
 
 #sort{
     display: flex;

@@ -8,7 +8,7 @@
         <span id="room_nr"> Rum Nummer: {{ card.room_nr }}</span><br><br>
         <span id="beds"> Sängar: {{ card.beds }}</span><br><br>
         <span id="price">Pris: {{ card.price }}</span><br><br>
-        <button @click="SendRoomToOngoingbooking(card.id)" >Select</button>
+        <button @click="SendRoomToOngoingbooking(card.id), addRoomPriceToTotal()" >Select</button>
 </span>
     </div>
     
@@ -52,11 +52,12 @@
     </div>
 
      
-    <div class="Favorite-card" v-if="type == 'favorite'">
+    <div class="Favorite-card" v-if="type == 'favorite'" >
       <span id="user">Name: {{card.hotel.name}}</span><br><br>
       <span id="Hotelcity">City: {{card.hotel.city}}</span><br><br>
       <span id="Hotelcountry">Country: {{card.hotel.country}}</span><br><br>
       <span id="Hoteldescription">Description: {{card.hotel.description}}</span><br><br>
+      <button @click="FavoriteToRooms(card.hotel.id)">Book room</button>
       <button @click="deleteFavorite(card.id), refreshStuff()">Ta bort ✖ </button>   
     </div>
 
@@ -68,10 +69,14 @@
       <button @click="deleteFromBooking(card.id), refreshStuff()">Remove from List ✖ </button>   
     </div>
 
-    <div class="Ongoingbooking-card" v-if="type == 'ongoingbooking'">
+    <div class="Ongoingbooking-card" v-if="type == 'ongoingbooking'" >
       <span>Room id: {{card.id}}</span><br><br>
-      
+      <span>Room Price: {{card.price}}</span><br><br>
+      <button @click ="addABed">extra Bed</button>
+      <button @click="addAllInclusive">Include all luxuries?</button>
     </div>
+
+
   </div>
 </template>
 <script>
@@ -79,6 +84,15 @@ export default {
   props: ["card", "type"],
 
   methods:{
+    addRoomPriceToTotal(){
+      this.$store.commit('addRoomPriceToTotal' , this.card.price);
+    },
+    addABed(){
+      this.$store.commit('addABed',this.$store.state.bedPrice);
+    },
+    addAllInclusive(){
+      this.$store.commit('addAllInclusive', this.$store.state.allInclusivePrice);
+    },
 
     async toRooms(id){
       this.$store.state.hotelId = id
@@ -90,6 +104,18 @@ export default {
       })
       window.scrollTo(0,0)
     },
+
+    async FavoriteToRooms(id){
+      this.$store.state.hotelId = id
+
+      console.log(this.$store.state.hotelId)
+      console.log("We clicked")
+      this.$router.push({
+            name: 'hotel'
+      })
+      window.scrollTo(0,0)
+    },
+
 
     refreshStuff(){
         this.$store.dispatch("fetchAllFavorites")
@@ -155,7 +181,8 @@ export default {
         console.log ('Saved as favorite')
       }
     }
-  }
+  },
+  
 }
 
 </script>

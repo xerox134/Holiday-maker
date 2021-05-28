@@ -4,6 +4,11 @@
 
 <p>Total price : {{ updatePrice }} kr</p>
 
+<div id="datum">
+<p>Datum: {{ getFromDate }} - {{ getToDate }} </p>
+
+</div>
+
 </div>
 
 
@@ -29,8 +34,19 @@ export default {
     },
       updatePrice(){
     return this.$store.getters.totalPrice
-    }
     },
+    
+     getFromDate()
+     { return this.$store.getters.getFromDate},
+     
+     
+     getToDate()
+      { return this.$store.getters.getToDate}
+    
+    
+    },
+
+    
     methods: { },
 
 }

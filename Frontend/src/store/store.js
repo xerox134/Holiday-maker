@@ -107,6 +107,9 @@ export default createStore({
     addABed(state, payload){
       state.totalPrice += payload;
     },
+    removeABed(state, payload){
+      state.totalPrice -= payload;
+    },
     addAllInclusive(state, payload){
       state.totalPrice += payload;
     },

@@ -73,6 +73,8 @@
       <span>Room id: {{card.id}}</span><br><br>
       <span>Room Price: {{card.price}}</span><br><br>
       <button @click ="addABed">extra Bed</button>
+      <button @click ="removeABed">Remove Bed?</button>
+
       <button @click="addAllInclusive">Include all luxuries?</button>
     </div>
 
@@ -87,9 +89,15 @@ export default {
     addRoomPriceToTotal(){
       this.$store.commit('addRoomPriceToTotal' , this.card.price);
     },
+
     addABed(){
       this.$store.commit('addABed',this.$store.state.bedPrice);
     },
+    removeABed(){
+      this.$store.commit('removeABed',this.$store.state.bedPrice);
+
+    },
+
     addAllInclusive(){
       this.$store.commit('addAllInclusive', this.$store.state.allInclusivePrice);
     },

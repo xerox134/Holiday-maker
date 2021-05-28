@@ -17,8 +17,12 @@ public class Booking {
     private boolean wholePension;
     private boolean halfPension;
     private boolean allInclusive;
-    private long fromDate;
-    private long toDate;
+
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private Date fromDate;
+
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private Date toDate;
 
     @ManyToOne
     private Hotel hotel;
@@ -32,7 +36,7 @@ public class Booking {
     public Booking() {
     }
 
-    public Booking(long id, long price, boolean extraBed, boolean wholePension, boolean halfPension, boolean allInclusive, long fromDate, long toDate, Hotel hotel, Room room, User user) {
+    public Booking(long id, long price, boolean extraBed, boolean wholePension, boolean halfPension, boolean allInclusive, Date fromDate, Date toDate, Hotel hotel, Room room, User user) {
         this.id = id;
         this.price = price;
         this.extraBed = extraBed;
@@ -118,19 +122,19 @@ public class Booking {
         this.allInclusive = allInclusive;
     }
 
-    public long getFromDate() {
+    public Date getFromDate() {
         return fromDate;
     }
 
-    public void setFromDate(long fromDate) {
+    public void setFromDate(Date fromDate) {
         this.fromDate = fromDate;
     }
 
-    public long getToDate() {
+    public Date getToDate() {
         return toDate;
     }
 
-    public void setToDate(long toDate) {
+    public void setToDate(Date toDate) {
         this.toDate = toDate;
     }
 

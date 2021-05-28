@@ -3,6 +3,10 @@
  <div>
 
 <p>Total price : {{ updatePrice }} kr</p>
+<div> <p>Adult/s : {{ getAdults }} </p> 
+</div>
+<div><p>Children : {{ getChildren }} </p> 
+</div>
 
 </div>
 
@@ -29,9 +33,19 @@ export default {
     },
       updatePrice(){
     return this.$store.getters.totalPrice
+    },
+    getAdults(){
+    return this.$store.getters.getNumberOfAdults
+    },
+    getChildren(){
+    return this.$store.getters.getNumberOfChildren
     }
     },
-    methods: { },
+    methods: {
+      Edit(){
+      this.$store.commit('addABed',this.$store.state.bedPrice);
+    },
+     },
 
 }
 </script>

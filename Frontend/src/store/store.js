@@ -23,6 +23,7 @@ export default createStore({
     searchedHotels:[],
     toggleList: true,
     totalPrice: 0,
+    bedPriceManipulator:0,
     roomPrice:0,
     bedPrice: 100,
     allInclusivePrice: 200,
@@ -33,6 +34,10 @@ export default createStore({
   },
   
   mutations: {
+
+    setbedPriceManipulator(state,payload){
+      state.bedPriceManipulator = payload
+    },
     
     setDistanceBeach(state,payload){
       state.distanceBeach=payload

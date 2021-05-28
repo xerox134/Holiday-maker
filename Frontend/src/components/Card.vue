@@ -72,8 +72,8 @@
     <div class="Ongoingbooking-card" v-if="type == 'ongoingbooking'" >
       <span>Room id: {{card.id}}</span><br><br>
       <span>Room Price: {{card.price}}</span><br><br>
-      <button @click ="addABed">extra Bed</button>
-      <button @click ="removeABed">Remove Bed?</button>
+      <button id = "addBedButton" @click ="addABed()"  >extra Bed</button>
+      <button id = "removeBedButton" @click ="removeABed()" >Remove Bed?</button>
 
       <button @click="addAllInclusive">Include all luxuries?</button>
     </div>
@@ -85,16 +85,27 @@
 export default {
   props: ["card", "type"],
 
+
   methods:{
     addRoomPriceToTotal(){
       this.$store.commit('addRoomPriceToTotal' , this.card.price);
     },
 
     addABed(){
-      this.$store.commit('addABed',this.$store.state.bedPrice);
+      console.log(this.$store.state.bedPriceManipulator)
+      if(this.$store.state.bedPriceManipulator==0){
+      this.$store.commit('setbedPriceManipulator',1);
+            console.log(this.$store.state.bedPriceManipulator)
+      this.$store.commit('addABed',this.$store.state.bedPrice);}
+      
     },
+
     removeABed(){
-      this.$store.commit('removeABed',this.$store.state.bedPrice);
+      if(this.$store.state.bedPriceManipulator==1){
+      this.$store.commit('setbedPriceManipulator',0);
+      this.$store.commit('removeABed',this.$store.state.bedPrice);}
+      
+      
 
     },
 

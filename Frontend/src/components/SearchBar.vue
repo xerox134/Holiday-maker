@@ -1,13 +1,13 @@
 <template>
 
-<label for="start">Start date:</label>
+  <label for="start">Start date:</label>
   <input class="dateSelect" type="date" id="fromDate" name="trip-start" v-model="fromDate">
   <label for="start">End date:</label>
   <input class="dateSelect" type="date" id="toDate" name="trip-start" v-model="toDate">
  
   <input id="searchBar" v-on:keyup.enter="searchForHotel(searchPhrase)" 
     type="text" placeholder="Sök..." v-model="searchPhrase" >
-  <button @click="searchForHotel(searchPhrase), valueLog()">Sök</button>
+  <button @click="searchForHotel(searchPhrase)">Sök</button>
 
  <div id="topSort"><topSort/></div>
 
@@ -61,7 +61,15 @@ export default {
     setDates(){
       this.$store.commit('setFromDate', this.fromDate)
       this.$store.commit('setToDate', this.toDate)
-    }
+      console.log('fromDate \n' + this.$store.state.fromDate)
+      console.log('toDate \n' + this.$store.state.toDate)
+    },
+
+    filterToDate() {
+      console.log("fromDate Filter " + this.$store.state.fromDate)
+      this.$store.state.hotels = this.$store.state.hotels.filter(hotel => {
+        return hotel.distance_to_beach <= this.$store.state.fromDate
+      });},
     
   }
 

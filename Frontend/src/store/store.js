@@ -19,14 +19,13 @@ export default createStore({
     hotelById:[],
     roomId: null,
     bookedRoom: [],
-    HotelSearchPhrase: '',
+    HotelSearchPhrase: null,
     searchedHotels:[],
     toggleList: true,
     totalPrice: 0,
     roomPrice:0,
     bedPrice: 100,
     allInclusivePrice: 200,
-    dateRange: null,
     fromDate: '',
     toDate: '',
     distanceCenter:null,
@@ -113,6 +112,12 @@ export default createStore({
     },
     addRoomPriceToTotal(state, payload){
       state.totalPrice +=payload;
+    },
+    setFromDate(state, payload){
+      state.fromDate = payload
+    },
+    setToDate(state, payload){
+      state.toDate = payload
     }
     
 

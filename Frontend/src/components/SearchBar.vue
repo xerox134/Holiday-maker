@@ -1,16 +1,21 @@
 <template>
+
+<label for="start">Start date:</label>
+  <input class="dateSelect" type="date" id="fromDate" name="trip-start" v-model="fromDate">
+  <label for="start">End date:</label>
+  <input class="dateSelect" type="date" id="toDate" name="trip-start" v-model="toDate">
  
   <input id="searchBar" v-on:keyup.enter="searchForHotel(searchPhrase)" 
     type="text" placeholder="Sök..." v-model="searchPhrase" >
-  <button @click="searchForHotel(searchPhrase)">Sök</button>
+  <button @click="searchForHotel(searchPhrase), valueLog()">Sök</button>
 
  <div id="topSort"><topSort/></div>
 
  
 
   <ol id="HotelList">
-    <li v-for="(hotel, index) in getSearchedHotels"  :key="index" >  
-      <Card :card="hotel"  :type="'hotel'"/>  
+    <li v-for="(hotel, index) in getSearchedHotels"  :key="index" >
+      <Card :card="hotel"  :type="'hotel'"/>
     </li>
   </ol>
 
@@ -42,11 +47,22 @@ export default {
       this.$store.commit('setToggleList',toggleSearch)
     },
 
-    searchForHotel(phrase){           
+    searchForHotel(phrase){
+      if (phrase != undefined){
+      this.setDates()
       this.$store.commit('setHotelSearchPhrase',phrase);
       this.$store.dispatch("fetchHotelBySearchPhrase");
-      this.toggleList(false)              
+      this.toggleList(false)
+      } else {
+        this.setDates()
+      } 
+       
+    },
+    setDates(){
+      this.$store.commit('setFromDate', this.fromDate)
+      this.$store.commit('setToDate', this.toDate)
     }
+    
   }
 
 }
@@ -54,6 +70,25 @@ export default {
 
 <style scoped>
 
+.dateSelect{
+  border-radius: 10px;
+  top: -2vh;
+  left: 1px;
+  border: none;
+  outline: none;
+  background-color: rgba(80, 75, 85, .3);
+  color: rgba(230, 230, 255, .6);
+  box-shadow: 2px 2px 1px rgba(0, 0, 0, .2), inset 2px 2px 2px rgba(255, 255, 255, .05);
+  margin: 3px;
+  margin-left: 1vw;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  height: min(5vh, 25vw);
+  text-shadow: -1px -1px 2px rgba(0, 0, 0, .3), 1px 1px 2px rgba(126, 126, 126, .5);
+}
 
 
 #searchBar{

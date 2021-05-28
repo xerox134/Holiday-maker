@@ -73,7 +73,13 @@
       <span>Room id: {{card.id}}</span><br><br>
       <span>Room Price: {{card.price}}</span><br><br>
       <button @click ="addABed">extra Bed</button>
-      <button @click="addAllInclusive">Include all luxuries?</button>
+      <div id="luxuries-select">
+        <select id="selected" @change="addInclusive">
+          <option value="200" >All inclusive</option>
+          <option value="150">Full pension</option>
+          <option value="100">Halv pension</option>
+        </select>
+      </div>
     </div>
 
 
@@ -90,8 +96,47 @@ export default {
     addABed(){
       this.$store.commit('addABed',this.$store.state.bedPrice);
     },
-    addAllInclusive(){
-      this.$store.commit('addAllInclusive', this.$store.state.allInclusivePrice);
+    addInclusive() {
+      
+      var active = document.getElementById("selected");
+
+      var v = parseInt(active.options[active.selectedIndex].value);
+      var s = JSON.stringify(v);
+      var d = parseInt(s);
+      console.log(d);
+      
+      if(d == 200) {
+        console.log("here 1");
+        if(this.$store.state.temporaryNumber == 0) {
+          this.$store.state.totalPrice += d
+        this.$store.state.temporaryNumber = d
+        } else {
+          this.$store.state.totalPrice -= this.$store.state.temporaryNumber
+          this.$store.state.temporaryNumber = 0
+          this.$store.state.totalPrice += d
+        }
+      } else if(d == 150) {
+        console.log("here 2");
+        if(this.$store.state.temporaryNumber == 0) {
+          this.$store.state.totalPrice += d
+        this.$store.state.temporaryNumber = d
+        } else {
+          this.$store.state.totalPrice -= this.$store.state.temporaryNumber
+          this.$store.state.temporaryNumber = 0
+          this.$store.state.totalPrice += d        
+        }
+      } else if(d == 100) {
+        console.log("here 3");
+        if(this.$store.state.temporaryNumber == 0) {
+          this.$store.state.totalPrice += d
+        this.$store.state.temporaryNumber = d
+        } else {
+          this.$store.state.totalPrice -= this.$store.state.temporaryNumber
+          this.$store.state.temporaryNumber = 0
+          this.$store.state.totalPrice += d
+        }
+      }
+
     },
 
     async toRooms(id){

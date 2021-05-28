@@ -24,14 +24,16 @@ export default {
   components: { Card},
 
     computed: {
-      getRoomsWithRoomId(){
-    return this.$store.getters.getRoomsWithRoomId
+      getRoomsWithRoomId() {
+        return this.$store.getters.getRoomsWithRoomId
+        },
+    updatePrice() {
+      return this.$store.getters.totalPrice
+      }
     },
-      updatePrice(){
-    return this.$store.getters.totalPrice
-    }
+    methods: {
+      
     },
-    methods: { },
 
 }
 </script>

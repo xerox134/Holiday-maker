@@ -37,12 +37,9 @@ export default {
         return this.$store.getters.getRoomsWithRoomId
         },
     updatePrice() {
-      return this.$store.getters.totalPrice
-      }
+      return this.$store.getters.totalPrice  
     },
-      updatePrice(){
-    return this.$store.getters.totalPrice
-    },
+    
     getAdults(){
     return this.$store.getters.getNumberOfAdults
     },
@@ -58,7 +55,7 @@ export default {
       { return this.$store.getters.getToDate}
     
     
-    },
+},
 
     
     methods: {

@@ -27,7 +27,7 @@ export default createStore({
     bedPriceManipulator:0,
     roomPrice:0,
     bedPrice: 100,
-    numberOfAdults: 2,
+    numberOfAdults: 1,
     numberOfChildren:0,
     temporaryNumber: 0,
     allInclusivePrice: 200,

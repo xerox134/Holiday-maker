@@ -4,6 +4,15 @@
   <input class="dateSelect" type="date" id="fromDate" name="trip-start" v-model="fromDate">
   <label for="start">End date:</label>
   <input class="dateSelect" type="date" id="toDate" name="trip-start" v-model="toDate">
+
+  <div class="peopleAmount">
+    <button @click="removeAdult"> - </button>
+    Adults: {{ getAdults }}
+    <button @click="addAdult"> + </button>
+    <button @click="removeChild"> - </button>
+    Children: {{ getChildren }}
+    <button @click="addChild"> + </button>
+  </div>
  
   <input id="searchBar" v-on:keyup.enter="searchForHotel(searchPhrase)" 
     type="text" placeholder="Sök..." v-model="searchPhrase" >
@@ -38,7 +47,13 @@ export default {
   computed: {
     getSearchedHotels(){
       return this.$store.getters.getSearchedHotels
-    },  
+    },
+    getAdults(){
+      return this.$store.getters.getNumberOfAdults
+    },
+    getChildren(){
+      return this.$store.getters.getNumberOfChildren
+    },
   },
 
   methods: {
@@ -64,7 +79,26 @@ export default {
       console.log('fromDate \n' + this.$store.state.fromDate)
       console.log('toDate \n' + this.$store.state.toDate)
     },
-
+    addAdult() {
+      this.$store.state.numberOfAdults++
+    },
+    removeAdult() {
+      if (this.$store.state.numberOfAdults === 1) {
+        alert("At least one adult is required to book a room")
+      } else {
+        this.$store.state.numberOfAdults--
+      }
+    },
+    addChild() {
+      this.$store.state.numberOfChildren++
+    },
+    removeChild() {
+      if (this.$store.state.numberOfChildren === 0) {
+        alert("Negative quantity not allowed")
+      } else {
+        this.$store.state.numberOfChildren--
+      }
+    },
     filterToDate() {
       console.log("fromDate Filter " + this.$store.state.fromDate)
       this.$store.state.hotels = this.$store.state.hotels.filter(hotel => {

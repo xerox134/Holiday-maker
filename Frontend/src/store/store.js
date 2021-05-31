@@ -29,6 +29,7 @@ export default createStore({
     bedPrice: 100,
     numberOfAdults: 2,
     numberOfChildren:0,
+    temporaryNumber: 0,
     allInclusivePrice: 200,
     fromDate: '',
     toDate: '',
@@ -90,7 +91,6 @@ export default createStore({
     setRoomsByHotelId (state, payload) {
       state.rooms = payload
     },
-  
     setBarFilter (state, payload){
       state.barFilter = payload
     },
@@ -138,6 +138,9 @@ export default createStore({
     },
     setToDate(state, payload){
       state.toDate = payload
+    },
+    setTemporaryNumber(state, payload) {
+      state.temporaryNumber = payload
     }
     
 
@@ -318,7 +321,6 @@ getters:{
   getDateRange(state){
     return state.dateRange
   },
-  
   getBeach(state){
     return state.distanceBeach
   },
@@ -327,6 +329,9 @@ getters:{
   },
   getToDate(state){
     return state.toDate
+  },
+  getTemporaryNumber(state) {
+    return state.temporaryNumber
   }
 },
 

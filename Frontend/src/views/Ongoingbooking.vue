@@ -11,7 +11,9 @@
  export default {
   name: "ongoingbooking",
 
-  components: { Ongoingbooking},
+  components: {
+    Ongoingbooking
+  },
   computed: {},
   methods:{},
 }

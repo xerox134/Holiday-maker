@@ -75,7 +75,15 @@
       <button id = "addBedButton" @click ="addABed()"  >extra Bed</button>
       <button id = "removeBedButton" @click ="removeABed()" >Remove Bed?</button>
 
-      <button @click="addAllInclusive">Include all luxuries?</button>
+      <div id="luxuries-select">
+        <select id="selected" @change="addInclusive">
+          <option value="0">Inga tillval</option>
+          <option value="200" >All inclusive</option>
+          <option value="150">Full pension</option>
+          <option value="100">Halv pension</option>
+          
+        </select>
+      </div>
     </div>
 
 
@@ -99,18 +107,47 @@ export default {
       this.$store.commit('addABed',this.$store.state.bedPrice);}
       
     },
-
     removeABed(){
       if(this.$store.state.bedPriceManipulator==1){
       this.$store.commit('setbedPriceManipulator',0);
       this.$store.commit('removeABed',this.$store.state.bedPrice);}
-      
-      
-
     },
+    addInclusive() {
+      
+      var active = document.getElementById("selected");
+      var taUtValueFrånOption = parseInt(active.options[active.selectedIndex].value);
+      var value2String = JSON.stringify(taUtValueFrånOption);
+      var intValue = parseInt(value2String);
 
-    addAllInclusive(){
-      this.$store.commit('addAllInclusive', this.$store.state.allInclusivePrice);
+        if(intValue == 200) {
+        if(this.$store.state.temporaryNumber == 0 || this.$store.state.temporaryNumber == 150 || this.$store.state.temporaryNumber == 100) {
+          this.$store.state.totalPrice += intValue
+        this.$store.state.totalPrice -= this.$store.state.temporaryNumber
+          this.$store.state.temporaryNumber = 200
+        }}
+
+        else if(intValue == 150) {
+        if(this.$store.state.temporaryNumber == 0 || this.$store.state.temporaryNumber == 200|| this.$store.state.temporaryNumber == 100) {
+          this.$store.state.totalPrice += intValue
+        this.$store.state.totalPrice -= this.$store.state.temporaryNumber
+          this.$store.state.temporaryNumber = 150
+        }}
+
+        else if(intValue == 100) {
+        if(this.$store.state.temporaryNumber == 0 || this.$store.state.temporaryNumber == 150 || this.$store.state.temporaryNumber == 200) {
+          this.$store.state.totalPrice += intValue
+        this.$store.state.totalPrice -= this.$store.state.temporaryNumber
+          this.$store.state.temporaryNumber = 100
+        }} 
+        
+        else if(intValue == 0) {
+        if(this.$store.state.temporaryNumber == 100 || this.$store.state.temporaryNumber == 150 || this.$store.state.temporaryNumber == 200) {
+          this.$store.state.totalPrice += intValue
+        this.$store.state.totalPrice -= this.$store.state.temporaryNumber
+          this.$store.state.temporaryNumber = 0
+        }}
+
+     
     },
 
     async toRooms(id){

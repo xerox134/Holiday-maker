@@ -47,6 +47,7 @@ export default {
       this.$store.commit('setDistanceCenter',this.currentValue)
       console.log(this.$store.state.distanceCenter)
       this.$store.state.hotels =this.$store.state.hotels2
+       this.$store.state.searchedHotels =this.$store.state.searchedHotels2
       const number = this.currentValue
       this.toggleCentrum(number)
       this.toggleCentrum2(number)
@@ -54,6 +55,12 @@ export default {
 
     
     toggleCentrum(distance) {
+
+       if(this.$store.state.distanceBeach!=null){
+         this.$store.state.hotels = this.$store.state.hotels.filter(hotel => {
+        return hotel.distance_to_beach <= this.$store.state.distanceBeach
+
+      }) }
       console.log("max distance is " + distance)
       
       this.$store.state.hotels = this.$store.state.hotels.filter(hotel => {
@@ -65,6 +72,12 @@ export default {
     
      
      toggleCentrum2(distance) {
+       if(this.$store.state.distanceBeach!=null){
+         this.$store.state.searchedHotels = this.$store.state.searchedHotels.filter(hotel => {
+        return hotel.distance_to_beach <= this.$store.state.distanceBeach
+
+      }) }
+
       console.log("max distance is " + distance)
       this.$store.state.searchedHotels = this.$store.state.searchedHotels.filter(hotel => {
         return hotel.distance_to_center <= distance

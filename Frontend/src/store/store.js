@@ -21,6 +21,7 @@ export default createStore({
     bookedRoom: [],
     HotelSearchPhrase: null,
     searchedHotels:[],
+    searchedHotels2:[],
     toggleList: true,
     totalPrice: 0,
     bedPriceManipulator:0,
@@ -104,7 +105,10 @@ export default createStore({
     },
     sethotelsBySearch(state,payload){
       state.searchedHotels = payload;
+      state.searchedHotels2 = payload;
     },
+    
+    
     setFilteredHotels(state, payload){
       state.filteredHotels = payload
     },
@@ -258,6 +262,9 @@ getters:{
 
   getSearchedHotels(state){
     return state.searchedHotels
+  },
+  getSearchedHotels2(state){
+    return state.searchedHotels2
   },
   getLoginUserId(state){
     return state.loggedInUserId

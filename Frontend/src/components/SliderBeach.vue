@@ -48,23 +48,35 @@ export default {
       console.log(this.$store.state.distance_to_beach)
       const number = this.currentValue
       this.$store.state.hotels =this.$store.state.hotels2
+      this.$store.state.searchedHotels =this.$store.state.searchedHotels2
       this.toggleBeach(number)
       this.toggleBeach2(number)
     },
 
     
     toggleBeach(distance) {
-     
+      if(this.$store.state.distanceCenter!=null){
+         this.$store.state.hotels = this.$store.state.hotels.filter(hotel => {
+        return hotel.distance_to_center <= this.$store.state.distanceCenter
 
-      console.log("sasdasdasad" + this.$store.state.hotels)
-      console.log("max distance is " + distance)
+      }) }
+     
+      console.log("max distance from center is: " + this.$store.state.distanceCenter)
       this.$store.state.hotels = this.$store.state.hotels.filter(hotel => {
         return hotel.distance_to_beach <= distance
       });},
      
+
+
      
      toggleBeach2(distance) {
-      console.log("max distance is " + distance)
+       if(this.$store.state.distanceCenter!=null){
+         this.$store.state.searchedHotels = this.$store.state.searchedHotels.filter(hotel => {
+        return hotel.distance_to_center <= this.$store.state.distanceCenter
+
+      }) }
+
+      console.log("max distance from beach is:" + distance)
       this.$store.state.searchedHotels = this.$store.state.searchedHotels.filter(hotel => {
         return hotel.distance_to_beach <= distance
       });},

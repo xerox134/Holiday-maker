@@ -26,6 +26,8 @@ export default createStore({
     bedPriceManipulator:0,
     roomPrice:0,
     bedPrice: 100,
+    numberOfAdults: 2,
+    numberOfChildren:0,
     allInclusivePrice: 200,
     fromDate: '',
     toDate: '',
@@ -35,6 +37,12 @@ export default createStore({
   
   mutations: {
 
+    setNumberOfAdults(state, payload){
+      state.numberOfAdults = payload
+    },
+    setNumberOfChildren(state, payload){
+      state.numberOfChildren = payload
+    },
     setbedPriceManipulator(state,payload){
       state.bedPriceManipulator = payload
     },
@@ -241,6 +249,13 @@ export default createStore({
 },
 
 getters:{
+  getNumberOfAdults(state){
+    return state.numberOfAdults
+  },
+  getNumberOfChildren(state){
+    return state.numberOfChildren
+  },
+
   getSearchedHotels(state){
     return state.searchedHotels
   },

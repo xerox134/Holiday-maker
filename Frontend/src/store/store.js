@@ -321,6 +321,12 @@ getters:{
   
   getBeach(state){
     return state.distanceBeach
+  },
+  getFromDate(state){
+    return state.fromDate
+  },
+  getToDate(state){
+    return state.toDate
   }
 },
 

@@ -18,6 +18,7 @@ public class Booking {
     private boolean halfPension;
     private boolean allInclusive;
 
+
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date fromDate;
 
@@ -35,6 +36,8 @@ public class Booking {
 
     public Booking() {
     }
+
+
 
     public Booking(long id, long price, boolean extraBed, boolean wholePension, boolean halfPension, boolean allInclusive, Date fromDate, Date toDate, Hotel hotel, Room room, User user) {
         this.id = id;

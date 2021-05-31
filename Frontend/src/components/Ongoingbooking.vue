@@ -8,6 +8,11 @@
 <div><p>Children : {{ getChildren }} </p> 
 </div>
 
+<div id="datum">
+<p>Datum: {{ getFromDate }} - {{ getToDate }} </p>
+
+</div>
+
 </div>
 
 
@@ -39,8 +44,19 @@ export default {
     },
     getChildren(){
     return this.$store.getters.getNumberOfChildren
-    }
     },
+    
+     getFromDate()
+     { return this.$store.getters.getFromDate},
+     
+     
+     getToDate()
+      { return this.$store.getters.getToDate}
+    
+    
+    },
+
+    
     methods: {
       Edit(){
       this.$store.commit('addABed',this.$store.state.bedPrice);

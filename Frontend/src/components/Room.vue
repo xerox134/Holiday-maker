@@ -1,7 +1,6 @@
 <template>
 <button @click="$router.push('ongoingbooking')">Continue to booking</button>
     <div>
-        <button @click="filteredRooms"> </button>
         <ol id="HotelList">
             <li v-for="(hotel, index) in getHotelById"  :key="index" >   <!--false=boolean till episodeToggle-->
                 <Card :card="hotel"  :type="'hotel'"/>  
@@ -10,8 +9,8 @@
     </div>
     <h2>Available rooms</h2>
     <div>
-        <ol id="RoomsList">
-            <li v-for="(room, index) in getRoomByHotelId"  :key="index" >   <!--false=boolean till episodeToggle-->
+        <ol  id="RoomsList">
+            <li v-for="(room, index) in filteredRooms"  :key="index" >   <!--false=boolean till episodeToggle-->
                 <Card :card="room"  :type="'room'"/>  
             </li>
         </ol>
@@ -37,6 +36,13 @@ export default {
         getHotelById(){
             return this.$store.getters.getHotelById
         },
+        filteredRooms() {
+           return this.$store.state.rooms.filter(room => {
+            return room.beds >= this.$store.getters.getAllPeople
+
+        });
+        },
+        
 
     },
 
@@ -44,12 +50,7 @@ export default {
         toggle () {
         this.active = !this.active
       },
-        filteredRooms() {
-        this.$store.state.rooms = this.$store.state.rooms.filter(room => {
-            return room.beds >= this.$store.getters.getAllPeople
-
-        });
-        },
+        
     },
 
     mounted(){

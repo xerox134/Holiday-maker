@@ -23,6 +23,9 @@
          </li>
     </ol>
    </div>
+   <div>
+     <button @click="addBooking"> BOKA </button>
+   </div>
 </template>
 
 <script>
@@ -59,10 +62,34 @@ export default {
 
     
     methods: {
-      Edit(){
+    Edit(){
       this.$store.commit('addABed',this.$store.state.bedPrice);
     },
-     },
+    async addBooking() {
+      const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({     hotel: {
+        id: 1
+        },
+        room: {
+            id : 1005
+            },
+            price: 6000,
+            extraBed: true,
+            wholePension: true,
+            halfPension: false, 
+            allInclusive: true,
+            fromDate: 20210816,
+            toDate: 20220923
+    })
+  };
+  const response = await fetch("/rest/bookings", requestOptions);
+  const data = await response.json();
+  this.postId = data.id;
+  console.log(data);
+    }
+  },
 
 }
 </script>

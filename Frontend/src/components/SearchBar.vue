@@ -8,11 +8,15 @@
   <div class="peopleAmount">
     <button @click="removeAdult"> - </button>
     Adults: {{ getAdults }}
-    <button @click="addAdult"> + </button>
+    <button @click="addAdult(), addPerson()"> + </button>
     <button @click="removeChild"> - </button>
     Children: {{ getChildren }}
     <button @click="addChild"> + </button>
+
+    <div>Total: {{getAllPeople}}</div>
+
   </div>
+
  
   <input id="searchBar" v-on:keyup.enter="searchForHotel(searchPhrase)" 
     type="text" placeholder="Sök..." v-model="searchPhrase" >
@@ -51,6 +55,10 @@ export default {
     getAdults(){
       return this.$store.getters.getNumberOfAdults
     },
+    getAllPeople(){
+      return this.$store.getters.getAllPeople
+    },
+    
     getChildren(){
       return this.$store.getters.getNumberOfChildren
     },
@@ -79,8 +87,13 @@ export default {
       console.log('fromDate \n' + this.$store.state.fromDate)
       console.log('toDate \n' + this.$store.state.toDate)
     },
+    
     addAdult() {
       this.$store.state.numberOfAdults++
+      
+    },
+    addPerson(){
+      this.$store.commit('addAPerson',1)
     },
     removeAdult() {
       if (this.$store.state.numberOfAdults === 1) {
@@ -91,6 +104,8 @@ export default {
     },
     addChild() {
       this.$store.state.numberOfChildren++
+            this.$store.state.numberOfAll ++
+
     },
     removeChild() {
       if (this.$store.state.numberOfChildren === 0) {

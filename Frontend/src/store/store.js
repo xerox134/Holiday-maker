@@ -34,10 +34,14 @@ export default createStore({
     fromDate: '',
     toDate: '',
     distanceCenter:null,
-    distanceBeach:null
+    distanceBeach:null,
+    numberOfAll: 1
   },
   
   mutations: {
+    addAPerson(state,payload){
+      state.numberOfAll += payload
+    },
 
     setNumberOfAdults(state, payload){
       state.numberOfAdults = payload
@@ -256,6 +260,9 @@ export default createStore({
 },
 
 getters:{
+  getAllPeople(state){
+    return state.numberOfAll
+  },
   getNumberOfAdults(state){
     return state.numberOfAdults
   },

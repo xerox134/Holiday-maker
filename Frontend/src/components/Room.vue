@@ -1,5 +1,6 @@
 <template>
 <div>{{this.$store.state.allBookings}}</div>
+<div>{{id}}</div>
 <button @click="filterRooms()"></button>
 <button @click="$router.push('ongoingbooking')">Continue to booking</button>
     <div>
@@ -18,18 +19,36 @@
         </ol>
   
     </div>
+_______________________________________________________________________________________________________________________
+      <div>
+        <ol id="RoomsList">
+            <li v-for="(room, index) in REAL"  :key="index" >   <!--false=boolean till episodeToggle-->
+                <Card :card="room"  :type="'room'"/>  
+            </li>
+        </ol>
+  
+    </div>
 </template>
 
 
 <script>
+
 import Card from "../components/Card";
 export default {
     name: "Hotels",
     
+     data(){
+    return {
+      id:[],
+      filterdArray:[],
+      REAL:[],
+    };
+     },
 
     components: {
         Card,   
     },
+   
     
     computed: {
         getRoomByHotelId(){
@@ -49,14 +68,81 @@ export default {
         filterRooms(){
             
 
-            this.filterBookableRooms()
-            console.log(this.$store.state.allBookings)
             this.filterBookableRooms2()
-            console.log(this.$store.state.allBookings)
-            console.log('bokade rum ' + this.$store.state.allBookings)
+            console.log("Filtrerat på från datum!: " ,this.$store.state.allBookings)
+            this.filterBookableRooms()
+            console.log( "Filtrerat alla bokade rum!" ,this.$store.state.allBookings)
+          
 
+            this.getId()
+            this.filterRoomsWithBookedRooms()
+
+         
+            console.log("Detta är alla filtrerade rum i STORE!" ,this.$store.state.bookedRoomsId)
+
+             },
+
+
+        filterBookableRooms(){
+            this.$store.state.allBookings = this.$store.state.allBookings.filter(bookedRooms => {
+                return bookedRooms.toDate <= this.$store.state.toDate
+            } )  
+        },
+        filterBookableRooms2(){
+            this.$store.state.allBookings = this.$store.state.allBookings.filter(bookedRooms => {
+                return bookedRooms.fromDate >= this.$store.state.fromDate
+            } )
+        }, 
+        
+        getId(){
             
+        this.$store.state.allBookings.forEach(element => {
+            this.filterdArray.push(element)
+            console.log("Filtrerade arrayen i getID" ,this.filterdArray),
+                this.id.push( element.room.id)                
+            });
 
+            this.$store.state.bookedRoomsId = this.filterdArray
+            console.log(this.$store.state.bookedRoomsId)
+
+        },
+
+
+        filterRoomsWithBookedRooms(){
+            
+        this.$store.state.rooms.forEach(element2 =>{
+            
+        this.id.forEach(element3=>{
+console.log("denna?" ,element2.id)
+console.log("mot denna?", element3)
+
+var number1= JSON.stringify(element2.id)
+var number2= parseInt(number1)
+console.log("efsdjfklsjdfklsdjfklsdfjklfsdjkl",number2)
+
+var number3= JSON.stringify(element3.id)
+var number4= parseInt(number3)
+console.log("____________________________________")
+           
+           
+           
+           if(number2!=number4){
+                console.log("WIIIIIIINNNNNN?")
+                console.log("_____________________________")
+            this.REAL.push(element2)
+                     }
+                     
+                     else {
+
+                         console.log("funkar ejejjjejejejejj")
+                         return null;
+                     }
+                 })
+             })
+        }
+
+
+},
 /*
             var newArray = arrayOfObjects.filter(function(obj){
                 return toDelete.indexOf(obj) ==-1
@@ -96,12 +182,12 @@ export default {
 */
             
 
-            var toDelete = this.$store.state.allBookings
-            var arrayOfObjects = this.$store.state.allBookings2
+            // var toDelete = this.$store.state.allBookings
+            // var arrayOfObjects = this.$store.state.allBookings2
             
-            console.log('toDelete \n' + toDelete)
-            console.log('Original arrayOfObjects' + arrayOfObjects)
-            console.log('9')
+            // console.log('toDelete \n' + toDelete)
+            // console.log('Original arrayOfObjects' + arrayOfObjects)
+            // console.log('9')
 
             
             
@@ -117,23 +203,7 @@ export default {
             var sad = parseInt(dsa)
             console.log(sad)
             console.log('all bookings id? ' + this.$store.state.allBookings.id)
-*/         
-        },
-
-        filterBookableRooms(){
-            this.$store.state.allBookings = this.$store.state.allBookings.filter(bookedRooms => {
-                return bookedRooms.toDate <= this.$store.state.toDate
-            } )  
-        },
-        filterBookableRooms2(){
-            this.$store.state.allBookings = this.$store.state.allBookings.filter(bookedRooms => {
-                return bookedRooms.fromDate >= this.$store.state.fromDate
-            } )
-        },
-        
-        
-    },
-
+*/      
     mounted(){
         console.log("we fetching")
         this.$store.dispatch("fetchHotelById")

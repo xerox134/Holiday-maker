@@ -32,14 +32,17 @@ export default createStore({
     temporaryNumber: 0,
     allInclusivePrice: 200,
     fromDate: '2021-05-19',
-    toDate: '2021-05-26',
+    toDate: '2021-06-07',
     distanceCenter:null,
     distanceBeach:null,
     allBookings: [],
-    allBookings2: []
+    allBookings2: [],
+    
   },
   
   mutations: {
+
+
     setNumberOfAdults(state, payload){
       state.numberOfAdults = payload
     },
@@ -333,7 +336,8 @@ export default createStore({
     },
     getAllAllBookings (state){
       return state.allBookings
-    }
+    },
+  
   },
 
   modules: {

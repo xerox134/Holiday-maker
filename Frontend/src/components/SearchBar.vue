@@ -12,9 +12,6 @@
     <button @click="removeChild"> - </button>
     Children: {{ getChildren }}
     <button @click="addChild"> + </button>
-
-    <div>Total: {{getAllPeople}}</div>
-
   </div>
 
  
@@ -69,11 +66,8 @@ export default {
       this.$store.state.numberOfAll = totalPeople;
       this.$store.state.rooms = this.$store.state.rooms.filter(room => {
         return room.beds == totalPeople  
-         
       });
-
     },
-
 
     toggleList(toggleSearch){
       console.log(toggleSearch)
@@ -88,39 +82,40 @@ export default {
       this.toggleList(false)
       } else {
         this.setDates()
-      } 
-       
+      }    
     },
+
     setDates(){
       this.$store.commit('setFromDate', this.fromDate)
       this.$store.commit('setToDate', this.toDate)
       console.log('fromDate \n' + this.$store.state.fromDate)
       console.log('toDate \n' + this.$store.state.toDate)
     },
-    
+
     addAdult() {
       this.$store.state.numberOfAdults++
       this.$store.state.numberOfAll ++
-
-      
     },
+
     addPerson(){
       this.$store.commit('addAPerson',1)
     },
+
     removeAdult() {
       if (this.$store.state.numberOfAdults === 1) {
         alert("At least one adult is required to book a room")
       } else {
         this.$store.state.numberOfAdults--
         this.$store.state.numberOfAll --
-
       }
     },
+
     addChild() {
       this.$store.state.numberOfChildren++
       this.$store.state.numberOfAll ++
 
     },
+
     removeChild() {
       if (this.$store.state.numberOfChildren === 0) {
         alert("Negative quantity not allowed")
@@ -130,14 +125,14 @@ export default {
 
       }
     },
+
     filterToDate() {
       console.log("fromDate Filter " + this.$store.state.fromDate)
       this.$store.state.hotels = this.$store.state.hotels.filter(hotel => {
         return hotel.distance_to_beach <= this.$store.state.fromDate
-      });},
-    
+      })
+    }, 
   }
-
 }
 </script>
 

@@ -57,25 +57,53 @@ export default {
 
             
 
+/*
+            var newArray = arrayOfObjects.filter(function(obj){
+                return toDelete.indexOf(obj) ==-1
+                
+            })
+            console.log('test' + newArray)
+            
+            var newArray = arrayOfObjects.filter(function(obj) {
+                return toDelete.indexOf(obj) === -1;
+            })
+            console.log('newArray' + newArray)
+
             const filterInPlace = (array, predicate) =>{
+                console.log('1')
                 let end = 0;
+                console.log('2')
                 for (let i = 0; i < array.length ; i++){
-                    const obj = array[i];
+                    console.log('3')
+                    const obj = array[i]
+                    console.log('4')
                     if (predicate(obj)){
                         array[end++] = obj
+                        console.log('5')
                     }
+                    console.log('6')
                 }
-                array.length = end;
-            };
+                console.log('7')
+                array.length = end
+                
+            }
+            console.log('8')
+
+            filterInPlace(arrayOfObjects, obj => !toDelete.has(obj.id));
+            console.log('Filtered arrayOfObjects \n' + arrayOfObjects)
+            console.log('10')
+
+*/
+            
 
             var toDelete = this.$store.state.allBookings
             var arrayOfObjects = this.$store.state.allBookings2
             
-            console.log(toDelete)
-            console.log(arrayOfObjects)
+            console.log('toDelete \n' + toDelete)
+            console.log('Original arrayOfObjects' + arrayOfObjects)
+            console.log('9')
 
-            filterInPlace(arrayOfObjects, obj => !toDelete.has(obj.id));
-            console.log(arrayOfObjects)
+            
             
 /*
             var idIDid = this.$store.state.allBookings = this.$store.state.allBookings.filter(id => {

@@ -50,14 +50,15 @@ export default {
     return this.$store.getters.getNumberOfChildren
     },
     
-     getFromDate()
-     { return this.$store.getters.getFromDate},
-     
-     
-     getToDate()
-      { return this.$store.getters.getToDate}
-    
-    
+    getFromDate() {
+      return this.$store.getters.getFromDate
+      },          
+    getToDate() {
+      return this.$store.getters.getToDate
+    },
+    getExtraBed() {
+      return this.$store.getters.getExtraBed
+    }
 },
 
     
@@ -69,19 +70,18 @@ export default {
       const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({     hotel: {
-        id: 1
-        },
+    body: JSON.stringify({
         room: {
-            id : 1005
+            id : 1008
             },
-            price: 6000,
-            extraBed: true,
+            price: this.$store.getters.totalPrice,
+            extraBed: this.$store.getters.getExtraBed, // Kollar om extrasängsknappen är sann eller falsk
             wholePension: true,
-            halfPension: false, 
-            allInclusive: true,
-            fromDate: 20210816,
-            toDate: 20220923
+            halfPension: false,
+            numberOfAdults: this.$store.getters.getNumberOfAdults, // Hämtar antal vuxna som man valt
+            numberOfChildren: this.$store.getters.getNumberOfChildren, // Hämtar antal barn som man valt
+            fromDate: this.$store.getters.getFromDate, // Hämtar datumet man valt. Bokningen funkar inte om man inte fyller i ett startdatum
+            toDate: this.$store.getters.getToDate // Hämtar datumet man valt. Bokningen funkar inte om man inte fyller i ett slutdatum
     })
   };
   const response = await fetch("/rest/bookings", requestOptions);

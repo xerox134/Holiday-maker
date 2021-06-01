@@ -31,18 +31,18 @@ export default createStore({
     numberOfChildren:0,
     temporaryNumber: 0,
     allInclusivePrice: 200,
-    fromDate: '',
-    toDate: '',
+    fromDate: new Date().toISOString().substr(0, 10),
+    toDate: new Date().toISOString().substr(0, 10),
     distanceCenter:null,
     distanceBeach:null,
-    numberOfAll: 1
+    numberOfAll: 1,
+    extraBed: false
   },
   
   mutations: {
     addAPerson(state,payload){
       state.numberOfAll += payload
     },
-
     setNumberOfAdults(state, payload){
       state.numberOfAdults = payload
     },
@@ -145,6 +145,9 @@ export default createStore({
     },
     setTemporaryNumber(state, payload) {
       state.temporaryNumber = payload
+    },
+    setExtraBed(state, payload) {
+      state.extraBed = payload
     }
     
 
@@ -339,6 +342,9 @@ getters:{
   },
   getTemporaryNumber(state) {
     return state.temporaryNumber
+  },
+  getExtraBed(state) {
+    return state.extraBed
   }
 },
 

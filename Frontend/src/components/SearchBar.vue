@@ -140,6 +140,10 @@ export default {
         return hotel.distance_to_beach <= this.$store.state.fromDate
       })
     }, 
+  },
+
+  mounted() {
+    console.log(this.$store.state.fromDate)
   }
 }
 </script>

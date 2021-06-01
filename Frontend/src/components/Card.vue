@@ -104,13 +104,19 @@ export default {
       if(this.$store.state.bedPriceManipulator==0){
       this.$store.commit('setbedPriceManipulator',1);
             console.log(this.$store.state.bedPriceManipulator)
-      this.$store.commit('addABed',this.$store.state.bedPrice);}
+      this.$store.commit('addABed',this.$store.state.bedPrice)
+      this.$store.commit('setExtraBed', true)
+      console.log(this.$store.state.extraBed)
+      }
       
     },
     removeABed(){
       if(this.$store.state.bedPriceManipulator==1){
       this.$store.commit('setbedPriceManipulator',0);
-      this.$store.commit('removeABed',this.$store.state.bedPrice);}
+      this.$store.commit('removeABed',this.$store.state.bedPrice)
+      this.$store.commit('setExtraBed', false)
+      console.log(this.$store.state.extraBed)
+      }
     },
     addInclusive() {
       

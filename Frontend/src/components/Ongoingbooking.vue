@@ -32,37 +32,34 @@ export default {
   name: "Booking",
   components: { Card},
 
-    computed: {
-      getRoomsWithRoomId() {
-        return this.$store.getters.getRoomsWithRoomId
-        },
+  computed: {
+    getRoomsWithRoomId() {
+      return this.$store.getters.getRoomsWithRoomId
+    },
     updatePrice() {
       return this.$store.getters.totalPrice  
     },
-    
     getAdults(){
-    return this.$store.getters.getNumberOfAdults
+      return this.$store.getters.getNumberOfAdults
     },
     getChildren(){
-    return this.$store.getters.getNumberOfChildren
+      return this.$store.getters.getNumberOfChildren
     },
+    getFromDate(){
+      return this.$store.getters.getFromDate
+    },
+    getToDate(){ 
+      return this.$store.getters.getToDate
+    }
     
-     getFromDate()
-     { return this.$store.getters.getFromDate},
-     
-     
-     getToDate()
-      { return this.$store.getters.getToDate}
-    
-    
-},
+  },
 
     
-    methods: {
-      Edit(){
+  methods: {
+    Edit(){
       this.$store.commit('addABed',this.$store.state.bedPrice);
     },
-     },
+  },
 
 }
 </script>

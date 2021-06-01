@@ -36,7 +36,10 @@ export default createStore({
     distanceCenter:null,
     distanceBeach:null,
     numberOfAll: 1,
-    extraBed: false
+    extraBed: false,
+    wholePension: false,
+    halfPension: false,
+    allInclusive: false
   },
   
   mutations: {
@@ -148,10 +151,16 @@ export default createStore({
     },
     setExtraBed(state, payload) {
       state.extraBed = payload
+    },
+    setWholePension(state, payload) {
+      state.wholePension = payload
+    },
+    setHalfPension(state, payload) {
+      state.halfPension = payload
+    },
+    setAllInclusive(state, payload) {
+      state.allInclusive = payload
     }
-    
-
-
   },
   
   actions: {
@@ -345,6 +354,15 @@ getters:{
   },
   getExtraBed(state) {
     return state.extraBed
+  },
+  getWholePension(state) {
+    return state.wholePension
+  },
+  getHalfPension(state) {
+    return state.halfPension
+  },
+  getAllInclusive(state) {
+    return state.allInclusive
   }
 },
 

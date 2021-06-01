@@ -9,8 +9,8 @@
     </div>
     <h2>Available rooms</h2>
     <div>
-        <ol id="RoomsList">
-            <li v-for="(room, index) in getRoomByHotelId"  :key="index" >   <!--false=boolean till episodeToggle-->
+        <ol  id="RoomsList">
+            <li v-for="(room, index) in filteredRooms"  :key="index" >   <!--false=boolean till episodeToggle-->
                 <Card :card="room"  :type="'room'"/>  
             </li>
         </ol>
@@ -35,13 +35,22 @@ export default {
         }, 
         getHotelById(){
             return this.$store.getters.getHotelById
-        },  
+        },
+        filteredRooms() {
+           return this.$store.state.rooms.filter(room => {
+            return room.beds >= this.$store.getters.getAllPeople
+
+        });
+        },
+        
+
     },
 
     methods:{
         toggle () {
         this.active = !this.active
-      }
+      },
+        
     },
 
     mounted(){
@@ -49,6 +58,8 @@ export default {
         this.$store.dispatch("fetchHotelById")
         this.$store.dispatch("fetchRoomsByHotelId")
         console.log("hotelId = " + this.$store.getters.getHotelId)
+      console.log(this.$store.getters.getAllPeople);
+    
     },
  
 }

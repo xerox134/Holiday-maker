@@ -8,7 +8,7 @@
   <div class="peopleAmount">
     <button @click="removeAdult"> - </button>
     Adults: {{ getAdults }}
-    <button @click="addAdult(), addPerson()"> + </button>
+    <button @click="addAdult"> + </button>
     <button @click="removeChild"> - </button>
     Children: {{ getChildren }}
     <button @click="addChild"> + </button>
@@ -21,6 +21,7 @@
   <input id="searchBar" v-on:keyup.enter="searchForHotel(searchPhrase)" 
     type="text" placeholder="Sök..." v-model="searchPhrase" >
   <button @click="searchForHotel(searchPhrase)">Sök</button>
+  <button @click =" filteredRooms">Search by totalpeople</button>
 
  <div id="topSort"><topSort/></div>
 
@@ -65,6 +66,16 @@ export default {
   },
 
   methods: {
+    filteredRooms(totalPeople) {
+      this.$store.state.numberOfAll = totalPeople;
+      this.$store.state.rooms = this.$store.state.rooms.filter(room => {
+        return room.beds == totalPeople  
+         
+      });
+
+    },
+
+
     toggleList(toggleSearch){
       console.log(toggleSearch)
       this.$store.commit('setToggleList',toggleSearch)
@@ -90,6 +101,8 @@ export default {
     
     addAdult() {
       this.$store.state.numberOfAdults++
+      this.$store.state.numberOfAll ++
+
       
     },
     addPerson(){
@@ -100,11 +113,13 @@ export default {
         alert("At least one adult is required to book a room")
       } else {
         this.$store.state.numberOfAdults--
+        this.$store.state.numberOfAll --
+
       }
     },
     addChild() {
       this.$store.state.numberOfChildren++
-            this.$store.state.numberOfAll ++
+      this.$store.state.numberOfAll ++
 
     },
     removeChild() {
@@ -112,6 +127,8 @@ export default {
         alert("Negative quantity not allowed")
       } else {
         this.$store.state.numberOfChildren--
+        this.$store.state.numberOfAll --
+
       }
     },
     filterToDate() {

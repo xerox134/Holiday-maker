@@ -21,8 +21,6 @@
   <input id="searchBar" v-on:keyup.enter="searchForHotel(searchPhrase)" 
     type="text" placeholder="Sök..." v-model="searchPhrase" >
   <button @click="searchForHotel(searchPhrase)">Sök</button>
-  <button @click =" filteredRooms">Search by totalpeople</button>
-
  <div id="topSort"><topSort/></div>
 
  
@@ -57,6 +55,7 @@ export default {
       return this.$store.getters.getNumberOfAdults
     },
     getAllPeople(){
+      console.log(this.$store.getters.getAllPeople);
       return this.$store.getters.getAllPeople
     },
     

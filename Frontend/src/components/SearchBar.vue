@@ -80,6 +80,10 @@ export default {
       console.log('toDate \n' + this.$store.state.toDate)
     },
     addAdult() {
+      if(this.$store.state.numberOfAdults === 5) {
+        alert("Only five adults can be booked at a time")
+        this.$store.state.numberOfAdults--
+      }
       this.$store.state.numberOfAdults++
     },
     removeAdult() {
@@ -90,6 +94,10 @@ export default {
       }
     },
     addChild() {
+      if(this.$store.state.numberOfChildren === 5) {
+        alert("Only five children can be booked at a time")
+        this.$store.state.numberOfChildren--
+      }
       this.$store.state.numberOfChildren++
     },
     removeChild() {

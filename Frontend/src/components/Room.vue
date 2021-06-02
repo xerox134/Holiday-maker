@@ -21,7 +21,6 @@
     </ol>
   </div>
   _______________________________________________________________________________________________________________________
-  
 </template>
 
 
@@ -35,7 +34,7 @@ export default {
       id: [],
       filterdArray: [],
       REAL: [],
-      resultArr:[]
+      resultArr: [],
     };
   },
 
@@ -50,12 +49,7 @@ export default {
     getHotelById() {
       return this.$store.getters.getHotelById;
     },
- 
   },
-
- 
-
- 
 
   methods: {
     toggle() {
@@ -63,16 +57,25 @@ export default {
     },
 
     filterRoomsDate() {
+      console.log("inne nu");
+
       this.filterBookableRooms2();
+
       this.filterBookableRooms();
+
       this.getId();
+
       this.filterRoomsWithBookedRooms();
+
       this.fliterDuplicateRooms();
+
       this.makeRoomsArrayWork();
 
+      console.log("detta är resultarr", this.resultArr);
     },
 
     filterBookableRooms() {
+      console.log("2");
       this.$store.state.allBookings = this.$store.state.allBookings.filter(
         (bookedRooms) => {
           return bookedRooms.toDate <= this.$store.state.toDate;
@@ -80,6 +83,7 @@ export default {
       );
     },
     filterBookableRooms2() {
+      console.log("1");
       this.$store.state.allBookings = this.$store.state.allBookings.filter(
         (bookedRooms) => {
           return bookedRooms.fromDate >= this.$store.state.fromDate;
@@ -88,6 +92,7 @@ export default {
     },
 
     getId() {
+      console.log("3");
       this.$store.state.allBookings.forEach((element) => {
         this.filterdArray.push(element);
         console.log("Filtrerade arrayen i getID", this.filterdArray),
@@ -99,12 +104,13 @@ export default {
     },
 
     filterRoomsWithBookedRooms() {
+      console.log("4");
       this.$store.state.rooms.forEach((element2) => {
+        console.log("vi är inne i 4 1sta foreach");
         this.id.every((element3) => {
+          console.log("vi är inne i 4 2a foreach");
           console.log("denna?", element2.id);
           console.log("mot denna?", element3);
-
-        
 
           console.log("____________________________________");
 
@@ -112,31 +118,28 @@ export default {
             console.log("WIIIIIIINNNNNN?");
             console.log("_____________________________");
             this.REAL.push(element2);
-            return true
-            
+            return true;
           } else {
             console.log("Inne på funkar ej");
-            return false
+            return false;
           }
         });
       });
     },
 
-
-    fliterDuplicateRooms(){
-        this.resultArr = this.REAL.filter((data,index)=>{
-  return this.REAL.indexOf(data) === index;
-})
+    fliterDuplicateRooms() {
+      console.log("5");
+      this.resultArr = this.REAL.filter((data, index) => {
+        return this.REAL.indexOf(data) === index;
+      });
     },
 
-    makeRoomsArrayWork(){
-        this.$store.state.rooms=this.resultArr
-       
-    }
+    makeRoomsArrayWork() {
+      console.log("6");
+
+      console.log("sista funktionen");
+    },
   },
- 
-
-
 
   mounted() {
     console.log("we fetching");
@@ -144,11 +147,6 @@ export default {
     this.$store.dispatch("fetchRoomsByHotelId");
     this.$store.dispatch("fetchBookings");
     console.log("hotelId = " + this.$store.getters.getHotelId);
-    this.filterRoomsDate();
- 
-
-  
-
   },
 };
 </script>

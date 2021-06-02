@@ -21,14 +21,7 @@
     </ol>
   </div>
   _______________________________________________________________________________________________________________________
-  <div>
-    <ol id="RoomsList">
-      <li v-for="(room, index) in REAL" :key="index">
-        <!--false=boolean till episodeToggle-->
-        <Card :card="room" :type="'room'" />
-      </li>
-    </ol>
-  </div>
+  
 </template>
 
 
@@ -42,6 +35,7 @@ export default {
       id: [],
       filterdArray: [],
       REAL: [],
+      resultArr:[]
     };
   },
 
@@ -58,6 +52,12 @@ export default {
     },
   },
 
+  created: function () {
+
+  },
+
+ 
+
   methods: {
     toggle() {
       this.active = !this.active;
@@ -65,17 +65,12 @@ export default {
 
     filterRoomsDate() {
       this.filterBookableRooms2();
-      console.log("Filtrerat på från datum!: ", this.$store.state.allBookings);
       this.filterBookableRooms();
-      console.log("Filtrerat alla bokade rum!", this.$store.state.allBookings);
-
       this.getId();
       this.filterRoomsWithBookedRooms();
+      this.fliterDuplicateRooms();
+      this.makeRoomsArrayWork();
 
-      console.log(
-        "Detta är alla filtrerade rum i STORE!",
-        this.$store.state.bookedRoomsId
-      );
     },
 
     filterBookableRooms() {
@@ -106,7 +101,7 @@ export default {
 
     filterRoomsWithBookedRooms() {
       this.$store.state.rooms.forEach((element2) => {
-        this.id.forEach((element3) => {
+        this.id.every((element3) => {
           console.log("denna?", element2.id);
           console.log("mot denna?", element3);
 
@@ -118,78 +113,42 @@ export default {
             console.log("WIIIIIIINNNNNN?");
             console.log("_____________________________");
             this.REAL.push(element2);
+            return true
+            
           } else {
             console.log("Inne på funkar ej");
-            return null;
+            return false
           }
         });
       });
     },
+
+
+    fliterDuplicateRooms(){
+        this.resultArr = this.REAL.filter((data,index)=>{
+  return this.REAL.indexOf(data) === index;
+})
+    },
+
+    makeRoomsArrayWork(){
+        this.$store.state.rooms=this.resultArr
+    }
   },
-  /*
-            var newArray = arrayOfObjects.filter(function(obj){
-                return toDelete.indexOf(obj) ==-1
-                
-            })
-            console.log('test' + newArray)
-            
-            var newArray = arrayOfObjects.filter(function(obj) {
-                return toDelete.indexOf(obj) === -1;
-            })
-            console.log('newArray' + newArray)
+ 
 
-            const filterInPlace = (array, predicate) =>{
-                console.log('1')
-                let end = 0;
-                console.log('2')
-                for (let i = 0; i < array.length ; i++){
-                    console.log('3')
-                    const obj = array[i]
-                    console.log('4')
-                    if (predicate(obj)){
-                        array[end++] = obj
-                        console.log('5')
-                    }
-                    console.log('6')
-                }
-                console.log('7')
-                array.length = end
-                
-            }
-            console.log('8')
 
-            filterInPlace(arrayOfObjects, obj => !toDelete.has(obj.id));
-            console.log('Filtered arrayOfObjects \n' + arrayOfObjects)
-            console.log('10')
 
-*/
-
-  // var toDelete = this.$store.state.allBookings
-  // var arrayOfObjects = this.$store.state.allBookings2
-
-  // console.log('toDelete \n' + toDelete)
-  // console.log('Original arrayOfObjects' + arrayOfObjects)
-  // console.log('9')
-
-  /*
-            var idIDid = this.$store.state.allBookings = this.$store.state.allBookings.filter(id => {
-                console.log(id.id)
-                return id.id 
-            })
-            var asd = parseInt(idIDid.id)
-            console.log(asd)
-            var dsa = JSON.stringify(asd)
-            console.log(dsa)
-            var sad = parseInt(dsa)
-            console.log(sad)
-            console.log('all bookings id? ' + this.$store.state.allBookings.id)
-*/
   mounted() {
     console.log("we fetching");
     this.$store.dispatch("fetchHotelById");
     this.$store.dispatch("fetchRoomsByHotelId");
     this.$store.dispatch("fetchBookings");
     console.log("hotelId = " + this.$store.getters.getHotelId);
+    this.filterRoomsDate();
+ 
+
+  
+
   },
 };
 </script>

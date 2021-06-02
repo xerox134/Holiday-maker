@@ -257,7 +257,7 @@ export default {
 
 #tre{
   max-width: 40%;
-  min-width: 30%;
+  min-width: 50%;
   max-height: 5%;
   padding: 1vh;
   text-align: right;
@@ -267,24 +267,24 @@ export default {
 
 
 #Hotel-card{
-    min-width: 100px;
+    
     
   }
   
   #card{
     border-radius: 7px;
     color: rgba(19, 13, 9, 0.911);
-    display: flex;
+   
     list-style-type: none;
     background-color: rgba(16, 16, 17, 0.534);
-    
+    min-width: 90%;
     padding: 2vh;
     margin-bottom: 18px;
     margin-left: 30px;
     box-shadow: 4px 4px 2px rgba(0, 0, 0, .3), inset 2px 2px 2px rgba(240, 200, 255, .1);
     min-height: 4vh;
-    max-width: 95%;
-    justify-content: center;
+    max-width: 90%;
+    
     align-self: center;
     text-align: left;
   }

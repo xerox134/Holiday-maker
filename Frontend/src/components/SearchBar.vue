@@ -62,12 +62,6 @@ export default {
   },
 
   methods: {
-    filteredRooms(totalPeople) {
-      this.$store.state.numberOfAll = totalPeople;
-      this.$store.state.rooms = this.$store.state.rooms.filter(room => {
-        return room.beds == totalPeople  
-      });
-    },
 
     toggleList(toggleSearch){
       console.log(toggleSearch)
@@ -96,6 +90,7 @@ export default {
       if(this.$store.state.numberOfAdults === 5) {
         alert("Only five adults can be booked at a time")
         this.$store.state.numberOfAdults--
+        this.$store.state.numberOfAll--
       }
       this.$store.state.numberOfAdults++
       this.$store.state.numberOfAll ++
@@ -118,6 +113,7 @@ export default {
       if(this.$store.state.numberOfChildren === 5) {
         alert("Only five children can be booked at a time")
         this.$store.state.numberOfChildren--
+        this.$store.state.numberOfAll--
       }
       this.$store.state.numberOfChildren++
       this.$store.state.numberOfAll ++

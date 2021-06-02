@@ -50,11 +50,10 @@ export default {
     getHotelById() {
       return this.$store.getters.getHotelById;
     },
+ 
   },
 
-  created: function () {
-
-  },
+ 
 
  
 
@@ -132,6 +131,7 @@ export default {
 
     makeRoomsArrayWork(){
         this.$store.state.rooms=this.resultArr
+       
     }
   },
  

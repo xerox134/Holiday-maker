@@ -150,6 +150,8 @@ export default {
      
     },
 
+    
+
     async toRooms(id){
       this.$store.state.hotelId = id
 
@@ -238,6 +240,9 @@ export default {
       }
     }
   },
+
+
+  
   
 }
 
@@ -354,7 +359,7 @@ export default {
     color: rgba(230, 230, 255, .6);
     box-shadow: 2px 2px 1px rgba(0, 0, 0, .2), inset 2px 2px 2px rgba(255, 255, 255, .05);
     margin: 3px;
-    margin-left: 1vw;
+    
     width: 100%;
     height: min(5vh, 25vw);
     text-shadow: -1px -1px 2px rgba(0, 0, 0, .3), 1px 1px 2px rgba(126, 126, 126, .5);

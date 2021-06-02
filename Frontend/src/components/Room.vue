@@ -1,7 +1,7 @@
 <template>
   <div>{{ this.$store.state.allBookings }}</div>
   <div>{{ id }}</div>
-  <button @click="filterRooms()"></button>
+  <button @click="filterRoomsDate()"></button>
   <button @click="$router.push('ongoingbooking')">Continue to booking</button>
   <div>
     <ol id="HotelList">
@@ -63,7 +63,7 @@ export default {
       this.active = !this.active;
     },
 
-    filterRooms() {
+    filterRoomsDate() {
       this.filterBookableRooms2();
       console.log("Filtrerat på från datum!: ", this.$store.state.allBookings);
       this.filterBookableRooms();

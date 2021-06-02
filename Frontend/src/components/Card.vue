@@ -96,7 +96,11 @@ export default {
 
   methods:{
     addRoomPriceToTotal(){
-      this.$store.commit('addRoomPriceToTotal' , this.card.price);
+      this.$store.state.totalPrice = this.card.price
+      this.$store.commit('setExtraBed', false)
+      this.$store.commit('setWholePension', false)
+      this.$store.commit('setHalfPension', false)
+      this.$store.commit('setAllInclusive', false)
     },
 
     addABed(){
@@ -104,13 +108,19 @@ export default {
       if(this.$store.state.bedPriceManipulator==0){
       this.$store.commit('setbedPriceManipulator',1);
             console.log(this.$store.state.bedPriceManipulator)
-      this.$store.commit('addABed',this.$store.state.bedPrice);}
+      this.$store.commit('addABed',this.$store.state.bedPrice)
+      this.$store.commit('setExtraBed', true)
+      console.log(this.$store.state.extraBed)
+      }
       
     },
     removeABed(){
       if(this.$store.state.bedPriceManipulator==1){
       this.$store.commit('setbedPriceManipulator',0);
-      this.$store.commit('removeABed',this.$store.state.bedPrice);}
+      this.$store.commit('removeABed',this.$store.state.bedPrice)
+      this.$store.commit('setExtraBed', false)
+      console.log(this.$store.state.extraBed)
+      }
     },
     addInclusive() {
       
@@ -122,8 +132,11 @@ export default {
         if(intValue == 200) {
         if(this.$store.state.temporaryNumber == 0 || this.$store.state.temporaryNumber == 150 || this.$store.state.temporaryNumber == 100) {
           this.$store.state.totalPrice += intValue
-        this.$store.state.totalPrice -= this.$store.state.temporaryNumber
+          this.$store.state.totalPrice -= this.$store.state.temporaryNumber
           this.$store.state.temporaryNumber = 200
+          this.$store.commit('setWholePension', false)
+          this.$store.commit('setHalfPension', false)
+          this.$store.commit('setAllInclusive', true)
         }}
 
         else if(intValue == 150) {
@@ -131,6 +144,9 @@ export default {
           this.$store.state.totalPrice += intValue
         this.$store.state.totalPrice -= this.$store.state.temporaryNumber
           this.$store.state.temporaryNumber = 150
+          this.$store.commit('setWholePension', true)
+          this.$store.commit('setHalfPension', false)
+          this.$store.commit('setAllInclusive', false)
         }}
 
         else if(intValue == 100) {
@@ -138,6 +154,9 @@ export default {
           this.$store.state.totalPrice += intValue
         this.$store.state.totalPrice -= this.$store.state.temporaryNumber
           this.$store.state.temporaryNumber = 100
+          this.$store.commit('setWholePension', false)
+          this.$store.commit('setHalfPension', true)
+          this.$store.commit('setAllInclusive', false)
         }} 
         
         else if(intValue == 0) {
@@ -145,6 +164,9 @@ export default {
           this.$store.state.totalPrice += intValue
         this.$store.state.totalPrice -= this.$store.state.temporaryNumber
           this.$store.state.temporaryNumber = 0
+          this.$store.commit('setWholePension', false)
+          this.$store.commit('setHalfPension', false)
+          this.$store.commit('setAllInclusive', false)
         }}
 
      

@@ -39,9 +39,6 @@ public class Hotel {
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
     private List<Favorite> favorites;
 
-    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
-    private List<Booking> bookings;
-
 
     public Hotel() {
     }
@@ -229,15 +226,6 @@ public class Hotel {
 
     public void setFavorites(List<Favorite> favorites) {
         this.favorites = favorites;
-    }
-
-    @JsonIgnore
-    public List<Booking> getBookings() {
-        return bookings;
-    }
-
-    public void setBookings(List<Booking> bookings) {
-        this.bookings = bookings;
     }
 
     @Override

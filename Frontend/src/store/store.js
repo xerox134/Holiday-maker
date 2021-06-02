@@ -27,18 +27,25 @@ export default createStore({
     bedPriceManipulator:0,
     roomPrice:0,
     bedPrice: 100,
-    numberOfAdults: 2,
+    numberOfAdults: 1,
     numberOfChildren:0,
     temporaryNumber: 0,
     allInclusivePrice: 200,
-    fromDate: '',
-    toDate: '',
+    fromDate: new Date().toISOString().substr(0, 10),
+    toDate: new Date().toISOString().substr(0, 10),
     distanceCenter:null,
-    distanceBeach:null
+    distanceBeach:null,
+    numberOfAll: 1,
+    extraBed: false,
+    wholePension: false,
+    halfPension: false,
+    allInclusive: false
   },
   
   mutations: {
-
+    addAPerson(state,payload){
+      state.numberOfAll += payload
+    },
     setNumberOfAdults(state, payload){
       state.numberOfAdults = payload
     },
@@ -141,10 +148,19 @@ export default createStore({
     },
     setTemporaryNumber(state, payload) {
       state.temporaryNumber = payload
+    },
+    setExtraBed(state, payload) {
+      state.extraBed = payload
+    },
+    setWholePension(state, payload) {
+      state.wholePension = payload
+    },
+    setHalfPension(state, payload) {
+      state.halfPension = payload
+    },
+    setAllInclusive(state, payload) {
+      state.allInclusive = payload
     }
-    
-
-
   },
   
   actions: {
@@ -256,6 +272,9 @@ export default createStore({
 },
 
 getters:{
+  getAllPeople(state){
+    return state.numberOfAll
+  },
   getNumberOfAdults(state){
     return state.numberOfAdults
   },
@@ -332,6 +351,18 @@ getters:{
   },
   getTemporaryNumber(state) {
     return state.temporaryNumber
+  },
+  getExtraBed(state) {
+    return state.extraBed
+  },
+  getWholePension(state) {
+    return state.wholePension
+  },
+  getHalfPension(state) {
+    return state.halfPension
+  },
+  getAllInclusive(state) {
+    return state.allInclusive
   }
 },
 

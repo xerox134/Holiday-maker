@@ -1,6 +1,5 @@
 <template>
   <div class="favorites">
-    <h1>All Favorites</h1>
         <div id="Favorites"><Favorites/></div>
 
   </div>

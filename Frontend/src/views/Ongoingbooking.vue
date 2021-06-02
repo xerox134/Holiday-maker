@@ -1,5 +1,5 @@
 <template>
-<div class ="Ongoingbooking">  <p>Welcome to ongoing bookings</p>
+<div class ="Ongoingbooking">
 </div>
 <div id="Ongoingbooking"><Ongoingbooking/></div>
 

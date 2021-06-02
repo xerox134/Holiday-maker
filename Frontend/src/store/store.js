@@ -7,6 +7,7 @@ export default createStore({
   state: {
     favorites: [],
     bookings: [],
+    myBookings:[],
     addedFavorites:[],
     hotels:[],
     hotels2:[],
@@ -216,7 +217,7 @@ export default createStore({
     })
   }, 
     async fetchAllBookings(){
-     await axios.get("http://localhost:3000/rest/bookings/"+ this.state.loggedInUserId)
+     await axios.get("http://localhost:3000/rest/bookings/user/"+ this.state.loggedInUserId)
      .then(response => {
      this.commit("setBookings", response.data)
      console.log(response.data)

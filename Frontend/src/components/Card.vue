@@ -96,7 +96,11 @@ export default {
 
   methods:{
     addRoomPriceToTotal(){
-      this.$store.commit('addRoomPriceToTotal' , this.card.price);
+      this.$store.state.totalPrice = this.card.price
+      this.$store.commit('setExtraBed', false)
+      this.$store.commit('setWholePension', false)
+      this.$store.commit('setHalfPension', false)
+      this.$store.commit('setAllInclusive', false)
     },
 
     addABed(){

@@ -3,15 +3,28 @@
     <h2>Bokning genomförd!</h2>
     <br />
     <br />
-
-    <router-link to="/bookings" class="link">Till mina bokningar</router-link>
+    <button @click="asd">Test</button>
   </div>
 </template>
 
 <script>
 export default {
   name: "Success",
-  components: {},
+  components: {
+   
+  },
+
+  computed:{
+  },
+
+  methods:{
+   
+
+  },
+
+  mounted(){
+   
+  }
 };
 </script>
 

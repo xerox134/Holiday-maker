@@ -16,14 +16,14 @@
 
       <div id="datum">
         <p>Datum: {{ getFromDate }} - {{ getToDate }}</p>
+        <p>Antal nätter: </p>
         <br />
       </div>
       <h3>Totalt pris : {{ updatePrice }} kr</h3>
     </div>
   </div>
   <div>
-    <button @click="addBooking">BOKA</button>
-    <Stripe />
+    <Stripe/>
   </div>
 </template>
 
@@ -89,10 +89,12 @@ export default {
       this.postId = data.id;
       console.log(data);
     },
+    
   },
 
   mounted() {
     console.log(this.$store.state.bookedRoom.id);
+
   },
 };
 </script>

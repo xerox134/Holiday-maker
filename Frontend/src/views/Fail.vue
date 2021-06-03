@@ -1,6 +1,6 @@
 <template>
   <div class="Fail">
-    <h2>Bokning misslyckades. Försök igen.</h2>
+    <h2>Betalningen misslyckades. Försök igen.</h2>
     <br />
     <br />
 
@@ -13,6 +13,11 @@
 <script>
 export default {
   name: "Fail",
+
+ methods:{
+  
+ }
+
 };
 </script>
 

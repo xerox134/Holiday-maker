@@ -98,7 +98,7 @@
       ><br />
       <span id="Price">Price: {{ card.room.price }}</span
       ><br /><br />
-      <button @click.stop="favoriteItem(card.id)">
+      <button @click.stop="favoriteItem(card.room.hotel.id)">
         Favoritmarkera hotell ❤
       </button>
       <button @click="deleteFromBooking(card.id), refreshStuff()">

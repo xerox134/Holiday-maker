@@ -34,6 +34,7 @@ export default createStore({
     allInclusivePrice: 200,
     fromDate: new Date().toISOString().substr(0, 10),
     toDate: new Date().toISOString().substr(0, 10),
+    numberOfNights: 0,
     distanceCenter: null,
     distanceBeach: null,
     numberOfAll: 1,
@@ -44,6 +45,9 @@ export default createStore({
   },
 
   mutations: {
+    setNumberOfNights(state, payload){
+      state.numberOfNights = payload
+    },
     addAPerson(state, payload) {
       state.numberOfAll += payload
     },

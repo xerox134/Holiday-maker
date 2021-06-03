@@ -89,10 +89,20 @@ export default {
     },
 
     setDates() {
+      console.log(this.fromDate, this.toDate)
+      var fromDate = this.fromDate;
+      var toDate = this.toDate;
+      var oneDay = 1000 * 60 * 60 * 24;
+      var diffInTime = toDate.getTime() - fromDate.getTime();
+      var diffInDays = Math.round(diffInTime / oneDay);
+      console.log("Nr of nights: ", diffInDays);
+
       this.$store.commit("setFromDate", this.fromDate);
       this.$store.commit("setToDate", this.toDate);
       console.log("fromDate \n" + this.$store.state.fromDate);
       console.log("toDate \n" + this.$store.state.toDate);
+      /********************************************************/
+      
     },
 
     addAdult() {

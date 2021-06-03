@@ -1,7 +1,4 @@
 <template>
-  <div>{{ this.$store.state.allBookings }}</div>
-  <div>{{ id }}</div>
-  <button @click="filterRoomsDate()"></button>
   <button @click="$router.push('ongoingbooking')">Continue to booking</button>
   <div>
     <ol id="HotelList">
@@ -13,7 +10,6 @@
   </div>
   <h2>Available rooms</h2>
   <div v-if="getRoomByHotelId">
-    
     <ol id="RoomsList">
       <li v-for="(room, index) in getRoomByHotelId" :key="index">
         <!--false=boolean till episodeToggle-->
@@ -67,7 +63,6 @@ export default {
 
       console.log("detta är resultarr", this.resultArr);
     },
-
     filterBookableRooms() {
       console.log("2");
       this.$store.state.allBookings = this.$store.state.allBookings.filter(
@@ -84,52 +79,51 @@ export default {
         }
       );
     },
-   
     filterRoomsWithBookedRooms() {
-
-        this.$store.state.allBookings.forEach((element) => {
-          this.id.push(element.room.id);
+      console.log("5");
+      this.$store.state.allBookings.forEach((element) => {
+        this.id.push(element.room.id);
       }),
+        this.$store.state.rooms.forEach((element2) => {
+          this.id.every((element3) => {
+            console.log("denna?", element2.id);
+            console.log("mot denna?", element3);
 
-      this.$store.state.rooms.forEach((element2) => {
-        this.id.every((element3) => {
-          console.log("denna?", element2.id);
-          console.log("mot denna?", element3);
-
-          console.log("____________________________________");
-          if (element2.id !== element3) {
-            console.log("WIIIIIIINNNNNN?");
-            console.log("_____________________________");
-            this.filterdArray.push(element2);
-            return true;
-          } else {
-            console.log("Inne på funkar ej");
-            return false;
-          }
+            console.log("____________________________________");
+            if (element2.id !== element3) {
+              console.log("WIIIIIIINNNNNN?");
+              console.log("_____________________________");
+              this.filterdArray.push(element2);
+              return true;
+            } else {
+              console.log("Inne på funkar ej");
+              return false;
+            }
+          });
         });
-      });
     },
     fliterDuplicateRooms() {
-      console.log("5");
+      console.log("4");
       this.resultArr = this.filterdArray.filter((data, index) => {
         return this.filterdArray.indexOf(data) === index;
       });
     },
     makeRoomsArrayWork() {
-      console.log("6");
-      this.$store.state.rooms=this.resultArr
+      console.log("5");
+      this.$store.state.rooms = this.resultArr;
       console.log("sista funktionen");
-
-      
     },
   },
 
   mounted() {
-      this.filterRoomsDate()
     console.log("we fetching");
     this.$store.dispatch("fetchHotelById");
     this.$store.dispatch("fetchRoomsByHotelId");
     this.$store.dispatch("fetchBookings");
+    setTimeout(() => {
+      this.filterRoomsDate();
+    }, 500);
+
     console.log("hotelId = " + this.$store.getters.getHotelId);
   },
 };

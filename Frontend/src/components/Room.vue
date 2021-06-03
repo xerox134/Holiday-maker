@@ -12,7 +12,8 @@
     </ol>
   </div>
   <h2>Available rooms</h2>
-  <div>
+  <div v-if="getRoomByHotelId">
+    
     <ol id="RoomsList">
       <li v-for="(room, index) in getRoomByHotelId" :key="index">
         <!--false=boolean till episodeToggle-->
@@ -33,7 +34,6 @@ export default {
     return {
       id: [],
       filterdArray: [],
-      REAL: [],
       resultArr: [],
     };
   },
@@ -60,15 +60,9 @@ export default {
       console.log("inne nu");
 
       this.filterBookableRooms2();
-
       this.filterBookableRooms();
-
-      this.getId();
-
       this.filterRoomsWithBookedRooms();
-
       this.fliterDuplicateRooms();
-
       this.makeRoomsArrayWork();
 
       console.log("detta är resultarr", this.resultArr);
@@ -90,34 +84,23 @@ export default {
         }
       );
     },
-
-    getId() {
-      console.log("3");
-      this.$store.state.allBookings.forEach((element) => {
-        this.filterdArray.push(element);
-        console.log("Filtrerade arrayen i getID", this.filterdArray),
-          this.id.push(element.room.id);
-      });
-
-      this.$store.state.bookedRoomsId = this.filterdArray;
-      console.log(this.$store.state.bookedRoomsId);
-    },
-
+   
     filterRoomsWithBookedRooms() {
-      console.log("4");
+
+        this.$store.state.allBookings.forEach((element) => {
+          this.id.push(element.room.id);
+      }),
+
       this.$store.state.rooms.forEach((element2) => {
-        console.log("vi är inne i 4 1sta foreach");
         this.id.every((element3) => {
-          console.log("vi är inne i 4 2a foreach");
           console.log("denna?", element2.id);
           console.log("mot denna?", element3);
 
           console.log("____________________________________");
-
           if (element2.id !== element3) {
             console.log("WIIIIIIINNNNNN?");
             console.log("_____________________________");
-            this.REAL.push(element2);
+            this.filterdArray.push(element2);
             return true;
           } else {
             console.log("Inne på funkar ej");
@@ -126,22 +109,23 @@ export default {
         });
       });
     },
-
     fliterDuplicateRooms() {
       console.log("5");
-      this.resultArr = this.REAL.filter((data, index) => {
-        return this.REAL.indexOf(data) === index;
+      this.resultArr = this.filterdArray.filter((data, index) => {
+        return this.filterdArray.indexOf(data) === index;
       });
     },
-
     makeRoomsArrayWork() {
       console.log("6");
-
+      this.$store.state.rooms=this.resultArr
       console.log("sista funktionen");
+
+      
     },
   },
 
   mounted() {
+      this.filterRoomsDate()
     console.log("we fetching");
     this.$store.dispatch("fetchHotelById");
     this.$store.dispatch("fetchRoomsByHotelId");

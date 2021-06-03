@@ -40,15 +40,15 @@ const routes = [
     path: '/hotel',
     component: Hotel,
     name: 'hotel'
-    
+
   },
   {
     path: '/ongoingbooking',
     component: Ongoingbooking,
     name: 'ongoingbooking'
   },
-  
-  
+
+
 ]
 
 const router = createRouter({

@@ -5,7 +5,8 @@
     <br />
 
     <router-link to="/ongoingbooking" class="link"
-      >Tillbaka till varukorgen</router-link>
+      >Tillbaka till varukorgen</router-link
+    >
   </div>
 </template>
 

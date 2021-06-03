@@ -72,6 +72,7 @@
     </div>
 
     <div class="Favorite-card" v-if="type == 'favorite'">
+      <img v-bind:src="card.hotel.img" alt=""/> <br>
       <span id="user">Name: {{ card.hotel.name }}</span
       ><br /><br />
       <span id="Hotelcity">City: {{ card.hotel.city }}</span
@@ -89,16 +90,17 @@
 
     <div class="Booking-card" v-if="type == 'booking'">
       <img v-bind:src="card.room.hotel.img" alt="" />
-      <br>
-      <span>{{card.room.hotel.name}}</span
-      ><br /><br />
+      <br />
+      <h3>{{ card.room.hotel.name }}</h3>
       <span id="room_nr">Room Number: {{ card.room.room_nr }}</span
-      ><br /><br />
+      ><br />
       <span id="beds">Number of beds: {{ card.room.beds }}</span
-      ><br /><br />
+      ><br />
       <span id="Price">Price: {{ card.room.price }}</span
       ><br /><br />
-      <button @click.stop="favoriteItem(card.id)">Favoritmarkera hotell ❤</button>
+      <button @click.stop="favoriteItem(card.id)">
+        Favoritmarkera hotell ❤
+      </button>
       <button @click="deleteFromBooking(card.id), refreshStuff()">
         Remove from List ✖
       </button>
@@ -325,8 +327,8 @@ export default {
   text-align: right;
 }
 
-#bild{
-  float:left;
+#bild {
+  float: left;
 }
 
 #Hotel-card {

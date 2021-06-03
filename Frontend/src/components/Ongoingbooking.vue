@@ -1,5 +1,5 @@
 <template>
-<h1>Varukorg</h1>
+  <h1>Varukorg</h1>
   <div id="OngoingbookingList">
     <ol style="list-style-type: none">
       <li v-for="(Ongoingbooking, index) in getRoomsWithRoomId" :key="index">
@@ -7,7 +7,6 @@
       </li>
     </ol>
     <div>
-      
       <div>
         <p>Antal vuxna: {{ getAdults }}</p>
       </div>
@@ -16,7 +15,8 @@
       </div>
 
       <div id="datum">
-        <p>Datum: {{ getFromDate }} - {{ getToDate }}</p> <br>
+        <p>Datum: {{ getFromDate }} - {{ getToDate }}</p>
+        <br />
       </div>
       <h3>Totalt pris : {{ updatePrice }} kr</h3>
     </div>

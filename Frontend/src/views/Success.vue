@@ -4,8 +4,7 @@
     <br />
     <br />
 
-    <router-link to="/bookings" class="link"
-    >Till mina bokningar</router-link>
+    <router-link to="/bookings" class="link">Till mina bokningar</router-link>
   </div>
 </template>
 

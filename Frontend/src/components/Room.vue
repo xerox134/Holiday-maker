@@ -31,6 +31,8 @@ export default {
       id: [],
       filterdArray: [],
       resultArr: [],
+      emptyArray: [],
+      pointer:0
     };
   },
 
@@ -53,17 +55,50 @@ export default {
     },
 
     filterRoomsDate() {
-      console.log("inne nu");
 
+
+
+      console.log("inne nu");
+this.$store.state.allBookings.forEach(element => {
+    if(element.fromDate>=this.$store.state.fromDate || element.toDate<this.$store.state.toDate){
+        console.log("herhehrehrehh")
+        this.pointer=0
+        
+    }
+  
+});
+if(this.pointer==1){
+    this.pointer==0
+    console.log("endast rooms")
+    return this.$store.state.rooms
+} else{
+      console.log("everything")
+    this.filterBookableRooms();
       this.filterBookableRooms2();
-      this.filterBookableRooms();
+      
       this.filterRoomsWithBookedRooms();
       this.fliterDuplicateRooms();
       this.makeRoomsArrayWork();
 
       console.log("detta är resultarr", this.resultArr);
+}
     },
     filterBookableRooms() {
+  console.log("1");
+      this.$store.state.allBookings = this.$store.state.allBookings.filter(
+        (bookedRooms) => {
+
+            if(bookedRooms.fromDate >= this.$store.state.fromDate){ 
+
+                
+                return bookedRooms.fromDate >= this.$store.state.fromDate
+                }
+         
+        }
+      );
+    },
+    filterBookableRooms2() {
+      console.log("1sta filter " ,this.$store.state.allBookings)
       console.log("2");
       this.$store.state.allBookings = this.$store.state.allBookings.filter(
         (bookedRooms) => {
@@ -71,16 +106,9 @@ export default {
         }
       );
     },
-    filterBookableRooms2() {
-      console.log("1");
-      this.$store.state.allBookings = this.$store.state.allBookings.filter(
-        (bookedRooms) => {
-          return bookedRooms.fromDate >= this.$store.state.fromDate;
-        }
-      );
-    },
     filterRoomsWithBookedRooms() {
-      console.log("5");
+        console.log("2a filter" ,this.$store.state.allBookings)
+      console.log("3");
       this.$store.state.allBookings.forEach((element) => {
         this.id.push(element.room.id);
       }),
@@ -97,6 +125,11 @@ export default {
               return true;
             } else {
               console.log("Inne på funkar ej");
+              console.log("funkar ej:", element2.id,element3)
+              this.filterdArray.pop(element2);
+              this.filterdArray.pop(element2);
+              this.filterdArray.pop(element2);
+              this.filterdArray.pop(element2);
               return false;
             }
           });
@@ -112,6 +145,8 @@ export default {
       console.log("5");
       this.$store.state.rooms = this.resultArr;
       console.log("sista funktionen");
+      this.$store.state.allBookings=this.$store.state.allBookings2
+      this.filterdArray=this.emptyArray
     },
   },
 

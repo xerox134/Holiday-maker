@@ -9,7 +9,7 @@
         <span id="beds"> Sängar: {{ card.beds }}</span><br><br>
         <span id="price">Pris: {{ card.price }}</span><br><br>
         <button @click="SendRoomToOngoingbooking(card.id), addRoomPriceToTotal()" >Select</button>
-</span>
+      </span>
     </div>
     
     <div class="Hotel-card" v-if="type == 'hotel'" @click="toRooms(card.id)">
@@ -47,7 +47,8 @@
           <span id="distance_to_center">{{ card.distance_to_center }} km till centrum</span><br>
         </div>
 
-      </div>   
+      </div>
+      <button v-if="type == 'hotel'" @click.stop="toReviews(card.id)"> Recensera ✍</button>
         <button @click.stop="favoriteItem(card.id)">Favoritmarkera ❤</button>
     </div>
 
@@ -81,9 +82,15 @@
           <option value="200" >All inclusive</option>
           <option value="150">Full pension</option>
           <option value="100">Halv pension</option>
-          
         </select>
       </div>
+    </div>
+
+    <div class="Review-Card" v-if="type == 'review'">
+        <span id="id"> Betyg: {{ card.rating }}</span><br><br>
+        <span id="room_nr"> Beskrivning: {{ card.description }}</span><br><br>
+        <span id="beds"> Skriven av: {{ card.user.email }}</span><br><br>
+        <span id="price">Pris: {{ card.price }}</span><br><br>
     </div>
 
 
@@ -181,6 +188,15 @@ export default {
             name: 'hotel'
       })
       window.scrollTo(0,0)
+    },
+
+    async toReviews(id) {
+      this.$store.state.hotelId = id
+
+      console.log(id)
+      this.$router.push({
+        name: 'Reviews',
+      })
     },
 
     async FavoriteToRooms(id){

@@ -39,7 +39,8 @@ export default createStore({
     extraBed: false,
     wholePension: false,
     halfPension: false,
-    allInclusive: false
+    allInclusive: false,
+    reviews: []
   },
   
   mutations: {
@@ -114,14 +115,12 @@ export default createStore({
       state.searchedHotels = payload;
       state.searchedHotels2 = payload;
     },
-    
-    
     setFilteredHotels(state, payload){
       state.filteredHotels = payload
     },
-   setRoomsWithRoomId(state, payload){
-    state.bookedRoom= payload
-   },
+    setRoomsWithRoomId(state, payload){
+      state.bookedRoom= payload
+    },
     setHotelsWithPool(state, payload){
       state.hotelsWithPool = payload;
     },
@@ -160,6 +159,9 @@ export default createStore({
     },
     setAllInclusive(state, payload) {
       state.allInclusive = payload
+    },
+    setReviewsByHotelId(state, payload) {
+      state.reviews = payload
     }
   },
   
@@ -266,6 +268,13 @@ export default createStore({
       console.log(response.data)
     })
   },
+  async fetchReviewsByHotelId() {
+    await axios.get("http://localhost:3000/rest/reviews/hotel/" + this.state.hotelId)
+    .then(response => {
+      this.commit("setReviewsByHotelId", response.data)
+      console.log(response.data)
+    })
+  }
   
 
 
@@ -281,7 +290,6 @@ getters:{
   getNumberOfChildren(state){
     return state.numberOfChildren
   },
-
   getSearchedHotels(state){
     return state.searchedHotels
   },
@@ -363,6 +371,9 @@ getters:{
   },
   getAllInclusive(state) {
     return state.allInclusive
+  },
+  getReviewsByHotelId(state) {
+    return state.reviews
   }
 },
 

@@ -4,12 +4,22 @@ import Login from '../views/Login.vue'
 import Hotel from '../views/Hotel.vue'
 import Bookings from '../views/Bookings.vue'
 import Ongoingbooking from '../views/Ongoingbooking.vue'
+import Success from '../views/Success.vue'
+import Fail from '../views/Fail.vue'
 
 const routes = [
   {
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/success',
+    component: Success
+  },
+  {
+    path: '/fail',
+    component: Fail
   },
   {
     path: '/favorites',
@@ -36,8 +46,9 @@ const routes = [
     path: '/ongoingbooking',
     component: Ongoingbooking,
     name: 'ongoingbooking'
-    
-  }
+  },
+  
+  
 ]
 
 const router = createRouter({

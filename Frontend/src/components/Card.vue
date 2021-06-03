@@ -89,6 +89,7 @@
 
     <div class="Booking-card" v-if="type == 'booking'">
       <img v-bind:src="card.room.hotel.img" alt="" />
+      <br>
       <span>{{card.room.hotel.name}}</span
       ><br /><br />
       <span id="room_nr">Room Number: {{ card.room.room_nr }}</span

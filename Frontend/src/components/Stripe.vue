@@ -31,8 +31,8 @@ export default {
           quantity: this.$store.state.totalPrice,
         },
       ],
-      successURL: "http://localhost:3000/#/bookings",
-      cancelURL: "http://localhost:3000/#/ongoingbooking",
+      successURL: "http://localhost:3000/#/success",
+      cancelURL: "http://localhost:3000/#/fail",
     };
   },
   methods: {

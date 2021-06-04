@@ -100,9 +100,11 @@ if(this.pointer==0){
             } else if(bookedRooms.fromdate<=this.$store.state.toDate && bookedRooms.toDate >= this.$store.state.toDate){
                  return bookedRooms
 
+            }else if(bookedRooms.fromdate<=this.$store.state.fromDate && bookedRooms.toDate >= this.$store.state.toDate){
+            return bookedRooms
+            
+            
             }
-          
-          
           
           }
       )

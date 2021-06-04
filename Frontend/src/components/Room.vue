@@ -63,10 +63,14 @@ export default {
             if(element.fromDate<=this.$store.state.fromDate && element.toDate >= this.$store.state.fromDate){
                 console.log("första for loopen", )
                 this.pointer=1
-    } else if(element.fromdate<=this.$store.state.toDate && element.toDate >= this.$store.state.toDate){
- console.log("första for loopen", )
+          } else if(element.fromdate<=this.$store.state.toDate && element.toDate >= this.$store.state.toDate){
+                console.log("första for loopen", )
                 this.pointer=1
-    } 
+         }  else if (element.fromDate>=this.$store.state.fromDate && element.toDate <=this.$store.state.toDate ){
+             this.pointer=1
+         } else if (element.fromDate<=this.$store.state.fromDate && element.toDate >= this.$store.state.toDate){
+             this.pointer=1
+         }
   });
 
         //IFALL DET FINNS SÅ GÅR VI IN I METODERNA ANNARS RETURERAR VI ENDAST ROOMS DIREKT

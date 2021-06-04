@@ -21,12 +21,10 @@
     </div>
   </div>
 
-  <router-link to="/"
-    ><div id="test">
-      <img id="icon" v-bind:src="image" alt="" />
-      <h1 id="title">Holidaymaker</h1>
-    </div></router-link
-  >
+  <div id="test">
+    <img  id="icon" v-bind:src=image alt="" /><router-link to="/">
+  <h1 id="title">Holidaymaker</h1>
+  </router-link> </div>
 
   <router-view />
 </template>

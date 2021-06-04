@@ -95,9 +95,9 @@ if(this.pointer==0){
   console.log("1");
         this.$store.state.allBookings = this.$store.state.allBookings.filter(
         (bookedRooms) => {
-            if(bookedRooms.fromDate>=this.$store.state.fromDate && bookedRooms.fromDate <= this.$store.state.toDate){
+            if(bookedRooms.fromDate<=this.$store.state.fromDate && bookedRooms.toDate >= this.$store.state.fromDate){
                 return bookedRooms
-            } else if(bookedRooms.toDate>=this.$store.state.fromDate && bookedRooms.toDate <= this.$store.state.toDate){
+            } else if(bookedRooms.fromdate<=this.$store.state.toDate && bookedRooms.toDate >= this.$store.state.toDate){
                  return bookedRooms
 
             }

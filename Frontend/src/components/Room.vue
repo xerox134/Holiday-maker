@@ -57,46 +57,54 @@ export default {
     filterRoomsDate() {
 
 
+        // JÄMFÖR OM DET FINNS BOOKINGS SOM ÄR BOKADE UNDER DATUM
+        console.log("inne nu");
+        this.$store.state.allBookings.forEach(element => {
+            if(element.fromDate>=this.$store.state.fromDate && element.fromDate<=this.$store.state.toDate){
+                console.log("första for loopen", )
+                this.pointer=1
+    } else if(element.toDate>=this.$store.state.fromDate && element.toDate<=this.$store.state.toDate){
+ console.log("första for loopen", )
+                this.pointer=1
+    } 
+  });
 
-      console.log("inne nu");
-this.$store.state.allBookings.forEach(element => {
-    if(element.fromDate>=this.$store.state.fromDate || element.toDate<this.$store.state.toDate){
-        console.log("herhehrehrehh")
-        this.pointer=0
-        
-    }
-  
-});
-if(this.pointer==1){
-    this.pointer==0
+
+
+        //IFALL DET FINNS SÅ GÅR VI IN I METODERNA ANNARS RETURERAR VI ENDAST ROOMS DIREKT
+
+if(this.pointer==0){
     console.log("endast rooms")
     return this.$store.state.rooms
-} else{
-      console.log("everything")
-    this.filterBookableRooms();
-      this.filterBookableRooms2();
-      
-      this.filterRoomsWithBookedRooms();
-      this.fliterDuplicateRooms();
-      this.makeRoomsArrayWork();
+        } else{
+
+
+            // METODERNA BÖRJAR!
+        console.log("everything")
+         this.filterBookableRooms();
+         this.filterBookableRooms2();
+         this.filterRoomsWithBookedRooms();
+         this.fliterDuplicateRooms();
+         this.makeRoomsArrayWork();
 
       console.log("detta är resultarr", this.resultArr);
+      this.pointer=0
 }
     },
+
+
     filterBookableRooms() {
   console.log("1");
-      this.$store.state.allBookings = this.$store.state.allBookings.filter(
+        this.$store.state.allBookings = this.$store.state.allBookings.filter(
         (bookedRooms) => {
-
-            if(bookedRooms.fromDate >= this.$store.state.fromDate){ 
-
-                
                 return bookedRooms.fromDate >= this.$store.state.fromDate
-                }
-         
-        }
-      );
+          }
+      )
+      
     },
+
+
+
     filterBookableRooms2() {
       console.log("1sta filter " ,this.$store.state.allBookings)
       console.log("2");

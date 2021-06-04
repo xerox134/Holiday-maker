@@ -32,7 +32,7 @@ export default createStore({
     temporaryNumber: 0,
     allInclusivePrice: 200,
     fromDate: '2021-05-19',
-    toDate: '2021-06-07',
+    toDate: '2021-06-02',
     distanceCenter:null,
     distanceBeach:null,
     allBookings: [],

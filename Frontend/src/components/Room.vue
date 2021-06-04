@@ -75,18 +75,13 @@ export default {
                 console.log("FÖRE INNE", )
                 this.pointer=1
           
-          
-          
           } else if(this.$store.state.fromDate>= element.fromDate && this.$store.state.fromDate <= element.toDate && this.$store.state.toDate>=element.toDate){
                 console.log("INNE EFTER", )
                 this.pointer=1
          
-         
-         
           }else if(this.$store.state.fromDate<=element.fromDate && this.$store.state.toDate>=element.toDate){
               console.log("FÖRE EFTER")
                 this.pointer=1
-
 
           }else if(this.$store.state.fromDate>=element.fromDate && this.$store.state.toDate<=element.toDate){
                 console.log("INNE INNE")
@@ -120,17 +115,24 @@ if(this.pointer==0){
     filterBookableRooms() {
   console.log("1");
         this.$store.state.allBookings = this.$store.state.allBookings.filter(
-        (bookedRooms) => {
-            if(bookedRooms.fromDate<=this.$store.state.fromDate && bookedRooms.toDate >= this.$store.state.fromDate){
-                return bookedRooms
-            } else if(bookedRooms.fromdate<=this.$store.state.toDate && bookedRooms.toDate >= this.$store.state.toDate){
-                 return bookedRooms
+        (element) => {
+             if(this.$store.state.fromDate<=element.fromDate && this.$store.state.toDate>=element.fromDate && this.$store.state.toDate<=element.toDate ){
+                console.log("FÖRE INNE", )
+                return element
+          
+          } else if(this.$store.state.fromDate>= element.fromDate && this.$store.state.fromDate <= element.toDate && this.$store.state.toDate>=element.toDate){
+                console.log("INNE EFTER", )
+              return element
+         
+          }else if(this.$store.state.fromDate<=element.fromDate && this.$store.state.toDate>=element.toDate){
+              console.log("FÖRE EFTER")
+               return element
 
-            }else if(bookedRooms.fromdate<=this.$store.state.fromDate && bookedRooms.toDate >= this.$store.state.toDate){
-            return bookedRooms
-            
-            
-            }
+          }else if(this.$store.state.fromDate>=element.fromDate && this.$store.state.toDate<=element.toDate){
+                console.log("INNE INNE")
+                return element
+
+         }
           
           }
       )

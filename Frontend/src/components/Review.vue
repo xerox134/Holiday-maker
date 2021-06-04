@@ -7,8 +7,8 @@
         </ol>
     </div>
     <div>
-      <form action="">
-        <textarea name="" id="" cols="30" rows="10"></textarea>
+      <form id="reviewform" @submit="addReview">
+        <textarea name="" id="" cols="30" rows="10" v-model="description"></textarea>
         <input id="rating" type="range" min="1" max="5" v-model="rating" />
         <input type="submit">
       </form>
@@ -35,7 +35,8 @@ export default {
 
   data() {
     return {
-      rating: "3"
+      rating: "3",
+      description: ''
     }
   },
 
@@ -50,14 +51,17 @@ export default {
 
   methods: {
     async addReview() {
+      console.log(this.rating)
+      console.log(this.description)
+      console.log(this.$store.state.hotelId);
       const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           rating: this.rating,
-          description: this.$store.getters.getDescription, // inte klar än
+          description: this.description,
           hotel: {
-            id: this.$store.getters.getHotelById // inte klar än
+            id: this.$store.state.hotelId
           }
         })
       };

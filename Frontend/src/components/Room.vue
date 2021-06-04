@@ -60,13 +60,16 @@ export default {
         // JÄMFÖR OM DET FINNS BOOKINGS SOM ÄR BOKADE UNDER DATUM
         console.log("inne nu");
         this.$store.state.allBookings.forEach(element => {
-            if(element.fromDate>=this.$store.state.fromDate && element.fromDate<=this.$store.state.toDate){
+            if(element.fromDate<=this.$store.state.fromDate && element.toDate >= this.$store.state.fromDate){
                 console.log("första for loopen", )
                 this.pointer=1
-    } else if(element.toDate>=this.$store.state.fromDate && element.toDate<=this.$store.state.toDate){
+    } else if(element.fromdate<=this.$store.state.toDate && element.toDate >= this.$store.state.toDate){
  console.log("första for loopen", )
                 this.pointer=1
-    } 
+    } else if(element.fromdate<=this.$store.state.fromDate && element.toDate >= this.$store.state.toDate){
+        console.log("första for loopen", )
+        this.pointer=1
+    }
   });
 
         //IFALL DET FINNS SÅ GÅR VI IN I METODERNA ANNARS RETURERAR VI ENDAST ROOMS DIREKT

@@ -59,10 +59,13 @@ export default {
     },
     getNumberOfNights(){
       return this.$store.getters.getNumberOfNights
-    }
+    },
   },
 
   methods: {
+    finalPrice(){
+      this.$store.commit("setFinalPrice", this.$store.getNumberOfNights)
+    },
     Edit() {
       this.$store.commit("addABed", this.$store.state.bedPrice);
     },
@@ -74,7 +77,7 @@ export default {
           room: {
             id: this.$store.state.roomId,
           },
-          price: this.$store.getters.totalPrice * this.$store.getters.getNumberOfNights, // Totalpriset finns i gettern "totalPrice" som skickas in som bokningens pris
+          price: this.$store.getters.totalPrice, // Totalpriset finns i gettern "totalPrice" som skickas in som bokningens pris
           extraBed: this.$store.getters.getExtraBed, // Kollar om extrasängsknappen är sann eller falsk
           wholePension: this.$store.getters.getWholePension, // Kollar om helpensionen är sann eller falsk
           halfPension: this.$store.getters.getHalfPension, // Kollar om halvpensionen är sann eller falsk

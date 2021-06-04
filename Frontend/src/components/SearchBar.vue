@@ -95,6 +95,7 @@ export default {
       var oneDay = 1000 * 60 * 60 * 24;
       var diffInTime = toDateTime.getTime() - fromDateTime.getTime();
       var diffInDays = Math.round(diffInTime / oneDay);
+      this.$store.commit("setNumberOfNights", diffInDays)
       console.log("Nr of nights: ", diffInDays);
 
       this.$store.commit("setFromDate", this.fromDate);

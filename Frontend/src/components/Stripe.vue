@@ -28,7 +28,7 @@ export default {
       lineItems: [
         {
           price: "price_1IxsIjGbzWnmUKqiYtceOczB", // The id of the one-time price you created in your Stripe dashboard
-          quantity: this.$store.state.totalPrice,
+          quantity: this.$store.state.totalPrice * this.$store.state.numberOfNights,
         },
       ],
       successURL: "http://localhost:3000/#/success",

@@ -165,6 +165,9 @@ export default createStore({
     },
     setAllInclusive(state, payload) {
       state.allInclusive = payload
+    },
+    setFinalPrice(state, payload){
+      state.totalPrice *= payload
     }
   },
 

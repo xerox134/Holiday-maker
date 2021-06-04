@@ -67,17 +67,32 @@ export default {
         // JÄMFÖR OM DET FINNS BOOKINGS SOM ÄR BOKADE UNDER DATUM
         console.log("inne nu");
         this.$store.state.allBookings.forEach(element => {
-            if(element.fromDate<=this.$store.state.fromDate && element.toDate >= this.$store.state.fromDate){
-                console.log("första for loopen", )
+            console.log("datum före:",this.$store.state.fromDate )
+            console.log("datum efter:",this.$store.state.toDate )
+            console.log("booking före:",element.fromDate )
+            console.log("booking efter:",element.toDate )
+            if(this.$store.state.fromDate<=element.fromDate && this.$store.state.toDate>=element.fromDate && this.$store.state.toDate<=element.toDate ){
+                console.log("FÖRE INNE", )
                 this.pointer=1
-          } else if(element.fromdate<=this.$store.state.toDate && element.toDate >= this.$store.state.toDate){
-                console.log("första for loopen", )
+          
+          
+          
+          } else if(this.$store.state.fromDate>= element.fromDate && this.$store.state.fromDate <= element.toDate && this.$store.state.toDate>=element.toDate){
+                console.log("INNE EFTER", )
                 this.pointer=1
-         }  else if (element.fromDate>=this.$store.state.fromDate && element.toDate <=this.$store.state.toDate ){
-             this.pointer=1
-         } else if (element.fromDate<=this.$store.state.fromDate && element.toDate >= this.$store.state.toDate){
-             this.pointer=1
-         }
+         
+         
+         
+          }else if(this.$store.state.fromDate<=element.fromDate && this.$store.state.toDate>=element.toDate){
+              console.log("FÖRE EFTER")
+                this.pointer=1
+
+
+          }else if(this.$store.state.fromDate>=element.fromDate && this.$store.state.toDate<=element.toDate){
+                console.log("INNE INNE")
+                 this.pointer=1
+
+         }  else console.log("ingen funka!")
   });
 
         //IFALL DET FINNS SÅ GÅR VI IN I METODERNA ANNARS RETURERAR VI ENDAST ROOMS DIREKT

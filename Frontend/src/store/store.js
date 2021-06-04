@@ -68,7 +68,9 @@ export default createStore({
     setDistanceCenter(state, payload) {
       state.distanceCenter = payload
     },
-
+    setTotalPrice(state, payload){
+      state.totalPrice += payload
+    },
     setDateRange(state, payload) {
       state.dateRange = payload
     },
@@ -165,9 +167,6 @@ export default createStore({
     },
     setAllInclusive(state, payload) {
       state.allInclusive = payload
-    },
-    setFinalPrice(state, payload){
-      state.totalPrice *= payload
     }
   },
 

@@ -10,6 +10,7 @@
       @loading="(v) => (loading = v)"
     />
     <button @click="addBooking">Betala</button>
+    <button @click="testTotalPrice">test</button>
   </div>
 </template>
 
@@ -21,26 +22,32 @@ export default {
   },
 
   data() {
+    
     this.publishableKey =
       "pk_test_51IxVsIGbzWnmUKqiQXUVCLg7e3J808utQYvrZQyDKilYGqqtwbNXAli0jaLRpGrxJXQnFmTtLTq7DnM151bEJlzD007pPeLOwH";
     return {
+      totalPrice: 0,
       loading: false,
       lineItems: [
         {
           price: "price_1IxsIjGbzWnmUKqiYtceOczB", // The id of the one-time price you created in your Stripe dashboard
-          quantity: this.$store.state.totalPrice * this.$store.state.numberOfNights,
+          quantity:
+            this.finalTotalPrice = this.totalPrice
         },
       ],
       successURL: "http://localhost:3000/#/success",
       cancelURL: "http://localhost:3000/#/fail",
     };
   },
+
   methods: {
     submit() {
       // You will be redirected to Stripe's secure checkout page
       this.$refs.checkoutRef.redirectToCheckout();
     },
     async addBooking() {
+      this.totalPrice = this.$store.state.totalPrice * this.$store.state.numberOfNights
+       parseInt(this.totalPrice)
       const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -48,7 +55,7 @@ export default {
           room: {
             id: this.$store.state.roomId,
           },
-          price: this.$store.getters.totalPrice, // Totalpriset finns i gettern "totalPrice" som skickas in som bokningens pris
+          price: this.finalTotalPrice, // Totalpriset finns i gettern "totalPrice" som skickas in som bokningens pris
           extraBed: this.$store.getters.getExtraBed, // Kollar om extrasängsknappen är sann eller falsk
           wholePension: this.$store.getters.getWholePension, // Kollar om helpensionen är sann eller falsk
           halfPension: this.$store.getters.getHalfPension, // Kollar om halvpensionen är sann eller falsk
@@ -63,8 +70,13 @@ export default {
       const data = await response.json();
       this.postId = data.id;
       console.log(data);
+      console.log("total price: ", this.finalTotalPrice)
       this.$refs.checkoutRef.redirectToCheckout();
     },
+    testTotalPrice(){
+      this.totalPrice = this.$store.state.totalPrice * this.$store.state.numberOfNights
+      console.log("total price: ", this.finalTotalPrice)
+    }
   },
 };
 </script>

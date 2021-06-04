@@ -10,7 +10,7 @@
     <h2>Available rooms</h2>
     <div>
         <ol  id="RoomsList">
-            <li v-for="(room, index) in filteredRooms"  :key="index" >   <!--false=boolean till episodeToggle-->
+            <li v-for="(room, index) in getRoomByHotelId"  :key="index" >   <!--false=boolean till episodeToggle-->
                 <Card :card="room"  :type="'room'"/>  
             </li>
         </ol>
@@ -38,10 +38,6 @@ export default {
     Card,
   },
 
-  computed: {
-    getRoomByHotelId() {
-      return this.$store.getters.getRoomByHotelId;
-    },
     
     computed: {
         getRoomByHotelId(){
@@ -56,15 +52,12 @@ export default {
 
         });
         },
-        
-
     },
-  },
+  
 
     methods:{
         toggle () {
         this.active = !this.active
-      },
         
     },
 
@@ -105,15 +98,8 @@ if(this.pointer==0){
 
       console.log("detta är resultarr", this.resultArr);
       this.pointer=0
-}
-    mounted(){
-        console.log("we fetching")
-        this.$store.dispatch("fetchHotelById")
-        this.$store.dispatch("fetchRoomsByHotelId")
-        console.log("hotelId = " + this.$store.getters.getHotelId)
-      console.log(this.$store.getters.getAllPeople);
-    
-    },
+        }
+},
 
 
     filterBookableRooms() {
@@ -194,14 +180,15 @@ if(this.pointer==0){
       this.$store.state.allBookings=this.$store.state.allBookings2
       this.filterdArray=this.emptyArray
     },
-  },
+    },
 
   mounted() {
     console.log("we fetching");
     this.$store.dispatch("fetchHotelById");
     this.$store.dispatch("fetchRoomsByHotelId");
     this.$store.dispatch("fetchBookings");
-    setTimeout(() => {
+
+setTimeout(() => {
       this.filterRoomsDate();
     }, 500);
 

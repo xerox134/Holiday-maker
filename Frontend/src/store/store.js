@@ -40,7 +40,7 @@ export default createStore({
     wholePension: false,
     halfPension: false,
     allInclusive: false,
-    reviews: []
+    reviews: [],
     allBookings: [],
     allBookings2: [],
   },
@@ -319,8 +319,11 @@ export default createStore({
       this.commit("setReviewsByHotelId", response.data)
       console.log(response.data)
     })
-  }
+  },
   getters:{
+    getAllPeople(state){
+      return state.numberOfAll
+    },
     getNumberOfAdults(state){
       return state.numberOfAdults
     },
@@ -400,106 +403,24 @@ export default createStore({
     getAllAllBookings (state){
       return state.allBookings
     },
+    getExtraBed(state) {
+      return state.extraBed
+    },
+    getWholePension(state) {
+      return state.wholePension
+    },
+    getHalfPension(state) {
+      return state.halfPension
+    },
+    getAllInclusive(state) {
+      return state.allInclusive
+    },
+    getReviewsByHotelId(state) {
+      return state.reviews
+    }
   
 
 
-},
-
-getters:{
-  getAllPeople(state){
-    return state.numberOfAll
-  },
-  getNumberOfAdults(state){
-    return state.numberOfAdults
-  },
-  getNumberOfChildren(state){
-    return state.numberOfChildren
-  },
-  getSearchedHotels(state){
-    return state.searchedHotels
-  },
-  getSearchedHotels2(state){
-    return state.searchedHotels2
-  },
-  getLoginUserId(state){
-    return state.loggedInUserId
-  },
-  getCurrentUser(state) {
-    return state.loggedInUser
-  },
-  getAllUsers(state) {
-    return state.allUsers
-  },
-  getAllFavorites(state){
-    return state.favorites
-  },
-  getAllBookings(state){
-    return state.bookings
-  },
-  getAllHotels(state){
-    return state.hotels
-  },
-  getRoomByHotelId(state){
-    return state.rooms
-  }, 
-  getRoomsWithRoomId(state){
-    return state.bookedRoom
-  },
-  getHotelId(state){
-    return state.hotelId
-  }, 
-  getHotelById(state){
-    return state.hotelById
-  },  
-  getLoginStatus(state) {
-    console.log(state.isLoggedIn)
-    return state.isLoggedIn
-  },
-  getToggleList(state){
-    return state.toggleList
-  },
-  getFilteredHotels(state){
-    return state.filteredHotels
-  },
-  getHotelsWithPool(state){
-    return state.hotelsWithPool
-  },
-  getHotelsWithEntertainment(state){
-    return state.hotelsWithEntertainment
-  },
-  totalPrice(state){
-    return state.totalPrice
-  },
-  getDateRange(state){
-    return state.dateRange
-  },
-  getBeach(state){
-    return state.distanceBeach
-  },
-  getFromDate(state){
-    return state.fromDate
-  },
-  getToDate(state){
-    return state.toDate
-  },
-  getTemporaryNumber(state) {
-    return state.temporaryNumber
-  },
-  getExtraBed(state) {
-    return state.extraBed
-  },
-  getWholePension(state) {
-    return state.wholePension
-  },
-  getHalfPension(state) {
-    return state.halfPension
-  },
-  getAllInclusive(state) {
-    return state.allInclusive
-  },
-  getReviewsByHotelId(state) {
-    return state.reviews
-  }
 },
 
   modules: {

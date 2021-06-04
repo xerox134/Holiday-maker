@@ -53,13 +53,6 @@ export default {
     },
     getToDate(){ 
       return this.$store.getters.getToDate
-    }
-    
-    getFromDate() {
-      return this.$store.getters.getFromDate
-      },          
-    getToDate() {
-      return this.$store.getters.getToDate
     },
 },
 

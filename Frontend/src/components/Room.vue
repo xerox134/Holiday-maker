@@ -69,8 +69,6 @@ export default {
     } 
   });
 
-
-
         //IFALL DET FINNS SÅ GÅR VI IN I METODERNA ANNARS RETURERAR VI ENDAST ROOMS DIREKT
 
 if(this.pointer==0){
@@ -82,7 +80,7 @@ if(this.pointer==0){
             // METODERNA BÖRJAR!
         console.log("everything")
          this.filterBookableRooms();
-         this.filterBookableRooms2();
+        //  this.filterBookableRooms2();
          this.filterRoomsWithBookedRooms();
          this.fliterDuplicateRooms();
          this.makeRoomsArrayWork();
@@ -97,7 +95,15 @@ if(this.pointer==0){
   console.log("1");
         this.$store.state.allBookings = this.$store.state.allBookings.filter(
         (bookedRooms) => {
-                return bookedRooms.fromDate >= this.$store.state.fromDate
+            if(bookedRooms.fromDate>=this.$store.state.fromDate && bookedRooms.fromDate <= this.$store.state.toDate){
+                return bookedRooms
+            } else if(bookedRooms.toDate>=this.$store.state.fromDate && bookedRooms.toDate <= this.$store.state.toDate){
+                 return bookedRooms
+
+            }
+          
+          
+          
           }
       )
       
@@ -110,6 +116,7 @@ if(this.pointer==0){
       console.log("2");
       this.$store.state.allBookings = this.$store.state.allBookings.filter(
         (bookedRooms) => {
+            
           return bookedRooms.toDate <= this.$store.state.toDate;
         }
       );

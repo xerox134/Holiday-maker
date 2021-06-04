@@ -141,10 +141,14 @@ if(this.pointer==0){
             } else {
               console.log("Inne på funkar ej");
               console.log("funkar ej:", element2.id,element3)
-              this.filterdArray.pop(element2);
-              this.filterdArray.pop(element2);
-              this.filterdArray.pop(element2);
-              this.filterdArray.pop(element2);
+              var k = this.id.length
+             var i;
+                for (i = 0; i < k; i++) {
+                 this.filterdArray.pop(element2)
+                 console.log(k)
+                }
+             
+              
               return false;
             }
           });

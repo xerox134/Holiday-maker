@@ -90,10 +90,10 @@ export default {
 
     setDates() {
       console.log(this.fromDate, this.toDate)
-      var fromDate = this.fromDate;
-      var toDate = this.toDate;
+      var fromDateTime = new Date(this.fromDate)
+      var toDateTime = new Date (this.toDate)
       var oneDay = 1000 * 60 * 60 * 24;
-      var diffInTime = toDate.getTime() - fromDate.getTime();
+      var diffInTime = toDateTime.getTime() - fromDateTime.getTime();
       var diffInDays = Math.round(diffInTime / oneDay);
       console.log("Nr of nights: ", diffInDays);
 

@@ -16,10 +16,10 @@
 
       <div id="datum">
         <p>Datum: {{ getFromDate }} - {{ getToDate }}</p>
-        <p>Antal nätter: </p>
+        <p>Antal nätter: {{ getNumberOfNights }}</p>
         <br />
       </div>
-      <h3>Totalt pris : {{ updatePrice }} kr</h3>
+      <h3>Totalt pris : {{ updatePrice * getNumberOfNights}} kr</h3>
     </div>
   </div>
   <div>
@@ -45,20 +45,21 @@ export default {
     updatePrice() {
       return this.$store.getters.totalPrice;
     },
-
     getAdults() {
       return this.$store.getters.getNumberOfAdults;
     },
     getChildren() {
       return this.$store.getters.getNumberOfChildren;
     },
-
     getFromDate() {
       return this.$store.getters.getFromDate;
     },
     getToDate() {
       return this.$store.getters.getToDate;
     },
+    getNumberOfNights(){
+      return this.$store.getters.getNumberOfNights
+    }
   },
 
   methods: {
@@ -73,7 +74,7 @@ export default {
           room: {
             id: this.$store.state.roomId,
           },
-          price: this.$store.getters.totalPrice, // Totalpriset finns i gettern "totalPrice" som skickas in som bokningens pris
+          price: this.$store.getters.totalPrice * this.$store.getters.getNumberOfNights, // Totalpriset finns i gettern "totalPrice" som skickas in som bokningens pris
           extraBed: this.$store.getters.getExtraBed, // Kollar om extrasängsknappen är sann eller falsk
           wholePension: this.$store.getters.getWholePension, // Kollar om helpensionen är sann eller falsk
           halfPension: this.$store.getters.getHalfPension, // Kollar om halvpensionen är sann eller falsk

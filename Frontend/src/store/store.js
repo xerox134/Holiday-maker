@@ -25,6 +25,7 @@ export default createStore({
     searchedHotels2: [],
     toggleList: true,
     totalPrice: 0,
+    numberOfNights: 0,
     bedPriceManipulator: 0,
     roomPrice: 0,
     bedPrice: 100,
@@ -34,7 +35,6 @@ export default createStore({
     allInclusivePrice: 200,
     fromDate: new Date().toISOString().substr(0, 10),
     toDate: new Date().toISOString().substr(0, 10),
-    numberOfNights: 0,
     distanceCenter: null,
     distanceBeach: null,
     numberOfAll: 1,
@@ -368,6 +368,9 @@ export default createStore({
     },
     getAllInclusive(state) {
       return state.allInclusive
+    },
+    getNumberOfNights(state){
+      return state.numberOfNights
     }
   },
 

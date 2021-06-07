@@ -4,6 +4,7 @@ import Login from '../views/Login.vue'
 import Hotel from '../views/Hotel.vue'
 import Bookings from '../views/Bookings.vue'
 import Ongoingbooking from '../views/Ongoingbooking.vue'
+import Reviews from  '../views/Reviews.vue'
 
 const routes = [
   {
@@ -36,7 +37,11 @@ const routes = [
     path: '/ongoingbooking',
     component: Ongoingbooking,
     name: 'ongoingbooking'
-    
+  },
+  {
+    path: '/reviews',
+    name: 'Reviews',
+    component: Reviews
   }
 ]
 

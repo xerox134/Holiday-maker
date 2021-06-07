@@ -80,6 +80,9 @@ export default {
     },
 
     setDates(){
+      if(this.fromDate<new Date().toISOString().substr(0, 10)|| this.toDate<this.fromDate){
+        alert("You cant go back in time my friend")
+      } else
       this.$store.commit('setFromDate', this.fromDate)
       this.$store.commit('setToDate', this.toDate)
       console.log('fromDate \n' + this.$store.state.fromDate)

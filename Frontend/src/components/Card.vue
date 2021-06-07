@@ -9,7 +9,7 @@
         <span id="beds"> Sängar: {{ card.beds }}</span><br><br>
         <span id="price">Pris: {{ card.price }}</span><br><br>
         <button @click="SendRoomToOngoingbooking(card.id), addRoomPriceToTotal()" >Select</button>
-</span>
+      </span>
     </div>
     
     <div class="Hotel-card" v-if="type == 'hotel'" @click="toRooms(card.id)">
@@ -47,7 +47,8 @@
           <span id="distance_to_center">{{ card.distance_to_center }} km till centrum</span><br>
         </div>
 
-      </div>   
+      </div>
+      <button v-if="type == 'hotel'" @click.stop="toReviews(card.id)"> Recensera ✍</button>
         <button @click.stop="favoriteItem(card.id)">Favoritmarkera ❤</button>
     </div>
 
@@ -81,9 +82,15 @@
           <option value="200" >All inclusive</option>
           <option value="150">Full pension</option>
           <option value="100">Halv pension</option>
-          
         </select>
       </div>
+    </div>
+
+    <div class="Review-Card" v-if="type == 'review'">
+        <span id="id"> Betyg: {{ card.rating }}</span><br><br>
+        <span id="room_nr"> Beskrivning: {{ card.description }}</span><br><br>
+        <span id="beds"> Skriven av: {{ card.user.email }}</span><br><br>
+        <span id="price">Pris: {{ card.price }}</span><br><br>
     </div>
 
 
@@ -172,6 +179,8 @@ export default {
      
     },
 
+    
+
     async toRooms(id){
       this.$store.state.hotelId = id
 
@@ -181,6 +190,15 @@ export default {
             name: 'hotel'
       })
       window.scrollTo(0,0)
+    },
+
+    async toReviews(id) {
+      this.$store.state.hotelId = id
+
+      console.log(id)
+      this.$router.push({
+        name: 'Reviews',
+      })
     },
 
     async FavoriteToRooms(id){
@@ -260,6 +278,9 @@ export default {
       }
     }
   },
+
+
+  
   
 }
 
@@ -279,7 +300,7 @@ export default {
 
 #tre{
   max-width: 40%;
-  min-width: 30%;
+  min-width: 50%;
   max-height: 5%;
   padding: 1vh;
   text-align: right;
@@ -289,24 +310,24 @@ export default {
 
 
 #Hotel-card{
-    min-width: 100px;
+    
     
   }
   
   #card{
     border-radius: 7px;
     color: rgba(19, 13, 9, 0.911);
-    display: flex;
+   
     list-style-type: none;
     background-color: rgba(16, 16, 17, 0.534);
-    
+    min-width: 90%;
     padding: 2vh;
     margin-bottom: 18px;
     margin-left: 30px;
     box-shadow: 4px 4px 2px rgba(0, 0, 0, .3), inset 2px 2px 2px rgba(240, 200, 255, .1);
     min-height: 4vh;
-    max-width: 95%;
-    justify-content: center;
+    max-width: 90%;
+    
     align-self: center;
     text-align: left;
   }
@@ -376,7 +397,7 @@ export default {
     color: rgba(230, 230, 255, .6);
     box-shadow: 2px 2px 1px rgba(0, 0, 0, .2), inset 2px 2px 2px rgba(255, 255, 255, .05);
     margin: 3px;
-    margin-left: 1vw;
+    
     width: 100%;
     height: min(5vh, 25vw);
     text-shadow: -1px -1px 2px rgba(0, 0, 0, .3), 1px 1px 2px rgba(126, 126, 126, .5);

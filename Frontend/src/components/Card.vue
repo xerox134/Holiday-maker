@@ -48,7 +48,7 @@
         </div>
 
       </div>
-      <button v-if="type == 'hotel'" @click.stop="toReviews(card.id)"> Recensera ✍</button>
+      <button v-if="type == 'hotel'" @click.stop="toReviews(card.id)"> Recensioner ✍</button>
         <button @click.stop="favoriteItem(card.id)">Favoritmarkera ❤</button>
     </div>
 
@@ -90,7 +90,6 @@
         <span id="id"> Betyg: {{ card.rating }}</span><br><br>
         <span id="room_nr"> Beskrivning: {{ card.description }}</span><br><br>
         <span id="beds"> Skriven av: {{ card.user.email }}</span><br><br>
-        <span id="price">Pris: {{ card.price }}</span><br><br>
     </div>
 
 

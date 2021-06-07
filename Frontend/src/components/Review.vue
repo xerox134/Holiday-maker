@@ -7,10 +7,10 @@
         </ol>
     </div>
     <div>
-      <form id="reviewform" @submit="addReview">
-        <textarea name="" id="" cols="30" rows="10" v-model="description"></textarea>
-        <input id="rating" type="range" min="1" max="5" v-model="rating" />
-        <input type="submit">
+      <form id="reviewform" @submit="addReview" v-if="isAuthenticated">
+        <textarea name="" id="" cols="30" rows="10" v-model="description"></textarea><br><br>
+        <input id="rating" type="range" min="1" max="5" v-model="rating" />{{ rating }}<br><br>
+        <input type="submit" value="Lägg upp recension"><br><br>
       </form>
     </div>
     <h2>Reviews</h2>
@@ -47,6 +47,9 @@ export default {
     getReviewsByHotelId() {
       return this.$store.getters.getReviewsByHotelId
     },
+    isAuthenticated() {
+      return this.$store.getters.getCurrentUser
+    }
   },
 
   methods: {

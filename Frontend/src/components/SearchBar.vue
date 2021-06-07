@@ -5,13 +5,16 @@
   <label for="start">End date:</label>
   <input class="dateSelect" type="date" id="toDate" name="trip-start" v-model="toDate">
 
-  <div class="peopleAmount">
-    <button @click="removeAdult"> - </button>
+   <div class="peopleAmount">
+    <button class="dropbtn">Ppl Amount</button>
+    <div class="dropdown-content">
+    <button @click="removeAdult">-</button>
     Adults: {{ getAdults }}
-    <button @click="addAdult"> + </button>
-    <button @click="removeChild"> - </button>
+    <button @click="addAdult">+</button>
+    <button @click="removeChild">-</button>
     Children: {{ getChildren }}
-    <button @click="addChild"> + </button>
+    <button @click="addChild">+</button>
+    </div>
   </div>
 
  
@@ -145,6 +148,55 @@ export default {
 </script>
 
 <style scoped>
+
+.dropbtn {
+  border-radius: 10px;
+  top: -2vh;
+  left: 1px;
+  border: none;
+  outline: none;
+  background-color: rgba(80, 75, 85, .3);
+  color: rgba(230, 230, 255, .6);
+  box-shadow: 2px 2px 1px rgba(0, 0, 0, .2), inset 2px 2px 2px rgba(255, 255, 255, .05);
+  margin: 3px;
+  margin-left: 1vw;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  height: min(5vh, 25vw);
+  text-shadow: -1px -1px 2px rgba(0, 0, 0, .3), 1px 1px 2px rgba(126, 126, 126, .5);
+  
+}
+.peopleAmount{
+  position: relative;
+  display: inline-flex;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: black;
+  min-width: 250px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  top: 38px;
+  right: -80px;
+  width: 100px;
+  height: 100px;
+}
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.peopleAmount:hover .dropdown-content {display: block;}
+
+.peopleAmount:hover .dropbtn {background-color: rgba(80, 75, 85, .3);;}
 
 .dateSelect{
   border-radius: 10px;

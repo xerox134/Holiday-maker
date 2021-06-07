@@ -32,6 +32,7 @@ export default {
       resultArr: [],
       emptyArray: [],
       pointer: 0,
+      filterPeople: []
     };
   },
 
@@ -45,11 +46,6 @@ export default {
     },
     getHotelById() {
       return this.$store.getters.getHotelById;
-    },
-    filteredRooms() {
-      return this.$store.state.rooms.filter((room) => {
-        return room.beds >= this.$store.getters.getAllPeople;
-      });
     },
   },
 
@@ -107,6 +103,10 @@ export default {
         this.filterRoomsWithBookedRooms();
         this.fliterDuplicateRooms();
         this.makeRoomsArrayWork();
+
+        setTimeout(() => {
+      this.filteredRooms();
+    }, 500);
 
         console.log("detta är resultarr", this.resultArr);
         this.pointer = 0;
@@ -188,11 +188,16 @@ export default {
     },
     makeRoomsArrayWork() {
       console.log("4");
-      this.$store.state.rooms = this.resultArr;
+      this.filterPeople = this.resultArr;
       console.log("sista funktionen");
       this.$store.state.allBookings = this.$store.state.allBookings2;
       this.filterdArray = this.emptyArray;
     },
+    filteredRooms() {
+      this.$store.state.rooms = this.filterPeople.filter((room) => {
+        return room.beds >= this.$store.getters.getAllPeople;
+      });
+    }
   },
 
   mounted() {

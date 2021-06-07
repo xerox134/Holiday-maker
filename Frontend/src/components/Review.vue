@@ -9,7 +9,7 @@
     <div>
       <form id="reviewform" @submit="addReview" v-if="isAuthenticated">
         <textarea name="" id="" cols="30" rows="10" v-model="description"></textarea><br><br>
-        <input id="rating" type="range" min="1" max="5" v-model="rating" /><br><br>
+        <input id="rating" type="range" min="1" max="5" v-model="rating" />{{ rating }}<br><br>
         <input type="submit" value="Lägg upp recension"><br><br>
       </form>
     </div>

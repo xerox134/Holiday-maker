@@ -6,13 +6,13 @@
   <input class="dateSelect" type="date" id="toDate" name="trip-start" v-model="toDate">
 
    <div class="peopleAmount">
-    <button class="dropbtn">Ppl Amount</button>
+    <button class="dropbtn">Antal</button>
     <div class="dropdown-content">
     <button @click="removeAdult">-</button>
-    Adults: {{ getAdults }}
+    Vuxen: {{ getAdults }}
     <button @click="addAdult">+</button>
     <button @click="removeChild">-</button>
-    Children: {{ getChildren }}
+    Barn: {{ getChildren }}
     <button @click="addChild">+</button>
     </div>
   </div>

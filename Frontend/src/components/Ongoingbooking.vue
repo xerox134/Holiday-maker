@@ -20,6 +20,7 @@
         <br />
       </div>
       <h3>Totalt pris : {{ updatePrice * getNumberOfNights}} kr</h3>
+      <button @click="finalPrice">Test</button>
     </div>
   </div>
   <div>
@@ -64,7 +65,9 @@ export default {
 
   methods: {
     finalPrice(){
-      this.$store.commit("setFinalPrice", this.$store.getNumberOfNights)
+      var finalPrice = this.$store.state.totalPrice * this.$store.state.numberOfNights
+      this.$store.commit("setFinalPrice", finalPrice)
+      console.log(finalPrice);
     },
     Edit() {
       this.$store.commit("addABed", this.$store.state.bedPrice);

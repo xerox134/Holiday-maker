@@ -41,10 +41,14 @@ export default createStore({
     extraBed: false,
     wholePension: false,
     halfPension: false,
-    allInclusive: false
+    allInclusive: false,
+    finalPrice:0
   },
 
   mutations: {
+    setFinalPrice(state, payload){
+      state.finalPrice = payload
+    },
     setNumberOfNights(state, payload){
       state.numberOfNights = payload
     },
@@ -279,6 +283,9 @@ export default createStore({
   },
 
   getters: {
+    getFinalPrice(state){
+      return state.finalPrice
+    },
     getAllPeople(state) {
       return state.numberOfAll
     },

@@ -32,7 +32,7 @@ export default {
         {
           price: "price_1IxsIjGbzWnmUKqiYtceOczB", // The id of the one-time price you created in your Stripe dashboard
           quantity:
-            this.finalTotalPrice = this.totalPrice
+            this.$store.state.totalPrice
         },
       ],
       successURL: "http://localhost:3000/#/success",

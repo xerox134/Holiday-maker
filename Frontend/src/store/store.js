@@ -276,50 +276,16 @@ export default createStore({
         console.log(response.data)
     })
     },
+    async fetchReviewsByHotelId() {
+      await axios.get("http://localhost:3000/rest/reviews/hotel/" + this.state.hotelId)
+      .then(response => {
+        this.commit("setReviewsByHotelId", response.data)
+        console.log(response.data)
+      })
+    },
   },
 
-  async fetchHotelByPool(){
-    await axios.get("http://localhost:3000/rest/hotels/filter/pool")
-    .then(response => {
-      this.commit("setFilteredHotels", response.data)
-      console.log(response.data)
-    })
-  },
-  async fetchHotelByEntertainment(){
-    await axios.get("http://localhost:3000/rest/hotels/filter/entertainment")
-    .then(response => {
-      this.commit("setFilteredHotels", response.data)
-      console.log(response.data)
-    })
-  },
-  async fetchHotelByRestaurant(){
-    await axios.get("http://localhost:3000/rest/hotels/filter/restaurant")
-    .then(response => {
-      this.commit("setFilteredHotels", response.data)
-      console.log(response.data)
-    })
-  },
-  async fetchHotelByWifi(){
-    await axios.get("http://localhost:3000/rest/hotels/filter/wifi")
-    .then(response => {
-      this.commit("setFilteredHotels", response.data)
-      console.log(response.data)
-    })
-  },
-  async fetchHotelByBar(){
-    await axios.get("http://localhost:3000/rest/hotels/filter/bar")
-    .then(response => {
-      this.commit("setFilteredHotels", response.data)
-      console.log(response.data)
-    })
-  },
-  async fetchReviewsByHotelId() {
-    await axios.get("http://localhost:3000/rest/reviews/hotel/" + this.state.hotelId)
-    .then(response => {
-      this.commit("setReviewsByHotelId", response.data)
-      console.log(response.data)
-    })
-  },
+
   getters:{
     getAllPeople(state){
       return state.numberOfAll

@@ -11,7 +11,7 @@
       <router-link to="/cart" v-if="isAuthenticated">| Varukorg </router-link>
     </div>
 
-    <h3>HOLIDAY MAKER</h3>
+    <h1>HOLIDAY MAKER</h1>
 
     <div id="login">
       <router-link to="/login" v-if="!isLoggedIn">Login</router-link>
@@ -184,4 +184,6 @@ html {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+
 </style>

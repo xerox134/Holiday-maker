@@ -1,5 +1,18 @@
 <template>
   <div id="everything">
+    
+    <div id="Search">
+
+<div class="searchContainer">
+      <input
+      id="searchBar"
+      v-on:keyup.enter="searchForHotel(searchPhrase)"
+      type="text"
+      placeholder="🛏Vart vill du åka?"
+      v-model="searchPhrase"
+    />
+</div>
+<div class="searchContainer">
     <label for="start">Start date:</label>
     <input
       class="dateSelect"
@@ -16,7 +29,7 @@
       name="trip-start"
       v-model="toDate"
     />
-
+ </div>
     <div class="peopleAmount">
       <button @click="removeAdult">-</button>
       Adults: {{ getAdults }}
@@ -26,15 +39,9 @@
       <button @click="addChild">+</button>
     </div>
 
-    <input
-      id="searchBar"
-      v-on:keyup.enter="searchForHotel(searchPhrase)"
-      type="text"
-      placeholder="Sök..."
-      v-model="searchPhrase"
-    />
+    
     <button @click="searchForHotel(searchPhrase)">Sök</button>
-
+</div>
     <div id="sort">
       <span class="trying">
         <p>Stjärnor⭐</p>
@@ -57,6 +64,7 @@
 
       <button @click="clear(), clear2()">❌</button><br />
     </div>
+     
 
     <ol id="HotelList">
       <li v-for="(hotel, index) in getSearchedHotels" :key="index">
@@ -263,6 +271,25 @@ export default {
   display: flex;
 }
 
+#Search{
+  display: flex;
+  justify-content: space-between;
+   align-items: center;
+ justify-content: center;
+ text-align: center;
+  
+  padding: 1vh 1vw;
+
+  
+}
+
+#searchBar{
+  padding: 1vh 1vw;
+ align-items: center;
+ justify-content: center;
+ margin: 1vh 1vw;
+  
+}
 .trying {
   display: flex;
 

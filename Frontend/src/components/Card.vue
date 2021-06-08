@@ -5,6 +5,13 @@
    
     <div class="Room-card" v-if="type == 'room'">
       <span id="booked" v-if="!card.booked">
+
+<div>
+         <img v-bind:src="card.img" alt="" /><br /><br /><br />
+</div>
+
+
+        
         <span id="id"> Rum id: {{ card.id }}</span
         ><br /><br />
         <span id="room_nr"> Rum Nummer: {{ card.room_nr }}</span
@@ -66,7 +73,7 @@
           <span id="distance_to_center">{{ card.distance_to_center }} km till centrum</span ><br />
         </div>
       </div>
-      
+
       <button v-if="type == 'hotel'" @click.stop="toReviews(card.id)">
         Recensioner ✍
       </button>

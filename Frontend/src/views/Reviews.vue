@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Review from '../components/Review'
+import Review from '../components/RouteComponents/Review'
 
 export default {
   name: 'Reviews',

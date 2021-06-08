@@ -67,8 +67,8 @@
 </template>
 
 <script>
-import SliderBeach from "../SearchBarSliders/SliderBeach";
-import SliderCenter from "../SearchBarSliders/SliderCenter";
+import SliderBeach from "./SearchBarSliders/SliderBeach";
+import SliderCenter from "./SearchBarSliders/SliderCenter";
 import Card from "../Card";
 
 export default {

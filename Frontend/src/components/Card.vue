@@ -70,7 +70,7 @@
       <button @click="deleteFromBooking(card.id), refreshStuff()">Remove from List ✖ </button>   
     </div>
 
-    <div class="Ongoingbooking-card" v-if="type == 'ongoingbooking'" >
+    <div class="ShoppingCart-card" v-if="type == 'shoppingcuart'" >
       <span>Room id: {{card.id}}</span><br><br>
       <span>Room Price: {{card.price}}</span><br><br>
       <button id = "addBedButton" @click ="addABed()"  >extra Bed</button>

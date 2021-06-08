@@ -8,7 +8,7 @@
 
 <script>
 
-import Room from "../components/Room"
+import Room from "../components/RouteComponents/Room"
 
 export default {
  name: 'Hotel',

@@ -1,5 +1,5 @@
 <template>
-  <h1>OngoingBooking Component</h1>
+  <h1>ShoppingCart Component</h1>
  <div>
 
 <p>Total price : {{ updatePrice }} kr</p>
@@ -16,10 +16,10 @@
 </div>
 
 
-  <div id="OngoingbookingList">
+  <div id="ShoppingCartList">
  <ol style="list-style-type:none;">
-<li v-for="(Ongoingbooking, index) in getRoomsWithRoomId" :key="index"> 
-        <Card :card="Ongoingbooking"  :type="'ongoingbooking'"/>
+<li v-for="(ShoppingCart, index) in getRoomsWithRoomId" :key="index"> 
+        <Card :card="ShoppingCart"  :type="'shoppingcart'"/>
          </li>
     </ol>
    </div>
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import Card from "./Card"
+import Card from '../Card'
 
 export default {
   name: "Booking",

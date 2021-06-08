@@ -1,7 +1,7 @@
 <template>
-<div class ="Ongoingbooking">  <p>Welcome to ongoing bookings</p>
+<div class ="ShoppingCart">  <p>Welcome to ongoing bookings</p>
 </div>
-<div id="Ongoingbooking"><Ongoingbooking/></div>
+<div id="ShoppingCart"><ShoppingCart/></div>
 
 <div></div>
 
@@ -9,12 +9,12 @@
 </template>
 
 <script>
-  import Ongoingbooking from "../components/Ongoingbooking.vue"
+  import ShoppingCart from "../components/RouteComponents/Cart.vue"
  export default {
-  name: "ongoingbooking",
+  name: "shoppingcart",
 
   components: {
-    Ongoingbooking
+    ShoppingCart
   },
   computed: {},
   methods:{},
@@ -22,7 +22,7 @@
 </script>
 
 <style scoped>
-#Ongoingbooking {
+#ShoppingCart {
   background-color: rgba(60, 55, 65, .3);
   color: blanchedalmond;
   width: 100%;

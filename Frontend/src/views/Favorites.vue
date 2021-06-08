@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Favorites from "../components/Favorites.vue"
+import Favorites from "../components/RouteComponents/Favorites.vue"
 export default {
   name: "favorites",
   components: {

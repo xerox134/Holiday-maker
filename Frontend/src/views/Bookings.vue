@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Bookings from "../components/Bookings.vue"
+import Bookings from "../components/RouteComponents/Bookings.vue"
 export default {
   name: "bookings",
   components: {

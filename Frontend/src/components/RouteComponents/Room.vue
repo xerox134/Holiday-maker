@@ -21,7 +21,7 @@
 
 
 <script>
-import Card from "../components/Card";
+import Card from "../Card";
 export default {
   name: "Hotels",
 

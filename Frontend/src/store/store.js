@@ -1,10 +1,20 @@
 import { createStore } from 'vuex';
 import axios from 'axios';
+import Stripe, { loadStripe } from '@stripe/stripe-js'
+import { Checkout } from 'stripe/lib/resources';
 
 export default createStore({
   name: 'store',
 
   state: {
+    cartItems:[
+      {
+        id: 1,
+        amount: 1,
+        price: 10,
+        title: "Hotellbokning"
+      }
+    ],
     favorites: [],
     bookings: [],
     myBookings: [],
@@ -173,9 +183,25 @@ export default createStore({
       state.allInclusive = payload
     }
   },
-
+  
   actions: {
-    async fetchHotels() {
+    async checkout({commit, state}, total){
+      const stripe = await loadStripe('pk_test_51IxVsIGbzWnmUKqiQXUVCLg7e3J808utQYvrZQyDKilYGqqtwbNXAli0jaLRpGrxJXQnFmTtLTq7DnM151bEJlzD007pPeLOwH');
+      //const elements = stripe.elements();
+      let response = await fetch('/rest/create-checkout-session', {
+          method: 'post',
+          headers: {'Content-type': 'application/json'},
+          body: JSON.stringify(
+              {
+                  items: state.cartItems
+              }
+          )
+      })
+      let result = await response.json()
+      console.log('Redirecting to stripe checkout..', result)
+      return stripe.redirectToCheckout({ sessionId: result.id });
+    },
+     async fetchHotels() {
       await axios.get("http://localhost:3000/rest/hotels")
         .then(response => {
           this.commit("addHotels", response.data)

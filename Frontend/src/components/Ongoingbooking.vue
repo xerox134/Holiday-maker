@@ -24,19 +24,20 @@
     </div>
   </div>
   <div>
-    <Stripe/>
+    <router-link to="/checkout">Checkout</router-link>
+    <button @click="checkout()">checkouttest</button>
   </div>
 </template>
 
 <script>
 import Card from "./Card";
-import Stripe from "./Stripe";
+
 
 export default {
   name: "Booking",
   components: {
     Card,
-    Stripe,
+    
   },
 
   computed: {
@@ -64,6 +65,9 @@ export default {
   },
 
   methods: {
+    checkout(){
+            this.$store.dispatch('checkout', this.total)
+        },
     finalPrice(){
       var finalPrice = this.$store.state.totalPrice * this.$store.state.numberOfNights
       this.$store.commit("setFinalPrice", finalPrice)

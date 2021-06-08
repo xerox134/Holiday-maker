@@ -3,18 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "start": "node server.js",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@stripe/stripe-js": "^1.15.0",
     "@vue-stripe/vue-stripe": "^4.2.4",
     "@vueform/slider": "^1.0.5",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "primeicons": "^4.1.0",
     "primevue": "^3.5.0",
-    "stripe": "^8.150.0",
+    "express": "^4.17.1",
+    "stripe": "^7.1.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vue-slide-bar": "^1.2.0",

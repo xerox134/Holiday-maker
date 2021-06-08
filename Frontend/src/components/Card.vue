@@ -1,5 +1,8 @@
 <template>
   <div id="card">
+   
+   <!---------------------------------------------------------------------------ROOM CARD------------------------------------------------------------------------------------------>
+   
     <div class="Room-card" v-if="type == 'room'">
       <span id="booked" v-if="!card.booked">
         <span id="id"> Rum id: {{ card.id }}</span
@@ -18,20 +21,23 @@
       </span>
     </div>
 
+
+  <!---------------------------------------------------------------------------HOTEL CARD------------------------------------------------------------------------------------------>
+
     <div class="Hotel-card" v-if="type == 'hotel'" @click="toRooms(card.id)">
       <span class="name"> {{ card.name }}</span
       ><br /><br />
-      <div id="ett">
-        <div id="fyra">
+      <div id="hotelContainer">
+        <div id="bildPris">
           <img v-bind:src="card.img" alt="" /><br /><br /><br />
 
-          <span id="price"
+          <span 
             ><p>FRÅN {{ card.cheapest_price }}/natt</p>
             <br /><br />
           </span>
         </div>
 
-        <div id="två">
+        <div id="info">
           <span id="country">Land: {{ card.country }}</span
           ><br />
           <span id="city">Stad: {{ card.city }}</span
@@ -42,37 +48,33 @@
           ><br />
         </div>
 
-        <div id="tre">
+        <div id="filter">
           <span id="review">⭐ {{ card.review }}/5</span><br />
           <span id="wifi" v-if="card.wifi">Wifi ✔</span>
           <span id="wifi" v-else>Wifi ✖</span><br />
           <span id="pool" v-if="card.pool">Pool ✔</span>
           <span id="pool" v-else>Pool ✖</span><br />
-          <span id="entertainment" v-if="card.entertainment"
-            >Underhållning ✔</span
-          >
+          <span id="entertainment" v-if="card.entertainment">Underhållning ✔</span>
           <span id="entertainment" v-else>Underhållning ✖</span><br />
-          <span id="childrens_club" v-if="card.childrens_club"
-            >Barnklubb ✔</span
-          >
+          <span id="childrens_club" v-if="card.childrens_club" >Barnklubb ✔</span>
           <span id="childrens_club" v-else>Barnklubb ✖</span><br />
           <span id="resturant" v-if="card.restaurant">Restaurang ✔</span>
           <span id="resturant" v-else>Restaurang ✖</span><br />
           <span id="bar" v-if="card.bar">Bar ✔</span>
           <span id="bar" v-else>Bar ✖</span><br />
-          <span id="distance_to_beach"
-            >{{ card.distance_to_beach }} km till strand</span
-          ><br />
-          <span id="distance_to_center"
-            >{{ card.distance_to_center }} km till centrum</span
-          ><br />
+          <span id="distance_to_beach">{{ card.distance_to_beach }} km till strand</span><br />
+          <span id="distance_to_center">{{ card.distance_to_center }} km till centrum</span ><br />
         </div>
       </div>
+      
       <button v-if="type == 'hotel'" @click.stop="toReviews(card.id)">
         Recensioner ✍
       </button>
       <button @click.stop="favoriteItem(card.id)">Favoritmarkera ❤</button>
     </div>
+
+
+<!---------------------------------------------------------------------------FAVORITE CARD------------------------------------------------------------------------------------------>
 
     <div class="Favorite-card" v-if="type == 'favorite'">
       <span id="user">Name: {{ card.hotel.name }}</span
@@ -90,6 +92,8 @@
       </button>
     </div>
 
+
+ <!---------------------------------------------------------------------------BOOKING CARD------------------------------------------------------------------------------------------>
     <div class="Booking-card" v-if="type == 'booking'">
       <span id="hotelname">Hotel Name: {{ card.hotel.name }}</span
       ><br /><br />
@@ -103,6 +107,9 @@
         Remove from List ✖
       </button>
     </div>
+
+
+<!---------------------------------------------------------------------------SHOPPING-CART CARD------------------------------------------------------------------------------------------>
 
     <div class="ShoppingCart-card" v-if="type == 'shoppingcuart'">
       <span>Room id: {{ card.id }}</span
@@ -121,7 +128,7 @@
         </select>
       </div>
     </div>
-
+ <!---------------------------------------------------------------------------REVIEW  CARD------------------------------------------------------------------------------------------>
     <div class="Review-Card" v-if="type == 'review'">
       <span id="id"> Betyg: {{ card.rating }}</span
       ><br /><br />
@@ -325,14 +332,14 @@ export default {
 
 
 <style scoped>
-#ett {
+#hotelContainer {
   display: flex;
 }
-#fyra {
+#bildPris {
   padding: 0vh 1vw;
 }
 
-#tre {
+#filter {
   max-width: 40%;
   min-width: 50%;
   max-height: 5%;

@@ -1,5 +1,5 @@
 <template>
-  <h1>hej</h1>
+ 
 
   <div id="Hotels"><Room /></div>
 </template>

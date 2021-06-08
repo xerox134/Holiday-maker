@@ -176,14 +176,15 @@ export default {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: black;
+  background-color: rgb(38, 39, 63);
   min-width: 250px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
   top: 38px;
-  right: -80px;
+  right: -100px;
   width: 100px;
   height: 100px;
+  border-radius: 7px;
 }
 .dropdown-content a {
   color: black;

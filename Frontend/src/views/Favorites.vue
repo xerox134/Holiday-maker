@@ -4,6 +4,7 @@
         <div id="Favorites"><Favorites/></div>
 
   </div>
+  
 </template>
 
 <script>

@@ -186,7 +186,7 @@ export default {
       console.log(this.$store.state.hotelId)
       console.log("We clicked")
       this.$router.push({
-            name: 'hotel'
+            name: 'rooms'
       })
       window.scrollTo(0,0)
     },

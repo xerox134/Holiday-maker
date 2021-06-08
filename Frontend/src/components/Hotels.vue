@@ -1,5 +1,5 @@
 <template>
- <div id="SearchBar"><SearchBar/></div>
+ 
  
     <div >
 
@@ -10,18 +10,20 @@
         </ol>
 
     </div>
+
+     
 </template>
 
 
 <script>
 import Card from "../components/Card";
-import SearchBar from "../components/SearchBar"
+
 export default {
     name: "Hotels",
 
 components: {
     Card, 
-    SearchBar,
+    
     },
     
     computed: {

@@ -3,6 +3,8 @@
     <div id="Bookings"><Bookings/></div>
 
   </div>
+
+  
 </template>
 
 <script>

@@ -21,7 +21,7 @@
         <span id="price">Pris: {{ card.price }}</span
         ><br /><br />
         <button
-          @click="SendRoomToOngoingbooking(card.id), addRoomPriceToTotal()"
+          @click="SendRoomToCart(card.id), addRoomPriceToTotal()"
         >
           Select
         </button>
@@ -275,7 +275,7 @@ export default {
       this.$store.dispatch("fetchAllFavorites");
     },
 
-    SendRoomToOngoingbooking(id) {
+    SendRoomToCart(id) {
       this.$store.state.roomId = id;
       console.log(this.$store.state.roomId);
       this.$store.dispatch("fetchRoomsWithRoomId");

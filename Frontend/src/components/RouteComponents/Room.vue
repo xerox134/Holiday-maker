@@ -1,5 +1,5 @@
 <template>
-  <button @click="$router.push('ongoingbooking')">Continue to booking</button>
+  <button @click="$router.push('cart')">Continue to booking</button>
   <div>
     <ol id="HotelList">
       <li v-for="(hotel, index) in getHotelById" :key="index">

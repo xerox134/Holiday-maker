@@ -25,7 +25,7 @@
   </div>
   <div>
     <router-link to="/checkout">Checkout</router-link>
-    <button @click="checkout()">checkouttest</button>
+    <button @click="addBooking(), checkout()">checkouttest</button>
   </div>
 </template>
 
@@ -96,6 +96,7 @@ export default {
           numberOfChildren: this.$store.getters.getNumberOfChildren, // Hämtar antal barn som man valt
           fromDate: this.$store.getters.getFromDate, // Hämtar datumet man valt. Bokningen funkar inte om man inte fyller i ett startdatum
           toDate: this.$store.getters.getToDate, // Hämtar datumet man valt. Bokningen funkar inte om man inte fyller i ett slutdatum
+          paid: 0,
         }),
       };
       const response = await fetch("/rest/bookings", requestOptions);

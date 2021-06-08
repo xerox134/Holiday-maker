@@ -20,6 +20,7 @@ public class Booking {
     private int numberOfChildren;
     private String fromDate;
     private String toDate;
+    private boolean paid;
 
     @ManyToOne
     private Room room;
@@ -31,7 +32,7 @@ public class Booking {
     }
 
     public Booking(long id, long price, boolean extraBed, boolean wholePension, boolean halfPension,boolean allInclusive,
-                   int numberOfAdults, int numberOfChildren, String fromDate, String toDate, Room room, User user) {
+                   int numberOfAdults, int numberOfChildren, String fromDate, String toDate, Room room, User user, boolean paid) {
         this.id = id;
         this.price = price;
         this.extraBed = extraBed;
@@ -44,6 +45,7 @@ public class Booking {
         this.toDate = toDate;
         this.room = room;
         this.user = user;
+        this.paid = paid;
     }
 
     public long getId() {
@@ -142,7 +144,13 @@ public class Booking {
         this.toDate = toDate;
     }
 
+    public boolean isPaid() {
+        return paid;
+    }
 
+    public void setPaid(boolean paid) {
+        this.paid = paid;
+    }
 
     @Override
     public String toString() {
@@ -155,8 +163,9 @@ public class Booking {
                 ", allInclusive=" + allInclusive +
                 ", numberOfAdults=" + numberOfAdults +
                 ", numberOfChildren=" + numberOfChildren +
-                ", fromDate=" + fromDate +
-                ", toDate=" + toDate +
+                ", fromDate='" + fromDate + '\'' +
+                ", toDate='" + toDate + '\'' +
+                ", paid=" + paid +
                 ", room=" + room +
                 ", user=" + user +
                 '}';

@@ -188,7 +188,7 @@ export default createStore({
     async checkout({commit, state}, total){
       const stripe = await loadStripe('pk_test_51IxVsIGbzWnmUKqiQXUVCLg7e3J808utQYvrZQyDKilYGqqtwbNXAli0jaLRpGrxJXQnFmTtLTq7DnM151bEJlzD007pPeLOwH');
       //const elements = stripe.elements();
-      let response = await fetch('/rest/create-checkout-session', {
+      let response = await fetch('/api/create-checkout-session', {
           method: 'post',
           headers: {'Content-type': 'application/json'},
           body: JSON.stringify(

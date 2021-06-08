@@ -1,3 +1,5 @@
+
+
 // express
 let express = require('express')
 const app = express()
@@ -12,7 +14,7 @@ const Stripe = require('stripe')
 const stripe = new Stripe('sk_test_51IxVsIGbzWnmUKqiHXN3jJlRwvvZvRfWS3tkMxIzRxu6kNO2NSI8qkY7612LlfVW1xgYgY3I4jvADBsc7qEob8fg00X1ut5UV5') // stripe.com api secret key
 
 // route for checkout
-app.post('/rest/create-checkout-session', async (req, res) => {
+app.post('/api/create-checkout-session', async (req, res) => {
 
   let line_items = req.body.items.map(item => { return {
       price_data: {

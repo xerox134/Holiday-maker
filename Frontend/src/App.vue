@@ -1,22 +1,16 @@
 <template>
-
-
-    <Routerbar/>
-
+  <Routerbar />
 </template>
 
 <script>
-import Routerbar from "../src/components/Routerbar"
-
-
+import Routerbar from "../src/components/Routerbar";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-   Routerbar
-  }
-}
-
+    Routerbar,
+  },
+};
 </script>
 
 <style>
@@ -24,11 +18,8 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   color: #cbd5df;
   text-decoration: none;
-  
- 
-  
 }
 </style>

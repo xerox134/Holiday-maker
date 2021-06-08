@@ -4,7 +4,7 @@ import Login from '../views/Login.vue'
 import Rooms from '../views/Rooms.vue'
 import Bookings from '../views/Bookings.vue'
 import ShoppingCart from '../views/ShoppingCart.vue'
-import Reviews from  '../views/Reviews.vue'
+import Reviews from '../views/Reviews.vue'
 
 const routes = [
   {
@@ -31,7 +31,7 @@ const routes = [
     path: '/room',
     component: Rooms,
     name: 'rooms'
-    
+
   },
   {
     path: '/cart',

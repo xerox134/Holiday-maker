@@ -32,7 +32,7 @@ export default {
       resultArr: [],
       emptyArray: [],
       pointer: 0,
-      filterPeople: []
+      filterPeople: [],
     };
   },
 
@@ -107,8 +107,8 @@ export default {
         this.makeRoomsArrayWork();
 
         setTimeout(() => {
-      this.filteredRooms();
-    }, 500);
+          this.filteredRooms();
+        }, 500);
 
         console.log("detta är resultarr", this.resultArr);
         this.pointer = 0;
@@ -199,7 +199,7 @@ export default {
       this.$store.state.rooms = this.filterPeople.filter((room) => {
         return room.beds >= this.$store.getters.getAllPeople;
       });
-    }
+    },
   },
 
   mounted() {

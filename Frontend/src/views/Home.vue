@@ -1,53 +1,35 @@
 <template>
-  
-
-    <div class= "filter-container">
-    <div id= "Filter"><Filter/></div>
+  <div class="filter-container">
+    <div id="Filter"><Filter /></div>
 
     <div id="Main">
-    <div id="SearchBar"><SearchBar/></div>
-    <div id="Hotels"><Hotels/></div>
+      <div id="SearchBar"><SearchBar /></div>
+      <div id="Hotels"><Hotels /></div>
     </div>
-</div>
-   
-  
+  </div>
 </template>
 
 <script>
-
-import Hotels from "../components/HomeComponents/Hotels"
-import Filter from "../components/HomeComponents/Filter"
-import SearchBar from "../components/HomeComponents/SearchBar"
-
-
+import Hotels from "../components/HomeComponents/Hotels";
+import Filter from "../components/HomeComponents/Filter";
+import SearchBar from "../components/HomeComponents/SearchBar";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
-    
     Hotels,
     Filter,
-    SearchBar
-
-    
-  
-  }
-}
+    SearchBar,
+  },
+};
 </script>
 
 <style scoped>
-
-
-
-#Filter{
+#Filter {
   margin-top: 150px;
 }
 .filter-container {
   display: flex;
   justify-content: right;
- 
-  
-    
 }
-
 </style>

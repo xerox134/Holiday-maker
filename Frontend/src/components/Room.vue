@@ -41,11 +41,13 @@ export default {
   },
 
   computed: {
-    getRoomByHotelId() {
-      return this.$store.getters.getRoomByHotelId;
-    },
     getHotelById() {
       return this.$store.getters.getHotelById;
+    },
+    getRoomByHotelId() {
+      return this.$store.state.rooms.filter((room) => {
+        return room.beds >= this.$store.getters.getAllPeople;
+      });
     },
   },
 

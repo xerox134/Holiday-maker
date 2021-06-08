@@ -5,7 +5,7 @@
       <router-link to="/"> Hem </router-link>
       <router-link to="/favorites" v-if="isAuthenticated"> | Favoriter </router-link>
       <router-link to="/bookings" v-if="isAuthenticated"> | Mina bokningar </router-link>
-      <router-link to="/ongoingbooking" v-if="isAuthenticated">| Varukorg </router-link> 
+      <router-link to="/cart" v-if="isAuthenticated">| Varukorg </router-link> 
 
     </div>
 

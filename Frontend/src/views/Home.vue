@@ -14,10 +14,10 @@
 </template>
 
 <script>
-// @ is an alias to /src
-import Hotels from "../components/Hotels"
-import Filter from "../components/Filter"
-import SearchBar from "../components/SearchBar"
+
+import Hotels from "../components/HomeComponents/Hotels"
+import Filter from "../components/HomeComponents/Filter"
+import SearchBar from "../components/HomeComponents/SearchBar"
 
 
 
@@ -35,16 +35,17 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+
 
 #Filter{
-  margin-top: 80px;
+  margin-top: 150px;
 }
 .filter-container {
   display: flex;
   justify-content: right;
-  max-width: 100%;
-  min-width: 100%;
+ 
   
     
 }

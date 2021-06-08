@@ -322,7 +322,7 @@ export default {
     min-width: 90%;
     padding: 2vh;
     margin-bottom: 18px;
-    margin-left: 30px;
+    margin-left: 80px;
     box-shadow: 4px 4px 2px rgba(0, 0, 0, .3), inset 2px 2px 2px rgba(240, 200, 255, .1);
     min-height: 4vh;
     max-width: 90%;

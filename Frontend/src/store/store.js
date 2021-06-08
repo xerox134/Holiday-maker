@@ -1,7 +1,7 @@
 import { createStore } from 'vuex';
 import axios from 'axios';
 import Stripe, { loadStripe } from '@stripe/stripe-js'
-import { Checkout } from 'stripe/lib/resources';
+
 
 export default createStore({
   name: 'store',
@@ -56,6 +56,9 @@ export default createStore({
   },
 
   mutations: {
+    setCartPrice(state, payload){
+      state.cartItems.price = payload
+    },
     setFinalPrice(state, payload){
       state.finalPrice = payload
     },
@@ -185,7 +188,17 @@ export default createStore({
   },
   
   actions: {
-    async checkout({commit, state}, total){
+    async checkout({commit, state}, finalPrice){
+      state.cartItems = [
+        {
+          id: 1,
+          amount: 1,
+          price: finalPrice,
+          title: "Hotellbokning"
+        }
+      ],
+      console.log('finalprice from store ' + state.finalPrice)
+      console.log(state.cartItems)
       const stripe = await loadStripe('pk_test_51IxVsIGbzWnmUKqiQXUVCLg7e3J808utQYvrZQyDKilYGqqtwbNXAli0jaLRpGrxJXQnFmTtLTq7DnM151bEJlzD007pPeLOwH');
       //const elements = stripe.elements();
       let response = await fetch('/api/create-checkout-session', {

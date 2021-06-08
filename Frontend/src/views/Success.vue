@@ -1,9 +1,8 @@
 <template>
   <div class="Success">
-    <h2>Bokning genomförd!</h2>
+    <h2>Bokningen slutförd!</h2>
     <br />
     <br />
-    <button @click="asd">Test</button>
   </div>
 </template>
 
@@ -18,6 +17,7 @@ export default {
   },
 
   methods:{
+    
    
 
   },

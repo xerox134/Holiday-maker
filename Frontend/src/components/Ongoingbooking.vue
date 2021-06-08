@@ -66,8 +66,11 @@ export default {
 
   methods: {
     checkout(){
-            this.$store.dispatch('checkout', this.total)
-        },
+      var finalPrice = this.$store.state.totalPrice * this.$store.state.numberOfNights
+      this.$store.commit("setFinalPrice", finalPrice)
+      console.log(finalPrice)
+      this.$store.dispatch('checkout', this.updatePrice)
+    },
     finalPrice(){
       var finalPrice = this.$store.state.totalPrice * this.$store.state.numberOfNights
       this.$store.commit("setFinalPrice", finalPrice)

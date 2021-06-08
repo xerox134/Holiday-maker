@@ -1,20 +1,19 @@
 <template>
 
 
-    <div id= "Home"><Home/></div>
- <router-view/>
+    <Routerbar/>
+
 </template>
 
 <script>
-import Home from "../src/views/Home"
-
+import Routerbar from "../src/components/Routerbar"
 
 
 
 export default {
   name: 'App',
   components: {
-   Home,
+   Routerbar
   }
 }
 

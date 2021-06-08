@@ -1,11 +1,6 @@
 <template>
   
 
-
-  <div id= "Router"><Routerbar/></div>
-
-
-
     <div class= "filter-container">
     <div id= "Filter"><Filter/></div>
 
@@ -20,7 +15,6 @@
 
 <script>
 // @ is an alias to /src
-import Routerbar from "../components/Routerbar"
 import Hotels from "../components/Hotels"
 import Filter from "../components/Filter"
 import SearchBar from "../components/SearchBar"
@@ -33,7 +27,6 @@ export default {
     
     Hotels,
     Filter,
-    Routerbar,
     SearchBar
 
     

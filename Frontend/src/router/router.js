@@ -4,8 +4,6 @@ import Login from '../views/Login.vue'
 import Hotel from '../views/Hotel.vue'
 import Bookings from '../views/Bookings.vue'
 import Ongoingbooking from '../views/Ongoingbooking.vue'
-import Success from '../views/Success.vue'
-import Fail from '../views/Fail.vue'
 import { Checkout } from 'stripe/lib/resources'
 import CheckoutResult from '/src/components/CheckoutResult.vue'
 
@@ -14,14 +12,6 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
-  },
-  {
-    path: '/success',
-    component: Success
-  },
-  {
-    path: '/fail',
-    component: Fail
   },
   {
     path: '/favorites',
@@ -53,12 +43,13 @@ const routes = [
     path: '/checkout',
     name: 'Checkout',
     component: Checkout,
-},
-{
+  },
+  {
     path: '/checkout-result/:result',
     name: 'CheckoutResult',
     component: CheckoutResult,
-}
+  }
+
 
 
 ]

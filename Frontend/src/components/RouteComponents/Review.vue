@@ -23,7 +23,7 @@
       <input type="submit" value="Lägg upp recension" /><br /><br />
     </form>
   </div>
-  <h2>Reviews</h2>
+  <h2>Recensioner</h2>
   <div>
     <ol id="ReviewList">
       <li v-for="(review, index) in getReviewsByHotelId" :key="index">
@@ -90,5 +90,33 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+textarea{
+  color: black;
+}
+input {
+  border-radius: 7px;
+  border: none;
+  outline: none;
+  background-color: rgba(80, 75, 85, 0.3);
+  color: rgba(230, 230, 255, 0.6);
+  box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.2),
+    inset 2px 2px 2px rgba(255, 255, 255, 0.05);
+  height: min(5vh, 25vw);
+  text-shadow: -1px -1px 2px rgba(0, 0, 0, 0.3),
+    1px 1px 2px rgba(126, 126, 126, 0.5);
+    padding: 1vw
+}
+
+input:hover {
+  background-color: rgba(80, 75, 85, 0.8);
+}
+
+input:active {
+  color: rgba(230, 230, 255, 0.8);
+  border: none;
+  background-color: rgba(80, 75, 85, 0.1);
+  box-shadow: inset -2px -2px 2px rgba(220, 180, 255, 0.1),
+    inset 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
 </style>

@@ -7,23 +7,12 @@
       </li>
     </ol>
     <div>
-      <div>
-        <p>Antal vuxna: {{ getAdults }}</p>
-      </div>
-      <div>
-        <p>Antal barn: {{ getChildren }}</p>
-      </div>
-
-      <div id="datum">
-        <p>Datum: {{ getFromDate }} - {{ getToDate }}</p>
-        <p>Antal nätter: {{ getNumberOfNights }}</p>
-        <br />
-      </div>
+      
       <h3>Totalt pris : {{ getTotalPrice * getNumberOfNights}} kr</h3>
     </div>
   </div>
   <div>
-    <button @click="addBooking(), checkout()">Till betalning</button>
+    <button @click="addBooking()">Till betalning</button>
   </div>
 </template>
 
@@ -67,10 +56,7 @@ export default {
 
   methods: {
     checkout(){
-      var finalPrice = this.$store.state.totalPrice * this.$store.state.numberOfNights
-      this.$store.commit("setFinalPrice", finalPrice)
-      console.log(finalPrice)
-      this.$store.dispatch('checkout', this.getFinalPrice)
+      
     },
     test(){
       console.log(finalPrice)
@@ -81,6 +67,8 @@ export default {
       this.$store.commit("addABed", this.$store.state.bedPrice);
     },
     async addBooking() {
+      var finalPrice = this.$store.state.totalPrice * this.$store.state.numberOfNights
+      this.$store.commit("setFinalPrice", finalPrice)
       const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -88,7 +76,7 @@ export default {
           room: {
             id: this.$store.state.roomId,
           },
-          price: this.$store.getters.totalPrice, // Totalpriset finns i gettern "totalPrice" som skickas in som bokningens pris
+          price: this.getFinalPrice, // Totalpriset finns i gettern "totalPrice" som skickas in som bokningens pris
           extraBed: this.$store.getters.getExtraBed, // Kollar om extrasängsknappen är sann eller falsk
           wholePension: this.$store.getters.getWholePension, // Kollar om helpensionen är sann eller falsk
           halfPension: this.$store.getters.getHalfPension, // Kollar om halvpensionen är sann eller falsk
@@ -104,6 +92,7 @@ export default {
       const data = await response.json();
       this.postId = data.id;
       console.log(data);
+      this.$store.dispatch('checkout', this.getFinalPrice)
     },
     
   },

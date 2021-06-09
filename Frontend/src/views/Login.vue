@@ -1,11 +1,11 @@
 <template>
   <div class="login">
-    <h2>Login Sida</h2>
+    <h2>Inloggning</h2>
     <button
       onclick="document.getElementById('id01').style.display='block'"
       style="width: auto"
     >
-      Login
+      Logga in
     </button>
     <div id="id01" class="modal">
       <form class="modal-content animate" @submit.prevent="login" method="post">
@@ -19,7 +19,7 @@
         </div>
 
         <div class="container">
-          <label for="ename"><b>Email</b></label>
+          <label for="ename"><b>E-post</b></label>
           <input
             v-model="email"
             type="text"
@@ -27,7 +27,7 @@
             name="ename"
             required
           />
-          <label for="psw"><b>Password</b></label>
+          <label for="psw"><b>Lösenord</b></label>
           <input
             v-model="password"
             type="password"
@@ -35,8 +35,8 @@
             name="psw"
             required
           />
-          <button type="submit">Login</button>
-          <button @click="register">Register</button>
+          <button type="submit">Logga in</button>
+          <button @click="register">Registrera</button>
         </div>
         <div class="container" style="background-color: #f1f1f1"></div>
       </form>

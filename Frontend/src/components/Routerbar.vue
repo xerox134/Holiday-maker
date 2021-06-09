@@ -14,9 +14,9 @@
     <h1>HOLIDAY MAKER</h1>
 
     <div id="login">
-      <router-link to="/login" v-if="!isLoggedIn">Login</router-link>
+      <router-link to="/login" v-if="!isLoggedIn">Logga in</router-link>
       <router-link to="/" @click="logout" v-else
-        >Log out (logged in as {{ loggedInUser.email }})</router-link
+        >Logga ut (Inloggad som {{ loggedInUser.email }})</router-link
       >
     </div>
   </div>

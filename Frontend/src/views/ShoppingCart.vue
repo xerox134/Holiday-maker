@@ -1,5 +1,4 @@
 <template>
-  <div class="ShoppingCart"><p>Welcome to ongoing bookings</p></div>
   <div id="ShoppingCart"><Cart /></div>
 
   <div></div>

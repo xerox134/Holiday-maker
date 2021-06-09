@@ -5,17 +5,14 @@
     <div class="Room-card" v-if="type == 'room'">
       <span id="booked" v-if="!card.booked">
         <div><img v-bind:src="card.img" alt="" /><br /><br /><br /></div>
-
-        <span id="id"> Rum id: {{ card.id }}</span
-        ><br /><br />
-        <span id="room_nr"> Rum Nummer: {{ card.room_nr }}</span
+        <span id="room_nr"> Rumsnummer: {{ card.room_nr }}</span
         ><br /><br />
         <span id="beds"> Sängar: {{ card.beds }}</span
         ><br /><br />
         <span id="price">Pris: {{ card.price }}</span
         ><br /><br />
         <button @click="SendRoomToCart(card.id), addRoomPriceToTotal()">
-          Select
+          Boka
         </button>
       </span>
     </div>
@@ -30,7 +27,7 @@
           <img v-bind:src="card.img" alt="" /><br /><br /><br />
 
           <span
-            ><p>FRÅN {{ card.cheapest_price }}/natt</p>
+            ><p>Från {{ card.cheapest_price }} kr/natt</p>
             <br /><br />
           </span>
         </div>
@@ -82,76 +79,111 @@
     <!---------------------------------------------------------------------------FAVORITE CARD------------------------------------------------------------------------------------------>
 
     <div class="Favorite-card" v-if="type == 'favorite'">
-      <span id="user">Name: {{ card.hotel.name }}</span
+      <span id="user">Hotellnamn: {{ card.hotel.name }}</span
       ><br /><br />
-      <span id="Hotelcity">City: {{ card.hotel.city }}</span
+      <span id="Hotelcity">Stad: {{ card.hotel.city }}</span
       ><br /><br />
-      <span id="Hotelcountry">Country: {{ card.hotel.country }}</span
+      <span id="Hotelcountry">Land: {{ card.hotel.country }}</span
       ><br /><br />
       <span id="Hoteldescription"
-        >Description: {{ card.hotel.description }}</span
+        >Beskrivning: {{ card.hotel.description }}</span
       ><br /><br />
-      <button @click="FavoriteToRooms(card.hotel.id)">Book room</button>
+      <button @click="FavoriteToRooms(card.hotel.id)">Boka rum</button>
       <button @click="deleteFavorite(card.id), refreshStuff()">
         Ta bort ✖
       </button>
     </div>
 
-    <!---------------------------------------------------------------------------BOOKING CARD------------------------------------------------------------------------------------------>
+    <!---------------------------------------------------------------------------MY BOOKING CARD------------------------------------------------------------------------------------------>
     <div class="Booking-card" v-if="type == 'booking'">
-      <img v-bind:src="card.room.hotel.img" alt="" />
+      <img v-bind:src="card.room.img" alt="" />
       <br />
       <h3>{{ card.room.hotel.name }}</h3>
-      <span id="room_nr">Room Number: {{ card.room.room_nr }}</span
+      <span id="room_nr">Rumsnummer: {{ card.room.room_nr }}</span
       ><br />
-      <span id="beds">Number of beds: {{ card.room.beds }}</span
+      <span id="beds">Antal sängar: {{ card.room.beds }}</span
       ><br />
-      <span id="Price">Price: {{ card.room.price }}</span
+      <span id="Price">{{ card.price }} kr</span><br /><br />
+      <span>Bokat från {{ card.fromDate }}</span>
+      <span> till {{ card.toDate }}</span
       ><br /><br />
       <button @click.stop="favoriteItem(card.room.hotel.id)">
         Favoritmarkera hotell ❤
       </button>
       <button @click="deleteFromBooking(card.id), refreshStuff()">
-        Remove from List ✖
+        Avboka ✖
       </button>
     </div>
 
-   
+    <!---------------------------------------------------------------------------SHOPPING-CART CARD------------------------------------------------------------------------------------------>
 
-      <!---------------------------------------------------------------------------SHOPPING-CART CARD------------------------------------------------------------------------------------------>
-
-      <div class="ShoppingCart-card" v-if="type == 'shoppingcart'">
-        <span>Room id: {{ card.id }}</span
-        ><br /><br />
-        <span>Room Price: {{ card.price }}</span
-        ><br /><br />
-        <button id="addBedButton" @click="addABed()">extra Bed</button>
-        <button id="removeBedButton" @click="removeABed()">Remove Bed?</button>
-
-        <div id="luxuries-select">
-          <select id="selected" @change="addInclusive">
-            <option id="dropdown" value="0">Inga tillval</option>
-            <option id="dropdown" value="200">All inclusive</option>
-            <option id="dropdown" value="150">Full pension</option>
-            <option id="dropdown" value="100">Halv pension</option>
-          </select>
-        </div>
+    <div class="ShoppingCart-card" v-if="type == 'shoppingcart'">
+      <img v-bind:src="card.img" alt="" /> <br />
+      <span>Rumsnummer: {{ card.room_nr }}</span> <br />
+      <div>
+        <p>Antal vuxna: {{ getAdults }}</p>
       </div>
-      <!---------------------------------------------------------------------------REVIEW  CARD------------------------------------------------------------------------------------------>
-      <div class="Review-Card" v-if="type == 'review'">
-        <span id="id"> Betyg: {{ card.rating }}</span
-        ><br /><br />
-        <span id="room_nr"> Beskrivning: {{ card.description }}</span
-        ><br /><br />
-        <span id="beds"> Skriven av: {{ card.user.email }}</span
-        ><br /><br />
+      <div>
+        <p>Antal barn: {{ getChildren }}</p>
       </div>
-    
+
+      <div id="datum">
+        <p>Datum: {{ getFromDate }} - {{ getToDate }}</p>
+        <p>Antal nätter: {{ getNumberOfNights }}</p>
+        <span>{{ card.price }} kr/natt</span>
+        <br />
+        <br />
+      </div>
+      <button id="addBedButton" @click="addABed()">Extrasäng ✔</button>
+      <button id="removeBedButton" @click="removeABed()">Ta bort extrasäng ✖</button>
+
+      <div id="luxuries-select">
+        <select id="selected" @change="addInclusive">
+          <option id="dropdown" value="0">Inga tillval</option>
+          <option id="dropdown" value="200">All inclusive</option>
+          <option id="dropdown" value="150">Full pension</option>
+          <option id="dropdown" value="100">Halv pension</option>
+        </select>
+      </div>
+    </div>
+    <!---------------------------------------------------------------------------REVIEW  CARD------------------------------------------------------------------------------------------>
+    <div class="Review-Card" v-if="type == 'review'">
+      <span id="id"> Betyg: {{ card.rating }}</span
+      ><br /><br />
+      <span id="room_nr"> Beskrivning: {{ card.description }}</span
+      ><br /><br />
+      <span id="beds"> Skriven av: {{ card.user.email }}</span
+      ><br /><br />
+    </div>
   </div>
 </template>
 <script>
 export default {
   props: ["card", "type"],
+
+  computed: {
+    getRoomsWithRoomId() {
+      return this.$store.getters.getRoomsWithRoomId;
+    },
+    getFinalPrice() {
+      return this.$store.getters.getFinalPrice;
+    },
+    getAdults() {
+      return this.$store.getters.getNumberOfAdults;
+    },
+    getChildren() {
+      return this.$store.getters.getNumberOfChildren;
+    },
+    getFromDate() {
+      return this.$store.getters.getFromDate;
+    },
+    getToDate() {
+      return this.$store.getters.getToDate;
+    },
+    getNumberOfNights() {
+      return this.$store.getters.getNumberOfNights;
+    },
+  },
 
   methods: {
     addRoomPriceToTotal() {

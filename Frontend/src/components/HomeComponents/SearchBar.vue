@@ -6,12 +6,12 @@
           id="searchBar"
           v-on:keyup.enter="searchForHotel(searchPhrase)"
           type="text"
-          placeholder="🛏Vart vill du åka?"
+          placeholder="Vart vill du åka?"
           v-model="searchPhrase"
         />
       </div>
       <div class="searchContainer">
-        <label for="start">Start date:</label>
+        <label for="start">Från: </label>
         <input
           class="dateSelect"
           type="date"
@@ -19,7 +19,7 @@
           name="trip-start"
           v-model="fromDate"
         />
-        <label for="start">End date:</label>
+        <label for="start"> Till: </label>
         <input
           class="dateSelect"
           type="date"
@@ -262,7 +262,45 @@ export default {
 </script>
 
 <style scoped>
-.dateSelect {
+#sort {
+  display: flex;
+}
+
+#Search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  
+
+
+}
+
+#searchBar {
+
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+
+}
+.trying {
+  display: flex;
+
+  background-color: rgba(80, 75, 85, 0.3);
+  color: rgba(230, 230, 255, 0.6);
+  box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.2),
+    inset 2px 2px 2px rgba(255, 255, 255, 0.05);
+  border-radius: 7px;
+  margin: 3px;
+  margin-left: 1vw;
+  width: 100%;
+  height: min(5vh, 25vw);
+  text-shadow: -1px -1px 2px rgba(0, 0, 0, 0.3),
+    1px 1px 2px rgba(126, 126, 126, 0.5);
+  justify-content: center;
+}
+input{
   border-radius: 10px;
   top: -2vh;
   left: 1px;
@@ -283,42 +321,26 @@ export default {
   text-shadow: -1px -1px 2px rgba(0, 0, 0, 0.3),
     1px 1px 2px rgba(126, 126, 126, 0.5);
 }
-
-#sort {
-  display: flex;
-}
-
-#Search {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-
-  padding: 1vh 1vw;
-}
-
-#searchBar {
-  padding: 1vh 1vw;
-  align-items: center;
-  justify-content: center;
-  margin: 1vh 1vw;
-}
-.trying {
-  display: flex;
-
+button{
+  border-radius: 10px;
+  top: -2vh;
+  left: 1px;
+  border: none;
+  outline: none;
   background-color: rgba(80, 75, 85, 0.3);
   color: rgba(230, 230, 255, 0.6);
   box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.2),
     inset 2px 2px 2px rgba(255, 255, 255, 0.05);
-  border-radius: 7px;
   margin: 3px;
   margin-left: 1vw;
-  width: 100%;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   height: min(5vh, 25vw);
   text-shadow: -1px -1px 2px rgba(0, 0, 0, 0.3),
     1px 1px 2px rgba(126, 126, 126, 0.5);
-  justify-content: center;
 }
 p {
   margin-left: 15px;

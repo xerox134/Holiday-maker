@@ -274,7 +274,7 @@ export default createStore({
         })
     },
     async fetchAllBookings() {
-      await axios.get("http://localhost:3000/rest/bookings/" + this.state.loggedInUserId)
+      await axios.get("http://localhost:3000/rest/bookings/user/" + this.state.loggedInUserId)
         .then(response => {
           this.commit("setBookings", response.data)
           console.log(response.data)
@@ -332,6 +332,13 @@ export default createStore({
           this.commit("setFilteredHotels", response.data)
           console.log(response.data)
         })
+    },
+    async fetchReviewsByHotelId() {
+      await axios.get("http://localhost:3000/rest/reviews/hotel/" + this.state.hotelId)
+      .then(response => {
+        this.commit("setReviewsByHotelId", response.data)
+        console.log(response.data)
+      })
     },
 
   },

@@ -82,9 +82,22 @@ export default {
         mode: "no-cors",
         body: credentials,
       });
+
+      try {
+        const response = await fetch('/auth/whoami')
+        const user = await response.json()
+        console.log(user)
+        this.$store.commit('setLoggedInUser', user)
+        alert('Inloggad som: ' + user.email)
+        this.$router.push('/')
+      } catch {
+        alert('Wrong username/password')
+      }
+
       console.log(credentials);
 
       setTimeout(() => location.reload(), 500);
+      
 
       //  setTimeout(() => location.reload(), 1)
     },

@@ -19,7 +19,7 @@
         </div>
 
         <div class="container">
-          <label for="ename"><b>Username</b></label>
+          <label for="ename"><b>Email</b></label>
           <input
             v-model="email"
             type="text"

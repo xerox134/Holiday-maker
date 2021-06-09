@@ -2,6 +2,7 @@ package com.example.Holidaymaker.repositories;
 
 import com.example.Holidaymaker.entities.Booking;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,6 +12,16 @@ public interface BookingRepo extends JpaRepository <Booking, Long> {
     List<Booking> findBookingByUserId(Long userId);
 
     List<Booking> findBookingByRoomId(Long roomId);
+
+    @Query(
+            value = "UPDATE bookings " +
+                    "SET paid = 1 " +
+                    "WHERE user_id = ?1 " +
+                    "ORDER BY id DESC " +
+                    "LIMIT 1",
+            nativeQuery = true
+    )
+    List<Booking> confirmPayment (long userId);
 
     /*  big RIP
         @Query(

@@ -17,6 +17,8 @@ public class RoomService {
     private BookingRepo bookingRepo;
 
 
+
+
     public List<Booking> getBookingByRoomId(long roomId) {
         return bookingRepo.findBookingByRoomId(roomId);
     }

@@ -38,5 +38,9 @@ public class BookingService {
     public void deleteById(long id) {
         bookingRepo.deleteById(id);
     }
+
+    public void confirmPayment(long userId) {
+        bookingRepo.confirmPayment(userId);
+    }
 }
 

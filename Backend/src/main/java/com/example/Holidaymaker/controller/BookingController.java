@@ -27,6 +27,11 @@ public class BookingController {
         return bookingService.getBookingByUserId(userId);
     }
 
+    @PutMapping("/confirmpayment/{userId}")
+    public void confirmPayment(@PathVariable long userId){
+        bookingService.confirmPayment(userId);
+    }
+
     @PostMapping("/bookings")
     public Booking addBooking(@RequestBody Booking booking) {
         return bookingService.addBooking(booking);

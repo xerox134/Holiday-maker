@@ -19,13 +19,11 @@
         <p>Antal nätter: {{ getNumberOfNights }}</p>
         <br />
       </div>
-      <h3>Totalt pris : {{ updatePrice * getNumberOfNights}} kr</h3>
-      <button @click="finalPrice">Test</button>
+      <h3>Totalt pris : {{ getTotalPrice * getNumberOfNights}} kr</h3>
     </div>
   </div>
   <div>
-    <router-link to="/checkout">Checkout</router-link>
-    <button @click="addBooking(), checkout()">checkouttest</button>
+    <button @click="addBooking(), checkout()">Till betalning</button>
   </div>
 </template>
 
@@ -44,8 +42,8 @@ export default {
     getRoomsWithRoomId() {
       return this.$store.getters.getRoomsWithRoomId;
     },
-    updatePrice() {
-      return this.$store.getters.totalPrice;
+    getFinalPrice() {
+      return this.$store.getters.getFinalPrice;
     },
     getAdults() {
       return this.$store.getters.getNumberOfAdults;
@@ -62,6 +60,9 @@ export default {
     getNumberOfNights(){
       return this.$store.getters.getNumberOfNights
     },
+    getTotalPrice(){
+      return this.$store.getters.totalPrice
+    }
   },
 
   methods: {
@@ -69,12 +70,12 @@ export default {
       var finalPrice = this.$store.state.totalPrice * this.$store.state.numberOfNights
       this.$store.commit("setFinalPrice", finalPrice)
       console.log(finalPrice)
-      this.$store.dispatch('checkout', this.updatePrice)
+      this.$store.dispatch('checkout', this.getFinalPrice)
     },
-    finalPrice(){
+    test(){
+      console.log(finalPrice)
       var finalPrice = this.$store.state.totalPrice * this.$store.state.numberOfNights
-      this.$store.commit("setFinalPrice", finalPrice)
-      console.log(finalPrice);
+      console.log(this.$store.state.finalPrice)
     },
     Edit() {
       this.$store.commit("addABed", this.$store.state.bedPrice);
@@ -109,6 +110,9 @@ export default {
 
   mounted() {
     console.log(this.$store.state.bookedRoom.id);
+    var finalPrice = this.$store.state.totalPrice * this.$store.state.numberOfNights
+      this.$store.commit("setFinalPrice", finalPrice)
+      console.log(finalPrice)
 
   },
 };

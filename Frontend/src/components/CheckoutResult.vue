@@ -11,6 +11,7 @@
         </div>
 
         <button @click="finishBooking">test</button>
+        <div>{{finishBooking}}</div>
         
     </div>
 </template>
@@ -23,6 +24,23 @@ export default {
         }
     },
     methods:{
+      async confirmPayment(userid) {
+      // id = card.id alltså hotelid
+      userid = this.$store.state.loggedInUserId
+
+      let response = await fetch("/rest/confirmpayment/" + userid, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(credentials),
+      });
+
+      console.log(credentials);
+      if (response.url.includes("error")) {
+        console.log("Something went wrong. Try again");
+      } else {
+        console.log("Saved as favorite");
+      }
+    },
       
       finishBooking(){
         console.log(this.$store.getters.getAllBookings)

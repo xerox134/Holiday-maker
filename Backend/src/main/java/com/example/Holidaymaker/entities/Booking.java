@@ -1,7 +1,6 @@
 package com.example.Holidaymaker.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -17,11 +16,11 @@ public class Booking {
     private boolean wholePension;
     private boolean halfPension;
     private boolean allInclusive;
-    private long fromDate;
-    private long toDate;
-
-    @ManyToOne
-    private Hotel hotel;
+    private int numberOfAdults;
+    private int numberOfChildren;
+    private String fromDate;
+    private String toDate;
+    private boolean paid;
 
     @ManyToOne
     private Room room;
@@ -32,18 +31,21 @@ public class Booking {
     public Booking() {
     }
 
-    public Booking(long id, long price, boolean extraBed, boolean wholePension, boolean halfPension, boolean allInclusive, long fromDate, long toDate, Hotel hotel, Room room, User user) {
+    public Booking(long id, long price, boolean extraBed, boolean wholePension, boolean halfPension,boolean allInclusive,
+                   int numberOfAdults, int numberOfChildren, String fromDate, String toDate, Room room, User user, boolean paid) {
         this.id = id;
         this.price = price;
         this.extraBed = extraBed;
         this.wholePension = wholePension;
         this.halfPension = halfPension;
         this.allInclusive = allInclusive;
+        this.numberOfAdults = numberOfAdults;
+        this.numberOfChildren = numberOfChildren;
         this.fromDate = fromDate;
         this.toDate = toDate;
-        this.hotel = hotel;
         this.room = room;
         this.user = user;
+        this.paid = paid;
     }
 
     public long getId() {
@@ -52,14 +54,6 @@ public class Booking {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public Hotel getHotel() {
-        return hotel;
-    }
-
-    public void setHotel(Hotel hotel) {
-        this.hotel = hotel;
     }
 
     public Room getRoom() {
@@ -118,20 +112,44 @@ public class Booking {
         this.allInclusive = allInclusive;
     }
 
-    public long getFromDate() {
+    public int getNumberOfAdults() {
+        return numberOfAdults;
+    }
+
+    public void setNumberOfAdults(int numberOfAdults) {
+        this.numberOfAdults = numberOfAdults;
+    }
+
+    public int getNumberOfChildren() {
+        return numberOfChildren;
+    }
+
+    public void setNumberOfChildren(int numberOfChildren) {
+        this.numberOfChildren = numberOfChildren;
+    }
+
+    public String getFromDate() {
         return fromDate;
     }
 
-    public void setFromDate(long fromDate) {
+    public void setFromDate(String fromDate) {
         this.fromDate = fromDate;
     }
 
-    public long getToDate() {
+    public String getToDate() {
         return toDate;
     }
 
-    public void setToDate(long toDate) {
+    public void setToDate(String toDate) {
         this.toDate = toDate;
+    }
+
+    public boolean isPaid() {
+        return paid;
+    }
+
+    public void setPaid(boolean paid) {
+        this.paid = paid;
     }
 
     @Override
@@ -143,9 +161,11 @@ public class Booking {
                 ", wholePension=" + wholePension +
                 ", halfPension=" + halfPension +
                 ", allInclusive=" + allInclusive +
-                ", fromDate=" + fromDate +
-                ", toDate=" + toDate +
-                ", hotel=" + hotel +
+                ", numberOfAdults=" + numberOfAdults +
+                ", numberOfChildren=" + numberOfChildren +
+                ", fromDate='" + fromDate + '\'' +
+                ", toDate='" + toDate + '\'' +
+                ", paid=" + paid +
                 ", room=" + room +
                 ", user=" + user +
                 '}';

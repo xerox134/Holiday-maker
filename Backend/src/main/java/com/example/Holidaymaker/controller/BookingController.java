@@ -27,26 +27,30 @@ public class BookingController {
         return bookingService.getBookingByUserId(userId);
     }
 
+    @GetMapping("/confirmpayment/{userId}")
+    public void confirmPayment(@PathVariable long userId){
+        bookingService.confirmPayment(userId);
+    }
+
     @PostMapping("/bookings")
     public Booking addBooking(@RequestBody Booking booking) {
         return bookingService.addBooking(booking);
         // EXEMPEL PÅ JSON-POST
         /*
         {
-    "hotel": {
-        "id" : 1
-        },
-        "room": {
-            "id" : 1005
-            },
-            "price": 600,
-            "extraBed": true,
-            "wholePension": true,
-            "halfPension": false,
-            "allInclusive": true,
-            "fromDate": 20210816,
-            "toDate" : 20210823
-}
+            "room": {
+                "id": 1085
+                },
+                "price": 1200,
+                "extraBed": true,
+                "wholePension": true,
+                "halfPension": false,
+                "allInclusive": false,
+                "numberOfAdults": 4,
+                "numberOfChildren": 0,
+                "fromDate": 20210715,
+                "toDate": 20210723
+        }
          */
     }
 

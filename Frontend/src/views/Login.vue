@@ -1,96 +1,117 @@
 <template>
-<div class="login">
-<h2>Login Sida</h2>
-<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
-  <div id="id01" class="modal">
-  <form class="modal-content animate" @submit.prevent="login" method="post">
-    <div>
-      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-    </div>
+  <div class="login">
+    <h2>Inloggning</h2>
+    <button
+      onclick="document.getElementById('id01').style.display='block'"
+      style="width: auto"
+    >
+      Logga in
+    </button>
+    <div id="id01" class="modal">
+      <form class="modal-content animate" @submit.prevent="login" method="post">
+        <div>
+          <span
+            onclick="document.getElementById('id01').style.display='none'"
+            class="close"
+            title="Close Modal"
+            >&times;</span
+          >
+        </div>
 
-    <div class="container">
-      <label for="ename"><b>Username</b></label>
-      <input v-model="email" type="text" placeholder="Enter Email" name="ename" required>
-      <label for="psw"><b>Password</b></label>
-      <input v-model="password" type="password" placeholder="Enter Password" name="psw" required>
-      <button type="submit">Login</button>
-      <button @click="register">Register</button>
-      </div>
-      <div class="container" style="background-color:#f1f1f1">
+        <div class="container">
+          <label for="ename"><b>E-post</b></label>
+          <input
+            v-model="email"
+            type="text"
+            placeholder="Enter Email"
+            name="ename"
+            required
+          />
+          <label for="psw"><b>Lösenord</b></label>
+          <input
+            v-model="password"
+            type="password"
+            placeholder="Enter Password"
+            name="psw"
+            required
+          />
+          <button type="submit">Logga in</button>
+          <button @click="register">Registrera</button>
+        </div>
+        <div class="container" style="background-color: #f1f1f1"></div>
+      </form>
     </div>
-  </form>
-</div>
-</div>
+  </div>
 </template>
 
 
 <script>
 export default {
   name: "Login",
-data (){
-    return{
-        email: '',
-        password:''
-    }
-},
-mounted (){
-    console.log('mounted Login')
-},
-methods: {
-    logout () {
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
+  },
+  mounted() {
+    console.log("mounted Login");
+  },
+  methods: {
+    logout() {
       // tell backend to forget us
-      console.log('logout work')
-      fetch('/logout', { mode: 'no-cors' })
+      console.log("logout work");
+      fetch("/logout", { mode: "no-cors" });
 
       // remove logged in user from store
-      this.$store.commit('setLoggedInUser', null)
+      this.$store.commit("setLoggedInUser", null);
     },
 
-    async login () {
-        const credentials = 'username=' + 
+    async login() {
+      const credentials =
+        "username=" +
         encodeURIComponent(this.email) +
-        '&password=' + 
-        encodeURIComponent(this.password)
-        
-        let response = await fetch ("/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            mode: 'no-cors',
-            body: credentials
-        })
-        console.log(credentials)
-      
-          setTimeout(() => location.reload(), 500)
+        "&password=" +
+        encodeURIComponent(this.password);
+
+      let response = await fetch("/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        mode: "no-cors",
+        body: credentials,
+      });
+      console.log(credentials);
+
+      setTimeout(() => location.reload(), 500);
 
       //  setTimeout(() => location.reload(), 1)
-
     },
-    async register () {
-        const credentials = {
-            email: this.email,
-            password: this.password
-        }
-        
-        let response = await fetch ('/auth/register', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(credentials)
-        })
-        if(response.url.includes('error')){
-            console.log('WRONG')
-        } else {
-            alert ('Användare registrerad')
-        }
+    async register() {
+      const credentials = {
+        email: this.email,
+        password: this.password,
+      };
 
-    }
-}
-}
+      let response = await fetch("/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(credentials),
+      });
+      if (response.url.includes("error")) {
+        console.log("WRONG");
+      } else {
+        alert("Användare registrerad");
+      }
+    },
+  },
+};
 </script>
 
 <style scoped>
-input[type=text], input[type=password] {
+input[type="text"],
+input[type="password"] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -101,7 +122,7 @@ input[type=text], input[type=password] {
 
 /* Set a style for all buttons */
 button {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   padding: 14px 50px;
   margin: 20px 15px;
@@ -152,8 +173,8 @@ span.psw {
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
   padding-top: 60px;
 }
 
@@ -184,28 +205,35 @@ span.psw {
 /* Add Zoom Animation */
 .animate {
   -webkit-animation: animatezoom 0.6s;
-  animation: animatezoom 0.6s
+  animation: animatezoom 0.6s;
 }
 
 @-webkit-keyframes animatezoom {
-  from {-webkit-transform: scale(0)}
-  to {-webkit-transform: scale(1)}
+  from {
+    -webkit-transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+  }
 }
 
 @keyframes animatezoom {
-  from {transform: scale(0)}
-  to {transform: scale(1)}
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
   span.psw {
-     display: block;
-     float: none;
+    display: block;
+    float: none;
   }
   .cancelbtn {
-     width: 100%;
+    width: 100%;
   }
 }
-
 </style>

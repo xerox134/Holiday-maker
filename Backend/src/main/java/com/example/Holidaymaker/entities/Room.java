@@ -15,6 +15,7 @@ public class Room {
     private long beds;
     private long price;
     private boolean booked;
+    private String img;
 
     @ManyToOne
     private Hotel hotel;
@@ -25,14 +26,19 @@ public class Room {
     public Room() {
     }
 
-    public Room(long id, long room_nr, long beds, long price, boolean booked, Hotel hotel) {
+    public Room(long id, long room_nr, long beds, long price, boolean booked, String img, Hotel hotel) {
         this.id = id;
         this.room_nr = room_nr;
         this.beds = beds;
         this.price = price;
         this.booked = booked;
+        this.img = img;
         this.hotel = hotel;
     }
+
+    public String getImg() { return img; }
+
+    public void setImg(String img) { this.img = img; }
 
     public long getId() {
         return id;
@@ -99,6 +105,7 @@ public class Room {
                 ", beds=" + beds +
                 ", price=" + price +
                 ", booked=" + booked +
+                ", img='" + img + '\'' +
                 ", hotel=" + hotel +
                 '}';
     }

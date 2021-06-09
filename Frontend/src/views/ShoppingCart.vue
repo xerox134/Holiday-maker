@@ -1,23 +1,25 @@
 <template>
-  <div class="favorites">
-    <h1>All Favorites</h1>
-    <div id="Favorites"><Favorites /></div>
-  </div>
+  <div class="ShoppingCart"><p>Welcome to ongoing bookings</p></div>
+  <div id="ShoppingCart"><Cart /></div>
+
+  <div></div>
 </template>
 
 <script>
-import Favorites from "../components/RouteComponents/Favorites.vue";
+import Cart from "../components/RouteComponents/Cart.vue";
 export default {
-  name: "favorites",
+  name: "shoppingcart",
+
   components: {
-    Favorites,
+    Cart,
   },
+  computed: {},
+  methods: {},
 };
 </script>
 
-
 <style scoped>
-#Favorites {
+#ShoppingCart {
   background-color: rgba(60, 55, 65, 0.3);
   color: blanchedalmond;
   width: 100%;

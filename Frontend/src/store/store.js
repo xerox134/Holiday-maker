@@ -2,39 +2,39 @@ import { createStore } from 'vuex';
 import axios from 'axios';
 
 export default createStore({
-  name:'store',
-  
+  name: 'store',
+
   state: {
     favorites: [],
     bookings: [],
-    addedFavorites:[],
-    hotels:[],
-    hotels2:[],
+    addedFavorites: [],
+    hotels: [],
+    hotels2: [],
     loggedInUser: null,
     loggedInUserId: 0,
     allUsers: [],
     isLoggedIn: "Login",
-    rooms:[],
+    rooms: [],
     hotelId: null,
-    hotelById:[],
+    hotelById: [],
     roomId: null,
     bookedRoom: [],
     HotelSearchPhrase: null,
-    searchedHotels:[],
-    searchedHotels2:[],
+    searchedHotels: [],
+    searchedHotels2: [],
     toggleList: true,
     totalPrice: 0,
-    bedPriceManipulator:0,
-    roomPrice:0,
+    bedPriceManipulator: 0,
+    roomPrice: 0,
     bedPrice: 100,
     numberOfAdults: 1,
-    numberOfChildren:0,
+    numberOfChildren: 0,
     temporaryNumber: 0,
     allInclusivePrice: 200,
     fromDate: new Date().toISOString().substr(0, 10),
     toDate: new Date().toISOString().substr(0, 10),
-    distanceCenter:null,
-    distanceBeach:null,
+    distanceCenter: null,
+    distanceBeach: null,
     numberOfAll: 1,
     extraBed: false,
     wholePension: false,
@@ -44,46 +44,46 @@ export default createStore({
     allBookings: [],
     allBookings2: [],
   },
-  
+
   mutations: {
-    addAPerson(state,payload){
+    addAPerson(state, payload) {
       state.numberOfAll += payload
     },
-    setNumberOfAdults(state, payload){
+    setNumberOfAdults(state, payload) {
       state.numberOfAdults = payload
     },
-    setNumberOfChildren(state, payload){
+    setNumberOfChildren(state, payload) {
       state.numberOfChildren = payload
     },
-    setbedPriceManipulator(state,payload){
+    setbedPriceManipulator(state, payload) {
       state.bedPriceManipulator = payload
     },
-    setDistanceBeach(state,payload){
-      state.distanceBeach=payload
+    setDistanceBeach(state, payload) {
+      state.distanceBeach = payload
     },
-    setDistanceCenter(state,payload){
-      state.distanceCenter=payload
+    setDistanceCenter(state, payload) {
+      state.distanceCenter = payload
     },
-    setDateRange(state,payload){
+    setDateRange(state, payload) {
       state.dateRange = payload
     },
-    setToggleList(state,payload){
+    setToggleList(state, payload) {
       state.toggleList = payload
     },
-    setRoomPrice(state, payload){
+    setRoomPrice(state, payload) {
       state.roomPrice = payload;
     },
     addHotels(state, payload) {
       state.hotels = payload;
       state.hotels2 = payload;
     },
-    setFavorites(state,payload){
+    setFavorites(state, payload) {
       state.favorites = payload;
     },
-    setBookings(state,payload){
+    setBookings(state, payload) {
       state.bookings = payload;
     },
-    setLoggedInUser (state, user) {
+    setLoggedInUser(state, user) {
       state.loggedInUser = user
     },
     setAllUsers(state, payload) {
@@ -94,62 +94,62 @@ export default createStore({
     },
     setUser(state, user) {
       state.loggedInUser = user
-    }, 
-    setRoomsByHotelId (state, payload) {
+    },
+    setRoomsByHotelId(state, payload) {
       state.rooms = payload
     },
-    setBarFilter (state, payload){
+    setBarFilter(state, payload) {
       state.barFilter = payload
     },
-    setHotelId (state,payload){
-      state.hotelId =payload
+    setHotelId(state, payload) {
+      state.hotelId = payload
     },
-    setHotelById (state,payload){
-      state.hotelById =payload
+    setHotelById(state, payload) {
+      state.hotelById = payload
     },
     setHotelSearchPhrase(state, payload) {
       state.HotelSearchPhrase = payload;
     },
-    sethotelsBySearch(state,payload){
+    sethotelsBySearch(state, payload) {
       state.searchedHotels = payload;
       state.searchedHotels2 = payload;
     },
-    setFilteredHotels(state, payload){
+    setFilteredHotels(state, payload) {
       state.filteredHotels = payload
     },
-    setRoomsWithRoomId(state, payload){
-      state.bookedRoom= payload
+    setRoomsWithRoomId(state, payload) {
+      state.bookedRoom = payload
     },
-    setHotelsWithPool(state, payload){
+    setHotelsWithPool(state, payload) {
       state.hotelsWithPool = payload;
     },
-    setHotelsWithEntertainment(state, payload){
+    setHotelsWithEntertainment(state, payload) {
       state.hotelsWithEntertainment = payload;
     },
-    addABed(state, payload){
+    addABed(state, payload) {
       state.totalPrice += payload;
     },
-    removeABed(state, payload){
+    removeABed(state, payload) {
       state.totalPrice -= payload;
     },
-    addAllInclusive(state, payload){
+    addAllInclusive(state, payload) {
       state.totalPrice += payload;
     },
-    addRoomPriceToTotal(state, payload){
-      state.totalPrice +=payload;
+    addRoomPriceToTotal(state, payload) {
+      state.totalPrice += payload;
     },
-    setFromDate(state, payload){
+    setFromDate(state, payload) {
       state.fromDate = payload
     },
-    setToDate(state, payload){
+    setToDate(state, payload) {
       state.toDate = payload
     },
     setTemporaryNumber(state, payload) {
       state.temporaryNumber = payload
     },
-    setAllBookings(state, payload){
+    setAllBookings(state, payload) {
       state.allBookings = payload,
-      state.allBookings2 = payload
+        state.allBookings2 = payload
     },
     setExtraBed(state, payload) {
       state.extraBed = payload
@@ -167,176 +167,142 @@ export default createStore({
       state.reviews = payload
     }
   },
-  
+
   actions: {
-    async fetchHotels(){
+    async fetchHotels() {
       await axios.get("http://localhost:3000/rest/hotels")
-      .then(response => {
-        this.commit("addHotels", response.data)
-        console.log(response.data)
-      })
+        .then(response => {
+          this.commit("addHotels", response.data)
+          console.log(response.data)
+        })
     },
-    async fetchRoomsByHotelId(){
+    async fetchRoomsByHotelId() {
       await axios.get("http://localhost:3000/rest/room/" + this.state.hotelId)
-      .then(response => {
-        this.commit("setRoomsByHotelId", response.data)
-        console.log(response.data)
-      })
+        .then(response => {
+          this.commit("setRoomsByHotelId", response.data)
+          console.log(response.data)
+        })
     },
-    async fetchHotelById(){
+    async fetchHotelById() {
       await axios.get("http://localhost:3000/rest/hotel/" + this.state.hotelId)
-      .then(response => {
-        this.commit("setHotelById", response.data)
-        console.log(response.data)
-      })
+        .then(response => {
+          this.commit("setHotelById", response.data)
+          console.log(response.data)
+        })
     },
-    async fetchRoomsWithRoomId(){
+    async fetchRoomsWithRoomId() {
       await axios.get("http://localhost:3000/rest/room/roomid/" + this.state.roomId)
-      .then(response => {
-        this.commit("setRoomsWithRoomId", response.data)
-        console.log(response.data)
-      })
+        .then(response => {
+          this.commit("setRoomsWithRoomId", response.data)
+          console.log(response.data)
+        })
     },
-    async fetchUser(){
+    async fetchUser() {
       await axios.get("http://localhost:3000/auth/whoami/")
-      .then(response => {
-        this.commit("setUser", response.data)
-        if(response != null)
-        console.log(response.data)
-      })
+        .then(response => {
+          this.commit("setUser", response.data)
+          if (response != null)
+            console.log(response.data)
+        })
     },
-    async fetchAllUsers(){
+    async fetchAllUsers() {
       await axios.get("http://localhost:3000/rest/users")
-      .then(response => {
-        this.commit("setAllUsers", response.data)
-        if(response != null)
-        console.log(response.data)
-      })
+        .then(response => {
+          this.commit("setAllUsers", response.data)
+          if (response != null)
+            console.log(response.data)
+        })
     },
-    async fetchAllFavorites(){
-      await axios.get("http://localhost:3000/rest/favorites/user/"+ this.state.loggedInUserId)
-      .then(response => {
-        this.commit("setFavorites", response.data)
-        console.log(response.data)
-      })
-    }, 
-    async fetchAllBookings(){
-      await axios.get("http://localhost:3000/rest/bookings/"+ this.state.loggedInUserId)
-      .then(response => {
-        this.commit("setBookings", response.data)
-        console.log(response.data)
-      })
+    async fetchAllFavorites() {
+      await axios.get("http://localhost:3000/rest/favorites/user/" + this.state.loggedInUserId)
+        .then(response => {
+          this.commit("setFavorites", response.data)
+          console.log(response.data)
+        })
     },
-    async fetchBookings(){
+    async fetchAllBookings() {
+      await axios.get("http://localhost:3000/rest/bookings/" + this.state.loggedInUserId)
+        .then(response => {
+          this.commit("setBookings", response.data)
+          console.log(response.data)
+        })
+    },
+    async fetchBookings() {
       await axios.get("http://localhost:3000/rest/bookings/")
-      .then(response => {
-        this.commit("setAllBookings", response.data)
-        console.log(response.data)
-      })
+        .then(response => {
+          this.commit("setAllBookings", response.data)
+          console.log(response.data)
+        })
     },
-    async fetchHotelBySearchPhrase(){
-      await axios.get("http://localhost:3000/rest/hotel/search/"+ this.state.HotelSearchPhrase)
-      .then(response => {
-        this.commit("sethotelsBySearch", response.data)
-        console.log(response.data)
-      })
+    async fetchHotelBySearchPhrase() {
+      await axios.get("http://localhost:3000/rest/hotel/search/" + this.state.HotelSearchPhrase)
+        .then(response => {
+          this.commit("sethotelsBySearch", response.data)
+          console.log(response.data)
+        })
     },
-    async fetchHotelByPool(){
-    await axios.get("http://localhost:3000/rest/hotels/filter/pool")
-      .then(response => {
-        this.commit("setFilteredHotels", response.data)
-        console.log(response.data)
-      })
+    async fetchHotelByPool() {
+      await axios.get("http://localhost:3000/rest/hotels/filter/pool")
+        .then(response => {
+          this.commit("setFilteredHotels", response.data)
+          console.log(response.data)
+        })
     },
-    async fetchHotelByEntertainment(){
+    async fetchHotelByEntertainment() {
       await axios.get("http://localhost:3000/rest/hotels/filter/entertainment")
-      .then(response => {
-        this.commit("setFilteredHotels", response.data)
-        console.log(response.data)
-      })
+        .then(response => {
+          this.commit("setFilteredHotels", response.data)
+          console.log(response.data)
+        })
     },
-    async fetchHotelByRestaurant(){
+    async fetchHotelByRestaurant() {
       await axios.get("http://localhost:3000/rest/hotels/filter/restaurant")
-      .then(response => {
-        this.commit("setFilteredHotels", response.data)
-        console.log(response.data)
-      })
+        .then(response => {
+          this.commit("setFilteredHotels", response.data)
+          console.log(response.data)
+        })
     },
-    async fetchHotelByWifi(){
+    async fetchHotelByWifi() {
       await axios.get("http://localhost:3000/rest/hotels/filter/wifi")
-      .then(response => {
-        this.commit("setFilteredHotels", response.data)
-        console.log(response.data)
-      })
+        .then(response => {
+          this.commit("setFilteredHotels", response.data)
+          console.log(response.data)
+        })
     },
-    async fetchHotelByBar(){
+    async fetchHotelByBar() {
       await axios.get("http://localhost:3000/rest/hotels/filter/bar")
-      .then(response => {
-        this.commit("setFilteredHotels", response.data)
-        console.log(response.data)
-    })
+        .then(response => {
+          this.commit("setFilteredHotels", response.data)
+          console.log(response.data)
+        })
+    },
+    async fetchReviewsByHotelId() {
+      await axios.get("http://localhost:3000/rest/reviews/hotel/" + this.state.hotelId)
+        .then(response => {
+          this.commit("setReviewsByHotelId", response.data)
+          console.log(response.data)
+        })
     },
   },
 
-  async fetchHotelByPool(){
-    await axios.get("http://localhost:3000/rest/hotels/filter/pool")
-    .then(response => {
-      this.commit("setFilteredHotels", response.data)
-      console.log(response.data)
-    })
-  },
-  async fetchHotelByEntertainment(){
-    await axios.get("http://localhost:3000/rest/hotels/filter/entertainment")
-    .then(response => {
-      this.commit("setFilteredHotels", response.data)
-      console.log(response.data)
-    })
-  },
-  async fetchHotelByRestaurant(){
-    await axios.get("http://localhost:3000/rest/hotels/filter/restaurant")
-    .then(response => {
-      this.commit("setFilteredHotels", response.data)
-      console.log(response.data)
-    })
-  },
-  async fetchHotelByWifi(){
-    await axios.get("http://localhost:3000/rest/hotels/filter/wifi")
-    .then(response => {
-      this.commit("setFilteredHotels", response.data)
-      console.log(response.data)
-    })
-  },
-  async fetchHotelByBar(){
-    await axios.get("http://localhost:3000/rest/hotels/filter/bar")
-    .then(response => {
-      this.commit("setFilteredHotels", response.data)
-      console.log(response.data)
-    })
-  },
-  async fetchReviewsByHotelId() {
-    await axios.get("http://localhost:3000/rest/reviews/hotel/" + this.state.hotelId)
-    .then(response => {
-      this.commit("setReviewsByHotelId", response.data)
-      console.log(response.data)
-    })
-  },
-  getters:{
-    getAllPeople(state){
+
+  getters: {
+    getAllPeople(state) {
       return state.numberOfAll
     },
-    getNumberOfAdults(state){
+    getNumberOfAdults(state) {
       return state.numberOfAdults
     },
-    getNumberOfChildren(state){
+    getNumberOfChildren(state) {
       return state.numberOfChildren
     },
-    getSearchedHotels(state){
+    getSearchedHotels(state) {
       return state.searchedHotels
     },
-    getSearchedHotels2(state){
+    getSearchedHotels2(state) {
       return state.searchedHotels2
     },
-    getLoginUserId(state){
+    getLoginUserId(state) {
       return state.loggedInUserId
     },
     getCurrentUser(state) {
@@ -345,62 +311,62 @@ export default createStore({
     getAllUsers(state) {
       return state.allUsers
     },
-    getAllFavorites(state){
+    getAllFavorites(state) {
       return state.favorites
     },
-    getAllBookings(state){
+    getAllBookings(state) {
       return state.bookings
     },
-    getAllHotels(state){
+    getAllHotels(state) {
       return state.hotels
     },
-    getRoomByHotelId(state){
+    getRoomByHotelId(state) {
       return state.rooms
-    }, 
-    getRoomsWithRoomId(state){
+    },
+    getRoomsWithRoomId(state) {
       return state.bookedRoom
     },
-    getHotelId(state){
+    getHotelId(state) {
       return state.hotelId
-    }, 
-    getHotelById(state){
+    },
+    getHotelById(state) {
       return state.hotelById
-    },  
+    },
     getLoginStatus(state) {
       console.log(state.isLoggedIn)
       return state.isLoggedIn
     },
-    getToggleList(state){
+    getToggleList(state) {
       return state.toggleList
     },
-    getFilteredHotels(state){
+    getFilteredHotels(state) {
       return state.filteredHotels
     },
-    getHotelsWithPool(state){
+    getHotelsWithPool(state) {
       return state.hotelsWithPool
     },
-    getHotelsWithEntertainment(state){
+    getHotelsWithEntertainment(state) {
       return state.hotelsWithEntertainment
     },
-    totalPrice(state){
+    totalPrice(state) {
       return state.totalPrice
     },
-    getDateRange(state){
+    getDateRange(state) {
       return state.dateRange
     },
-    getBeach(state){
+    getBeach(state) {
       return state.distanceBeach
     },
-    getFromDate(state){
+    getFromDate(state) {
       return state.fromDate
     },
-    getToDate(state){
+    getToDate(state) {
       return state.toDate
     },
     getTemporaryNumber(state) {
       return state.temporaryNumber
     },
-    getAllAllBookings (state){
+    getAllAllBookings(state) {
       return state.allBookings
     },
     getExtraBed(state) {
@@ -418,13 +384,13 @@ export default createStore({
     getReviewsByHotelId(state) {
       return state.reviews
     }
-  
 
 
-},
+
+  },
 
   modules: {
-  
+
   }
 
 })

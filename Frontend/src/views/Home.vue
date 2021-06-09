@@ -1,46 +1,35 @@
 <template>
-  <div class="home">
+  <div class="filter-container">
+    <div id="Filter"><Filter /></div>
 
-    <div class= "filter-container">
-      
-    <div id= "Filter"><Filter/></div>
-    <div id="Hotels"><Hotels/></div>
-</div>
-    
+    <div id="Main">
+      <div id="SearchBar"><SearchBar /></div>
+      <div id="Hotels"><Hotels /></div>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-
-import Hotels from "../components/Hotels"
-import Filter from "../components/Filter"
-
-
+import Hotels from "../components/HomeComponents/Hotels";
+import Filter from "../components/HomeComponents/Filter";
+import SearchBar from "../components/HomeComponents/SearchBar";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
-    
     Hotels,
     Filter,
-
-    
-  
-  }
-}
+    SearchBar,
+  },
+};
 </script>
 
-<style>
-
-#Filter{
-  margin-top: 80px;
+<style scoped>
+#Filter {
+  margin-top: 150px;
 }
 .filter-container {
   display: flex;
   justify-content: right;
-  
-    
 }
-
 </style>

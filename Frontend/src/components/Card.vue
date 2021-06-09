@@ -1,17 +1,11 @@
 <template>
   <div id="card">
-   
-   <!---------------------------------------------------------------------------ROOM CARD------------------------------------------------------------------------------------------>
-   
+    <!---------------------------------------------------------------------------ROOM CARD------------------------------------------------------------------------------------------>
+
     <div class="Room-card" v-if="type == 'room'">
       <span id="booked" v-if="!card.booked">
+        <div><img v-bind:src="card.img" alt="" /><br /><br /><br /></div>
 
-<div>
-         <img v-bind:src="card.img" alt="" /><br /><br /><br />
-</div>
-
-
-        
         <span id="id"> Rum id: {{ card.id }}</span
         ><br /><br />
         <span id="room_nr"> Rum Nummer: {{ card.room_nr }}</span
@@ -20,16 +14,13 @@
         ><br /><br />
         <span id="price">Pris: {{ card.price }}</span
         ><br /><br />
-        <button
-          @click="SendRoomToCart(card.id), addRoomPriceToTotal()"
-        >
+        <button @click="SendRoomToCart(card.id), addRoomPriceToTotal()">
           Select
         </button>
       </span>
     </div>
 
-
-  <!---------------------------------------------------------------------------HOTEL CARD------------------------------------------------------------------------------------------>
+    <!---------------------------------------------------------------------------HOTEL CARD------------------------------------------------------------------------------------------>
 
     <div class="Hotel-card" v-if="type == 'hotel'" @click="toRooms(card.id)">
       <span class="name"> {{ card.name }}</span
@@ -38,7 +29,7 @@
         <div id="bildPris">
           <img v-bind:src="card.img" alt="" /><br /><br /><br />
 
-          <span 
+          <span
             ><p>FRÅN {{ card.cheapest_price }}/natt</p>
             <br /><br />
           </span>
@@ -61,16 +52,24 @@
           <span id="wifi" v-else>Wifi ✖</span><br />
           <span id="pool" v-if="card.pool">Pool ✔</span>
           <span id="pool" v-else>Pool ✖</span><br />
-          <span id="entertainment" v-if="card.entertainment">Underhållning ✔</span>
+          <span id="entertainment" v-if="card.entertainment"
+            >Underhållning ✔</span
+          >
           <span id="entertainment" v-else>Underhållning ✖</span><br />
-          <span id="childrens_club" v-if="card.childrens_club" >Barnklubb ✔</span>
+          <span id="childrens_club" v-if="card.childrens_club"
+            >Barnklubb ✔</span
+          >
           <span id="childrens_club" v-else>Barnklubb ✖</span><br />
           <span id="resturant" v-if="card.restaurant">Restaurang ✔</span>
           <span id="resturant" v-else>Restaurang ✖</span><br />
           <span id="bar" v-if="card.bar">Bar ✔</span>
           <span id="bar" v-else>Bar ✖</span><br />
-          <span id="distance_to_beach">{{ card.distance_to_beach }} km till strand</span><br />
-          <span id="distance_to_center">{{ card.distance_to_center }} km till centrum</span ><br />
+          <span id="distance_to_beach"
+            >{{ card.distance_to_beach }} km till strand</span
+          ><br />
+          <span id="distance_to_center"
+            >{{ card.distance_to_center }} km till centrum</span
+          ><br />
         </div>
       </div>
 
@@ -80,8 +79,7 @@
       <button @click.stop="favoriteItem(card.id)">Favoritmarkera ❤</button>
     </div>
 
-
-<!---------------------------------------------------------------------------FAVORITE CARD------------------------------------------------------------------------------------------>
+    <!---------------------------------------------------------------------------FAVORITE CARD------------------------------------------------------------------------------------------>
 
     <div class="Favorite-card" v-if="type == 'favorite'">
       <span id="user">Name: {{ card.hotel.name }}</span
@@ -99,51 +97,56 @@
       </button>
     </div>
 
-
- <!---------------------------------------------------------------------------BOOKING CARD------------------------------------------------------------------------------------------>
+    <!---------------------------------------------------------------------------BOOKING CARD------------------------------------------------------------------------------------------>
     <div class="Booking-card" v-if="type == 'booking'">
-      <span id="hotelname">Hotel Name: {{ card.hotel.name }}</span
-      ><br /><br />
+      <img v-bind:src="card.room.hotel.img" alt="" />
+      <br />
+      <h3>{{ card.room.hotel.name }}</h3>
       <span id="room_nr">Room Number: {{ card.room.room_nr }}</span
-      ><br /><br />
+      ><br />
       <span id="beds">Number of beds: {{ card.room.beds }}</span
-      ><br /><br />
+      ><br />
       <span id="Price">Price: {{ card.room.price }}</span
       ><br /><br />
+      <button @click.stop="favoriteItem(card.room.hotel.id)">
+        Favoritmarkera hotell ❤
+      </button>
       <button @click="deleteFromBooking(card.id), refreshStuff()">
         Remove from List ✖
       </button>
     </div>
 
+   
 
-<!---------------------------------------------------------------------------SHOPPING-CART CARD------------------------------------------------------------------------------------------>
+      <!---------------------------------------------------------------------------SHOPPING-CART CARD------------------------------------------------------------------------------------------>
 
-    <div class="ShoppingCart-card" v-if="type == 'shoppingcuart'">
-      <span>Room id: {{ card.id }}</span
-      ><br /><br />
-      <span>Room Price: {{ card.price }}</span
-      ><br /><br />
-      <button id="addBedButton" @click="addABed()">extra Bed</button>
-      <button id="removeBedButton" @click="removeABed()">Remove Bed?</button>
+      <div class="ShoppingCart-card" v-if="type == 'shoppingcart'">
+        <span>Room id: {{ card.id }}</span
+        ><br /><br />
+        <span>Room Price: {{ card.price }}</span
+        ><br /><br />
+        <button id="addBedButton" @click="addABed()">extra Bed</button>
+        <button id="removeBedButton" @click="removeABed()">Remove Bed?</button>
 
-      <div id="luxuries-select">
-        <select id="selected" @change="addInclusive">
-          <option value="0">Inga tillval</option>
-          <option value="200">All inclusive</option>
-          <option value="150">Full pension</option>
-          <option value="100">Halv pension</option>
-        </select>
+        <div id="luxuries-select">
+          <select id="selected" @change="addInclusive">
+            <option id="dropdown" value="0">Inga tillval</option>
+            <option id="dropdown" value="200">All inclusive</option>
+            <option id="dropdown" value="150">Full pension</option>
+            <option id="dropdown" value="100">Halv pension</option>
+          </select>
+        </div>
       </div>
-    </div>
- <!---------------------------------------------------------------------------REVIEW  CARD------------------------------------------------------------------------------------------>
-    <div class="Review-Card" v-if="type == 'review'">
-      <span id="id"> Betyg: {{ card.rating }}</span
-      ><br /><br />
-      <span id="room_nr"> Beskrivning: {{ card.description }}</span
-      ><br /><br />
-      <span id="beds"> Skriven av: {{ card.user.email }}</span
-      ><br /><br />
-    </div>
+      <!---------------------------------------------------------------------------REVIEW  CARD------------------------------------------------------------------------------------------>
+      <div class="Review-Card" v-if="type == 'review'">
+        <span id="id"> Betyg: {{ card.rating }}</span
+        ><br /><br />
+        <span id="room_nr"> Beskrivning: {{ card.description }}</span
+        ><br /><br />
+        <span id="beds"> Skriven av: {{ card.user.email }}</span
+        ><br /><br />
+      </div>
+    
   </div>
 </template>
 <script>
@@ -157,6 +160,7 @@ export default {
       this.$store.commit("setWholePension", false);
       this.$store.commit("setHalfPension", false);
       this.$store.commit("setAllInclusive", false);
+      this.$router.push("cart");
     },
 
     addABed() {
@@ -354,13 +358,18 @@ export default {
   text-align: right;
 }
 
-#Hotel-card {
+#bild {
+  float: left;
 }
 
+#Hotel-card {
+  min-width: 100px;
+}
 #card {
   border-radius: 7px;
   color: rgba(19, 13, 9, 0.911);
 
+  display: flex;
   list-style-type: none;
   background-color: rgba(16, 16, 17, 0.534);
   min-width: 90%;
@@ -372,6 +381,7 @@ export default {
   min-height: 4vh;
   max-width: 90%;
 
+  justify-content: center;
   align-self: center;
   text-align: left;
 }
@@ -382,12 +392,20 @@ export default {
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3),
     inset 3px 3px 4px rgba(240, 200, 255, 0.15);
 }
+#selected {
+  color: black;
+  justify-content: center;
+}
 
 #card:active {
   color: rgba(230, 230, 255, 0.6);
   background-color: rgba(0, 0, 0, 0.1);
   box-shadow: inset -3px -3px 4px rgba(240, 200, 255, 0.1),
     inset 3px 3px 2px rgba(0, 0, 0, 0.2);
+}
+#dropdown {
+  color: black;
+  background-color: white;
 }
 
 .Favorite-card > .title {
@@ -412,6 +430,16 @@ export default {
   font-weight: bold;
 }
 
+#desc {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.8vh;
+  text-shadow: 3px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.name {
+  font-size: 3vh;
+  font-weight: bold;
+}
 .Favorite-card:hover > #airtime {
   color: rgba(255, 255, 255, 0.6);
 }
@@ -432,7 +460,7 @@ button {
   box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.2),
     inset 2px 2px 2px rgba(255, 255, 255, 0.05);
   margin: 3px;
-
+  margin-left: 1vw;
   width: 100%;
   height: min(5vh, 25vw);
   text-shadow: -1px -1px 2px rgba(0, 0, 0, 0.3),

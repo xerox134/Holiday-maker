@@ -61,7 +61,7 @@ export default {
         this.$store.state.loggedInUser.id
       );
       console.log(user);
-      this.$router.push("/");
+     
     } catch {
       console.log("Not logged in");
     }

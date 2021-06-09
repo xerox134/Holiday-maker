@@ -1,9 +1,6 @@
 <template>
   <div>
     <h1>Mina bokningar</h1>
-    <p>Total price : {{ updatePrice }}</p>
-    <button @click="addABed">extra Bed</button>
-    <button @click="addAllInclusive">Include all luxuries?</button>
 
     <div id="BookingList">
       <ol style="list-style-type: none">
@@ -16,7 +13,7 @@
 </template>
 
 <script>
-import Card from "../Card";
+import Card from "../Card.vue";
 
 export default {
   name: "Booking",

@@ -1,15 +1,26 @@
 import { createStore } from 'vuex';
 import axios from 'axios';
+import Stripe, { loadStripe } from '@stripe/stripe-js'
+
 
 export default createStore({
   name: 'store',
 
   state: {
+    cartItems: [
+      {
+        id: 1,
+        amount: 1,
+        price: 10,
+        title: "Hotellbokning"
+      }
+    ],
     favorites: [],
     bookings: [],
     addedFavorites: [],
     hotels: [],
     hotels2: [],
+    myBookings: [],
     loggedInUser: null,
     loggedInUserId: 0,
     allUsers: [],
@@ -24,6 +35,7 @@ export default createStore({
     searchedHotels2: [],
     toggleList: true,
     totalPrice: 0,
+    numberOfNights: 0,
     bedPriceManipulator: 0,
     roomPrice: 0,
     bedPrice: 100,
@@ -43,9 +55,19 @@ export default createStore({
     reviews: [],
     allBookings: [],
     allBookings2: [],
+    finalPrice: 0
   },
 
   mutations: {
+    setCartPrice(state, payload) {
+      state.cartItems.price = payload
+    },
+    setFinalPrice(state, payload) {
+      state.finalPrice = payload
+    },
+    setNumberOfNights(state, payload) {
+      state.numberOfNights = payload
+    },
     addAPerson(state, payload) {
       state.numberOfAll += payload
     },
@@ -58,11 +80,16 @@ export default createStore({
     setbedPriceManipulator(state, payload) {
       state.bedPriceManipulator = payload
     },
+
     setDistanceBeach(state, payload) {
       state.distanceBeach = payload
     },
+
     setDistanceCenter(state, payload) {
       state.distanceCenter = payload
+    },
+    setTotalPrice(state, payload) {
+      state.totalPrice += payload
     },
     setDateRange(state, payload) {
       state.dateRange = payload
@@ -169,6 +196,32 @@ export default createStore({
   },
 
   actions: {
+    async checkout({ commit, state }, finalPrice) {
+      state.cartItems = [
+        {
+          id: 1,
+          amount: 1,
+          price: finalPrice,
+          title: "Hotellbokning"
+        }
+      ],
+        console.log('finalprice from store ' + state.finalPrice)
+      console.log(state.cartItems)
+      const stripe = await loadStripe('pk_test_51IxVsIGbzWnmUKqiQXUVCLg7e3J808utQYvrZQyDKilYGqqtwbNXAli0jaLRpGrxJXQnFmTtLTq7DnM151bEJlzD007pPeLOwH');
+      //const elements = stripe.elements();
+      let response = await fetch('/api/create-checkout-session', {
+        method: 'post',
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify(
+          {
+            items: state.cartItems
+          }
+        )
+      })
+      let result = await response.json()
+      console.log('Redirecting to stripe checkout..', result)
+      return stripe.redirectToCheckout({ sessionId: result.id });
+    },
     async fetchHotels() {
       await axios.get("http://localhost:3000/rest/hotels")
         .then(response => {
@@ -227,6 +280,7 @@ export default createStore({
           console.log(response.data)
         })
     },
+
     async fetchBookings() {
       await axios.get("http://localhost:3000/rest/bookings/")
         .then(response => {
@@ -234,6 +288,8 @@ export default createStore({
           console.log(response.data)
         })
     },
+
+
     async fetchHotelBySearchPhrase() {
       await axios.get("http://localhost:3000/rest/hotel/search/" + this.state.HotelSearchPhrase)
         .then(response => {
@@ -241,6 +297,7 @@ export default createStore({
           console.log(response.data)
         })
     },
+
     async fetchHotelByPool() {
       await axios.get("http://localhost:3000/rest/hotels/filter/pool")
         .then(response => {
@@ -276,13 +333,7 @@ export default createStore({
           console.log(response.data)
         })
     },
-    async fetchReviewsByHotelId() {
-      await axios.get("http://localhost:3000/rest/reviews/hotel/" + this.state.hotelId)
-        .then(response => {
-          this.commit("setReviewsByHotelId", response.data)
-          console.log(response.data)
-        })
-    },
+
   },
 
 
@@ -366,9 +417,7 @@ export default createStore({
     getTemporaryNumber(state) {
       return state.temporaryNumber
     },
-    getAllAllBookings(state) {
-      return state.allBookings
-    },
+
     getExtraBed(state) {
       return state.extraBed
     },
@@ -383,11 +432,21 @@ export default createStore({
     },
     getReviewsByHotelId(state) {
       return state.reviews
+    },
+
+
+    getFinalPrice(state) {
+      return state.finalPrice
+    },
+    getNumberOfNights(state) {
+      return state.numberOfNights
     }
-
-
-
   },
+
+
+
+
+
 
   modules: {
 

@@ -1,44 +1,49 @@
 <template>
-  <h1>ShoppingCart Component</h1>
-  <div>
-    <p>Total price : {{ updatePrice }} kr</p>
-    <div>
-      <p>Adult/s : {{ getAdults }}</p>
-    </div>
-    <div>
-      <p>Children : {{ getChildren }}</p>
-    </div>
-
-    <div id="datum">
-      <p>Datum: {{ getFromDate }} - {{ getToDate }}</p>
-    </div>
-  </div>
-
+  <h1>Varukorg</h1>
   <div id="ShoppingCartList">
     <ol style="list-style-type: none">
       <li v-for="(ShoppingCart, index) in getRoomsWithRoomId" :key="index">
         <Card :card="ShoppingCart" :type="'shoppingcart'" />
       </li>
     </ol>
+    <div>
+      <div>
+        <p>Antal vuxna: {{ getAdults }}</p>
+      </div>
+      <div>
+        <p>Antal barn: {{ getChildren }}</p>
+      </div>
+
+      <div id="datum">
+        <p>Datum: {{ getFromDate }} - {{ getToDate }}</p>
+        <p>Antal nätter: {{ getNumberOfNights }}</p>
+        <br />
+      </div>
+      <h3>Totalt pris : {{ getTotalPrice * getNumberOfNights}} kr</h3>
+    </div>
   </div>
   <div>
-    <button @click="addBooking">BOKA</button>
+    <button @click="addBooking(), checkout()">Till betalning</button>
   </div>
 </template>
 
 <script>
-import Card from "../Card";
+import Card from "../Card.vue";
+
 
 export default {
   name: "Booking",
-  components: { Card },
+  components: {
+    Card,
+    
+  },
 
   computed: {
     getRoomsWithRoomId() {
       return this.$store.getters.getRoomsWithRoomId;
     },
-    updatePrice() {
-      return this.$store.getters.totalPrice;
+    getFinalPrice() {
+      return this.$store.getters.getFinalPrice;
     },
     getAdults() {
       return this.$store.getters.getNumberOfAdults;
@@ -52,9 +57,26 @@ export default {
     getToDate() {
       return this.$store.getters.getToDate;
     },
+    getNumberOfNights(){
+      return this.$store.getters.getNumberOfNights
+    },
+    getTotalPrice(){
+      return this.$store.getters.totalPrice
+    }
   },
 
   methods: {
+    checkout(){
+      var finalPrice = this.$store.state.totalPrice * this.$store.state.numberOfNights
+      this.$store.commit("setFinalPrice", finalPrice)
+      console.log(finalPrice)
+      this.$store.dispatch('checkout', this.getFinalPrice)
+    },
+    test(){
+      console.log(finalPrice)
+      var finalPrice = this.$store.state.totalPrice * this.$store.state.numberOfNights
+      console.log(this.$store.state.finalPrice)
+    },
     Edit() {
       this.$store.commit("addABed", this.$store.state.bedPrice);
     },
@@ -75,6 +97,7 @@ export default {
           numberOfChildren: this.$store.getters.getNumberOfChildren, // Hämtar antal barn som man valt
           fromDate: this.$store.getters.getFromDate, // Hämtar datumet man valt. Bokningen funkar inte om man inte fyller i ett startdatum
           toDate: this.$store.getters.getToDate, // Hämtar datumet man valt. Bokningen funkar inte om man inte fyller i ett slutdatum
+          paid: 0,
         }),
       };
       const response = await fetch("/rest/bookings", requestOptions);
@@ -82,10 +105,15 @@ export default {
       this.postId = data.id;
       console.log(data);
     },
+    
   },
 
   mounted() {
     console.log(this.$store.state.bookedRoom.id);
+    var finalPrice = this.$store.state.totalPrice * this.$store.state.numberOfNights
+      this.$store.commit("setFinalPrice", finalPrice)
+      console.log(finalPrice)
+
   },
 };
 </script>

@@ -1,53 +1,48 @@
 <template>
   <div id="everything">
-    
     <div id="Search">
+      <div class="searchContainer">
+        <input
+          id="searchBar"
+          v-on:keyup.enter="searchForHotel(searchPhrase)"
+          type="text"
+          placeholder="🛏Vart vill du åka?"
+          v-model="searchPhrase"
+        />
+      </div>
+      <div class="searchContainer">
+        <label for="start">Start date:</label>
+        <input
+          class="dateSelect"
+          type="date"
+          id="fromDate"
+          name="trip-start"
+          v-model="fromDate"
+        />
+        <label for="start">End date:</label>
+        <input
+          class="dateSelect"
+          type="date"
+          id="toDate"
+          name="trip-start"
+          v-model="toDate"
+        />
+      </div>
 
-<div class="searchContainer">
-      <input
-      id="searchBar"
-      v-on:keyup.enter="searchForHotel(searchPhrase)"
-      type="text"
-      placeholder="🛏Vart vill du åka?"
-      v-model="searchPhrase"
-    />
-</div>
-<div class="searchContainer">
-    <label for="start">Start date:</label>
-    <input
-      class="dateSelect"
-      type="date"
-      id="fromDate"
-      name="trip-start"
-      v-model="fromDate"
-    />
-    <label for="start">End date:</label>
-    <input
-      class="dateSelect"
-      type="date"
-      id="toDate"
-      name="trip-start"
-      v-model="toDate"
-    />
- </div>
-  
-  
-    <div class="peopleAmount">
-    <button class="dropbtn">Antal</button>
-    <div class="dropdown-content">
-    <button @click="removeAdult">-</button>
-    Vuxen: {{ getAdults }}
-    <button @click="addAdult">+</button>
-    <button @click="removeChild">-</button>
-    Barn: {{ getChildren }}
-    <button @click="addChild">+</button>
+      <div class="peopleAmount">
+        <button class="dropbtn">Antal</button>
+        <div class="dropdown-content">
+          <button @click="removeAdult">-</button>
+          Vuxen: {{ getAdults }}
+          <button @click="addAdult">+</button>
+          <button @click="removeChild">-</button>
+          Barn: {{ getChildren }}
+          <button @click="addChild">+</button>
+        </div>
+      </div>
+
+      <button @click="searchForHotel(searchPhrase)">Sök</button>
     </div>
-  </div>
-
-
-    
-    <button @click="searchForHotel(searchPhrase)">Sök</button>
-</div>
     <div id="sort">
       <span class="trying">
         <p>Stjärnor⭐</p>
@@ -70,7 +65,6 @@
 
       <button @click="clear(), clear2()">❌</button><br />
     </div>
-     
 
     <ol id="HotelList">
       <li v-for="(hotel, index) in getSearchedHotels" :key="index">
@@ -183,15 +177,32 @@ export default {
     },
 
     setDates() {
+
+
+
       if (
         this.fromDate < new Date().toISOString().substr(0, 10) ||
         this.toDate < this.fromDate
       ) {
         alert("You cant go back in time my friend");
-      } else this.$store.commit("setFromDate", this.fromDate);
+      } else   
+      
+      console.log(this.fromDate, this.toDate)
+      var fromDateTime = new Date(this.fromDate)
+      var toDateTime = new Date (this.toDate)
+      var oneDay = 1000 * 60 * 60 * 24;
+      var diffInTime = toDateTime.getTime() - fromDateTime.getTime();
+      var diffInDays = Math.round(diffInTime / oneDay);
+      this.$store.commit("setNumberOfNights", diffInDays)
+      console.log("Nr of nights: ", diffInDays);
+      
+      
+      this.$store.commit("setFromDate", this.fromDate);
       this.$store.commit("setToDate", this.toDate);
       console.log("fromDate \n" + this.$store.state.fromDate);
       console.log("toDate \n" + this.$store.state.toDate);
+
+      
     },
 
     addAdult() {
@@ -277,24 +288,21 @@ export default {
   display: flex;
 }
 
-#Search{
+#Search {
   display: flex;
   justify-content: space-between;
-   align-items: center;
- justify-content: center;
- text-align: center;
-  
-  padding: 1vh 1vw;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 
-  
+  padding: 1vh 1vw;
 }
 
-#searchBar{
+#searchBar {
   padding: 1vh 1vw;
- align-items: center;
- justify-content: center;
- margin: 1vh 1vw;
-  
+  align-items: center;
+  justify-content: center;
+  margin: 1vh 1vw;
 }
 .trying {
   display: flex;
@@ -331,9 +339,10 @@ p {
   left: 1px;
   border: none;
   outline: none;
-  background-color: rgba(80, 75, 85, .3);
-  color: rgba(230, 230, 255, .6);
-  box-shadow: 2px 2px 1px rgba(0, 0, 0, .2), inset 2px 2px 2px rgba(255, 255, 255, .05);
+  background-color: rgba(80, 75, 85, 0.3);
+  color: rgba(230, 230, 255, 0.6);
+  box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.2),
+    inset 2px 2px 2px rgba(255, 255, 255, 0.05);
   margin: 3px;
   margin-left: 1vw;
   margin-bottom: 10px;
@@ -342,10 +351,10 @@ p {
   padding-top: 5px;
   padding-bottom: 5px;
   height: min(5vh, 25vw);
-  text-shadow: -1px -1px 2px rgba(0, 0, 0, .3), 1px 1px 2px rgba(126, 126, 126, .5);
-  
+  text-shadow: -1px -1px 2px rgba(0, 0, 0, 0.3),
+    1px 1px 2px rgba(126, 126, 126, 0.5);
 }
-.peopleAmount{
+.peopleAmount {
   position: relative;
   display: inline-flex;
 }
@@ -354,7 +363,7 @@ p {
   position: absolute;
   background-color: rgb(38, 39, 63);
   min-width: 250px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   top: 38px;
   right: -100px;
@@ -369,10 +378,15 @@ p {
   display: block;
 }
 
-.dropdown-content a:hover {background-color: #ddd;}
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
 
-.peopleAmount:hover .dropdown-content {display: block;}
+.peopleAmount:hover .dropdown-content {
+  display: block;
+}
 
-.peopleAmount:hover .dropbtn {background-color: rgba(80, 75, 85, .3);;}
-
+.peopleAmount:hover .dropbtn {
+  background-color: rgba(80, 75, 85, 0.3);
+}
 </style>

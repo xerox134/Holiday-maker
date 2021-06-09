@@ -10,7 +10,7 @@ module.exports = {
                 changeOrigin: true
             },
             '/api': {
-                target: 'http://localhost:8080',
+                target: 'http://localhost:3001/',
                 ws: true,
                 changeOrigin: true
             },
@@ -34,7 +34,8 @@ module.exports = {
                 ws: true,
                 changeOrigin: true,
                 secure: false
-            }
+            },
+
         },       
     }
 }

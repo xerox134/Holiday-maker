@@ -5,6 +5,8 @@ import Rooms from '../views/Rooms.vue'
 import Bookings from '../views/Bookings.vue'
 import ShoppingCart from '../views/ShoppingCart.vue'
 import Reviews from '../views/Reviews.vue'
+import { Checkout } from 'stripe/lib/resources'
+import CheckoutResult from '/src/components/CheckoutResult.vue'
 
 const routes = [
   {
@@ -42,7 +44,21 @@ const routes = [
     path: '/reviews',
     name: 'Reviews',
     component: Reviews
+    
+  },
+  {
+    path: '/checkout',
+    name: 'Checkout',
+    component: Checkout,
+  },
+  {
+    path: '/checkout-result/:result',
+    name: 'CheckoutResult',
+    component: CheckoutResult,
   }
+
+
+
 ]
 
 const router = createRouter({

@@ -11,6 +11,8 @@
         />
       </div>
       <div class="searchContainer">
+
+        <!--DATUM: V model till set date funktion. Set date kallas genom submitknappen(searchforhotel) längst ner.-->
         <label for="start">Från: </label>
         <input
           class="dateSelect"
@@ -187,6 +189,7 @@ export default {
         alert("You cant go back in time my friend");
       } else   
       
+      // Antal dagar i varukorg
       console.log(this.fromDate, this.toDate)
       var fromDateTime = new Date(this.fromDate)
       var toDateTime = new Date (this.toDate)
@@ -196,7 +199,7 @@ export default {
       this.$store.commit("setNumberOfNights", diffInDays)
       console.log("Nr of nights: ", diffInDays);
       
-      
+      // From date - to date i search!
       this.$store.commit("setFromDate", this.fromDate);
       this.$store.commit("setToDate", this.toDate);
       console.log("fromDate \n" + this.$store.state.fromDate);
@@ -215,9 +218,6 @@ export default {
       this.$store.state.numberOfAll++;
     },
 
-    addPerson() {
-      this.$store.commit("addAPerson", 1);
-    },
 
     removeAdult() {
       if (this.$store.state.numberOfAdults === 1) {

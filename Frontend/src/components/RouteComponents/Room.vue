@@ -31,7 +31,7 @@ export default {
       resultArr: [],
       emptyArray: [],
       pointer: 0,
-      filterPeople: [],
+     
     };
   },
 
@@ -58,11 +58,12 @@ export default {
     filterRoomsDate() {
       // JÄMFÖR OM DET FINNS BOOKINGS SOM ÄR BOKADE UNDER DATUM
       console.log("FilterRoomsDate börjar");
+      // Element är ett bokat run u all bookings arrayen
       this.$store.state.allBookings.forEach((element) => {
-        console.log("datum före:", this.$store.state.fromDate);
-        console.log("datum efter:", this.$store.state.toDate);
-        console.log("booking före:", element.fromDate);
-        console.log("booking efter:", element.toDate);
+        // console.log("datum före:", this.$store.state.fromDate);
+        // console.log("datum efter:", this.$store.state.toDate);
+        // console.log("booking före:", element.fromDate);
+        // console.log("booking efter:", element.toDate);
         if (
           this.$store.state.fromDate <= element.fromDate &&
           this.$store.state.toDate >= element.fromDate &&
@@ -92,7 +93,7 @@ export default {
         } else console.log("ingen funka!");
       });
 
-      //IFALL DET FINNS SÅ GÅR VI IN I METODERNA ANNARS RETURERAR VI ENDAST ROOMS DIREKT
+      //IFALL DET FINNS EN BOOKING PÅ VÅRA DATUM SÅ GÅR VI IN I METODERNA ANNARS RETURERAR VI ENDAST ROOMS DIREKT
 
       if (this.pointer == 0) {
         console.log("endast rooms");
@@ -100,14 +101,15 @@ export default {
       } else {
         // METODERNA BÖRJAR!
         console.log("everything");
+        // Lägger in upptagna rum i all bookings
         this.filterBookableRooms();
+
+        // Ta bort bokade rum mellan våra datum från rumslistan 
         this.filterRoomsWithBookedRooms();
         this.fliterDuplicateRooms();
         this.makeRoomsArrayWork();
 
-        setTimeout(() => {
-          this.filteredRooms();
-        }, 500);
+       
 
         console.log("detta är resultarr", this.resultArr);
         this.pointer = 0;
@@ -189,16 +191,12 @@ export default {
     },
     makeRoomsArrayWork() {
       console.log("4");
-      this.filterPeople = this.resultArr;
       console.log("sista funktionen");
       this.$store.state.allBookings = this.$store.state.allBookings2;
       this.filterdArray = this.emptyArray;
+        this.$store.state.rooms = this.resultArr
     },
-    filteredRooms() {
-      this.$store.state.rooms = this.filterPeople.filter((room) => {
-        return room.beds >= this.$store.getters.getAllPeople;
-      });
-    },
+   
   },
 
   mounted() {
@@ -207,6 +205,7 @@ export default {
     this.$store.dispatch("fetchRoomsByHotelId");
     this.$store.dispatch("fetchBookings");
 
+// Timeout för att alla dispatches ska hinna ladda
     setTimeout(() => {
       this.filterRoomsDate();
     }, 500);

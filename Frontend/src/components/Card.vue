@@ -79,6 +79,7 @@
     <!---------------------------------------------------------------------------FAVORITE CARD------------------------------------------------------------------------------------------>
 
     <div class="Favorite-card" v-if="type == 'favorite'">
+      <img v-bind:src="card.hotel.img" alt="" /> <br />
       <span id="user">Hotellnamn: {{ card.hotel.name }}</span
       ><br /><br />
       <span id="Hotelcity">Stad: {{ card.hotel.city }}</span

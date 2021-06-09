@@ -28,5 +28,7 @@ export default {
     inset 3px 3px 3px rgba(240, 200, 255, 0.05);
   justify-content: center;
   min-height: 15vh;
+  
 }
+
 </style>

@@ -205,10 +205,14 @@ export default createStore({
           title: "Hotellbokning"
         }
       ],
+
+      
         console.log('finalprice from store ' + state.finalPrice)
       console.log(state.cartItems)
       const stripe = await loadStripe('pk_test_51IxVsIGbzWnmUKqiQXUVCLg7e3J808utQYvrZQyDKilYGqqtwbNXAli0jaLRpGrxJXQnFmTtLTq7DnM151bEJlzD007pPeLOwH');
       //const elements = stripe.elements();
+
+      //Skickar med en array med objekt till stripe
       let response = await fetch('/api/create-checkout-session', {
         method: 'post',
         headers: { 'Content-type': 'application/json' },

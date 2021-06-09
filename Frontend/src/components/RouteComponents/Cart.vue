@@ -69,12 +69,12 @@ export default {
     async addBooking() {
       var finalPrice = this.$store.state.totalPrice * this.$store.state.numberOfNights
       this.$store.commit("setFinalPrice", finalPrice)
-      const requestOptions = {
+      const bookingObject = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           room: {
-            id: this.$store.state.roomId,
+            id: this.$store.state.roomId,  // foreign key därför är det objekt
           },
           price: this.getFinalPrice, // Totalpriset finns i gettern "totalPrice" som skickas in som bokningens pris
           extraBed: this.$store.getters.getExtraBed, // Kollar om extrasängsknappen är sann eller falsk
@@ -85,12 +85,12 @@ export default {
           numberOfChildren: this.$store.getters.getNumberOfChildren, // Hämtar antal barn som man valt
           fromDate: this.$store.getters.getFromDate, // Hämtar datumet man valt. Bokningen funkar inte om man inte fyller i ett startdatum
           toDate: this.$store.getters.getToDate, // Hämtar datumet man valt. Bokningen funkar inte om man inte fyller i ett slutdatum
-          paid: 0,
+          paid: 0,  //Boolean
         }),
       };
-      const response = await fetch("/rest/bookings", requestOptions);
+      const response = await fetch("/rest/bookings", bookingObject);
       const data = await response.json();
-      this.postId = data.id;
+      this.postId = data.id; 
       console.log(data);
       this.$store.dispatch('checkout', this.getFinalPrice)
     },

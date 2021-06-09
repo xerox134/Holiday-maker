@@ -114,6 +114,10 @@
       <button @click="deleteFromBooking(card.id), refreshStuff()">
         Avboka ✖
       </button>
+
+      <button v-if="type == 'booking'" @click.stop="toReviews(card.room.hotel.id)">
+        Recensioner ✍
+      </button>
     </div>
 
     <!---------------------------------------------------------------------------SHOPPING-CART CARD------------------------------------------------------------------------------------------>

@@ -22,7 +22,7 @@ app.post('/api/create-checkout-session', async (req, res) => {
         product_data: {
           name: item.title,
         },
-        unit_amount: item.price * 100,
+        unit_amount: item.price * 100, // för att det är i öre
       },      
       quantity: item.amount,
       }

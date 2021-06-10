@@ -1,7 +1,7 @@
 -- --------------------------------------------------------
--- Värd:                         127.0.0.1
--- Serverversion:                10.4.17-MariaDB - mariadb.org binary distribution
--- Server-OS:                    Win64
+-- Host:                         127.0.0.1
+-- Server version:               10.5.8-MariaDB - mariadb.org binary distribution
+-- Server OS:                    Win64
 -- HeidiSQL Version:             11.0.0.5919
 -- --------------------------------------------------------
 
@@ -12,12 +12,12 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 
--- Dumpar databasstruktur för holiday-maker
+-- Dumping database structure for holiday-maker
 DROP DATABASE IF EXISTS `holiday-maker`;
 CREATE DATABASE IF NOT EXISTS `holiday-maker` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `holiday-maker`;
 
--- Dumpar struktur för tabell holiday-maker.bookings
+-- Dumping structure for table holiday-maker.bookings
 DROP TABLE IF EXISTS `bookings`;
 CREATE TABLE IF NOT EXISTS `bookings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -32,25 +32,26 @@ CREATE TABLE IF NOT EXISTS `bookings` (
   `number_of_children` int(11) DEFAULT NULL,
   `from_date` date NOT NULL,
   `to_date` date NOT NULL,
+  `paid` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_bookings_users` (`user_id`) USING BTREE,
   KEY `FK_bookings_rooms` (`room_id`) USING BTREE,
   CONSTRAINT `FK_bookings_rooms` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`),
   CONSTRAINT `FK_bookings_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8;
 
--- Dumpar data för tabell holiday-maker.bookings: ~5 rows (ungefär)
+-- Dumping data for table holiday-maker.bookings: ~3 rows (approximately)
 DELETE FROM `bookings`;
 /*!40000 ALTER TABLE `bookings` DISABLE KEYS */;
-INSERT INTO `bookings` (`id`, `room_id`, `user_id`, `price`, `extra_bed`, `whole_pension`, `half_pension`, `all_inclusive`, `number_of_adults`, `number_of_children`, `from_date`, `to_date`) VALUES
-	(2, 1005, 5, 500, 2, 1, 0, 1, 1, 1, '2021-05-20', '2021-05-24'),
-	(3, 1005, 1, 6000, 1, 1, 0, 1, 4, 0, '2021-09-05', '2021-09-09'),
-	(48, 1024, 2, 800, 1, 0, 0, 1, 1, 1, '2021-06-04', '2021-06-07'),
-	(49, 1017, 2, 800, 1, 0, 0, 1, 1, 1, '2021-06-04', '2021-06-07'),
-	(50, 1017, 2, 800, 1, 0, 0, 1, 1, 1, '2021-06-10', '2021-06-16');
+INSERT INTO `bookings` (`id`, `room_id`, `user_id`, `price`, `extra_bed`, `whole_pension`, `half_pension`, `all_inclusive`, `number_of_adults`, `number_of_children`, `from_date`, `to_date`, `paid`) VALUES
+	(57, 1036, 5, 4720, 1, 0, 0, 1, 1, 0, '2021-06-09', '2021-06-17', 1),
+	(58, 1017, 5, 14000, 1, 0, 0, 1, 1, 0, '2021-06-10', '2021-06-30', 1),
+	(59, 1025, 5, 4800, 1, 0, 0, 1, 1, 0, '2021-06-09', '2021-06-17', 1),
+	(60, 1006, 5, 2013, 1, 0, 0, 1, 2, 1, '2021-06-10', '2021-06-13', 1),
+	(61, 1068, 5, 650, 1, 0, 0, 1, 3, 0, '2021-06-10', '2021-06-11', 1);
 /*!40000 ALTER TABLE `bookings` ENABLE KEYS */;
 
--- Dumpar struktur för tabell holiday-maker.favorites
+-- Dumping structure for table holiday-maker.favorites
 DROP TABLE IF EXISTS `favorites`;
 CREATE TABLE IF NOT EXISTS `favorites` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -61,9 +62,9 @@ CREATE TABLE IF NOT EXISTS `favorites` (
   KEY `FK_favorites_users` (`user_id`) USING BTREE,
   CONSTRAINT `FK_favorites_hotels` FOREIGN KEY (`hotel_id`) REFERENCES `hotels` (`id`),
   CONSTRAINT `FK_favorites_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
--- Dumpar data för tabell holiday-maker.favorites: ~10 rows (ungefär)
+-- Dumping data for table holiday-maker.favorites: ~11 rows (approximately)
 DELETE FROM `favorites`;
 /*!40000 ALTER TABLE `favorites` DISABLE KEYS */;
 INSERT INTO `favorites` (`id`, `user_id`, `hotel_id`) VALUES
@@ -76,10 +77,11 @@ INSERT INTO `favorites` (`id`, `user_id`, `hotel_id`) VALUES
 	(18, 1, 6),
 	(19, 1, 1),
 	(20, 1, 1),
-	(21, 1, 2);
+	(21, 1, 2),
+	(24, 5, 2);
 /*!40000 ALTER TABLE `favorites` ENABLE KEYS */;
 
--- Dumpar struktur för tabell holiday-maker.hotels
+-- Dumping structure for table holiday-maker.hotels
 DROP TABLE IF EXISTS `hotels`;
 CREATE TABLE IF NOT EXISTS `hotels` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -102,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `hotels` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1001 DEFAULT CHARSET=utf8;
 
--- Dumpar data för tabell holiday-maker.hotels: ~15 rows (ungefär)
+-- Dumping data for table holiday-maker.hotels: ~15 rows (approximately)
 DELETE FROM `hotels`;
 /*!40000 ALTER TABLE `hotels` DISABLE KEYS */;
 INSERT INTO `hotels` (`id`, `name`, `review`, `country`, `city`, `address`, `description`, `pool`, `entertainment`, `childrens_club`, `restaurant`, `wifi`, `bar`, `distance_to_beach`, `distance_to_center`, `img`, `cheapest_price`) VALUES
@@ -123,7 +125,7 @@ INSERT INTO `hotels` (`id`, `name`, `review`, `country`, `city`, `address`, `des
 	(15, 'Klein-Hand', 3, 'Norway', 'Kristiansand S', '5630 Schlimgen Road', 'Generator Stockholm ligger på Norrmalm i Stockholm, och erbjuder en modern lounge, flera sällskapsutrymmen och en bar som serverar nordiska cocktails', 0, 0, 0, 0, 1, 0, 4, 14, 'https://imgcy.trivago.com/c_lfill,d_dummy.jpeg,e_sharpen:60,f_auto,h_225,q_auto,w_225/itemimages/11/28/112854_v6.jpeg', 232);
 /*!40000 ALTER TABLE `hotels` ENABLE KEYS */;
 
--- Dumpar struktur för tabell holiday-maker.reviews
+-- Dumping structure for table holiday-maker.reviews
 DROP TABLE IF EXISTS `reviews`;
 CREATE TABLE IF NOT EXISTS `reviews` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -136,9 +138,9 @@ CREATE TABLE IF NOT EXISTS `reviews` (
   KEY `FK_reviews_users` (`user_id`),
   CONSTRAINT `FK_reviews_hotels` FOREIGN KEY (`hotel_id`) REFERENCES `hotels` (`id`),
   CONSTRAINT `FK_reviews_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
--- Dumpar data för tabell holiday-maker.reviews: ~5 rows (ungefär)
+-- Dumping data for table holiday-maker.reviews: ~7 rows (approximately)
 DELETE FROM `reviews`;
 /*!40000 ALTER TABLE `reviews` DISABLE KEYS */;
 INSERT INTO `reviews` (`id`, `user_id`, `hotel_id`, `rating`, `description`) VALUES
@@ -146,10 +148,14 @@ INSERT INTO `reviews` (`id`, `user_id`, `hotel_id`, `rating`, `description`) VAL
 	(2, 1, 1, 5, 'Ganska kasst'),
 	(3, 1, 1, 4, 'Ok'),
 	(4, 1, 15, 1, 'Fint och så'),
-	(5, 1, 15, 4, 'BRÖDROST BRÖDROST BRÖDROST BRÖDROST BRÖDROST BRÖDROST BRÖDROST BRÖDROST BRÖDROST BRÖDROST BRÖDROST BRÖDROST BRÖDROST ');
+	(5, 1, 15, 4, 'BRÖDROST BRÖDROST BRÖDROST BRÖDROST BRÖDROST BRÖDROST BRÖDROST BRÖDROST BRÖDROST BRÖDROST BRÖDROST BRÖDROST BRÖDROST '),
+	(6, 5, 1, 4, 'najs'),
+	(7, 5, 1, 3, 'helt ok'),
+	(8, 5, 1, 2, 'sådär va'),
+	(9, 5, 2, 5, 'Helt ok');
 /*!40000 ALTER TABLE `reviews` ENABLE KEYS */;
 
--- Dumpar struktur för tabell holiday-maker.rooms
+-- Dumping structure for table holiday-maker.rooms
 DROP TABLE IF EXISTS `rooms`;
 CREATE TABLE IF NOT EXISTS `rooms` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -164,7 +170,7 @@ CREATE TABLE IF NOT EXISTS `rooms` (
   CONSTRAINT `FK_rooms_hotels` FOREIGN KEY (`hotel_id`) REFERENCES `hotels` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1101 DEFAULT CHARSET=utf8;
 
--- Dumpar data för tabell holiday-maker.rooms: ~100 rows (ungefär)
+-- Dumping data for table holiday-maker.rooms: ~100 rows (approximately)
 DELETE FROM `rooms`;
 /*!40000 ALTER TABLE `rooms` DISABLE KEYS */;
 INSERT INTO `rooms` (`id`, `hotel_id`, `room_nr`, `beds`, `price`, `booked`, `img`) VALUES
@@ -270,7 +276,7 @@ INSERT INTO `rooms` (`id`, `hotel_id`, `room_nr`, `beds`, `price`, `booked`, `im
 	(1100, 1, 100, 2, 275, 0, 'https://imgcy.trivago.com/c_fill,d_dummy.jpeg,f_auto,h_190,q_auto,w_240/partnerimages/32/43/324324558.jpeg');
 /*!40000 ALTER TABLE `rooms` ENABLE KEYS */;
 
--- Dumpar struktur för tabell holiday-maker.users
+-- Dumping structure for table holiday-maker.users
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -280,7 +286,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
--- Dumpar data för tabell holiday-maker.users: ~7 rows (ungefär)
+-- Dumping data for table holiday-maker.users: ~7 rows (approximately)
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `email`, `password`) VALUES

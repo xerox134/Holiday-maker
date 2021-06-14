@@ -91,6 +91,24 @@ export default {
   },
 
   computed: {
+    fromDate:{
+      get(){
+      return this.$store.state.fromDate
+      },
+      set(date){
+      this.$store.state.fromDate = date
+      }
+
+    },
+    toDate:{
+      get(){
+      return this.$store.state.toDate
+      },
+      set(date){
+      this.$store.state.toDate = date
+      }
+
+    },
     getSearchedHotels() {
       return this.$store.getters.getSearchedHotels;
     },
@@ -251,7 +269,7 @@ export default {
       console.log("fromDate Filter " + this.$store.state.fromDate);
       this.$store.state.hotels = this.$store.state.hotels.filter((hotel) => {
         return hotel.distance_to_beach <= this.$store.state.fromDate;
-      });
+      }); //helt galet//
     },
   },
 
